@@ -6,8 +6,6 @@ import { BaseLink } from "@/components/Elements";
 <template>
   <BaseLink class="flex items-center text-white" to="/app">
     <img class="h-4 w-auto" :src="logo" alt="Workflow" />
-    <span class="text-xl text-white font-semibold ml-2">
-      Bulletproof Vue3
-    </span>
+    <span class="text-xl text-white font-semibold ml-2"> Bulletproof Vue </span>
   </BaseLink>
 </template>

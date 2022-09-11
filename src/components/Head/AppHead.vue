@@ -8,7 +8,7 @@ type HeadProps = {
 
 defineProps<HeadProps>();
 
-const defaultTitle = "Bulletproof Vue3";
+const defaultTitle = "Bulletproof Vue";
 </script>
 
 <template>

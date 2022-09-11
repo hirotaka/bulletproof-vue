@@ -1,6 +1,9 @@
-# Bulletproof Vue 🛡️ ⚛️
-
+# 🛡️ Bulletproof Vue
 A simple, scalable, and powerful architecture for building production ready Vue applications.
+
+This repository is a migration of [bulletproof-react](https://github.com/alan2207/bulletproof-react) to Vue and its ecosystem.
+
+Still work in progress. In particular, items labeled WIP have not yet been migrated.
 
 ## Introduction
 
@@ -26,12 +29,13 @@ This is not supposed to be a template, boilerplate or a framework. It is an opin
 - [🧱 Components And Styling](docs/components-and-styling.md)
 - [📡 API Layer](docs/api-layer.md)
 - [🗃️ State Management](docs/state-management.md)
-- [🧪 Testing](docs/testing.md)
+- [WIP] [🧪 Testing](docs/testing.md)
 - [⚠️ Error Handling](docs/error-handling.md)
 - [🔐 Security](docs/security.md)
-- [🚄 Performance](docs/performance.md)
+- [WIP] [🚄 Performance](docs/performance.md)
 - [🌐 Deployment](docs/deployment.md)
 - [📚 Additional Resources](docs/additional-resources.md)
+
 
 ## Contributing
 

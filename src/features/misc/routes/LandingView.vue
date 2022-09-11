@@ -15,7 +15,7 @@ const router = useRouter();
       <h2
         class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl"
       >
-        <span class="block">Bulletproof Vue3</span>
+        <span class="block">Bulletproof Vue</span>
       </h2>
       <img class="mx-auto my-10 h-56" src="@/assets/logo.svg" alt="vue" />
       <p>Showcasing Best Practices For Building React Applications</p>
