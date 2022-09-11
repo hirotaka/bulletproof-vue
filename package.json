@@ -1,6 +1,6 @@
 {
-  "name": "bulletproof-vue2",
-  "version": "0.0.0",
+  "name": "bulletproof-vue",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

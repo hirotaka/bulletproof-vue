@@ -31,7 +31,8 @@ withDefaults(defineProps<BaseButtonProps>(), {
 <template>
   <button
     class="flex justify-center items-center border border-gray-300 disabled:opacity-70 disabled:cursor-not-allowed rounded-md shadow-sm font-medium focus:outline-none"
-    :class="[variants[variant], sizes[size]]">
+    :class="[variants[variant], sizes[size]]"
+  >
     <slot v-if="!isLoading" name="startIcon"></slot>
     <BaseSpinner v-if="isLoading" size="sm" textCurrent="text-current" />
     <span class="mx-2">

@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import * as faker from "faker";
 
 type Overrides = Record<string, any>;
 
@@ -10,7 +10,7 @@ export const userGenerator = (overrides?: Overrides) => ({
   password: faker.internet.password(),
   teamId: faker.datatype.uuid(),
   teamName: faker.company.companyName(),
-  role: 'ADMIN',
+  role: "ADMIN",
   bio: faker.lorem.sentence(),
   createdAt: Date.now(),
   ...overrides,

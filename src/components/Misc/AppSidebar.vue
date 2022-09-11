@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import SideNavigation from "./SideNavigation.vue"
-import AppLogo from "./AppLogo.vue"
+import SideNavigation from "./SideNavigation.vue";
+import AppLogo from "./AppLogo.vue";
 </script>
 
 <template>

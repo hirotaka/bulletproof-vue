@@ -1,9 +1,9 @@
-import { rest } from 'msw';
+import { rest } from "msw";
 
-import { API_URL } from '@/config';
+import { API_URL } from "@/config";
 
-import { db, persistDb } from '../db';
-import { requireAuth, requireAdmin, delayedResponse } from '../utils';
+import { db, persistDb } from "../db";
+import { requireAuth, requireAdmin, delayedResponse } from "../utils";
 
 type TeamBody = {
   name: string;
@@ -27,7 +27,7 @@ export const teamsHandlers = [
     } catch (error: any) {
       return delayedResponse(
         ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
+        ctx.json({ message: error?.message || "Server Error" })
       );
     }
   }),
@@ -39,7 +39,7 @@ export const teamsHandlers = [
     } catch (error: any) {
       return delayedResponse(
         ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
+        ctx.json({ message: error?.message || "Server Error" })
       );
     }
   }),
@@ -55,13 +55,13 @@ export const teamsHandlers = [
         },
         data,
       });
-      persistDb('team');
+      persistDb("team");
 
       return delayedResponse(ctx.json(result));
     } catch (error: any) {
       return delayedResponse(
         ctx.status(400),
-        ctx.json({ message: error?.message || 'Server Error' })
+        ctx.json({ message: error?.message || "Server Error" })
       );
     }
   }),
