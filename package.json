@@ -1,5 +1,5 @@
 {
-  "name": "bulletproof-vue3",
+  "name": "bulletproof-vue2",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -77,7 +77,7 @@
     "vue-tsc": "^0.34.15"
   },
   "engines": {
-    "node": "^16.16.0"
+    "node": "^16.15.0"
   },
   "msw": {
     "workerDirectory": "public/"
