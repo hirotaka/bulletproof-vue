@@ -18,7 +18,7 @@ const router = useRouter();
         <span class="block">Bulletproof Vue</span>
       </h2>
       <img class="mx-auto my-10 h-56" src="@/assets/logo.svg" alt="vue" />
-      <p>Showcasing Best Practices For Building React Applications</p>
+      <p>Showcasing Best Practices For Building Vue Applications</p>
       <div className="mt-8 flex justify-center">
         <div className="inline-flex rounded-md shadow">
           <BaseButton @click="router.push({ name: 'login' })">
@@ -43,7 +43,7 @@ const router = useRouter();
         </div>
         <div className="ml-3 inline-flex">
           <a
-            href="https://github.com/hirotaka/bulletproof-vue3"
+            href="https://github.com/hirotaka/bulletproof-vue"
             target="_blank"
             rel="noreferrer"
           >

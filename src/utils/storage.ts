@@ -1,4 +1,4 @@
-const storagePrefix = "bulletproof_vue3_";
+const storagePrefix = "bulletproof_vue";
 
 const storage = {
   getToken: () => {
