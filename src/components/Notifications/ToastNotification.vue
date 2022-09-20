@@ -1,5 +1,4 @@
-<script lang="ts">
-import { h } from "vue";
+<script lang="tsx">
 import {
   InformationCircleIcon,
   CheckCircleIcon,
@@ -9,26 +8,20 @@ import {
 import { XIcon } from "@heroicons/vue/solid";
 
 export const icons = {
-  info: h(InformationCircleIcon, {
-    class: "h-6 w-6 text-blue-500",
-    ariaHidden: true,
-  }),
-  success: h(CheckCircleIcon, {
-    class: "h-6 w-6 text-green-500",
-    ariaHidden: true,
-  }),
-  warning: h(ExclamationCircleIcon, {
-    class: "h-6 w-6 text-yellow-500",
-    ariaHidden: true,
-  }),
-  error: h(XCircleIcon, {
-    class: "h-6 w-6 text-red-500",
-    ariaHidden: true,
-  }),
+  info: (
+    <InformationCircleIcon class="h-6 w-6 text-blue-500" aria-hidden="true" />
+  ),
+  success: (
+    <CheckCircleIcon class="h-6 w-6 text-green-500" aria-hidden="true" />
+  ),
+  warning: (
+    <ExclamationCircleIcon class="h-6 w-6 text-yellow-500" aria-hidden="true" />
+  ),
+  error: <XCircleIcon class="h-6 w-6 text-red-500" aria-hidden="true" />,
 };
 </script>
 
-<script setup lang="ts">
+<script setup lang="tsx">
 import { TransitionRoot } from "@headlessui/vue";
 type NotificationProps = {
   notification: {
