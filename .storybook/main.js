@@ -24,12 +24,11 @@ module.exports = {
   },
   async viteFinal(config, { configType }) {
     config.plugins = [
-      ...config.plugins,
+      ...config.plugins.filter((p) => !Array.isArray(p)),
       require("@vitejs/plugin-vue-jsx")({
         exclude: [/\.stories\.(t|j)sx?$/, /node_modules/],
       }),
     ];
-
     const { config: userConfig } = await loadConfigFromFile(
       path.resolve(__dirname, "../vite.config.ts")
     );
