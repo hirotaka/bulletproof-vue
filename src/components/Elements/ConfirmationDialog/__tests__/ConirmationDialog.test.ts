@@ -1,7 +1,7 @@
 import { render, screen, userEvent, waitFor } from "@/test/test-utils";
 
-import BaseButton from "../BaseButton.vue";
 import ConfirmationDialog from "../ConfirmationDialog.vue";
+import { BaseButton } from "../../BaseButton";
 
 test("should handle confirmation flow", async () => {
   const titleText = "Are you sure?";

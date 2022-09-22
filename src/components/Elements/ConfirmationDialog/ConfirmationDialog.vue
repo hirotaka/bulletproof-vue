@@ -2,9 +2,7 @@
 import { useSlots, cloneVNode, watchEffect } from "vue";
 import { ExclamationIcon, InformationCircleIcon } from "@heroicons/vue/outline";
 
-import BaseDialog, {
-  BaseDialogTitle,
-} from "@/components/Elements/BaseDialog.vue";
+import { BaseDialog, BaseDialogTitle } from "@/components/Elements/BaseDialog";
 import { BaseButton } from "@/components/Elements";
 import { useDisclosure } from "@/composables/useDisclosure";
 

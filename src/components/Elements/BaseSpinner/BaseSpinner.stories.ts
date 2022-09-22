@@ -1,7 +1,4 @@
-import BaseSpinner, {
-  variants,
-  sizes,
-} from "@/components/Elements/BaseSpinner.vue";
+import { BaseSpinner, variants, sizes } from ".";
 
 export default {
   title: "Components/Elements/BaseSpinner",

@@ -1,6 +1,6 @@
 import vueRouter from "storybook-vue3-router";
 
-import BaseLink from "@/components/Elements/BaseLink.vue";
+import { BaseLink } from ".";
 
 export default {
   title: "Components/Elements/BaseLink",

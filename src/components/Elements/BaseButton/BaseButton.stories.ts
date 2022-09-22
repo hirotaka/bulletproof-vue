@@ -1,7 +1,4 @@
-import BaseButton, {
-  variants,
-  sizes,
-} from "@/components/Elements/BaseButton.vue";
+import { BaseButton, variants, sizes } from ".";
 
 export default {
   title: "Components/Elements/BaseButton",

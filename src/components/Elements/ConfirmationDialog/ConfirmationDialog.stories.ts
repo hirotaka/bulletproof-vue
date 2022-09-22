@@ -1,4 +1,4 @@
-import ConfirmationDialog from "@/components/Elements/ConfirmationDialog.vue";
+import { ConfirmationDialog } from ".";
 import { BaseButton } from "@/components/Elements";
 
 export default {

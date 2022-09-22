@@ -12,7 +12,6 @@ const defaultTitle = "Bulletproof Vue";
 </script>
 
 <template>
-  <div>hoge</div>
   <Head>
     <title>{{ title ? `${title} | ${defaultTitle}` : defaultTitle }}</title>
     <meta name="description" :content="description" />
