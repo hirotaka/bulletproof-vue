@@ -25,10 +25,6 @@ const props = withDefaults(defineProps<ConfirmationDialogProps>(), {
   isDone: false,
 });
 
-const triggerButton = cloneVNode(slots.triggerButton()[0], {
-  onClick: () => open(),
-});
-
 watchEffect(() => {
   if (props.isDone) {
     close();
@@ -37,7 +33,13 @@ watchEffect(() => {
 </script>
 
 <template>
-  <component :is="triggerButton" />
+  <component
+    :is="
+      cloneVNode(slots.triggerButton()[0], {
+        onClick: () => open(),
+      })
+    "
+  />
   <BaseDialog :isOpen="isOpen" @close="close">
     <div
       class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
