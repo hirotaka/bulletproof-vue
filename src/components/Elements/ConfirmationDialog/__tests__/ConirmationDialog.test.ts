@@ -9,7 +9,7 @@ test("should handle confirmation flow", async () => {
   const confirmationButtonText = "Confirm";
   const openButtonText = "Open";
 
-  render(ConfirmationDialog, {
+  await render(ConfirmationDialog, {
     global: {
       components: { BaseButton },
     },

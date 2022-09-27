@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, useRouter } from "vue-router";
+import { RouterLink } from "vue-router";
 
 import { toFormValidator } from "@vee-validate/zod";
 import { z } from "zod";
@@ -8,8 +8,6 @@ import { BaseButton } from "@/components/Elements";
 import { BaseForm, InputField } from "@/components/Form";
 
 import { useAuth } from "@/composables/useAuth";
-
-const router = useRouter();
 
 const validationSchema = toFormValidator(
   z.object({
@@ -20,9 +18,15 @@ const validationSchema = toFormValidator(
 
 const { login, isLoggingIn } = useAuth();
 
+type LoginFormEmits = {
+  (e: "success"): void;
+};
+
+const emits = defineEmits<LoginFormEmits>();
+
 async function onSubmit(values) {
   await login(values);
-  router.push({ path: "/app" });
+  emits("success");
 }
 </script>
 
@@ -38,12 +42,14 @@ async function onSubmit(values) {
   </BaseForm>
   <div class="mt-2 flex items-center justify-end">
     <div class="text-sm">
+      <!--
       <RouterLink
         to="/auth/register"
         class="font-medium text-blue-600 hover:text-blue-500"
       >
         Register
       </RouterLink>
+      -->
     </div>
   </div>
 </template>
