@@ -25,7 +25,7 @@ test("should handle basic dialog flow", async () => {
     },
   };
 
-  await render(TestDialog, { user: null });
+  await render(TestDialog);
 
   expect(screen.queryByText(titleText)).not.toBeInTheDocument();
 

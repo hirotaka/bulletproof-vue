@@ -18,7 +18,7 @@ test("should add proper page title and meta description", async () => {
     },
   };
 
-  render(TestAppHead, { user: null });
+  render(TestAppHead);
 
   await waitFor(() => expect(document.title).toEqual(title + titleSuffix));
 

@@ -31,7 +31,7 @@ test("should handle confirmation flow", async () => {
     },
   };
 
-  await render(TestConfirmationDialog, { user: null });
+  await render(TestConfirmationDialog);
 
   expect(screen.queryByText(titleText)).not.toBeInTheDocument();
 

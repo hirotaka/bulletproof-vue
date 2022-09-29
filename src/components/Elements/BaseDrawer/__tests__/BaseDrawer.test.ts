@@ -28,9 +28,7 @@ test("should handle basic drawer flow", async () => {
     },
   };
 
-  await render(TestDrawer, {
-    user: null,
-  });
+  await render(TestDrawer);
 
   expect(screen.queryByText(titleText)).not.toBeInTheDocument();
 
