@@ -1,4 +1,3 @@
-import { VueQueryPlugin } from "vue-query";
 import {
   createUser,
   render,
@@ -14,20 +13,25 @@ test("should login new user and call onSuccess cb which should navigate the user
 
   const onSuccess = vi.fn();
 
-  await render(LoginForm, {
+  const loginForm = {
+    components: { LoginForm },
+    template: `<LoginForm @success="onSuccess" />`,
+    methods: {
+      onSuccess: onSuccess,
+    },
+  };
+
+  await render(loginForm, {
     user: null,
-    emits: {
-      success: onSuccess,
-    },
-    global: {
-      plugins: [VueQueryPlugin],
-    },
   });
 
-  //userEvent.type(screen.getByLabelText(/email address/i), newUser.email);
-  //userEvent.type(screen.getByLabelText(/password/i), newUser.password);
+  await userEvent.type(screen.getByLabelText(/email address/i), newUser.email);
 
-  //userEvent.click(screen.getByRole('button', { name: /log in/i }));
+  await userEvent.type(screen.getByLabelText(/password/i), newUser.password);
 
-  //await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
+  await userEvent.click(screen.getByRole("button", { name: /log in/i }));
+
+  await waitFor(() => {
+    expect(onSuccess).toHaveBeenCalledTimes(1);
+  });
 });

@@ -1,18 +1,26 @@
 import { render, screen, waitFor, userEvent } from "@/test/test-utils";
-import TestForm from "./TestForm.vue";
+import TestFormView from "./TestFormView.vue";
 
 const testData = {
   title: "Hello World",
 };
 
+const TestForm = (handleSubmit) => {
+  return {
+    components: { TestFormView },
+    template: `<TestFormView :handleSubmit="handleSubmit" />`,
+    data() {
+      return {
+        handleSubmit: handleSubmit,
+      };
+    },
+  };
+};
+
 test("should render and submit a basic Form component", async () => {
   const handleSubmit = vi.fn();
 
-  await render(TestForm, {
-    props: {
-      handleSubmit: handleSubmit,
-    },
-  });
+  await render(TestForm(handleSubmit), { user: null });
 
   await userEvent.type(screen.getByLabelText(/title/i), testData.title);
 
@@ -26,11 +34,7 @@ test("should render and submit a basic Form component", async () => {
 test("should fail submission if validation fails", async () => {
   const handleSubmit = vi.fn();
 
-  await render(TestForm, {
-    props: {
-      handleSubmit: handleSubmit,
-    },
-  });
+  await render(TestForm(handleSubmit), { user: null });
 
   await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 

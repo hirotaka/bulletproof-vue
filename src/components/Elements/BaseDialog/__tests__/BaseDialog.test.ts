@@ -1,19 +1,31 @@
 import { render, screen, userEvent, waitFor } from "@/test/test-utils";
 
-import TestDialog from "./TestDialog.vue";
+import TestDialogView from "./TestDialogView.vue";
 
 const openButtonText = "Open Modal";
 const cancelButtonText = "Cancel";
 const titleText = "Modal Title";
 
 test("should handle basic dialog flow", async () => {
-  await render(TestDialog, {
-    props: {
-      openButtonText,
-      cancelButtonText,
-      titleText,
+  const TestDialog = {
+    components: { TestDialogView },
+    template: `
+      <TestDialogView
+        :openButtonText="openButtonText"
+        :cancelButtonText="cancelButtonText"
+        :titleText="titleText"
+      />
+    `,
+    data() {
+      return {
+        openButtonText,
+        cancelButtonText,
+        titleText,
+      };
     },
-  });
+  };
+
+  await render(TestDialog, { user: null });
 
   expect(screen.queryByText(titleText)).not.toBeInTheDocument();
 

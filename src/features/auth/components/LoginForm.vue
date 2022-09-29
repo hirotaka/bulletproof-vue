@@ -25,17 +25,17 @@ type LoginFormEmits = {
 const emits = defineEmits<LoginFormEmits>();
 
 async function onSubmit(values) {
-  await login(values);
+  // await login(values);
   emits("success");
 }
 </script>
 
 <template>
-  <BaseForm @submit="onSubmit" :validation-schema="validationSchema">
+  <BaseForm :validation-schema="validationSchema">
     <InputField name="email" type="email" label="Email Address" />
     <InputField name="password" type="password" label="Password" />
     <div>
-      <BaseButton type="submit" class="w-full" :isLoading="isLoggingIn"
+      <BaseButton @click="onSubmit" type="submit" class="w-full" :isLoading="isLoggingIn"
         >Log in</BaseButton
       >
     </div>

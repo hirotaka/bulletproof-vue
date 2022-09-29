@@ -1,5 +1,4 @@
 import { render, waitFor } from "@/test/test-utils";
-import { createHead } from "@vueuse/head";
 
 import AppHead from "../AppHead.vue";
 
@@ -8,17 +7,18 @@ test("should add proper page title and meta description", async () => {
   const titleSuffix = " | Bulletproof Vue";
   const description = "This is a description";
 
-  const head = createHead();
+  const TestAppHead = {
+    components: { AppHead },
+    template: `<AppHead :title="title" :description="description" />`,
+    data() {
+      return {
+        title,
+        description,
+      };
+    },
+  };
 
-  render(AppHead, {
-    props: {
-      title,
-      description,
-    },
-    global: {
-      plugins: [head],
-    },
-  });
+  render(TestAppHead, { user: null });
 
   await waitFor(() => expect(document.title).toEqual(title + titleSuffix));
 

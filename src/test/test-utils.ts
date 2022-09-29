@@ -5,6 +5,8 @@ import {
 } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
 // import { FunctionComponent } from "react";
+import { VueQueryPlugin } from "vue-query";
+import { createHead } from "@vueuse/head";
 
 import { AppProvider } from "@/providers";
 import storage from "@/utils/storage";
@@ -52,22 +54,31 @@ const initializeUser = async (user: any) => {
 
 export const render = async (
   ui: any,
-  { route = "/", user, ...renderOptions }: Record<string, any> = {}
+  { user, ...renderOptions }: Record<string, any> = {}
 ) => {
   // if you want to render the app unauthenticated then pass "null" as the user
   user = await initializeUser(user);
 
   //   window.history.pushState({}, "Test page", route);
 
+  const app = {
+    components: { AppProvider, ui },
+    template: `<AppProvider><ui /></AppProvider>`,
+  };
+
+  const head = createHead();
+
   const returnValue = {
-    ...vtlRender(ui, {
-      wrapper: AppProvider,
+    ...vtlRender(app, {
       ...renderOptions,
+      global: {
+        plugins: [VueQueryPlugin, head],
+      },
     }),
     user,
   };
 
-  //   await waitForLoadingToFinish();
+  await waitForLoadingToFinish();
 
   return returnValue;
 };

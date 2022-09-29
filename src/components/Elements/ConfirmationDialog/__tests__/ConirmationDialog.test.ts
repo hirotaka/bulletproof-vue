@@ -9,20 +9,29 @@ test("should handle confirmation flow", async () => {
   const confirmationButtonText = "Confirm";
   const openButtonText = "Open";
 
-  await render(ConfirmationDialog, {
-    global: {
-      components: { BaseButton },
+  const TestConfirmationDialog = {
+    components: { ConfirmationDialog, BaseButton },
+    template: `
+      <ConfirmationDialog icon="danger" :title="titleText" :body="bodyText">
+        <template #triggerButton>
+          <BaseButton>${openButtonText}</BaseButton>
+        </template>
+        <template #confirmationButton>
+          <BaseButton>${confirmationButtonText}</BaseButton>
+        </template>
+      </ConfirmationDialog>
+    `,
+    data() {
+      return {
+        titleText,
+        bodyText,
+        confirmationButtonText,
+        openButtonText,
+      };
     },
-    props: {
-      icon: "danger",
-      title: titleText,
-      body: bodyText,
-    },
-    slots: {
-      triggerButton: `<BaseButton>${openButtonText}</BaseButton>`,
-      confirmButton: `<BaseButton>${confirmationButtonText}</BaseButton>`,
-    },
-  });
+  };
+
+  await render(TestConfirmationDialog, { user: null });
 
   expect(screen.queryByText(titleText)).not.toBeInTheDocument();
 
