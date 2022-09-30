@@ -36,8 +36,7 @@ const isActive = (route) => {
     :key="item.name"
     :to="item.to"
   >
-    <a
-      :href="href"
+    <span
       class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
       :class="isActive(route) && 'bg-gray-900 text-white'"
     >
@@ -47,6 +46,6 @@ const isActive = (route) => {
         aria-hidden="true"
       />
       {{ item.name }}
-    </a>
+    </span>
   </RouterLink>
 </template>

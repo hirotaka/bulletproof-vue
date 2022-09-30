@@ -49,6 +49,7 @@
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/builder-vite": "^0.2.2",
     "@storybook/vue3": "^6.5.12",
+    "@testing-library/cypress": "^8.0.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^14.4.3",
     "@testing-library/vue": "^6.6.1",
