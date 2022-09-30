@@ -1,12 +1,19 @@
 import {
-  render as rtlRender,
+  render as vtlRender,
   screen,
   waitForElementToBeRemoved,
-} from "@testing-library/react";
+} from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
-import { FunctionComponent } from "react";
 
-import { AppProvider } from "@/providers/app";
+// import { FunctionComponent } from "react";
+import { VueQueryPlugin } from "vue-query";
+import { createHead } from "@vueuse/head";
+
+// TODO: Avoid dependency
+import { createPinia } from "pinia";
+import router from "@/router";
+
+import { AppProvider } from "@/providers";
 import storage from "@/utils/storage";
 
 import { discussionGenerator, userGenerator } from "./data-generators";
@@ -50,20 +57,29 @@ const initializeUser = async (user: any) => {
   }
 };
 
-// eslint-disable-next-line import/export
 export const render = async (
   ui: any,
-  { route = "/", user, ...renderOptions }: Record<string, any> = {}
+  { user, ...renderOptions }: Record<string, any> = {}
 ) => {
   // if you want to render the app unauthenticated then pass "null" as the user
   user = await initializeUser(user);
 
-  window.history.pushState({}, "Test page", route);
+  //   window.history.pushState({}, "Test page", route);
+
+  const app = {
+    components: { AppProvider, ui },
+    template: `<AppProvider><ui /></AppProvider>`,
+  };
+
+  const head = createHead();
+  const pinia = createPinia();
 
   const returnValue = {
-    ...rtlRender(ui, {
-      wrapper: AppProvider as FunctionComponent<unknown>,
+    ...vtlRender(app, {
       ...renderOptions,
+      global: {
+        plugins: [VueQueryPlugin, head, router, pinia],
+      },
     }),
     user,
   };
@@ -73,6 +89,5 @@ export const render = async (
   return returnValue;
 };
 
-// eslint-disable-next-line import/export
-export * from "@testing-library/react";
-export { userEvent, rtlRender };
+export { screen, waitFor, within } from "@testing-library/vue";
+export { userEvent, vtlRender };

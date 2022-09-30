@@ -1,5 +1,5 @@
-import BaseDrawer from "@/components/Elements/BaseDrawer.vue";
-import BaseButton from "@/components/Elements/BaseButton.vue";
+import { BaseDrawer } from ".";
+import { BaseButton } from "@/components/Elements";
 import { useDisclosure } from "@/composables/useDisclosure";
 
 export default {

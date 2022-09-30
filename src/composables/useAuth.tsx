@@ -52,6 +52,7 @@ async function logoutFn() {
 function isAuthenticated() {
   return !!storage.getToken();
 }
+
 const authConfig = {
   loadUser,
   loginFn,

@@ -16,8 +16,9 @@ defineProps<FieldWrapperProps>();
       </div>
     </label>
     <div
+      v-if="errorMessage"
       role="alert"
-      aria-label="errorMessage"
+      :aria-label="errorMessage"
       class="text-sm font-semibold text-red-500"
     >
       {{ errorMessage }}

@@ -1,6 +1,6 @@
 import MyForm from "./MyForm.vue";
 import FormDrawer from "@/components/Form/FormDrawer.vue";
-import BaseButton from "@/components/Elements/BaseButton.vue";
+import { BaseButton } from "@/components/Elements";
 
 export default {
   title: "Components/Form",

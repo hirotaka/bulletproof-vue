@@ -13,7 +13,7 @@ export const sizes = {
 </script>
 
 <script setup lang="ts">
-import BaseSpinner from "./BaseSpinner.vue";
+import { BaseSpinner } from "../BaseSpinner";
 
 interface BaseButtonProps {
   variant?: keyof typeof variants;

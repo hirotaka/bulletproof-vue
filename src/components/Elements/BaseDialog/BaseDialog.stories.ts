@@ -1,8 +1,6 @@
 import { ref } from "vue";
-import BaseDialog, {
-  BaseDialogTitle,
-} from "@/components/Elements/BaseDialog.vue";
-import BaseButton from "@/components/Elements/BaseButton.vue";
+import { BaseDialog, BaseDialogTitle } from ".";
+import { BaseButton } from "../BaseButton";
 
 import { useDisclosure } from "@/composables/useDisclosure";
 

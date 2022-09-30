@@ -1,4 +1,4 @@
-import MDPreview from "@/components/Elements/MDPreview.vue";
+import { MDPreview } from ".";
 
 export default {
   title: "Components/Elements/MDPreview",
