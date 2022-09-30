@@ -29,7 +29,7 @@ This is not supposed to be a template, boilerplate or a framework. It is an opin
 - [🧱 Components And Styling](docs/components-and-styling.md)
 - [📡 API Layer](docs/api-layer.md)
 - [🗃️ State Management](docs/state-management.md)
-- [WIP] [🧪 Testing](docs/testing.md)
+- [🧪 Testing](docs/testing.md)
 - [⚠️ Error Handling](docs/error-handling.md)
 - [🔐 Security](docs/security.md)
 - [WIP] [🚄 Performance](docs/performance.md)

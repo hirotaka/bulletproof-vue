@@ -41,9 +41,15 @@ const { data: teams } = useTeams({
   },
 });
 
+type RegisterFormEmits = {
+  (e: "success"): void;
+};
+
+const emits = defineEmits<RegisterFormEmits>();
+
 async function onSubmit(values) {
   await register(values);
-  props.onSuccess();
+  emits("success");
 }
 </script>
 

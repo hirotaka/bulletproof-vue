@@ -40,9 +40,10 @@ const { data, isLoading } = useComments({ discussionId: props.discussionId });
     </div>
     <ul v-else aria-label="comments" class="flex flex-col space-y-3">
       <li
-        v-for="comment in data"
+        v-for="(comment, index) in data"
         class="w-full bg-white shadow-sm p-4"
         :key="comment.id"
+        :aria-label="`comment-${comment.body}-${index}`"
       >
         <div class="flex justify-between">
           <span class="text-xs font-semibold">{{

@@ -12,6 +12,6 @@ const onSuccess = () => {
 
 <template>
   <AuthLayout title="Register your account">
-    <RegisterForm :onSuccess="onSuccess" />
+    <RegisterForm @success="onSuccess" />
   </AuthLayout>
 </template>
