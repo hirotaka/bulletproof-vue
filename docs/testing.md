@@ -23,7 +23,7 @@ Most of your tests should be integration tests, as these will give you the most 
 End-To-End Testing is a testing method where an application is tested as a complete entity.
 Usually these tests consist of running the entire application with the frontend and the backend in an automated way and verifying that the entire system works. It is usually written in the way the application should be used by the user.
 
-[E2E Example Code](../cypress/integration/smoke.ts)
+[E2E Example Code](../cypress/e2e/smoke.cy.ts)
 
 ## Tooling:
 
@@ -51,7 +51,7 @@ It is very configurable with plugins and commands. You can even pair it with [Te
 
 You can also write custom commands to abstract some common tasks.
 
-[WIP] [Custom Cypress Commands Example Code](../cypress/support/commands.ts)
+[Custom Cypress Commands Example Code](../cypress/support/commands.ts)
 
 #### [MSW](https://mswjs.io)
 
