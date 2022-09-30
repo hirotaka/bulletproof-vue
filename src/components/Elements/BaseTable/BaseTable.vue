@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { VNode } from "vue";
+import { ArchiveIcon } from '@heroicons/vue/outline';
 
 type TableColumn<Entry> = {
   title: string;
@@ -16,7 +17,14 @@ defineProps<TableProps>();
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div
+    v-if="!data.length"
+    class="bg-white text-gray-500 h-80 flex justify-center items-center flex-col"
+  >
+    <ArchiveIcon class="h-16 w-16" />
+    <h4>No Entries Found</h4>
+  </div>
+  <div v-else class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div

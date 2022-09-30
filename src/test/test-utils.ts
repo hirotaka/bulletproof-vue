@@ -4,9 +4,14 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
+
 // import { FunctionComponent } from "react";
 import { VueQueryPlugin } from "vue-query";
 import { createHead } from "@vueuse/head";
+
+// TODO: Avoid dependency
+import { createPinia } from "pinia";
+import router from "@/router";
 
 import { AppProvider } from "@/providers";
 import storage from "@/utils/storage";
@@ -67,12 +72,13 @@ export const render = async (
   };
 
   const head = createHead();
+  const pinia = createPinia();
 
   const returnValue = {
     ...vtlRender(app, {
       ...renderOptions,
       global: {
-        plugins: [VueQueryPlugin, head],
+        plugins: [VueQueryPlugin, head, router, pinia],
       },
     }),
     user,
@@ -83,5 +89,5 @@ export const render = async (
   return returnValue;
 };
 
-export { screen, waitFor } from "@testing-library/vue";
+export { screen, waitFor, within } from "@testing-library/vue";
 export { userEvent, vtlRender };

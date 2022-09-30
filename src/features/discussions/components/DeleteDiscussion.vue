@@ -26,7 +26,7 @@ async function onClick() {
     <ConfirmationDialog
       :isDone="isSuccess"
       icon="danger"
-      title="Delete Disucussion"
+      title="Delete Discussion"
       body="Are you sure you want to delete this discussion?"
     >
       <template #triggerButton>
