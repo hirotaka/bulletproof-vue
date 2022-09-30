@@ -9,21 +9,21 @@ This [tweet](https://twitter.com/rauchg/status/807626710350839808) explains in a
 Unit testing, as the naming already reveals is a type of testing where units of an application are being tested in isolation.
 You should write unit tests for shared components and functions that are used throughout the entire application as they might be used in different scenarios which might be difficult to reproduce in integration tests.
 
-[WIP] [Unit Test Example Code](../src/components/Elements/ConfirmationDialog/__tests__/ConfirmationDialog.test.tsx)
+[Unit Test Example Code](../src/components/Elements/ConfirmationDialog/__tests__/ConfirmationDialog.test.ts)
 
-### [WIP] Integration Tests
+### Integration Tests
 
 Integration testing is a method of testing multiple parts of an application at once.
 Most of your tests should be integration tests, as these will give you the most benefits and confidence for your invested effort. Unit tests on their own don't guarantee that your app will work even if those tests pass, because the relationship between the units might be wrong. You should test different features with integration tests.
 
-[Integration Test Example Code](../src/features/discussions/routes/__tests__/Discussion.test.tsx)
+[Integration Test Example Code](../src/features/discussions/routes/__tests__/DiscussionView.test.ts)
 
 ### E2E
 
 End-To-End Testing is a testing method where an application is tested as a complete entity.
 Usually these tests consist of running the entire application with the frontend and the backend in an automated way and verifying that the entire system works. It is usually written in the way the application should be used by the user.
 
-[WIP] [E2E Example Code](../cypress/integration/smoke.ts)
+[E2E Example Code](../cypress/integration/smoke.ts)
 
 ## Tooling:
 
