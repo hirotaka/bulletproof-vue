@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { cloneVNode, useSlots, watchEffect } from "vue";
+import type { VNode } from "vue";
 import { useDisclosure } from "@/composables/useDisclosure";
-import { BaseButton, BaseDrawer, BaseDrawerProps } from "@/components/Elements";
+import { BaseButton, BaseDrawer } from "@/components/Elements";
+import type { BaseDrawerProps } from "@/components/Elements";
 
 interface FormDrawerProps {
   title: string;
@@ -16,9 +18,13 @@ const props = withDefaults(defineProps<FormDrawerProps>(), {
   size: "md",
 });
 
-const triggerButton = cloneVNode(slots.triggerButton()[0], {
-  onClick: () => open(),
-});
+let triggerButton: VNode;
+const triggerVNodes = slots?.triggerButton;
+if (triggerVNodes) {
+  triggerButton = cloneVNode(triggerVNodes()[0], {
+    onClick: () => open(),
+  });
+}
 
 watchEffect(() => {
   if (props.isDone) {

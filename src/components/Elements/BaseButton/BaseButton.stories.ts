@@ -1,3 +1,4 @@
+import type { Meta, StoryFn } from "@storybook/vue3";
 import { BaseButton, variants, sizes } from ".";
 
 export default {
@@ -22,9 +23,9 @@ export default {
       control: { type: "boolean" },
     },
   },
-};
+} as Meta<typeof BaseButton>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof BaseButton> = (args) => ({
   components: { BaseButton },
   setup() {
     return { args };

@@ -1,8 +1,8 @@
-export * from "./BaseButton";
+export { BaseButton } from "./BaseButton";
 export * from "./BaseDialog";
 export * from "./BaseDrawer";
 export * from "./BaseLink";
-export * from "./BaseSpinner";
+export { BaseSpinner } from "./BaseSpinner";
 export * from "./BaseTable";
 export * from "./ConfirmationDialog";
 export * from "./MDPreview";

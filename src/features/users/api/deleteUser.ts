@@ -22,17 +22,15 @@ export const useDeleteUser = ({ config }: UseDeleteUserOptions = {}) => {
   const queryClient = useQueryClient();
   const store = useNotificationStore();
 
-  return useMutation({
-    onMutate: async (deletedUser) => {
+  return useMutation<unknown, unknown, DeleteUserDTO>({
+    onMutate: async (deletedUser: User) => {
       await queryClient.cancelQueries(["users"]);
 
       const previousUsers = queryClient.getQueryData<User[]>(["users"]);
 
       queryClient.setQueryData(
         ["users"],
-        previousUsers?.filter(
-          (discussion) => discussion.id !== deletedUser.userId
-        )
+        previousUsers?.filter((discussion) => discussion.id !== deletedUser.id)
       );
 
       return { previousUsers };

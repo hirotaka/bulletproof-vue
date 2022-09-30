@@ -11,12 +11,12 @@ export default {
   argTypes: {},
 };
 
-const Template = (args) => ({
+const Template = () => ({
   components: { BaseDrawer, BaseButton },
   setup() {
     const { close, open, isOpen } = useDisclosure();
 
-    return { close, open, isOpen, args };
+    return { close, open, isOpen };
   },
   template: `
     <BaseButton @click="open">Open Drawer</BaseButton>

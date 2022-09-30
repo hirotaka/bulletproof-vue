@@ -58,7 +58,7 @@ export function requireAuth(request: RestRequest) {
     if (!encodedToken) {
       throw new Error("No authorization token provided!");
     }
-    const decodedToken = verify(encodedToken, JWT_SECRET) as { id: string };
+    const decodedToken = verify(encodedToken) as { id: string };
 
     const user = db.user.findFirst({
       where: {
