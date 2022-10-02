@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { VNode } from "vue";
-import { ArchiveIcon } from '@heroicons/vue/outline';
+import { ArchiveIcon } from "@heroicons/vue/outline";
 
 type TableColumn<Entry> = {
   title: string;
