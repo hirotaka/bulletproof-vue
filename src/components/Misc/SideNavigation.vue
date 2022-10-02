@@ -31,7 +31,7 @@ const isActive = (route) => {
 
 <template>
   <RouterLink
-    v-slot="{ href, route }"
+    v-slot="{ route }"
     v-for="item in navigation"
     :key="item.name"
     :to="item.to"
