@@ -10,7 +10,6 @@ import { FormDrawer, InputField, TextareaField } from "@/components/Form";
 
 import { useDiscussion } from "../api/getDiscussion";
 import { useUpdateDiscussion } from "../api/updateDiscussion";
-import type { UpdateDiscussionDTO } from "../api/updateDiscussion";
 
 import { ROLES } from "@/composables/useAuthorization";
 import { AuthorizationProvider } from "@/providers";
@@ -33,7 +32,7 @@ const { data: discussion } = useDiscussion({
 });
 const { isLoading, isSuccess, mutateAsync } = useUpdateDiscussion();
 
-async function onSubmit(values: UpdateDiscussionDTO["data"]) {
+async function onSubmit(values) {
   await mutateAsync({ data: values, discussionId: props.discussionId });
 }
 </script>
@@ -68,10 +67,10 @@ async function onSubmit(values: UpdateDiscussionDTO["data"]) {
         <InputField
           name="title"
           label="Title"
-          :value="discussion?.title"
+          :value="discussion.title"
           type="text"
         />
-        <TextareaField name="body" label="Body" :value="discussion?.body" />
+        <TextareaField name="body" label="Body" :value="discussion.body" />
       </Form>
     </FormDrawer>
   </AuthorizationProvider>

@@ -30,7 +30,7 @@ export const useCreateDiscussion = ({
   const store = useNotificationStore();
 
   return useMutation({
-    onMutate: async (newDiscussion: CreateDiscussionDTO) => {
+    onMutate: async (newDiscussion) => {
       await queryClient.cancelQueries(["discussions"]);
 
       const previousDiscussions = queryClient.getQueryData<Discussion[]>([

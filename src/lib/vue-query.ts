@@ -1,4 +1,4 @@
-import type { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import type { UseQueryOptions, UseMutationOptions } from "vue-query";
 import type { PromiseValue } from "type-fest";
 

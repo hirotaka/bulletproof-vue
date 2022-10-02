@@ -6,10 +6,6 @@ import type { MutationConfig } from "@/lib/vue-query";
 
 import type { Comment } from "../types";
 
-type DeleteCommentDTO = {
-  commentId: string;
-};
-
 export const deleteComment = ({ commentId }: { commentId: string }) => {
   return axios.delete(`/comments/${commentId}`);
 };
@@ -26,8 +22,8 @@ export const useDeleteComment = ({
   const queryClient = useQueryClient();
   const store = useNotificationStore();
 
-  return useMutation<unknown, unknown, DeleteCommentDTO>({
-    onMutate: async (deletedComment: DeleteCommentDTO) => {
+  return useMutation({
+    onMutate: async (deletedComment) => {
       await queryClient.cancelQueries(["comments", discussionId]);
 
       const previousComments = queryClient.getQueryData<Comment[]>([

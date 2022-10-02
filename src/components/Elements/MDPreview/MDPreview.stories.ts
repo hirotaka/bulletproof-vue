@@ -1,4 +1,3 @@
-import type { Meta, StoryFn } from "@storybook/vue3";
 import { MDPreview } from ".";
 
 export default {
@@ -8,9 +7,9 @@ export default {
     controls: { expanded: true },
   },
   argTypes: {},
-} as Meta<typeof MDPreview>;
+};
 
-const Template: StoryFn<typeof MDPreview> = (args) => ({
+const Template = (args) => ({
   components: { MDPreview },
   setup() {
     return { args };

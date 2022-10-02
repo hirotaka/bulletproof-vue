@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { VNode } from "vue";
-import { ArchiveIcon } from "@heroicons/vue/outline";
+import { ArchiveIcon } from '@heroicons/vue/outline';
 
-// TODO: Vue does not support Compoent Generics, so for now, this does not work properly.
 type TableColumn<Entry> = {
   title: string;
   field: keyof Entry;

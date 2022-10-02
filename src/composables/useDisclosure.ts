@@ -3,7 +3,7 @@ import { ref } from "vue";
 export function useDisclosure(initial = false) {
   const isOpen = ref(initial);
 
-  function setIsOpen(value: boolean) {
+  function setIsOpen(value) {
     isOpen.value = value;
   }
 

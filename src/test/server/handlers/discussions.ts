@@ -34,7 +34,7 @@ export const discussionsHandlers = [
   rest.get(`${API_URL}/discussions/:discussionId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req);
-      const { discussionId } = req.params as { discussionId: string };
+      const { discussionId } = req.params;
       const result = db.discussion.findFirst({
         where: {
           id: {
@@ -81,7 +81,7 @@ export const discussionsHandlers = [
       try {
         const user = requireAuth(req);
         const data = req.body;
-        const { discussionId } = req.params as { discussionId: string };
+        const { discussionId } = req.params;
         requireAdmin(user);
         const result = db.discussion.update({
           where: {
@@ -108,7 +108,7 @@ export const discussionsHandlers = [
   rest.delete(`${API_URL}/discussions/:discussionId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req);
-      const { discussionId } = req.params as { discussionId: string };
+      const { discussionId } = req.params;
       requireAdmin(user);
       const result = db.discussion.delete({
         where: {

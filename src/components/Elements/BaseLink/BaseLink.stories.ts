@@ -1,4 +1,3 @@
-import type { Meta, StoryFn } from "@storybook/vue3";
 import vueRouter from "storybook-vue3-router";
 
 import { BaseLink } from ".";
@@ -9,10 +8,13 @@ export default {
   parameters: {
     controls: { expanded: true },
   },
-} as Meta<typeof BaseLink>;
+};
 
-const Template: StoryFn<typeof BaseLink> = () => ({
+const Template = (args) => ({
   components: { BaseLink },
+  setup() {
+    return { args };
+  },
   template: `
     <BaseLink to="/">
       Hello
@@ -21,4 +23,5 @@ const Template: StoryFn<typeof BaseLink> = () => ({
 });
 
 export const Default = Template.bind({});
+Default.args = {};
 Default.decorators = [vueRouter()];

@@ -1,4 +1,3 @@
-import type { Meta, StoryFn } from "@storybook/vue3";
 import { BaseTable } from ".";
 
 export default {
@@ -8,7 +7,7 @@ export default {
     controls: { expanded: true },
   },
   argTypes: {},
-} as Meta<typeof BaseTable>;
+};
 
 type User = {
   id: string;
@@ -35,7 +34,7 @@ const data: User[] = [
   },
 ];
 
-const Template: StoryFn<typeof BaseTable> = (args) => ({
+const Template = (args) => ({
   components: { BaseTable },
   setup() {
     return { args };
