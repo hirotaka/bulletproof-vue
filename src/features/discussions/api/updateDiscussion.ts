@@ -62,7 +62,7 @@ export const useUpdateDiscussion = ({
         );
       }
     },
-    onSuccess: (data) => {
+    onSuccess: (data: Discussion) => {
       queryClient.refetchQueries(["discussion", data.id]);
       store.add({
         type: "success",

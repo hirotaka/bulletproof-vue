@@ -58,7 +58,7 @@ export const usersHandlers = [
   rest.delete(`${API_URL}/users/:userId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req);
-      const { userId } = req.params;
+      const { userId } = req.params as { userId: string };
       requireAdmin(user);
       const result = db.user.delete({
         where: {

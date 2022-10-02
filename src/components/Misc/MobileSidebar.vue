@@ -12,7 +12,7 @@ import SideNavigation from "./SideNavigation.vue";
 
 type MobileSidebarProps = {
   sidebarOpen: boolean;
-  setSidebarOpen: () => void;
+  setSidebarOpen: (value: boolean) => void;
 };
 
 defineProps<MobileSidebarProps>();

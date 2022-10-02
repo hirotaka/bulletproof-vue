@@ -3,7 +3,7 @@ import router from "@/router";
 import { protectedPaths } from "@/router/protected";
 import { isAuthenticated } from "@/composables/useAuth";
 
-const isProtected = (name) => {
+const isProtected = (name: string) => {
   return protectedPaths.find((c) => c.name === name);
 };
 

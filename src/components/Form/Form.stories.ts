@@ -11,21 +11,20 @@ export default {
   argTypes: {},
 };
 
-const Template = (args) => ({
+const Template = () => ({
   components: { MyForm },
   setup() {
-    return { args };
+    return {};
   },
-  template: '<MyForm v-bind="args" />',
+  template: '<MyForm />',
 });
 
 export const Default = Template.bind({});
-Default.args = {};
 
-const AsFormDrawerTemplate = (args) => ({
+const AsFormDrawerTemplate = () => ({
   components: { FormDrawer, MyForm, BaseButton },
   setup() {
-    return { args };
+    return {};
   },
   template: `
     <FormDrawer
@@ -49,4 +48,3 @@ const AsFormDrawerTemplate = (args) => ({
 });
 
 export const AsFormDrawer = AsFormDrawerTemplate.bind({});
-AsFormDrawer.args = {};

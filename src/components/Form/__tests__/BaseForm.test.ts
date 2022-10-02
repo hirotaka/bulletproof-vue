@@ -1,11 +1,12 @@
 import { render, screen, waitFor, userEvent } from "@/test/test-utils";
+import type { Mock } from "vitest";
 import TestFormView from "./TestFormView.vue";
 
 const testData = {
   title: "Hello World",
 };
 
-const TestForm = (handleSubmit) => {
+const TestForm = (handleSubmit: Mock) => {
   return {
     components: { TestFormView },
     template: `<TestFormView :handleSubmit="handleSubmit" />`,
