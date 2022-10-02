@@ -33,7 +33,6 @@ watchEffect(() => {
 <template>
   <component
     :is="
-      slots?.triggerButton() &&
       cloneVNode(slots.triggerButton()[0], {
         onClick: () => open(),
       })

@@ -1,4 +1,4 @@
-import type { BaseEntity } from "@/types";
+import { BaseEntity } from "@/types";
 
 export type Comment = {
   body: string;

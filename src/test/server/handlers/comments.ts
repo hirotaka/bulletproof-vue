@@ -55,7 +55,7 @@ export const commentsHandlers = [
   rest.delete(`${API_URL}/comments/:commentId`, (req, res, ctx) => {
     try {
       const user = requireAuth(req);
-      const { commentId } = req.params as { commentId: string };
+      const { commentId } = req.params;
       const result = db.comment.delete({
         where: {
           id: {

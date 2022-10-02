@@ -30,7 +30,7 @@ export const useCreateComment = ({
   const store = useNotificationStore();
 
   return useMutation({
-    onMutate: async (newComment: CreateCommentDTO) => {
+    onMutate: async (newComment) => {
       await queryClient.cancelQueries(["comments", discussionId]);
 
       const previousComments = queryClient.getQueryData<Comment[]>([

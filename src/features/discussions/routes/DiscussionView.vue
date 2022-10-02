@@ -15,7 +15,7 @@ const {
   params: { id },
 } = useRoute();
 
-const { data, isLoading } = useDiscussion({ discussionId: id as string });
+const { data, isLoading } = useDiscussion({ discussionId: id });
 </script>
 
 <template>

@@ -2,8 +2,6 @@ import { discussionGenerator } from "@/test/data-generators";
 import { render, screen, userEvent, waitFor, within } from "@/test/test-utils";
 import { formatDate } from "@/utils/format";
 
-import type { Mock } from "vitest";
-
 import { DiscussionsView } from "../";
 
 beforeAll(() => {
@@ -11,7 +9,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  (console.error as Mock).mockRestore();
+  (console.error as vi.Mock).mockRestore();
 });
 
 test("should create, render and delete discussions", async () => {

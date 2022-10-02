@@ -23,7 +23,6 @@ export const icons = {
 
 <script setup lang="tsx">
 import { TransitionRoot } from "@headlessui/vue";
-
 type NotificationProps = {
   notification: {
     id: string;

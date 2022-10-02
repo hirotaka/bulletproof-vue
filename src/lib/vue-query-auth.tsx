@@ -1,11 +1,6 @@
-import type { Ref, VNode } from "vue";
+import type { VNode } from "vue";
 
 import { useQuery, useMutation, useQueryClient } from "vue-query";
-import type {
-  MutateFunction,
-  RefetchOptions,
-  QueryObserverResult,
-} from "react-query/types/core";
 
 export interface AuthProviderConfig<User = unknown, Error = unknown> {
   key?: string;
@@ -18,29 +13,9 @@ export interface AuthProviderConfig<User = unknown, Error = unknown> {
   ErrorComponent?: ({ error }: { error: Error | null }) => VNode;
 }
 
-export function initVueQueryAuth<
-  User = unknown,
-  Error = unknown,
-  LoginCredentials = unknown,
-  RegisterCredentials = unknown
->(
+export function initVueQueryAuth<User = unknown, Error = unknown>(
   config: AuthProviderConfig<User, Error>
-): {
-  user: User | undefined;
-  login: MutateFunction<User, any, LoginCredentials>;
-  logout: MutateFunction<any, any, void, any>;
-  register: MutateFunction<User, any, RegisterCredentials>;
-  isLoggingIn: boolean;
-  isLoggingOut: boolean;
-  isRegistering: boolean;
-  refetchUser: (
-    options?: RefetchOptions | undefined
-  ) => Promise<QueryObserverResult<User, Error>>;
-  error: Error | null;
-  isLoading: Ref<boolean>;
-  isSuccess: Ref<boolean>;
-  isIdle: Ref<boolean>;
-} {
+) {
   const {
     loadUser,
     loginFn,

@@ -73,7 +73,7 @@ function createContext() {
     unknown,
     LoginCredentialsDTO,
     RegisterCredentialsDTO
-  >({ config: authConfig });
+  >(authConfig);
 }
 
 function provideAuth() {
@@ -84,7 +84,7 @@ function provideAuth() {
 }
 
 function useAuth() {
-  return inject(key) as ReturnType<typeof initVueQueryAuth>;
+  return inject(key);
 }
 
 export { provideAuth, useAuth, isAuthenticated };

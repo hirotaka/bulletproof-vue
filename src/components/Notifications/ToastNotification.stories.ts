@@ -1,4 +1,3 @@
-import type { Meta, StoryFn } from "@storybook/vue3";
 import { ToastNotification, icons } from "@/components/Notifications";
 
 export default {
@@ -23,9 +22,9 @@ export default {
     },
     onConfirmed: {},
   },
-} as Meta<typeof ToastNotification>;
+};
 
-const Template: StoryFn<typeof ToastNotification> = (args) => ({
+const Template = (args) => ({
   components: { ToastNotification },
   setup() {
     return { args };

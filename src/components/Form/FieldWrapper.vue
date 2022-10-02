@@ -1,11 +1,9 @@
-<script lang="ts">
-export interface FieldWrapperProps {
+<script setup lang="ts">
+interface FieldWrapperProps {
   label?: string;
   errorMessage?: string;
 }
-</script>
 
-<script setup lang="ts">
 defineProps<FieldWrapperProps>();
 </script>
 

@@ -6,10 +6,6 @@ import type { MutationConfig } from "@/lib/vue-query";
 
 import type { Discussion } from "../types";
 
-type DeleteDiscussionDTO = {
-  discussionId: string;
-};
-
 export const deleteDiscussion = ({
   discussionId,
 }: {
@@ -28,8 +24,8 @@ export const useDeleteDiscussion = ({
   const queryClient = useQueryClient();
   const store = useNotificationStore();
 
-  return useMutation<unknown, unknown, DeleteDiscussionDTO>({
-    onMutate: async (deletedDiscussion: DeleteDiscussionDTO) => {
+  return useMutation({
+    onMutate: async (deletedDiscussion) => {
       await queryClient.cancelQueries(["discussions"]);
 
       const previousDiscussions = queryClient.getQueryData<Discussion[]>([

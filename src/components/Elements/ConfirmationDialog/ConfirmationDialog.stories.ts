@@ -1,4 +1,3 @@
-import type { Meta, StoryFn } from "@storybook/vue3";
 import { ConfirmationDialog } from ".";
 import { BaseButton } from "@/components/Elements";
 
@@ -20,9 +19,9 @@ export default {
       control: "text",
     },
   },
-} as Meta<typeof ConfirmationDialog>;
+};
 
-const Template: StoryFn<typeof ConfirmationDialog> = (args) => ({
+const Template = (args) => ({
   components: { ConfirmationDialog, BaseButton },
   setup() {
     return { args };
@@ -46,7 +45,7 @@ Danger.args = {
   body: "Hello World",
 };
 
-const AsInfoTemplate: StoryFn<typeof ConfirmationDialog> = (args) => ({
+const AsInfoTemplate = (args) => ({
   components: { ConfirmationDialog, BaseButton },
   setup() {
     return { args };
