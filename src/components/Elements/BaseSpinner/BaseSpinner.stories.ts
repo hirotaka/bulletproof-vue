@@ -1,4 +1,5 @@
 import { BaseSpinner, variants, sizes } from ".";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   title: "Components/Elements/BaseSpinner",
@@ -16,9 +17,9 @@ export default {
       options: Object.keys(sizes),
     },
   },
-};
+} as Meta<typeof BaseSpinner>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof BaseSpinner> = (args) => ({
   components: { BaseSpinner },
   setup() {
     return { args };

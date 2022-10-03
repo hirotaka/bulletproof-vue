@@ -1,8 +1,9 @@
-import { ref } from "vue";
 import { BaseDialog, BaseDialogTitle } from ".";
 import { BaseButton } from "../BaseButton";
 
 import { useDisclosure } from "@/composables/useDisclosure";
+
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   title: "Components/Elements/BaseDialog",
@@ -10,15 +11,14 @@ export default {
   parameters: {
     controls: { expanded: true },
   },
-};
+} as Meta<typeof BaseDialog>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof BaseDialog> = (args) => ({
   components: { BaseDialog, BaseDialogTitle, BaseButton },
   setup() {
     const { open, close, isOpen } = useDisclosure();
-    const cancelButtonRef = ref<InstanceType<typeof BaseButton>>(null);
 
-    return { open, close, isOpen, cancelButtonRef, args };
+    return { open, close, isOpen, args };
   },
   template: `
     <BaseButton @click="open">
