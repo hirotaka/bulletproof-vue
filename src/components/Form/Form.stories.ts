@@ -1,6 +1,7 @@
 import MyForm from "./MyForm.vue";
 import FormDrawer from "@/components/Form/FormDrawer.vue";
 import { BaseButton } from "@/components/Elements";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   title: "Components/Form",
@@ -9,9 +10,9 @@ export default {
     controls: { expanded: true },
   },
   argTypes: {},
-};
+} as Meta<typeof MyForm>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof MyForm> = (args) => ({
   components: { MyForm },
   setup() {
     return { args };
@@ -22,7 +23,7 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {};
 
-const AsFormDrawerTemplate = (args) => ({
+const AsFormDrawerTemplate: StoryFn<typeof MyForm> = (args) => ({
   components: { FormDrawer, MyForm, BaseButton },
   setup() {
     return { args };
