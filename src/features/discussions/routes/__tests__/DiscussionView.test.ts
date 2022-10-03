@@ -1,4 +1,6 @@
 import { useRoute as useMockRoute } from "vue-router";
+import type { RouteLocationNormalizedLoaded } from "vue-router";
+import type { Mock } from "vitest";
 
 import {
   render,
@@ -15,14 +17,14 @@ import { DiscussionView } from "../";
 vi.mock("vue-router", async () => {
   const vueRouter = await vi.importActual("vue-router");
 
-  return { ...vueRouter, useRoute: vi.fn() };
+  return { ...(vueRouter as RouteLocationNormalizedLoaded), useRoute: vi.fn() };
 });
 
 const renderDiscussion = async () => {
   const fakeUser = await createUser();
   const fakeDiscussion = await createDiscussion({ teamId: fakeUser.teamId });
 
-  (useMockRoute as vi.Mock).mockImplementation(() => ({
+  (useMockRoute as Mock).mockImplementation(() => ({
     params: { id: fakeDiscussion.id },
   }));
 

@@ -4,12 +4,14 @@ import { formatDate } from "@/utils/format";
 
 import { DiscussionsView } from "../";
 
+import type { Mock } from "vitest";
+
 beforeAll(() => {
   vi.spyOn(console, "error").mockImplementation(() => undefined);
 });
 
 afterAll(() => {
-  (console.error as vi.Mock).mockRestore();
+  (console.error as Mock).mockRestore();
 });
 
 test("should create, render and delete discussions", async () => {
