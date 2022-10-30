@@ -31,7 +31,7 @@ This is the state that comes from the server which is being cached on the client
 
 Good Server Cache Libraries:
 
-- [vue-query](https://react-query.tanstack.com/) - REST + GraphQL
+- [TanStack Qury](https://tanstack.com/query/v4) - REST + GraphQL
 - [apollo client](https://www.apollographql.com/) - GraphQL
 - [urql](https://formidable.com/open-source/urql/) - GraphQl
 
