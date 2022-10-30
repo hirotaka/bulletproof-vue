@@ -1,4 +1,4 @@
-import { useQuery } from "vue-query";
+import { useQuery } from "@tanstack/vue-query";
 
 import { axios } from "@/lib/axios";
 import type { ExtractFnReturnType, QueryConfig } from "@/lib/vue-query";

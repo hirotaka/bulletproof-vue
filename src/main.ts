@@ -1,9 +1,9 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { createHead } from "@vueuse/head";
-import { VueQueryPlugin } from "vue-query";
+import { VueQueryPlugin } from "@tanstack/vue-query";
 
-import type { VueQueryPluginOptions } from "vue-query";
+import type { VueQueryPluginOptions } from "@tanstack/vue-query";
 
 import App from "./App.vue";
 import router from "./router";

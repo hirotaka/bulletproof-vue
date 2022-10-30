@@ -1,6 +1,6 @@
 import type { VNode } from "vue";
 
-import { useQuery, useMutation, useQueryClient } from "vue-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export interface AuthProviderConfig<User = unknown, Error = unknown> {
   key?: string;
@@ -21,7 +21,7 @@ export function initVueQueryAuth<User = unknown, Error = unknown>(
     loginFn,
     registerFn,
     logoutFn,
-    key = "auth-user",
+    key = ["auth-user"],
     waitInitial = true,
     LoaderComponent = () => <div>Loading...</div>,
     ErrorComponent = (error: any) => (

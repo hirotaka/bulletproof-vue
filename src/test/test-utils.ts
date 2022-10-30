@@ -6,7 +6,7 @@ import {
 import userEvent from "@testing-library/user-event";
 
 // import { FunctionComponent } from "react";
-import { VueQueryPlugin } from "vue-query";
+import { VueQueryPlugin } from "@tanstack/vue-query";
 import { createHead } from "@vueuse/head";
 
 // TODO: Avoid dependency
