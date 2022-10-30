@@ -23,6 +23,7 @@
     "@headlessui/vue": "^1.6.1",
     "@heroicons/vue": "^1.0.6",
     "@tailwindcss/typography": "^0.5.2",
+    "@tanstack/vue-query": "^4.13.4",
     "@vee-validate/zod": "^4.6.7",
     "@vueuse/head": "^0.7.9",
     "axios": "^0.27.2",
@@ -39,7 +40,6 @@
     "vee-validate": "^4.6.6",
     "vue": "^3.2.33",
     "vue-error-boundary": "^2.0.1",
-    "vue-query": "^1.26.0",
     "vue-router": "^4.0.13",
     "yup": "^0.32.11",
     "zod": "^3.18.0"

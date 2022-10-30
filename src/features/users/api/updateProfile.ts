@@ -1,4 +1,4 @@
-import { useMutation } from "vue-query";
+import { useMutation } from "@tanstack/vue-query";
 
 import { useAuth } from "@/composables/useAuth";
 import { axios } from "@/lib/axios";

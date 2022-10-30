@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import type { UseQueryOptions, UseMutationOptions } from "vue-query";
+import type { UseQueryOptions, UseMutationOptions } from "@tanstack/vue-query";
 import type { PromiseValue } from "type-fest";
 
 export type ExtractFnReturnType<FnType extends (...args: any) => any> =

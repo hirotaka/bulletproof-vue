@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "vue-query";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { axios } from "@/lib/axios";
 import { useNotificationStore } from "@/stores/notifications";
