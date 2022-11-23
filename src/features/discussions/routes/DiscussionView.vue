@@ -19,10 +19,7 @@ const { data, isLoading } = useDiscussion({ discussionId: id });
 </script>
 
 <template>
-  <div
-    v-if="isLoading"
-    className="w-full h-48 flex justify-center items-center"
-  >
+  <div v-if="isLoading" class="w-full h-48 flex justify-center items-center">
     <BaseSpinner size="lg" />
   </div>
   <ContentLayout v-if="data" :title="data.title">
