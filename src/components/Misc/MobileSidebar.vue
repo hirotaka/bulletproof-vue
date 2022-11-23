@@ -5,7 +5,7 @@ import {
   TransitionRoot,
   TransitionChild,
 } from "@headlessui/vue";
-import { XIcon } from "@heroicons/vue/outline";
+import { XMarkIcon } from "@heroicons/vue/24/outline";
 
 import AppLogo from "./AppLogo.vue";
 import SideNavigation from "./SideNavigation.vue";
@@ -65,7 +65,7 @@ defineProps<MobileSidebarProps>();
                 @click="setSidebarOpen(false)"
               >
                 <span class="sr-only">Close sidebar</span>
-                <XIcon class="h-6 w-6 text-white" aria-hidden="true" />
+                <XMarkIcon class="h-6 w-6 text-white" aria-hidden="true" />
               </button>
             </div>
           </TransitionChild>

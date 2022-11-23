@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArchiveIcon } from "@heroicons/vue/outline";
+import { ArchiveBoxIcon } from "@heroicons/vue/24/outline";
 
 import { MDPreview, BaseSpinner } from "@/components/Elements";
 
@@ -35,7 +35,7 @@ const { data, isLoading } = useComments({ discussionId: props.discussionId });
       aria-label="comments"
       class="bg-white text-gray-500 h-40 flex justify-center items-center flex-col"
     >
-      <ArchiveIcon class="h-10 w-10" />
+      <ArchiveBoxIcon class="h-10 w-10" />
       <h4>No Comments Found</h4>
     </div>
     <ul v-else aria-label="comments" class="flex flex-col space-y-3">

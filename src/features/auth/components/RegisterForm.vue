@@ -65,7 +65,7 @@ async function onSubmit(values) {
           <Switch
             v-model="chooseTeam"
             :class="chooseTeam ? 'bg-blue-600' : 'bg-gray-200'"
-            class="bg-blue-600 relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             <span
               :class="chooseTeam ? 'translate-x-6' : 'translate-x-1'"
