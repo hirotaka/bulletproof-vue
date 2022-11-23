@@ -12,7 +12,7 @@ const options = ["A", "B", "C"].map((option) => ({
   value: option,
 }));
 
-const submit = async (values) => {
+const submit = async (values: any) => {
   alert(JSON.stringify(values, null, 2));
 };
 

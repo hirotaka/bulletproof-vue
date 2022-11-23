@@ -1,6 +1,6 @@
 import { setActivePinia, createPinia } from "pinia";
 import { useNotificationStore } from "../notifications";
-import type { Notification } from "../notification";
+import type { Notification } from "../notifications";
 
 beforeEach(() => {
   setActivePinia(createPinia());
