@@ -1,4 +1,6 @@
 <script lang="ts">
+import { BaseSpinner } from "../BaseSpinner";
+
 export const variants = {
   primary: "bg-blue-600 text-white hover:bg-gray-50:text-blue-600",
   inverse: "bg-white text-blue-600 hover:bg-blue-600:text-white",
@@ -10,17 +12,15 @@ export const sizes = {
   md: "py-2 px-6 text-md",
   lg: "py-3 px-8 text-lg",
 };
-</script>
-
-<script setup lang="ts">
-import { BaseSpinner } from "../BaseSpinner";
 
 interface BaseButtonProps {
   variant?: keyof typeof variants;
   size?: keyof typeof sizes;
   isLoading?: boolean;
 }
+</script>
 
+<script setup lang="ts">
 withDefaults(defineProps<BaseButtonProps>(), {
   variant: "primary",
   size: "md",

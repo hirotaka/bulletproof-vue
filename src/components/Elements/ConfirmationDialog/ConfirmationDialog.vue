@@ -9,13 +9,13 @@ import { BaseDialog, BaseDialogTitle } from "@/components/Elements/BaseDialog";
 import { BaseButton } from "@/components/Elements";
 import { useDisclosure } from "@/composables/useDisclosure";
 
-interface ConfirmationDialogProps {
+type ConfirmationDialogProps = {
   icon?: "danger" | "info";
   title: string;
   body?: string;
   cancelButtonText?: string;
   isDone?: boolean;
-}
+};
 
 const { isOpen, open, close } = useDisclosure();
 const slots = useSlots();

@@ -1,24 +1,24 @@
 <script lang="ts">
-export const sizes = {
+export const baseSpinnerSizes = {
   sm: "h-4 w-4",
   md: "h-8 w-8",
   lg: "h-16 w-16",
   xl: "h-24 w-24",
 };
 
-export const variants = {
+export const baseSpinnerVariants = {
   light: "text-white",
   primary: "text-blue-600",
 };
+
+interface BaseSpinnerProps {
+  size?: keyof typeof baseSpinnerSizes;
+  variant?: keyof typeof baseSpinnerVariants;
+  textCurrent?: string;
+}
 </script>
 
 <script setup lang="ts">
-interface BaseSpinnerProps {
-  size?: keyof typeof sizes;
-  variant?: keyof typeof variants;
-  textCurrent?: string;
-}
-
 withDefaults(defineProps<BaseSpinnerProps>(), {
   variant: "primary",
   size: "md",
@@ -28,7 +28,7 @@ withDefaults(defineProps<BaseSpinnerProps>(), {
 <template>
   <svg
     class="animate-spin"
-    :class="[variants[variant], sizes[size], textCurrent]"
+    :class="[baseSpinnerVariants[variant], baseSpinnerSizes[size], textCurrent]"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"

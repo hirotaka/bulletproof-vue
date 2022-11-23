@@ -1,4 +1,4 @@
-import { BaseSpinner, variants, sizes } from ".";
+import { BaseSpinner, baseSpinnerVariants, baseSpinnerSizes } from ".";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
@@ -10,11 +10,11 @@ export default {
   argTypes: {
     variant: {
       control: { type: "radio" },
-      options: Object.keys(variants),
+      options: Object.keys(baseSpinnerVariants),
     },
     size: {
       control: { type: "radio" },
-      options: Object.keys(sizes),
+      options: Object.keys(baseSpinnerSizes),
     },
   },
 } as Meta<typeof BaseSpinner>;

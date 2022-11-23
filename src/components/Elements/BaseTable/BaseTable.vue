@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { VNode } from "vue";
 import { ArchiveBoxIcon } from "@heroicons/vue/24/outline";
+import type { Entry } from "type-fest";
 
 type TableColumn<Entry> = {
   title: string;

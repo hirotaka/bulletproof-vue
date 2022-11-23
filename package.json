@@ -59,7 +59,9 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^14.4.3",
     "@testing-library/vue": "^6.6.1",
+    "@types/dompurify": "^2.4.0",
     "@types/jsdom": "^16.2.14",
+    "@types/marked": "^4.0.7",
     "@types/node": "^17.0.34",
     "@vitejs/plugin-vue": "^3.1.0",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
@@ -97,8 +99,6 @@
     "workerDirectory": "public/"
   },
   "lint-staged": {
-    "*.+(ts|tsx|vue)": [
-      "npm run lint"
-    ]
+    "*.+(ts|tsx|vue)": ["npm run lint"]
   }
 }
