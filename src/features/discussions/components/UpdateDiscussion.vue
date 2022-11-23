@@ -3,7 +3,7 @@ import { Form } from "vee-validate";
 import { toFormValidator } from "@vee-validate/zod";
 import { z } from "zod";
 
-import { PencilIcon } from "@heroicons/vue/solid";
+import { PencilIcon } from "@heroicons/vue/20/solid";
 
 import { BaseButton } from "@/components/Elements";
 import { FormDrawer, InputField, TextareaField } from "@/components/Form";

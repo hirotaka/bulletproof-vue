@@ -7,7 +7,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <AppHead description="Welcome to bulletproof react" />
+  <AppHead description="Welcome to bulletproof vue" />
   <div class="bg-white h-[100vh] flex items-center">
     <div
       class="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8"

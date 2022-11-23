@@ -41,7 +41,7 @@ const {
   <template v-else-if="error">
     <component :is="ErrorComponent" :error="error" />
   </template>
-  <template else>
+  <template v-else>
     <div>Unhandled status: {{ status }}</div>
   </template>
 </template>

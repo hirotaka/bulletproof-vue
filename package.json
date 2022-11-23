@@ -20,8 +20,8 @@
     "validate": "npm-run-all --parallel lint-staged"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.6.1",
-    "@heroicons/vue": "^1.0.6",
+    "@headlessui/vue": "^1.7.4",
+    "@heroicons/vue": "^2.0.13",
     "@tailwindcss/typography": "^0.5.2",
     "@tanstack/vue-query": "^4.13.4",
     "@vee-validate/zod": "^4.6.7",
@@ -97,6 +97,8 @@
     "workerDirectory": "public/"
   },
   "lint-staged": {
-    "*.+(ts|tsx|vue)": ["npm run lint"]
+    "*.+(ts|tsx|vue)": [
+      "npm run lint"
+    ]
   }
 }

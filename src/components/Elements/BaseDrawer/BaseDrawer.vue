@@ -22,7 +22,7 @@ import {
   TransitionRoot,
   TransitionChild,
 } from "@headlessui/vue";
-import { XIcon } from "@heroicons/vue/outline";
+import { XMarkIcon } from "@heroicons/vue/24/outline";
 
 interface Emits {
   (e: "close"): void;
@@ -77,7 +77,7 @@ const close = () => {
                           @click="close"
                         >
                           <span class="sr-only">Close panel</span>
-                          <XIcon class="h-6 w-6" aria-hidden="true" />
+                          <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                         </button>
                       </div>
                     </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TrashIcon } from "@heroicons/vue/outline";
+import { TrashIcon } from "@heroicons/vue/20/solid";
 
 import { BaseButton, ConfirmationDialog } from "@/components/Elements";
 

@@ -6,7 +6,7 @@ import {
   MenuItems,
   TransitionRoot,
 } from "@headlessui/vue";
-import { UserIcon } from "@heroicons/vue/outline";
+import { UserIcon } from "@heroicons/vue/24/outline";
 import { useAuth } from "@/composables/useAuth";
 
 const { logout } = useAuth();

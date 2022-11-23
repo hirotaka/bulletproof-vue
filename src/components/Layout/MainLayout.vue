@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import { ref } from "vue";
 import { RouterView } from "vue-router";
-import { MenuAlt2Icon } from "@heroicons/vue/outline";
+import { Bars3BottomLeftIcon } from "@heroicons/vue/24/outline";
 
 import { AppSidebar, MobileSidebar, UserNavigation } from "@/components/Misc";
 
@@ -23,7 +23,7 @@ const setSidebarOpen = (value) => (sidebarOpen.value = value);
           class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
         >
           <span class="sr-only">Open sidebar</span>
-          <MenuAlt2Icon class="h-6 w-6" aria-hidden="true" />
+          <Bars3BottomLeftIcon class="h-6 w-6" aria-hidden="true" />
         </button>
         <div class="flex-1 px-4 flex justify-end">
           <div class="ml-4 flex items-center md:ml-6">

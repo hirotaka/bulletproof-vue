@@ -7,7 +7,7 @@ import CreateDiscussion from "../components/CreateDiscussion.vue";
 
 <template>
   <ContentLayout title="Discussions">
-    <div className="flex justify-end">
+    <div class="flex justify-end">
       <CreateDiscussion />
     </div>
     <div class="mt-4">

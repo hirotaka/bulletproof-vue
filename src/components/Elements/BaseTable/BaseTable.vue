@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { VNode } from "vue";
-import { ArchiveIcon } from "@heroicons/vue/outline";
+import { ArchiveBoxIcon } from "@heroicons/vue/24/outline";
 
 type TableColumn<Entry> = {
   title: string;
@@ -21,7 +21,7 @@ defineProps<TableProps>();
     v-if="!data.length"
     class="bg-white text-gray-500 h-80 flex justify-center items-center flex-col"
   >
-    <ArchiveIcon class="h-16 w-16" />
+    <ArchiveBoxIcon class="h-16 w-16" />
     <h4>No Entries Found</h4>
   </div>
   <div v-else class="flex flex-col">
