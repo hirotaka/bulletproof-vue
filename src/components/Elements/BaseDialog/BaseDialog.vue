@@ -1,11 +1,5 @@
 <script lang="ts">
 import { DialogTitle, DialogDescription } from "@headlessui/vue";
-
-export const BaseDialogTitle = DialogTitle;
-export const BaseDialogDescription = DialogDescription;
-</script>
-
-<script setup lang="ts">
 import {
   Dialog,
   DialogOverlay,
@@ -13,11 +7,14 @@ import {
   TransitionChild,
 } from "@headlessui/vue";
 
-// TODO: Make `initialFocus` works properly.
-interface BaseDialogProps {
+export const BaseDialogTitle = DialogTitle;
+export const BaseDialogDescription = DialogDescription;
+</script>
+
+<script setup lang="ts">
+type BaseDialogProps = {
   isOpen: boolean;
-  initialFocus?: HTMLElement<null>;
-}
+};
 
 interface Emits {
   (e: "close"): void;

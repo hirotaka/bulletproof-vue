@@ -6,7 +6,7 @@ import { Bars3BottomLeftIcon } from "@heroicons/vue/24/outline";
 import { AppSidebar, MobileSidebar, UserNavigation } from "@/components/Misc";
 
 const sidebarOpen = ref(false);
-const setSidebarOpen = (value) => (sidebarOpen.value = value);
+const setSidebarOpen = (value: boolean) => (sidebarOpen.value = value);
 </script>
 
 <template>

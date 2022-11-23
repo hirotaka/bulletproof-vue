@@ -1,22 +1,30 @@
-<script setup lang="ts">
+<script lang="ts">
 import { cloneVNode, useSlots, watchEffect } from "vue";
 import { useDisclosure } from "@/composables/useDisclosure";
-import { BaseButton, BaseDrawer, BaseDrawerProps } from "@/components/Elements";
+import {
+  BaseButton,
+  BaseDrawer,
+  type BaseDrawerProps,
+} from "@/components/Elements";
+</script>
 
-interface FormDrawerProps {
+<script setup lang="ts">
+const { close, open, isOpen } = useDisclosure();
+const slots = useSlots();
+
+type FormDrawerProps = {
   title: string;
   size?: BaseDrawerProps["size"];
   isDone: boolean;
-}
-
-const { close, open, isOpen } = useDisclosure();
-const slots = useSlots();
+};
 
 const props = withDefaults(defineProps<FormDrawerProps>(), {
   size: "md",
 });
 
-const triggerButton = cloneVNode(slots.triggerButton()[0], {
+const elements = slots.triggerButton ? slots.triggerButton() : [];
+
+const triggerButton = cloneVNode(elements[0], {
   onClick: () => open(),
 });
 

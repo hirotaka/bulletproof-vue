@@ -23,6 +23,7 @@ interface SelectFieldProps extends FieldWrapperProps {
 // TODO: Maybe, should use vite-plugin-vue-type-imports
 //  https://github.com/wheatjs/vite-plugin-vue-type-imports
 const props = defineProps<SelectFieldProps>();
+const option = props.options && props.options[0];
 
 const {
   value: inputValue,
@@ -30,7 +31,7 @@ const {
   handleBlur,
   handleChange,
 } = useField(props.name, undefined, {
-  initialValue: props.value || props.options[0]?.value,
+  initialValue: props.value || option?.value,
 });
 </script>
 
