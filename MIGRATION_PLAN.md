@@ -401,12 +401,12 @@
 
 #### Task 2.1.4: Textarea Component
 
-- [ ] Create `src/components/ui/textarea/Textarea.vue`
-- [ ] Same Props as Input
-- [ ] Add `rows` prop
-- [ ] Implement auto-resize feature (optional)
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Create `src/components/ui/textarea/Textarea.vue`
+- [x] Same Props as Input
+- [x] Add `rows` prop
+- [x] Implement auto-resize feature (optional)
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.1.5: Select Component (Radix Vue)
 
