@@ -26,6 +26,39 @@
 
 ---
 
+## Phase 0: Initial Setup (Before Development Starts)
+
+### 0.1 Cloudflare Pages Configuration
+
+**Purpose**: Set up deployment infrastructure to enable preview deployments for all PRs from the start of development.
+
+**Tasks**:
+
+#### Task 0.1.1: Cloudflare Pages Migration
+
+- [x] Create `wrangler.toml` for Cloudflare Pages configuration
+  - [x] Configure build command and output directory
+  - [x] Set Node.js version
+- [x] Add `_headers` file for custom headers
+  - [x] Security headers (CSP, X-Frame-Options, etc.)
+  - [x] Caching headers
+- [x] Add `_redirects` file for SPA routing
+  - [x] Fallback all routes to index.html (SPA support)
+- [x] Remove Vercel configuration
+  - [x] Delete `vercel.json` (if exists)
+- [ ] Connect GitHub repository to Cloudflare Pages
+  - [ ] Configure production branch (main/renewal)
+  - [ ] Configure preview deployments for PRs
+  - [ ] Set up environment variables in Cloudflare dashboard
+- [ ] Configure custom domain (if needed)
+- [ ] Verify deployment works correctly
+  - [ ] Test production deployment
+  - [ ] Test PR preview deployments
+- [x] Update documentation with new deployment URL
+- [ ] Archive/disable Vercel project
+
+---
+
 ## Phase 1: Infrastructure Layer (1-2 weeks)
 
 ### 1.1 API Client Layer
@@ -1594,29 +1627,6 @@
 - [ ] Optimize chunk splitting in `vite.config.ts`
 - [ ] Check bundle size (`pnpm build && pnpm preview`)
 - [ ] Check Lighthouse score
-
-#### Task 7.1.3: Cloudflare Pages Migration
-
-- [ ] Create `wrangler.toml` for Cloudflare Pages configuration
-  - [ ] Configure build command and output directory
-  - [ ] Set Node.js version
-- [ ] Add `_headers` file for custom headers
-  - [ ] Security headers (CSP, X-Frame-Options, etc.)
-  - [ ] Caching headers
-- [ ] Add `_redirects` file for SPA routing
-  - [ ] Fallback all routes to index.html (SPA support)
-- [ ] Remove Vercel configuration
-  - [ ] Delete `vercel.json` (if exists)
-- [ ] Connect GitHub repository to Cloudflare Pages
-  - [ ] Configure production branch (main/renewal)
-  - [ ] Configure preview deployments for PRs
-  - [ ] Set up environment variables in Cloudflare dashboard
-- [ ] Configure custom domain (if needed)
-- [ ] Verify deployment works correctly
-  - [ ] Test production deployment
-  - [ ] Test PR preview deployments
-- [ ] Update documentation with new deployment URL
-- [ ] Archive/disable Vercel project
 
 ---
 

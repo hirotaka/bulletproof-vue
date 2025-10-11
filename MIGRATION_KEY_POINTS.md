@@ -2,46 +2,37 @@
 
 ## 📄 Generated Documents
 
-### 1. **MIGRATION_PLAN.md** (Summary - English)
+### **MIGRATION_PLAN.md** (Complete Migration Plan - English)
 
 - Overall React to Vue migration plan
 - 7 Phases (13-20 weeks)
-- 117 Tasks
+- 117 Tasks with detailed implementation checklists
 - Technology stack mapping
 - Architecture principles
+- Estimated time for each task
 - **Cloudflare Pages migration included**
-
-### 2. **MIGRATION_PLAN_DETAILED.md** (Detailed - English)
-
-- **198 PRs** (1 PR = 1-2 hours)
-- Detailed checklist for each PR
-- Estimated time included
-- Parallel work possibilities
-- Weekly implementation schedule
-- **Cloudflare Pages migration tasks (3 PRs)**
 
 ---
 
 ## 🎯 Main Points
 
-### 1. Dual Migration Plan Structure
+### 1. Single Source of Truth
 
-**IMPORTANT**: Each task requires implementation of **BOTH** documents:
+**IMPORTANT**: MIGRATION_PLAN.md is the single source of truth for the migration:
 
-- **MIGRATION_PLAN.md**: Contains detailed implementation checklists for each task (e.g., Task 1.1.1 includes Axios setup, interceptors, type definitions)
-- **MIGRATION_PLAN_DETAILED.md**: Contains PR-level granularity and time estimates (e.g., PR 1.1.1 focuses on dependency installation only)
+- Contains ALL tasks with detailed implementation checklists
+- Each task includes specific items to implement, test, and verify
+- Checkboxes track completion status for each item
+- Complete ALL requirements in each task before moving to the next
 
-When working on a task number (e.g., 1.1.1), you must complete ALL requirements from MIGRATION_PLAN.md, not just the basic PR scope from MIGRATION_PLAN_DETAILED.md.
+**IMPORTANT**: After completing a task, you MUST update the checkboxes:
 
-**IMPORTANT**: After completing a task, you MUST update the checkboxes in BOTH migration plan documents:
-- Update checkboxes in **MIGRATION_PLAN.md** for the task section
-- Update checkboxes in **MIGRATION_PLAN_DETAILED.md** for corresponding PR(s)
+- Mark completed items with `[x]` in **MIGRATION_PLAN.md**
+- This ensures accurate progress tracking and makes it easy to see what has been completed at a glance
 
-This ensures accurate progress tracking and makes it easy to see what has been completed at a glance.
+### 2. Task-Based Workflow
 
-### 2. PR-Level Granularity
-
-Each PR is scoped to be completed in 1-2 hours, making tasks manageable and progress trackable.
+Each task is designed to be a complete, cohesive unit of work that can be implemented and tested independently.
 
 ### 3. Parallel Work Enabled
 
@@ -64,16 +55,16 @@ With proper team allocation and parallel execution, significant time savings are
 
 ## 📊 Phase Overview
 
-| Phase | PRs | Weeks | Description |
-|-------|-----|-------|-------------|
-| **Phase 1** | 15 PRs | 1-2 weeks | Infrastructure Layer (API Client, Auth, Config) |
-| **Phase 2** | 42 PRs | 2-3 weeks | UI Components (Forms, Feedback, Layouts) |
-| **Phase 3** | 53 PRs | 4-6 weeks | Feature Modules (Discussions, Comments, Users, Auth) |
-| **Phase 4** | 23 PRs | 2 weeks | Routing + Pages |
-| **Phase 5** | 38 PRs | 2-3 weeks | Testing (MSW, Unit Tests, E2E) |
-| **Phase 6** | 15 PRs | 1 week | Developer Experience (ESLint, Plop, Husky) |
-| **Phase 7** | 12 PRs | 1-2 weeks | Final Adjustments + Documentation + Cloudflare Migration |
-| **Total** | **198 PRs** | **13-20 weeks** | Complete migration |
+| Phase | Tasks | Weeks | Description |
+|-------|-------|-------|-------------|
+| **Phase 1** | 12 tasks | 1-2 weeks | Infrastructure Layer (API Client, Auth, Config) |
+| **Phase 2** | 23 tasks | 2-3 weeks | UI Components (Forms, Feedback, Layouts) |
+| **Phase 3** | 26 tasks | 4-6 weeks | Feature Modules (Discussions, Comments, Users, Auth) |
+| **Phase 4** | 14 tasks | 2 weeks | Routing + Pages |
+| **Phase 5** | 19 tasks | 2-3 weeks | Testing (MSW, Unit Tests, E2E) |
+| **Phase 6** | 12 tasks | 1 week | Developer Experience (ESLint, Plop, Husky) |
+| **Phase 7** | 11 tasks | 1-2 weeks | Final Adjustments + Documentation + Cloudflare Migration |
+| **Total** | **117 tasks** | **13-20 weeks** | Complete migration |
 
 ---
 
@@ -120,17 +111,17 @@ All React version principles are maintained in Vue version:
 
 ### Immediate Next Steps
 
-1. **Review both migration plans**
-   - `MIGRATION_PLAN.md` for high-level overview
-   - `MIGRATION_PLAN_DETAILED.md` for granular PR-level tasks
+1. **Review the migration plan**
+   - Read `MIGRATION_PLAN.md` to understand the complete scope
+   - Understand the 7 phases and how they build on each other
 
 2. **Team allocation** (if parallel work)
    - Phase 1: 1 person (foundation must be sequential)
-   - Phase 2: 3 people (Forms, Feedback, Layouts can be parallel)
-   - Phase 3: 4 people (Each feature can be parallel)
+   - Phase 2: 2-3 people (Forms, Feedback, Layouts can be parallel)
+   - Phase 3: 3-4 people (Each feature can be parallel)
 
-3. **Start with Phase 1, PR 1.1.1**
-   - Install dependencies (`axios`, `@tanstack/vue-query`)
+3. **Start with Phase 1, Task 1.1.1**
+   - Complete Axios Client Setup
    - Build the foundation before expanding
 
 ---
@@ -155,8 +146,8 @@ All React version principles are maintained in Vue version:
 **Source Repository**: `/Users/hirotaka/Workspaces/github.com/alan2207/bulletproof-react/apps/react-vite`
 **Target Repository**: `/Users/hirotaka/Workspaces/github.com/hirotaka/bulletproof-vue/.conductor/sao-paulo/apps/vue-vite`
 
-**Current Status**: Migration plans completed and documented
-**Next Action**: Begin implementation with Phase 1, PR 1.1.1
+**Current Status**: Migration plan completed and documented
+**Next Action**: Begin implementation with Phase 1, Task 1.1.1
 
 **Working Branch**: `react-to-vue-port`
 **Main Branch**: `main`
@@ -166,11 +157,11 @@ All React version principles are maintained in Vue version:
 
 ## 💡 Tips for Success
 
-1. **Follow PR order** - Each PR builds on previous ones
+1. **Follow task order** - Each task builds on previous ones
 2. **Complete Phase 1 first** - Foundation is critical
 3. **Write tests as you go** - Don't batch testing to the end
 4. **Review architecture docs** - Understand Feature-Sliced Design principles
-5. **Use the checklist** - Every PR should pass the standard checklist
+5. **Complete all checklist items** - Every item in a task must be completed
 6. **Communicate blockers early** - Especially for high-risk items
 
 ---

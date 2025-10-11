@@ -62,3 +62,32 @@ pnpm test:e2e --debug
 ```sh
 pnpm lint
 ```
+
+## Deployment
+
+### Cloudflare Pages
+
+This project is configured to deploy on Cloudflare Pages.
+
+#### Setup
+
+1. Connect your GitHub repository to Cloudflare Pages
+2. Configure build settings:
+   - **Build command**: `pnpm build`
+   - **Build output directory**: `dist`
+   - **Root directory**: `apps/vue-vite` (if using monorepo)
+3. Set up environment variables in the Cloudflare Pages dashboard:
+   - `VITE_APP_API_URL`: Your API endpoint URL
+   - `VITE_APP_ENABLE_API_MOCKING`: `false` for production
+
+#### Preview Deployments
+
+- **Production branch**: Deployments from `main` or `renewal` branch go to production
+- **Preview deployments**: All pull requests automatically get preview deployments
+- Each preview deployment gets a unique URL for testing
+
+#### Configuration Files
+
+- `wrangler.toml`: Cloudflare Pages configuration
+- `public/_headers`: Security and caching headers
+- `public/_redirects`: SPA routing configuration
