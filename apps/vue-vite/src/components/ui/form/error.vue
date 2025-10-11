@@ -3,7 +3,7 @@ interface ErrorProps {
   errorMessage?: string | null
 }
 
-const props = defineProps<ErrorProps>()
+defineProps<ErrorProps>()
 </script>
 
 <template>

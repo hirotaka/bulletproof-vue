@@ -7,7 +7,7 @@ interface FieldWrapperProps {
   error?: string
 }
 
-const props = defineProps<FieldWrapperProps>()
+defineProps<FieldWrapperProps>()
 </script>
 
 <template>

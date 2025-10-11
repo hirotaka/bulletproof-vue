@@ -5,11 +5,11 @@ import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
 import { defineComponent } from 'vue'
 
-import Input from './input.vue'
+import InputComponent from './input.vue'
 
 // Helper component to wrap Input with Form context
 const TestWrapper = defineComponent({
-  components: { Input },
+  components: { InputComponent },
   props: {
     schema: {
       type: Object,
@@ -30,7 +30,7 @@ const TestWrapper = defineComponent({
   },
   template: `
     <form @submit="form.handleSubmit(() => {})">
-      <Input v-bind="inputProps" />
+      <InputComponent v-bind="inputProps" />
     </form>
   `,
 })
