@@ -20,7 +20,7 @@ importers:
         version: 8.6.14(storybook@9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0)))
       '@storybook/addon-links':
         specifier: ^9.1.10
-        version: 9.1.10(react@19.2.0)(storybook@9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0)))
+        version: 9.1.10(react@16.14.0)(storybook@9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0)))
       '@storybook/vue3':
         specifier: ^9.1.10
         version: 9.1.10(storybook@9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0)))(vue@3.5.22(typescript@5.9.3))
@@ -53,7 +53,7 @@ importers:
         version: 5.90.2(vue@3.5.22(typescript@5.6.3))
       '@vee-validate/zod':
         specifier: ^4.15.1
-        version: 4.15.1(vue@3.5.22(typescript@5.6.3))(zod@4.1.12)
+        version: 4.15.1(vue@3.5.22(typescript@5.6.3))(zod@3.25.76)
       axios:
         specifier: ^1.12.2
         version: 1.12.2
@@ -94,8 +94,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.1(vue@3.5.22(typescript@5.6.3))
       zod:
-        specifier: ^4.1.12
-        version: 4.1.12
+        specifier: ^3.24.0
+        version: 3.25.76
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^3.2.4
@@ -3813,8 +3813,8 @@ packages:
     resolution: {integrity: sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==}
     engines: {node: '>=18'}
 
-  zod@4.1.12:
-    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
 snapshots:
 
@@ -4617,12 +4617,12 @@ snapshots:
       storybook: 9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0))
       ts-dedent: 2.2.0
 
-  '@storybook/addon-links@9.1.10(react@19.2.0)(storybook@9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0)))':
+  '@storybook/addon-links@9.1.10(react@16.14.0)(storybook@9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0)))':
     dependencies:
       '@storybook/global': 5.0.0
       storybook: 9.1.10(@testing-library/dom@10.4.0)(msw@2.11.5(@types/node@22.18.10)(typescript@5.9.3))(prettier@3.6.2)(vite@7.1.9(@types/node@22.18.10)(jiti@1.21.7)(terser@5.44.0))
     optionalDependencies:
-      react: 19.2.0
+      react: 16.14.0
 
   '@storybook/addon-measure@8.6.14(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
@@ -5111,11 +5111,11 @@ snapshots:
       '@typescript-eslint/types': 8.46.0
       eslint-visitor-keys: 4.2.1
 
-  '@vee-validate/zod@4.15.1(vue@3.5.22(typescript@5.6.3))(zod@4.1.12)':
+  '@vee-validate/zod@4.15.1(vue@3.5.22(typescript@5.6.3))(zod@3.25.76)':
     dependencies:
       type-fest: 4.41.0
       vee-validate: 4.15.1(vue@3.5.22(typescript@5.6.3))
-      zod: 4.1.12
+      zod: 3.25.76
     transitivePeerDependencies:
       - vue
 
@@ -7714,4 +7714,4 @@ snapshots:
 
   yoctocolors@2.1.2: {}
 
-  zod@4.1.12: {}
+  zod@3.25.76: {}
