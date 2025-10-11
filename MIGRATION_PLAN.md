@@ -439,10 +439,10 @@
 
 #### Task 2.1.8: Label Component
 
-- [ ] Create `src/components/ui/label/Label.vue`
-- [ ] Use Radix Vue Label
-- [ ] Basic styling
-- [ ] Required mark display feature
+- [x] Create `src/components/ui/label/Label.vue`
+- [x] Use Radix Vue Label
+- [x] Basic styling
+- [x] Required mark display feature
 
 #### Task 2.1.9: FieldWrapper Component
 
