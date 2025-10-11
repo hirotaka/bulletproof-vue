@@ -410,15 +410,15 @@
 
 #### Task 2.1.5: Select Component (Radix Vue)
 
-- [ ] Install Radix Vue Select (check existing)
-- [ ] Create multiple components under `src/components/ui/select/`
-  - [ ] `Select.vue` (root)
-  - [ ] `SelectTrigger.vue`
-  - [ ] `SelectContent.vue`
-  - [ ] `SelectItem.vue`
-- [ ] Integrate with VeeValidate
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Install Radix Vue Select (check existing)
+- [x] Create multiple components under `src/components/ui/select/`
+  - [x] `Select.vue` (root)
+  - [x] `SelectTrigger.vue`
+  - [x] `SelectContent.vue`
+  - [x] `SelectItem.vue`
+- [x] Integrate with VeeValidate
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.1.6: Checkbox Component (Radix Vue)
 
