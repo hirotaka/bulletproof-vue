@@ -150,10 +150,14 @@ describe('Checkbox', () => {
       },
     })
 
-    const form = wrapper.find('form')
+    const checkbox = wrapper.find('button[role="checkbox"]')
 
-    // Try to submit without checking
-    await form.trigger('submit')
+    // Click to check, then uncheck to trigger validation on the false value
+    await checkbox.trigger('click')
+    await wrapper.vm.$nextTick()
+    await checkbox.trigger('click')
+    await wrapper.vm.$nextTick()
+    await checkbox.trigger('blur')
 
     // Wait for validation to process
     await new Promise((resolve) => setTimeout(resolve, 10))
@@ -180,11 +184,14 @@ describe('Checkbox', () => {
       },
     })
 
-    const form = wrapper.find('form')
     const checkbox = wrapper.find('button[role="checkbox"]')
 
-    // Try to submit without checking
-    await form.trigger('submit')
+    // Click to check, then uncheck to trigger validation error
+    await checkbox.trigger('click')
+    await wrapper.vm.$nextTick()
+    await checkbox.trigger('click')
+    await wrapper.vm.$nextTick()
+    await checkbox.trigger('blur')
 
     // Wait for validation to process
     await new Promise((resolve) => setTimeout(resolve, 10))
@@ -193,7 +200,7 @@ describe('Checkbox', () => {
     // Error should be displayed
     expect(wrapper.text()).toContain('You must accept the terms')
 
-    // Check the checkbox
+    // Check the checkbox to clear the error
     await checkbox.trigger('click')
     await wrapper.vm.$nextTick()
 
