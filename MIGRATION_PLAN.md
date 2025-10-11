@@ -389,15 +389,15 @@
 
 #### Task 2.1.3: Input Component
 
-- [ ] Create `src/components/ui/input/Input.vue`
-- [ ] Define Props
-  - [ ] `type`, `placeholder`, `disabled`, `readonly`
-  - [ ] `modelValue` (v-model support)
-- [ ] Integrate with VeeValidate's `useField`
-- [ ] Error state styling
-- [ ] Apply Tailwind styles
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Create `src/components/ui/input/Input.vue`
+- [x] Define Props
+  - [x] `type`, `placeholder`, `disabled`, `readonly`
+  - [x] `modelValue` (v-model support)
+- [x] Integrate with VeeValidate's `useField`
+- [x] Error state styling
+- [x] Apply Tailwind styles
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.1.4: Textarea Component
 
