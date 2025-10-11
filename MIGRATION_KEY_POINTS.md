@@ -57,14 +57,15 @@ With proper team allocation and parallel execution, significant time savings are
 
 | Phase | Tasks | Weeks | Description |
 |-------|-------|-------|-------------|
+| **Phase 0** | 3 sub-phases | 0.5-1 week | Initial Setup (CI/CD, Cloudflare, Storybook) |
 | **Phase 1** | 12 tasks | 1-2 weeks | Infrastructure Layer (API Client, Auth, Config) |
 | **Phase 2** | 23 tasks | 2-3 weeks | UI Components (Forms, Feedback, Layouts) |
 | **Phase 3** | 26 tasks | 4-6 weeks | Feature Modules (Discussions, Comments, Users, Auth) |
 | **Phase 4** | 14 tasks | 2 weeks | Routing + Pages |
 | **Phase 5** | 19 tasks | 2-3 weeks | Testing (MSW, Unit Tests, E2E) |
 | **Phase 6** | 12 tasks | 1 week | Developer Experience (ESLint, Plop, Husky) |
-| **Phase 7** | 11 tasks | 1-2 weeks | Final Adjustments + Documentation + Cloudflare Migration |
-| **Total** | **117 tasks** | **13-20 weeks** | Complete migration |
+| **Phase 7** | 11 tasks | 1-2 weeks | Final Adjustments + Documentation |
+| **Total** | **120+ tasks** | **13.5-21 weeks** | Complete migration |
 
 ---
 
@@ -84,6 +85,7 @@ With proper team allocation and parallel execution, significant time savings are
 | **Testing** | Vitest + Playwright | Vitest + Playwright | ✅ Same |
 | **Mocking** | MSW | MSW | ✅ Same |
 | **Build Tool** | Vite | Vite | ✅ Same |
+| **Component Docs** | Storybook | Storybook | ✅ Same |
 | **Authentication** | react-query-auth | Custom composable | 🔴 Hard |
 | **SEO** | react-helmet-async | @unhead/vue | ⚠️ Medium |
 | **Deployment** | Vercel | Cloudflare Pages | ✅ Easy |
