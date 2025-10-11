@@ -446,12 +446,12 @@
 
 #### Task 2.1.9: FieldWrapper Component
 
-- [ ] Create `src/components/ui/field-wrapper/FieldWrapper.vue`
-- [ ] Define Props
-  - [ ] `label`, `error`, `description`, `required`
-- [ ] Display label, error message, description
-- [ ] Error state styling
-- [ ] Create Storybook stories
+- [x] Create `src/components/ui/field-wrapper/FieldWrapper.vue`
+- [x] Define Props
+  - [x] `label`, `error`, `description`, `required`
+- [x] Display label, error message, description
+- [x] Error state styling
+- [x] Create Storybook stories
 
 **Differences from React**:
 
