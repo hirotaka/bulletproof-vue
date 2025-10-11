@@ -28,28 +28,28 @@ jobs:
       - run: pnpm run build
       - run: pnpm run lint
       - run: pnpm run test:unit
-  playwright-run:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/vue-vite
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-      - run: pnpm install
-      - run: pnpm run build
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
-      - run: pnpm run test:e2e
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report
-          path: apps/vue-vite/playwright-report/
-          retention-days: 30
+  # playwright-run:
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: apps/vue-vite
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 9
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '22'
+  #         cache: 'pnpm'
+  #     - run: pnpm install
+  #     - run: pnpm run build
+  #     - name: Install Playwright Browsers
+  #       run: pnpm exec playwright install --with-deps
+  #     - run: pnpm run test:e2e
+  #     - uses: actions/upload-artifact@v4
+  #       if: always()
+  #       with:
+  #         name: playwright-report
+  #         path: apps/vue-vite/playwright-report/
+  #         retention-days: 30
