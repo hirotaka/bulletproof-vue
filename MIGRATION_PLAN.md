@@ -131,20 +131,20 @@
 
 #### Task 1.2.2: Implement useAuth Composable
 
-- [ ] Create `src/lib/auth.ts`
-- [ ] Implement `useAuth` composable
-  - [ ] `login(data: LoginInput)` - Login API call
-  - [ ] `register(data: RegisterInput)` - Registration API call
-  - [ ] `logout()` - Logout processing
-  - [ ] `useUser()` - Get current user (Vue Query)
-- [ ] Create Zod validation schemas
-  - [ ] `LoginInput` schema
-  - [ ] `RegisterInput` schema
-- [ ] Implement API functions
-  - [ ] `POST /auth/login`
-  - [ ] `POST /auth/register`
-  - [ ] `POST /auth/logout`
-  - [ ] `GET /auth/me`
+- [x] Create `src/lib/auth.ts`
+- [x] Implement `useAuth` composable
+  - [x] `login(data: LoginInput)` - Login API call
+  - [x] `register(data: RegisterInput)` - Registration API call
+  - [x] `logout()` - Logout processing
+  - [x] `useUser()` - Get current user (Vue Query)
+- [x] Create Zod validation schemas
+  - [x] `LoginInput` schema
+  - [x] `RegisterInput` schema
+- [x] Implement API functions
+  - [x] `POST /auth/login`
+  - [x] `POST /auth/register`
+  - [x] `POST /auth/logout`
+  - [x] `GET /auth/me`
 
 #### Task 1.2.3: Implement Authorization System
 
