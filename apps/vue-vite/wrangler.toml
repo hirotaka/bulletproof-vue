@@ -1,0 +1,14 @@
+name = "bulletproof-vue"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "./dist"
+
+[build]
+command = "pnpm build"
+cwd = "./"
+
+[build.upload]
+format = "service-worker"
+
+# Environment variables can be set in Cloudflare Pages dashboard
