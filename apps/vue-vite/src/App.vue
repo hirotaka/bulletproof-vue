@@ -18,6 +18,7 @@ import HelloWorld from './components/HelloWorld.vue'
   </header>
 
   <RouterView />
+  <VueQueryDevtools v-if="import.meta.env.DEV" />
 </template>
 
 <style scoped>
