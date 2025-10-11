@@ -30,6 +30,15 @@ export default [
   },
 
   {
+    name: 'app/storybook-rules',
+    files: ['src/stories/**/*.{ts,tsx}'],
+    rules: {
+      // Allow any type in Storybook files for render functions
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+
+  {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
