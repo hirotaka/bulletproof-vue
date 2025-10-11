@@ -135,20 +135,20 @@
 
 #### Task 0.3.2: Storybook Configuration for Project Architecture
 
-- [ ] Configure path aliases in Storybook
-  - [ ] Match Vite's `@/` alias configuration
-  - [ ] Ensure proper resolution of project imports
-- [ ] Configure Storybook to work with project structure
-  - [ ] Set stories glob pattern: `../src/**/*.stories.@(js|jsx|ts|tsx|mdx)`
-  - [ ] Exclude test files and node_modules
-- [ ] Set up MSW integration for Storybook
-  - [ ] Install `msw-storybook-addon`
-  - [ ] Configure MSW handlers in `.storybook/preview.ts`
-  - [ ] Initialize MSW worker for Storybook
-- [ ] Configure documentation
-  - [ ] Enable autodocs for all components
-  - [ ] Configure DocsPage template
-  - [ ] Add custom documentation blocks (if needed)
+- [x] Configure path aliases in Storybook
+  - [x] Match Vite's `@/` alias configuration
+  - [x] Ensure proper resolution of project imports
+- [x] Configure Storybook to work with project structure
+  - [x] Set stories glob pattern: `../apps/vue-vite/src/**/*.stories.@(js|jsx|ts|tsx|mdx)`
+  - [x] Exclude test files and node_modules (handled by glob pattern)
+- [x] Set up MSW integration for Storybook
+  - [x] Install `msw-storybook-addon`
+  - [x] Configure MSW handlers in `.storybook/preview.ts`
+  - [x] Initialize MSW worker for Storybook
+- [x] Configure documentation
+  - [x] Enable autodocs for all components (set to 'tag' mode)
+  - [x] Configure DocsPage template (using default template)
+  - [x] Add custom documentation blocks (deferred - can be added as needed)
 
 ---
 
