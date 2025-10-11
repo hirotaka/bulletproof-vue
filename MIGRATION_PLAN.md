@@ -42,15 +42,15 @@
 
 #### Task 1.1.1: Axios Client Setup
 
-- [ ] Install Axios (`pnpm add axios`)
-- [ ] Create `src/lib/api-client.ts`
-- [ ] Create Axios instance (baseURL configuration, withCredentials: true)
-- [ ] Implement request interceptor (automatic authentication token attachment)
-- [ ] Implement response interceptor
-  - [ ] Automatic response data unwrapping (`response.data`)
-  - [ ] Error handling (login redirect on 401)
-  - [ ] Global error notification (integration with notificationsStore)
-- [ ] Add type definitions (ApiClient, ApiError)
+- [x] Install Axios (`pnpm add axios`)
+- [x] Create `src/lib/api-client.ts`
+- [x] Create Axios instance (baseURL configuration, withCredentials: true)
+- [x] Implement request interceptor (automatic authentication token attachment)
+- [x] Implement response interceptor
+  - [x] Automatic response data unwrapping (`response.data`)
+  - [x] Error handling (login redirect on 401)
+  - [ ] Global error notification (integration with notificationsStore) - TODO: Task 1.2.x
+- [x] Add type definitions (ApiClient, ApiError)
 
 #### Task 1.1.2: Vue Query (TanStack Query) Setup
 

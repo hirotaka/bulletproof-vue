@@ -18,9 +18,9 @@
 
 **Estimated Time**: 30 minutes
 
-- [ ] Install `axios`
-- [ ] Install `@tanstack/vue-query`
-- [ ] Verify `package.json` update
+- [x] Install `axios`
+- [x] Install `@tanstack/vue-query`
+- [x] Verify `package.json` update
 
 #### PR 1.1.2: Create Axios Basic Configuration
 
