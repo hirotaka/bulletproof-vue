@@ -107,6 +107,99 @@
 - [x] Test CI pipeline locally
 - [ ] Verify CI runs successfully on GitHub (pending PR)
 
+### 0.3 Storybook Configuration
+
+**Purpose**: Set up Storybook for component development and documentation.
+
+**Tasks**:
+
+#### Task 0.3.1: Storybook Installation and Setup
+
+- [ ] Install Storybook dependencies
+  - [ ] Run `pnpm dlx storybook@latest init`
+  - [ ] Install required addons: `@storybook/addon-essentials`, `@storybook/addon-interactions`, `@storybook/addon-links`
+- [ ] Configure Storybook for Vue 3 + Vite
+  - [ ] Update `.storybook/main.ts` with proper framework configuration
+  - [ ] Configure TypeScript support
+  - [ ] Set up Vite builder options
+- [ ] Configure Tailwind CSS integration
+  - [ ] Import Tailwind styles in `.storybook/preview.ts`
+  - [ ] Ensure PostCSS configuration is recognized
+- [ ] Configure global decorators
+  - [ ] Add Vue Router mock decorator
+  - [ ] Add Pinia store decorator
+  - [ ] Add theme provider decorator (if needed)
+- [ ] Add Storybook scripts to package.json
+  - [ ] `storybook`: Start Storybook dev server
+  - [ ] `build-storybook`: Build static Storybook
+
+#### Task 0.3.2: Storybook Configuration for Project Architecture
+
+- [ ] Configure path aliases in Storybook
+  - [ ] Match Vite's `@/` alias configuration
+  - [ ] Ensure proper resolution of project imports
+- [ ] Configure Storybook to work with project structure
+  - [ ] Set stories glob pattern: `../src/**/*.stories.@(js|jsx|ts|tsx|mdx)`
+  - [ ] Exclude test files and node_modules
+- [ ] Set up MSW integration for Storybook
+  - [ ] Install `msw-storybook-addon`
+  - [ ] Configure MSW handlers in `.storybook/preview.ts`
+  - [ ] Initialize MSW worker for Storybook
+- [ ] Configure documentation
+  - [ ] Enable autodocs for all components
+  - [ ] Configure DocsPage template
+  - [ ] Add custom documentation blocks (if needed)
+
+#### Task 0.3.3: Create Example Stories for Existing Components
+
+- [ ] Create stories for Button component
+  - [ ] All variants (default, destructive, outline, ghost, link)
+  - [ ] All sizes (default, sm, lg, icon)
+  - [ ] Loading state
+  - [ ] Disabled state
+- [ ] Create stories for Spinner component
+  - [ ] All sizes (sm, md, lg)
+  - [ ] All variants
+- [ ] Create stories for Link component
+  - [ ] Internal and external links
+  - [ ] Different variants
+- [ ] Create stories for Table component
+  - [ ] Basic table with data
+  - [ ] With pagination
+  - [ ] Loading state
+  - [ ] Empty state
+- [ ] Create stories for Drawer component
+  - [ ] Open/closed states
+  - [ ] Different sizes
+- [ ] Create stories for MDPreview component
+  - [ ] Various markdown examples
+
+#### Task 0.3.4: Storybook CI/CD Integration
+
+- [ ] Add Storybook build to CI pipeline
+  - [ ] Add `build-storybook` step to GitHub Actions
+  - [ ] Verify Storybook builds without errors
+- [ ] Configure Storybook deployment (optional)
+  - [ ] Deploy to Cloudflare Pages subdirectory (`/storybook`)
+  - [ ] Or deploy to separate domain
+- [ ] Add Storybook test runner (optional)
+  - [ ] Install `@storybook/test-runner`
+  - [ ] Configure test-runner
+  - [ ] Add to CI pipeline
+
+#### Task 0.3.5: Documentation and Guidelines
+
+- [ ] Create Storybook usage guidelines
+  - [ ] Document how to write stories
+  - [ ] Document naming conventions
+  - [ ] Document how to use decorators
+  - [ ] Document how to use MSW in stories
+- [ ] Update README with Storybook commands
+  - [ ] Add section about component documentation
+  - [ ] Add links to deployed Storybook (if applicable)
+- [ ] Create story template for code generator
+  - [ ] Update Plop templates to include Storybook stories (prepare for Task 6.2)
+
 ---
 
 ## Phase 1: Infrastructure Layer (1-2 weeks)
@@ -1768,15 +1861,17 @@
 | **Testing** | Vitest + Playwright | Vitest + Playwright | ✅ Same | Same test strategy |
 | **Mocking** | MSW | MSW | ✅ Same | Handlers as is |
 | **Build Tool** | Vite | Vite | ✅ Same | Can be used as is |
+| **Component Docs** | Storybook | Storybook | ✅ Same | Same for Vue 3 |
 | **Authentication** | react-query-auth | Custom implementation | 🔴 Hard | composable + Pinia |
 | **SEO** | react-helmet-async | @unhead/vue | ⚠️ Medium | API learning required |
 
 ---
 
-## Effort Estimation (Total 13-20 weeks)
+## Effort Estimation (Total 13.5-21 weeks)
 
 | Phase | Tasks | Task Count | Effort |
 |-------|--------|---------|------|
+| 0 | Initial setup (CI/CD, Cloudflare, Storybook) | 3 sub-phases | 0.5-1 week |
 | 1 | Infrastructure layer | 12 | 1-2 weeks |
 | 2 | UI components | 23 | 2-3 weeks |
 | 3 | Feature modules | 26 | 4-6 weeks |
@@ -1784,11 +1879,17 @@
 | 5 | Testing | 19 | 2-3 weeks |
 | 6 | DX improvement | 12 | 1 week |
 | 7 | Final adjustments | 11 | 1-2 weeks |
-| **Total** | | **117 tasks** | **13-20 weeks** |
+| **Total** | | **120+ tasks** | **13.5-21 weeks** |
 
 ---
 
 ## Recommended Implementation Order
+
+### Week 0-1: Initial Setup
+
+- [ ] Phase 0.1: Cloudflare Pages Configuration (Task 0.1.1)
+- [ ] Phase 0.2: CI/CD Configuration (Tasks 0.2.1-0.2.2)
+- [ ] Phase 0.3: Storybook Configuration (Tasks 0.3.1-0.3.5)
 
 ### Week 1-2: Foundation Construction
 
