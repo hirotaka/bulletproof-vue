@@ -1,5 +1,5 @@
 <script lang="ts">
-interface TablePaginationProps {
+export interface TablePaginationProps {
   totalPages: number
   currentPage: number
   rootUrl: string

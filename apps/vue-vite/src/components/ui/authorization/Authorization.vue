@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useAuthorization, type Role, type Policy } from '@/lib/authorization'
+import type { User, Comment, Discussion } from '@/types/api'
 
 interface AuthorizationProps {
   policyCheck?: keyof Policy
   allowedRoles?: Role | Role[]
-  data?: any
+  data?: User | Comment | Discussion
 }
 
 const props = defineProps<AuthorizationProps>()
@@ -15,12 +16,12 @@ const { checkAccess, hasRole } = useAuthorization()
 const canAccess = computed(() => {
   // If both policyCheck and allowedRoles are provided, both must pass
   if (props.policyCheck && props.allowedRoles) {
-    return checkAccess(props.policyCheck, props.data) && hasRole(props.allowedRoles)
+    return checkAccess(props.policyCheck, props.data as never) && hasRole(props.allowedRoles)
   }
 
   // If only policyCheck is provided
   if (props.policyCheck) {
-    return checkAccess(props.policyCheck, props.data)
+    return checkAccess(props.policyCheck, props.data as never)
   }
 
   // If only allowedRoles is provided

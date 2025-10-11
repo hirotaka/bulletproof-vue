@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import { watchEffect } from 'vue'
 import { z } from 'zod'
 
 import type { AuthResponse, User } from '@/types/api'
@@ -111,17 +112,22 @@ export const useAuth = () => {
 export const useUser = () => {
   const authStore = useAuthStore()
 
-  return useQuery({
+  const query = useQuery({
     queryKey: ['auth-user'],
     queryFn: getUser,
     enabled: authStore.isAuthenticated,
     staleTime: Infinity, // User data doesn't go stale
     retry: false, // Don't retry on failure
-    onSuccess: (data) => {
-      authStore.setUser(data)
-    },
-    onError: () => {
-      authStore.clearUser()
-    },
   })
+
+  // Handle side effects using watchEffect
+  watchEffect(() => {
+    if (query.data.value) {
+      authStore.setUser(query.data.value)
+    } else if (query.isError.value) {
+      authStore.clearUser()
+    }
+  })
+
+  return query
 }
