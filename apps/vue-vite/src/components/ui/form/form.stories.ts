@@ -24,9 +24,9 @@ export const Basic: Story = {
   render: (args) => ({
     components: { Form, Button },
     setup() {
-      const submittedData = ref<any>(null)
+      const submittedData = ref<Record<string, unknown> | null>(null)
 
-      const handleSubmit = (values: any) => {
+      const handleSubmit = (values: Record<string, unknown>) => {
         submittedData.value = values
         console.log('Form submitted:', values)
       }
@@ -89,9 +89,9 @@ export const WithInitialValues: Story = {
   render: (args) => ({
     components: { Form, Button },
     setup() {
-      const submittedData = ref<any>(null)
+      const submittedData = ref<Record<string, unknown> | null>(null)
 
-      const handleSubmit = (values: any) => {
+      const handleSubmit = (values: Record<string, unknown>) => {
         submittedData.value = values
         console.log('Form submitted:', values)
       }
