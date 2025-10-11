@@ -191,14 +191,14 @@
 
 #### Task 1.3.1: Environment Variable Configuration
 
-- [ ] Create `.env` file (copy from `.env.example`)
-- [ ] Define environment variables
-  - [ ] `VITE_APP_API_URL`
-  - [ ] `VITE_APP_ENABLE_API_MOCKING` (true/false)
-- [ ] Create `src/config/env.ts`
-- [ ] Validate environment variables with Zod schema
-- [ ] Export type-safe env object
-- [ ] Error handling (when required variables are missing)
+- [x] Create `.env` file (copy from `.env.example`)
+- [x] Define environment variables
+  - [x] `VITE_APP_API_URL`
+  - [x] `VITE_APP_ENABLE_API_MOCKING` (true/false)
+- [x] Create `src/config/env.ts`
+- [x] Validate environment variables with Zod schema
+- [x] Export type-safe env object
+- [x] Error handling (when required variables are missing)
 
 #### Task 1.3.2: Create Path Definitions
 
