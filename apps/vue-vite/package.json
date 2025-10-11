@@ -34,7 +34,7 @@
     "vue": "^3.5.13",
     "vue-dompurify-html": "^5.2.0",
     "vue-router": "^4.5.0",
-    "zod": "^4.1.12"
+    "zod": "^3.24.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
