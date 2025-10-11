@@ -115,23 +115,23 @@
 
 #### Task 0.3.1: Storybook Installation and Setup
 
-- [ ] Install Storybook dependencies
-  - [ ] Run `pnpm dlx storybook@latest init`
-  - [ ] Install required addons: `@storybook/addon-essentials`, `@storybook/addon-interactions`, `@storybook/addon-links`
-- [ ] Configure Storybook for Vue 3 + Vite
-  - [ ] Update `.storybook/main.ts` with proper framework configuration
-  - [ ] Configure TypeScript support
-  - [ ] Set up Vite builder options
-- [ ] Configure Tailwind CSS integration
-  - [ ] Import Tailwind styles in `.storybook/preview.ts`
-  - [ ] Ensure PostCSS configuration is recognized
-- [ ] Configure global decorators
-  - [ ] Add Vue Router mock decorator
-  - [ ] Add Pinia store decorator
-  - [ ] Add theme provider decorator (if needed)
-- [ ] Add Storybook scripts to package.json
-  - [ ] `storybook`: Start Storybook dev server
-  - [ ] `build-storybook`: Build static Storybook
+- [x] Install Storybook dependencies
+  - [x] Run `pnpm dlx storybook@latest init`
+  - [x] Install required addons: `@storybook/addon-essentials`, `@storybook/addon-interactions`, `@storybook/addon-links`
+- [x] Configure Storybook for Vue 3 + Vite
+  - [x] Update `.storybook/main.ts` with proper framework configuration
+  - [x] Configure TypeScript support
+  - [x] Set up Vite builder options
+- [x] Configure Tailwind CSS integration
+  - [x] Import Tailwind styles in `.storybook/preview.ts`
+  - [x] Ensure PostCSS configuration is recognized
+- [x] Configure global decorators
+  - [x] Add Vue Router mock decorator
+  - [x] Add Pinia store decorator
+  - [x] Add theme provider decorator (if needed)
+- [x] Add Storybook scripts to package.json
+  - [x] `storybook`: Start Storybook dev server
+  - [x] `build-storybook`: Build static Storybook
 
 #### Task 0.3.2: Storybook Configuration for Project Architecture
 
