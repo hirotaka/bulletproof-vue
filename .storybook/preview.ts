@@ -2,9 +2,13 @@ import type { Preview } from '@storybook/vue3';
 import { setup } from '@storybook/vue3';
 import { createPinia } from 'pinia';
 import { createMemoryHistory, createRouter } from 'vue-router';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 
 // Import Tailwind CSS
 import '../apps/vue-vite/src/index.css';
+
+// Initialize MSW
+initialize();
 
 // Setup Vue plugins
 setup((app) => {
@@ -34,6 +38,7 @@ const preview: Preview = {
       },
     },
   },
+  loaders: [mswLoader],
 };
 
 export default preview;
