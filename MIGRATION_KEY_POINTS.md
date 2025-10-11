@@ -24,11 +24,20 @@
 
 ## 🎯 Main Points
 
-### 1. PR-Level Granularity
+### 1. Dual Migration Plan Structure
+
+**IMPORTANT**: Each task requires implementation of **BOTH** documents:
+
+- **MIGRATION_PLAN.md**: Contains detailed implementation checklists for each task (e.g., Task 1.1.1 includes Axios setup, interceptors, type definitions)
+- **MIGRATION_PLAN_DETAILED.md**: Contains PR-level granularity and time estimates (e.g., PR 1.1.1 focuses on dependency installation only)
+
+When working on a task number (e.g., 1.1.1), you must complete ALL requirements from MIGRATION_PLAN.md, not just the basic PR scope from MIGRATION_PLAN_DETAILED.md.
+
+### 2. PR-Level Granularity
 
 Each PR is scoped to be completed in 1-2 hours, making tasks manageable and progress trackable.
 
-### 2. Parallel Work Enabled
+### 3. Parallel Work Enabled
 
 The structure allows multiple developers to work efficiently in parallel:
 
@@ -37,11 +46,11 @@ The structure allows multiple developers to work efficiently in parallel:
 - **3 people**: 5-9 weeks (55% reduction)
 - **4 people**: 4-7 weeks (65% reduction)
 
-### 3. English Output
+### 4. English Output
 
 Going forward, all conversation is in Japanese, but all document outputs are in English.
 
-### 4. Effort Reduction
+### 5. Effort Reduction
 
 With proper team allocation and parallel execution, significant time savings are possible compared to sequential work.
 
