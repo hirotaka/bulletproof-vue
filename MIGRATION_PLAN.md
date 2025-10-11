@@ -120,14 +120,14 @@
 
 #### Task 1.2.1: Create Authentication Pinia Store
 
-- [ ] Create `src/stores/auth.ts`
-- [ ] Define store state
-  - [ ] `user: User | null`
-  - [ ] `isAuthenticated: computed`
-- [ ] Define actions
-  - [ ] `setUser(user: User | null)`
-  - [ ] `clearUser()`
-- [ ] Consider localStorage persistence (optional)
+- [x] Create `src/stores/auth.ts`
+- [x] Define store state
+  - [x] `user: User | null`
+  - [x] `isAuthenticated: computed`
+- [x] Define actions
+  - [x] `setUser(user: User | null)`
+  - [x] `clearUser()`
+- [x] Consider localStorage persistence (optional)
 
 #### Task 1.2.2: Implement useAuth Composable
 
