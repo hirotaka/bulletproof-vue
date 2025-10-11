@@ -431,11 +431,11 @@
 
 #### Task 2.1.7: Switch Component (Radix Vue)
 
-- [ ] Create `src/components/ui/switch/Switch.vue`
-- [ ] Use Radix Vue Switch
-- [ ] Integrate with VeeValidate
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Create `src/components/ui/switch/Switch.vue`
+- [x] Use Radix Vue Switch
+- [x] Integrate with VeeValidate
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.1.8: Label Component
 
