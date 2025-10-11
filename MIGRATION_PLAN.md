@@ -1572,7 +1572,7 @@
 
 ---
 
-## Phase 7: Final Adjustments and Documentation (1 week)
+## Phase 7: Final Adjustments and Documentation (1-2 weeks)
 
 ### 7.1 Environment Variables and Deployment Preparation
 
@@ -1594,6 +1594,29 @@
 - [ ] Optimize chunk splitting in `vite.config.ts`
 - [ ] Check bundle size (`pnpm build && pnpm preview`)
 - [ ] Check Lighthouse score
+
+#### Task 7.1.3: Cloudflare Pages Migration
+
+- [ ] Create `wrangler.toml` for Cloudflare Pages configuration
+  - [ ] Configure build command and output directory
+  - [ ] Set Node.js version
+- [ ] Add `_headers` file for custom headers
+  - [ ] Security headers (CSP, X-Frame-Options, etc.)
+  - [ ] Caching headers
+- [ ] Add `_redirects` file for SPA routing
+  - [ ] Fallback all routes to index.html (SPA support)
+- [ ] Remove Vercel configuration
+  - [ ] Delete `vercel.json` (if exists)
+- [ ] Connect GitHub repository to Cloudflare Pages
+  - [ ] Configure production branch (main/renewal)
+  - [ ] Configure preview deployments for PRs
+  - [ ] Set up environment variables in Cloudflare dashboard
+- [ ] Configure custom domain (if needed)
+- [ ] Verify deployment works correctly
+  - [ ] Test production deployment
+  - [ ] Test PR preview deployments
+- [ ] Update documentation with new deployment URL
+- [ ] Archive/disable Vercel project
 
 ---
 
@@ -1690,7 +1713,7 @@
 
 ---
 
-## Effort Estimation (Total 12-19 weeks)
+## Effort Estimation (Total 13-20 weeks)
 
 | Phase | Tasks | Task Count | Effort |
 |-------|--------|---------|------|
@@ -1700,8 +1723,8 @@
 | 4 | Routing | 14 | 2 weeks |
 | 5 | Testing | 19 | 2-3 weeks |
 | 6 | DX improvement | 12 | 1 week |
-| 7 | Final adjustments | 10 | 1 week |
-| **Total** | | **116 tasks** | **12-19 weeks** |
+| 7 | Final adjustments | 11 | 1-2 weeks |
+| **Total** | | **117 tasks** | **13-20 weeks** |
 
 ---
 
@@ -1755,9 +1778,9 @@
 - [ ] Phase 6.2: Code Generator (Tasks 6.2.1-6.2.3)
 - [ ] Phase 6.3: Git Hooks (Tasks 6.3.1-6.3.4)
 
-### Week 19: Final Adjustments
+### Week 19-20: Final Adjustments
 
-- [ ] Phase 7.1: Deployment Preparation (Tasks 7.1.1-7.1.2)
+- [ ] Phase 7.1: Deployment Preparation + Cloudflare Migration (Tasks 7.1.1-7.1.3)
 - [ ] Phase 7.2: Documentation (Tasks 7.2.1-7.2.3)
 - [ ] Phase 7.3: Final Testing (Tasks 7.3.1-7.3.4)
 

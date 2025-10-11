@@ -5,18 +5,20 @@
 ### 1. **MIGRATION_PLAN.md** (Summary - English)
 
 - Overall React to Vue migration plan
-- 7 Phases (12-19 weeks)
-- 116 Tasks
+- 7 Phases (13-20 weeks)
+- 117 Tasks
 - Technology stack mapping
 - Architecture principles
+- **Cloudflare Pages migration included**
 
 ### 2. **MIGRATION_PLAN_DETAILED.md** (Detailed - English)
 
-- **195 PRs** (1 PR = 1-2 hours)
+- **198 PRs** (1 PR = 1-2 hours)
 - Detailed checklist for each PR
 - Estimated time included
 - Parallel work possibilities
 - Weekly implementation schedule
+- **Cloudflare Pages migration tasks (3 PRs)**
 
 ---
 
@@ -30,10 +32,10 @@ Each PR is scoped to be completed in 1-2 hours, making tasks manageable and prog
 
 The structure allows multiple developers to work efficiently in parallel:
 
-- **1 person**: 12-19 weeks
-- **2 people**: 7-11 weeks (40% reduction)
-- **3 people**: 5-8 weeks (55% reduction)
-- **4 people**: 4-6 weeks (65% reduction)
+- **1 person**: 13-20 weeks
+- **2 people**: 7-12 weeks (40% reduction)
+- **3 people**: 5-9 weeks (55% reduction)
+- **4 people**: 4-7 weeks (65% reduction)
 
 ### 3. English Output
 
@@ -55,8 +57,8 @@ With proper team allocation and parallel execution, significant time savings are
 | **Phase 4** | 23 PRs | 2 weeks | Routing + Pages |
 | **Phase 5** | 38 PRs | 2-3 weeks | Testing (MSW, Unit Tests, E2E) |
 | **Phase 6** | 15 PRs | 1 week | Developer Experience (ESLint, Plop, Husky) |
-| **Phase 7** | 9 PRs | 1 week | Final Adjustments + Documentation |
-| **Total** | **195 PRs** | **12-19 weeks** | Complete migration |
+| **Phase 7** | 12 PRs | 1-2 weeks | Final Adjustments + Documentation + Cloudflare Migration |
+| **Total** | **198 PRs** | **13-20 weeks** | Complete migration |
 
 ---
 
@@ -78,6 +80,7 @@ With proper team allocation and parallel execution, significant time savings are
 | **Build Tool** | Vite | Vite | ✅ Same |
 | **Authentication** | react-query-auth | Custom composable | 🔴 Hard |
 | **SEO** | react-helmet-async | @unhead/vue | ⚠️ Medium |
+| **Deployment** | Vercel | Cloudflare Pages | ✅ Easy |
 
 ---
 

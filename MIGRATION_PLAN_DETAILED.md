@@ -1738,9 +1738,9 @@
 
 ---
 
-## Phase 7: Final Adjustments and Documentation (8-10 PRs / 1 week)
+## Phase 7: Final Adjustments and Documentation (11-13 PRs / 1-2 weeks)
 
-### 7.1 Environment Variables and Deployment Preparation (3 PRs)
+### 7.1 Environment Variables and Deployment Preparation (6 PRs)
 
 #### PR 7.1.1: Environment Variables Documentation
 
@@ -1765,6 +1765,36 @@
 - [ ] Check Lighthouse score
 - [ ] Performance improvements
 - [ ] Update documentation
+
+#### PR 7.1.4: Cloudflare Pages Setup
+
+**Estimated Time**: 1.5 hours
+
+- [ ] Create `wrangler.toml` for Cloudflare Pages configuration
+- [ ] Configure build settings (build command, output directory)
+- [ ] Set up environment variables in Cloudflare dashboard
+- [ ] Configure custom domain (if needed)
+
+#### PR 7.1.5: Cloudflare Pages Build Configuration
+
+**Estimated Time**: 1 hour
+
+- [ ] Add `_headers` file for custom headers
+- [ ] Add `_redirects` file for SPA routing (fallback to index.html)
+- [ ] Configure caching strategy
+- [ ] Test build locally with Wrangler
+
+#### PR 7.1.6: Migrate from Vercel to Cloudflare Pages
+
+**Estimated Time**: 2 hours
+
+- [ ] Remove Vercel configuration (`vercel.json`)
+- [ ] Connect GitHub repository to Cloudflare Pages
+- [ ] Configure automatic deployments (main/renewal branch)
+- [ ] Set up preview deployments for PRs
+- [ ] Verify deployment works
+- [ ] Update documentation with new deployment URL
+- [ ] Archive Vercel project
 
 ---
 
@@ -1854,8 +1884,8 @@
 | Phase 4: Routing | 23 PRs | 2 weeks |
 | Phase 5: Testing | 38 PRs | 2-3 weeks |
 | Phase 6: DX Improvement | 15 PRs | 1 week |
-| Phase 7: Final Adjustments | 9 PRs | 1 week |
-| **Total** | **195 PRs** | **12-19 weeks** |
+| Phase 7: Final Adjustments | 12 PRs | 1-2 weeks |
+| **Total** | **198 PRs** | **13-20 weeks** |
 
 ### Parallel Work Possibilities
 
@@ -1874,10 +1904,10 @@
 
 ### Effort Reduction Possibilities
 
-**1 person**: 12-19 weeks
-**2 people**: 7-11 weeks (40% reduction through parallel work)
-**3 people**: 5-8 weeks (55% reduction through parallel work)
-**4 people**: 4-6 weeks (65% reduction through parallel work)
+**1 person**: 13-20 weeks
+**2 people**: 7-12 weeks (40% reduction through parallel work)
+**3 people**: 5-9 weeks (55% reduction through parallel work)
+**4 people**: 4-7 weeks (65% reduction through parallel work)
 
 ---
 
@@ -1934,9 +1964,9 @@
 - PR 6.2.1 → 6.2.5 (Code Generator)
 - PR 6.3.1 → 6.3.4 (Git Hooks)
 
-### Week 18: Final Adjustments
+### Week 18-19: Final Adjustments
 
-- PR 7.1.1 → 7.1.3 (Deployment Preparation)
+- PR 7.1.1 → 7.1.6 (Deployment Preparation + Cloudflare Migration)
 - PR 7.2.1 → 7.2.3 (Documentation)
 - PR 7.3.1 → 7.3.3 (Final Testing)
 
