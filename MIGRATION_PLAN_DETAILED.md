@@ -26,46 +26,46 @@
 
 **Estimated Time**: 1 hour
 
-- [ ] Create `src/lib/api-client.ts`
-- [ ] Create Axios instance (baseURL, withCredentials configuration)
-- [ ] Basic type definitions (ApiClient, ApiError)
-- [ ] Export
+- [x] Create `src/lib/api-client.ts`
+- [x] Create Axios instance (baseURL, withCredentials configuration)
+- [x] Basic type definitions (ApiClient, ApiError)
+- [x] Export
 
 #### PR 1.1.3: Axios Request Interceptor
 
 **Estimated Time**: 1 hour
 
-- [ ] Implement request interceptor
-- [ ] Automatic authentication token attachment logic
-- [ ] Header configuration
+- [x] Implement request interceptor
+- [x] Automatic authentication token attachment logic
+- [x] Header configuration
 - [ ] Add tests
 
 #### PR 1.1.4: Axios Response Interceptor
 
 **Estimated Time**: 1.5 hours
 
-- [ ] Implement response interceptor
-- [ ] Automatic response data unwrapping
-- [ ] Basic error handling
+- [x] Implement response interceptor
+- [x] Automatic response data unwrapping
+- [x] Basic error handling
 - [ ] Add tests
 
 #### PR 1.1.5: Vue Query Basic Configuration
 
 **Estimated Time**: 1 hour
 
-- [ ] Create `src/lib/vue-query.ts`
-- [ ] Create QueryClient
-- [ ] Configure default options (staleTime, cacheTime, retry)
-- [ ] Type definitions
+- [x] Create `src/lib/vue-query.ts`
+- [x] Create QueryClient
+- [x] Configure default options (staleTime, cacheTime, retry)
+- [x] Type definitions
 
 #### PR 1.1.6: Vue Query Provider Integration
 
 **Estimated Time**: 1 hour
 
-- [ ] Update `src/app/provider.ts`
-- [ ] Add QueryClientProvider
-- [ ] Configure Vue Query Devtools (development environment only)
-- [ ] Verify integration in `main.ts`
+- [x] Update `src/app/provider.ts`
+- [x] Add QueryClientProvider
+- [x] Configure Vue Query Devtools (development environment only)
+- [x] Verify integration in `main.ts`
 
 ---
 

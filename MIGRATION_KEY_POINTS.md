@@ -33,6 +33,12 @@
 
 When working on a task number (e.g., 1.1.1), you must complete ALL requirements from MIGRATION_PLAN.md, not just the basic PR scope from MIGRATION_PLAN_DETAILED.md.
 
+**IMPORTANT**: After completing a task, you MUST update the checkboxes in BOTH migration plan documents:
+- Update checkboxes in **MIGRATION_PLAN.md** for the task section
+- Update checkboxes in **MIGRATION_PLAN_DETAILED.md** for corresponding PR(s)
+
+This ensures accurate progress tracking and makes it easy to see what has been completed at a glance.
+
 ### 2. PR-Level Granularity
 
 Each PR is scoped to be completed in 1-2 hours, making tasks manageable and progress trackable.

@@ -54,13 +54,13 @@
 
 #### Task 1.1.2: Vue Query (TanStack Query) Setup
 
-- [ ] Install `@tanstack/vue-query`
-- [ ] Create `src/lib/vue-query.ts`
-- [ ] Create and configure QueryClient
-  - [ ] Default options (staleTime, cacheTime, retry configuration)
-  - [ ] Error handling configuration
-- [ ] Add QueryClientProvider in `src/app/provider.ts`
-- [ ] Configure Vue Query Devtools (development environment only)
+- [x] Install `@tanstack/vue-query`
+- [x] Create `src/lib/vue-query.ts`
+- [x] Create and configure QueryClient
+  - [x] Default options (staleTime, cacheTime, retry configuration)
+  - [x] Error handling configuration
+- [x] Add QueryClientProvider in `src/app/provider.ts`
+- [x] Configure Vue Query Devtools (development environment only)
 
 **Differences from React**:
 
