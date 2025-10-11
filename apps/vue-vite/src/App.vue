@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 import HelloWorld from './components/HelloWorld.vue'
+
+const isDev = import.meta.env.DEV
 </script>
 
 <template>
@@ -18,7 +21,7 @@ import HelloWorld from './components/HelloWorld.vue'
   </header>
 
   <RouterView />
-  <VueQueryDevtools v-if="import.meta.env.DEV" />
+  <VueQueryDevtools v-if="isDev" />
 </template>
 
 <style scoped>

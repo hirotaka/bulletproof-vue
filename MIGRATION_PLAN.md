@@ -57,6 +57,56 @@
 - [x] Update documentation with new deployment URL
 - [ ] Archive/disable Vercel project
 
+### 0.2 CI/CD Configuration
+
+**Purpose**: Set up GitHub Actions CI pipeline to run tests, linting, and type checking on all PRs and commits.
+
+**Tasks**:
+
+#### Task 0.2.1: Fix Type Errors and Dependencies
+
+- [x] Install missing devDependencies
+  - [x] Add `@tanstack/vue-query-devtools` to devDependencies
+- [x] Fix file naming case sensitivity issues
+  - [x] Update import statements in `button/index.ts` to use `button.vue`
+  - [x] Update import statements in `link/index.ts` to use `link.vue`
+  - [x] Update import statements in `spinner/index.ts` to use `spinner.vue`
+- [x] Fix TypeScript type errors
+  - [x] Fix `TablePaginationProps` export in `src/components/ui/table/TablePagination.vue`
+  - [x] Remove deprecated `onSuccess` from `useQuery` in `src/lib/auth.ts`
+  - [x] Add proper type annotations where implicit `any` exists
+  - [x] Fix `import.meta.env.DEV` usage in template (moved to script)
+- [x] Fix ESLint configuration
+  - [x] Disable `vue/multi-word-component-names` rule for UI primitives
+  - [x] Ignore `.cjs` files from linting
+- [x] Verify all checks pass
+  - [x] Run `pnpm run type-check` successfully
+  - [x] Run `pnpm run build` successfully
+  - [x] Run `pnpm run lint` successfully
+  - [x] Run `pnpm run test:unit` successfully
+
+#### Task 0.2.2: GitHub Actions CI Setup
+
+- [x] Create/update `.github/workflows/ci.yml`
+  - [x] Configure triggers (push/PR to main and renewal branches)
+  - [x] Set up pnpm with caching
+  - [x] Configure Node.js version (22)
+  - [x] Set working directory to `apps/vue-vite`
+- [x] Add `all-cli-check` job
+  - [x] Install dependencies
+  - [x] Run type-check
+  - [x] Run build
+  - [x] Run lint
+  - [x] Run unit tests
+- [x] Add `playwright-run` job
+  - [x] Install dependencies
+  - [x] Run build
+  - [x] Install Playwright browsers
+  - [x] Run e2e tests
+  - [x] Upload test reports as artifacts
+- [x] Test CI pipeline locally
+- [ ] Verify CI runs successfully on GitHub (pending PR)
+
 ---
 
 ## Phase 1: Infrastructure Layer (1-2 weeks)

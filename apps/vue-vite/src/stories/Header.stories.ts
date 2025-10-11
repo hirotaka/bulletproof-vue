@@ -10,7 +10,7 @@ const meta = {
    */
   title: 'Example/Header',
   component: MyHeader,
-  render: (args: any) => ({
+  render: (args: Record<string, unknown>) => ({
     components: { MyHeader },
     setup() {
       return { args };

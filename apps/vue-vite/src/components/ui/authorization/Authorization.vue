@@ -5,7 +5,7 @@ import { useAuthorization, type Role, type Policy } from '@/lib/authorization'
 interface AuthorizationProps {
   policyCheck?: keyof Policy
   allowedRoles?: Role | Role[]
-  data?: any
+  data?: Record<string, unknown>
 }
 
 const props = defineProps<AuthorizationProps>()
