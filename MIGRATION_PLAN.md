@@ -422,12 +422,12 @@
 
 #### Task 2.1.6: Checkbox Component (Radix Vue)
 
-- [ ] Create `src/components/ui/checkbox/Checkbox.vue`
-- [ ] Use Radix Vue Checkbox
-- [ ] Integrate with VeeValidate
-- [ ] Label integration
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Create `src/components/ui/checkbox/Checkbox.vue`
+- [x] Use Radix Vue Checkbox
+- [x] Integrate with VeeValidate
+- [x] Label integration
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.1.7: Switch Component (Radix Vue)
 
