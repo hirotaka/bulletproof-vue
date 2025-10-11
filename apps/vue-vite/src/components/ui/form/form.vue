@@ -24,7 +24,7 @@ const { handleSubmit, errors, isSubmitting, resetForm } = useForm({
   initialValues: props.initialValues,
 })
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit((values: Record<string, any>) => {
   emit('submit', values)
 })
 

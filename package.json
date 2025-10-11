@@ -4,9 +4,7 @@
 		"build-storybook": "storybook build"
 	},
 	"dependencies": {
-		"@tanstack/vue-query": "^5.90.2",
-		"@vee-validate/zod": "^4.15.1",
-		"vee-validate": "^4.15.1"
+		"@tanstack/vue-query": "^5.90.2"
 	},
 	"devDependencies": {
 		"@storybook/addon-essentials": "^8.6.14",
