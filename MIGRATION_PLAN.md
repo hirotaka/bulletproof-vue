@@ -148,9 +148,9 @@
 
 #### Task 1.2.3: Implement Authorization System
 
-- [ ] Create `src/lib/authorization.ts`
-- [ ] Create role definition types (`Role = 'ADMIN' | 'USER'`)
-- [ ] Create policy definition types
+- [x] Create `src/lib/authorization.ts`
+- [x] Create role definition types (`Role = 'ADMIN' | 'USER'`)
+- [x] Create policy definition types
 
   ```typescript
   type Policy = {
@@ -160,14 +160,14 @@
   }
   ```
 
-- [ ] Implement `POLICIES` object
-- [ ] Implement `useAuthorization` composable
-  - [ ] `checkAccess(policy, data?)` function
-  - [ ] `hasRole(role)` function
-- [ ] Create `Authorization.vue` component
-  - [ ] `policyCheck` prop
-  - [ ] `allowedRoles` prop
-  - [ ] `forbiddenFallback` slot
+- [x] Implement `POLICIES` object
+- [x] Implement `useAuthorization` composable
+  - [x] `checkAccess(policy, data?)` function
+  - [x] `hasRole(role)` function
+- [x] Create `Authorization.vue` component
+  - [x] `policyCheck` prop
+  - [x] `allowedRoles` prop
+  - [x] `forbiddenFallback` slot
 
 **Differences from React**:
 
