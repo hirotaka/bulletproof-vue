@@ -171,7 +171,7 @@ describe('Input', () => {
     await input.setValue('ab')
     await input.trigger('blur')
 
-    // Wait for validation to process - increase timeout for CI environments
+    // Wait for validation to process - increased delay for CI stability
     await new Promise((resolve) => setTimeout(resolve, 100))
     await wrapper.vm.$nextTick()
 

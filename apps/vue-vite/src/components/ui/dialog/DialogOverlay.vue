@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import { DialogOverlay as DialogOverlayPrimitive } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+import { DialogOverlay } from 'radix-vue'
+import { cn } from '@/utils/cn'
 
 export interface DialogOverlayProps {
-  class?: HTMLAttributes['class']
+  class?: string
 }
 
-defineProps<DialogOverlayProps>()
+const props = defineProps<DialogOverlayProps>()
 </script>
 
 <template>
-  <DialogOverlayPrimitive :class="$props.class">
-    <slot></slot>
-  </DialogOverlayPrimitive>
+  <DialogOverlay
+    :class="
+      cn(
+        'fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+        props.class,
+      )
+    "
+  />
 </template>

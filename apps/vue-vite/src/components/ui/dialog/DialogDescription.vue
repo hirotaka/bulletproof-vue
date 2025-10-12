@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { DialogDescription as DialogDescriptionPrimitive } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+import { DialogDescription } from 'radix-vue'
+import { cn } from '@/utils/cn'
 
 export interface DialogDescriptionProps {
-  class?: HTMLAttributes['class']
+  class?: string
 }
 
-defineProps<DialogDescriptionProps>()
+const props = defineProps<DialogDescriptionProps>()
 </script>
 
 <template>
-  <DialogDescriptionPrimitive :class="$props.class">
+  <DialogDescription :class="cn('text-sm text-muted-foreground', props.class)">
     <slot></slot>
-  </DialogDescriptionPrimitive>
+  </DialogDescription>
 </template>

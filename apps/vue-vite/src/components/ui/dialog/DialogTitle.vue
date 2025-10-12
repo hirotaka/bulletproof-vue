@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { DialogTitle as DialogTitlePrimitive } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+import { DialogTitle } from 'radix-vue'
+import { cn } from '@/utils/cn'
 
 export interface DialogTitleProps {
-  class?: HTMLAttributes['class']
+  class?: string
 }
 
-defineProps<DialogTitleProps>()
+const props = defineProps<DialogTitleProps>()
 </script>
 
 <template>
-  <DialogTitlePrimitive :class="$props.class">
+  <DialogTitle
+    :class="cn('text-lg font-semibold leading-none tracking-tight', props.class)"
+  >
     <slot></slot>
-  </DialogTitlePrimitive>
+  </DialogTitle>
 </template>

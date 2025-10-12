@@ -535,18 +535,18 @@
 
 #### Task 2.2.3: Dialog Component (Radix Vue)
 
-- [ ] Install Radix Vue Dialog (check existing)
-- [ ] Create multiple components under `src/components/ui/dialog/`
-  - [ ] `Dialog.vue` (root)
-  - [ ] `DialogContent.vue` (modal body)
-  - [ ] `DialogHeader.vue`
-  - [ ] `DialogTitle.vue`
-  - [ ] `DialogDescription.vue`
-  - [ ] `DialogFooter.vue`
-- [ ] Accessibility support (aria attributes, keyboard operations)
-- [ ] Animation (Tailwind Animate)
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Install Radix Vue Dialog (check existing)
+- [x] Create multiple components under `src/components/ui/dialog/`
+  - [x] `Dialog.vue` (root)
+  - [x] `DialogContent.vue` (modal body)
+  - [x] `DialogHeader.vue`
+  - [x] `DialogTitle.vue`
+  - [x] `DialogDescription.vue`
+  - [x] `DialogFooter.vue`
+- [x] Accessibility support (aria attributes, keyboard operations)
+- [x] Animation (Tailwind Animate)
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.2.4: ConfirmationDialog Component
 
