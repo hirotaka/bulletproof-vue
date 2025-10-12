@@ -195,52 +195,52 @@
 
 #### Task 0.4.3: Data Generation Utilities
 
-- [ ] Create `src/testing/data-generators.ts`
-- [ ] Generator functions using `@ngneat/falso`
-  - [ ] `generateUser()`
-  - [ ] `generateTeam()`
-  - [ ] `generateDiscussion()`
-  - [ ] `generateComment()`
+- [x] Create `src/testing/data-generators.ts`
+- [x] Generator functions using `@ngneat/falso`
+  - [x] `generateUser()`
+  - [x] `generateTeam()`
+  - [x] `generateDiscussion()`
+  - [x] `generateComment()`
 
 #### Task 0.4.4: Create API Handlers
 
-- [ ] Create `src/testing/mocks/handlers/auth.ts`
-  - [ ] `POST /auth/login` - Login processing
-  - [ ] `POST /auth/register` - Registration processing
-  - [ ] `POST /auth/logout` - Logout processing
-  - [ ] `GET /auth/me` - Get current user
-- [ ] Create `src/testing/mocks/handlers/discussions.ts`
-  - [ ] `GET /discussions` - Get list
-  - [ ] `GET /discussions/:id` - Get details
-  - [ ] `POST /discussions` - Create
-  - [ ] `PATCH /discussions/:id` - Update
-  - [ ] `DELETE /discussions/:id` - Delete
-- [ ] Create `src/testing/mocks/handlers/comments.ts`
-  - [ ] `GET /comments?discussionId=:id` - Get list
-  - [ ] `POST /comments` - Create
-  - [ ] `DELETE /comments/:id` - Delete
-- [ ] Create `src/testing/mocks/handlers/users.ts`
-  - [ ] `GET /users` - Get list (admin only)
-  - [ ] `PATCH /profile` - Update profile
-  - [ ] `DELETE /users/:id` - Delete (admin only)
-- [ ] Create `src/testing/mocks/handlers/teams.ts`
-  - [ ] `GET /teams` - Get list
+- [x] Create `src/testing/mocks/handlers/auth.ts`
+  - [x] `POST /auth/login` - Login processing
+  - [x] `POST /auth/register` - Registration processing
+  - [x] `POST /auth/logout` - Logout processing
+  - [x] `GET /auth/me` - Get current user
+- [x] Create `src/testing/mocks/handlers/discussions.ts`
+  - [x] `GET /discussions` - Get list
+  - [x] `GET /discussions/:id` - Get details
+  - [x] `POST /discussions` - Create
+  - [x] `PATCH /discussions/:id` - Update
+  - [x] `DELETE /discussions/:id` - Delete
+- [x] Create `src/testing/mocks/handlers/comments.ts`
+  - [x] `GET /comments?discussionId=:id` - Get list
+  - [x] `POST /comments` - Create
+  - [x] `DELETE /comments/:id` - Delete
+- [x] Create `src/testing/mocks/handlers/users.ts`
+  - [x] `GET /users` - Get list (admin only)
+  - [x] `PATCH /profile` - Update profile
+  - [x] `DELETE /users/:id` - Delete (admin only)
+- [x] Create `src/testing/mocks/handlers/teams.ts`
+  - [x] `GET /teams` - Get list
 
 #### Task 0.4.5: MSW Worker Configuration
 
-- [ ] Create `src/testing/mocks/browser.ts`
-  - [ ] Browser Service Worker configuration
-  - [ ] Register all handlers
-- [ ] Create `src/testing/mocks/server.ts`
-  - [ ] Node.js MSW Server configuration
-  - [ ] Register all handlers
+- [x] Create `src/testing/mocks/browser.ts`
+  - [x] Browser Service Worker configuration
+  - [x] Register all handlers
+- [x] Create `src/testing/mocks/server.ts`
+  - [x] Node.js MSW Server configuration
+  - [x] Register all handlers
 
 #### Task 0.4.6: Test Setup
 
-- [ ] Update `src/testing/setup-tests.ts`
-  - [ ] MSW Server start/stop/reset
-  - [ ] `beforeAll`, `afterEach`, `afterAll` hooks
-  - [ ] DB initialization
+- [x] Update `src/testing/setup-tests.ts`
+  - [x] MSW Server start/stop/reset
+  - [x] `beforeAll`, `afterEach`, `afterAll` hooks
+  - [x] DB initialization
 
 #### Task 0.4.7: Enable Mock in Development Environment
 
@@ -753,14 +753,14 @@
 
 #### Task 2.4.2: Head (SEO) Component
 
-- [ ] Install `@unhead/vue`
-- [ ] Create `src/components/ui/seo/Head.vue`
-- [ ] Define Props
-  - [ ] `title`, `description`
-- [ ] Use `useHead` composable
-- [ ] Set page title
-- [ ] Set meta description
-- [ ] Configure `createHead()` in `src/app/provider.ts`
+- [x] Install `@unhead/vue`
+- [x] Create `src/components/seo/Head.vue`
+- [x] Define Props
+  - [x] `title`, `description`
+- [x] Use `useHead` composable
+- [x] Set page title
+- [x] Set meta description
+- [x] Configure `createHead()` in `src/app/provider.ts`
 
 #### Task 2.4.3: FormDrawer Component
 

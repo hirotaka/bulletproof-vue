@@ -11,6 +11,9 @@ importers:
       '@tanstack/vue-query':
         specifier: ^5.90.2
         version: 5.90.2(vue@3.5.22(typescript@5.9.3))
+      '@unhead/vue':
+        specifier: ^2.0.19
+        version: 2.0.19(vue@3.5.22(typescript@5.9.3))
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -26,6 +29,9 @@ importers:
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
+      unhead:
+        specifier: ^2.0.19
+        version: 2.0.19
       vue:
         specifier: ^3.5.13
         version: 3.5.22(typescript@5.9.3)
@@ -50,7 +56,7 @@ importers:
         version: 8.6.14(storybook@8.6.14(prettier@3.6.2))
       '@storybook/addon-links':
         specifier: ^8.6.14
-        version: 8.6.14(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
+        version: 8.6.14(react@19.2.0)(storybook@8.6.14(prettier@3.6.2))
       '@storybook/vue3':
         specifier: ^8.6.14
         version: 8.6.14(storybook@8.6.14(prettier@3.6.2))(vue@3.5.22(typescript@5.9.3))
@@ -117,6 +123,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       lucide-vue-next:
         specifier: ^0.469.0
         version: 0.469.0(vue@3.5.22(typescript@5.6.3))
@@ -138,6 +147,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.18)
+      unhead:
+        specifier: ^2.0.19
+        version: 2.0.19
       vee-validate:
         specifier: ^4.15.1
         version: 4.15.1(vue@3.5.22(typescript@5.6.3))
@@ -184,9 +196,15 @@ importers:
       '@tanstack/vue-query-devtools':
         specifier: ^5.90.2
         version: 5.90.2(@tanstack/vue-query@5.90.2(vue@3.5.22(typescript@5.6.3)))(vue@3.5.22(typescript@5.6.3))
+      '@testing-library/jest-dom':
+        specifier: ^6.9.1
+        version: 6.9.1
       '@tsconfig/node22':
         specifier: 22.0.0
         version: 22.0.0
+      '@types/js-cookie':
+        specifier: ^3.0.6
+        version: 3.0.6
       '@types/jsdom':
         specifier: ^21.1.7
         version: 21.1.7
@@ -1306,6 +1324,10 @@ packages:
     resolution: {integrity: sha512-xGGHpBXYSHUUr6XsKBfs85TWlYKpTc37cSBBVrXcib2MkHLboWlkClhWF37JKlDb9KEq3dHs+f2xR7XJEWGBxA==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
 
+  '@testing-library/jest-dom@6.9.1':
+    resolution: {integrity: sha512-zIcONa+hVtVSSep9UT3jZ5rizo2BsxgyDYU7WFD5eICBE7no3881HGeb/QkGfsJs6JTkY1aQhT7rIPC7e+0nnA==}
+    engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
+
   '@testing-library/user-event@14.5.2':
     resolution: {integrity: sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==}
     engines: {node: '>=12', npm: '>=6'}
@@ -1323,6 +1345,9 @@ packages:
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
+
+  '@types/js-cookie@3.0.6':
+    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
 
   '@types/jsdom@21.1.7':
     resolution: {integrity: sha512-yOriVnggzrnQ3a9OKOCxaVuSug3w3/SbOj5i7VwXWZEyUNl3bLF9V3MfxGbZKuwqJOQyRfqXyROBB1CoZLFWzA==}
@@ -1424,6 +1449,11 @@ packages:
   '@typescript-eslint/visitor-keys@8.46.0':
     resolution: {integrity: sha512-FrvMpAK+hTbFy7vH5j1+tMYHMSKLE6RzluFJlkFNKD0p9YsUT75JlBSmr5so3QRzvMwU5/bIEdeNrxm8du8l3Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@unhead/vue@2.0.19':
+    resolution: {integrity: sha512-7BYjHfOaoZ9+ARJkT10Q2TjnTUqDXmMpfakIAsD/hXiuff1oqWg1xeXT5+MomhNcC15HbiABpbbBmITLSHxdKg==}
+    peerDependencies:
+      vue: '>=3.5.18'
 
   '@vee-validate/zod@4.15.1':
     resolution: {integrity: sha512-329Z4TDBE5Vx0FdbA8S4eR9iGCFFUNGbxjpQ20ff5b5wGueScjocUIx9JHPa79LTG06RnlUR4XogQsjN4tecKA==}
@@ -3644,6 +3674,9 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
+  unhead@2.0.19:
+    resolution: {integrity: sha512-gEEjkV11Aj+rBnY6wnRfsFtF2RxKOLaPN4i+Gx3UhBxnszvV6ApSNZbGk7WKyy/lErQ6ekPN63qdFL7sa1leow==}
+
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
@@ -4811,9 +4844,9 @@ snapshots:
   '@storybook/addon-docs@8.6.14(@types/react@19.2.2)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
       '@mdx-js/react': 3.1.1(@types/react@19.2.2)(react@16.14.0)
-      '@storybook/blocks': 8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
+      '@storybook/blocks': 8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
       '@storybook/csf-plugin': 8.6.14(storybook@8.6.14(prettier@3.6.2))
-      '@storybook/react-dom-shim': 8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
+      '@storybook/react-dom-shim': 8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
       react: 16.14.0
       react-dom: 19.2.0(react@16.14.0)
       storybook: 8.6.14(prettier@3.6.2)
@@ -4851,13 +4884,13 @@ snapshots:
       storybook: 8.6.14(prettier@3.6.2)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-links@8.6.14(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
+  '@storybook/addon-links@8.6.14(react@19.2.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
       '@storybook/global': 5.0.0
       storybook: 8.6.14(prettier@3.6.2)
       ts-dedent: 2.2.0
     optionalDependencies:
-      react: 16.14.0
+      react: 19.2.0
 
   '@storybook/addon-measure@8.6.14(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
@@ -4884,14 +4917,14 @@ snapshots:
       memoizerific: 1.11.3
       storybook: 8.6.14(prettier@3.6.2)
 
-  '@storybook/blocks@8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
+  '@storybook/blocks@8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
-      '@storybook/icons': 1.6.0(react-dom@19.2.0(react@16.14.0))(react@16.14.0)
+      '@storybook/icons': 1.6.0(react-dom@19.2.0(react@19.2.0))(react@16.14.0)
       storybook: 8.6.14(prettier@3.6.2)
       ts-dedent: 2.2.0
     optionalDependencies:
       react: 16.14.0
-      react-dom: 19.2.0(react@16.14.0)
+      react-dom: 19.2.0(react@19.2.0)
 
   '@storybook/blocks@8.6.14(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
@@ -4954,10 +4987,10 @@ snapshots:
 
   '@storybook/global@5.0.0': {}
 
-  '@storybook/icons@1.6.0(react-dom@19.2.0(react@16.14.0))(react@16.14.0)':
+  '@storybook/icons@1.6.0(react-dom@19.2.0(react@19.2.0))(react@16.14.0)':
     dependencies:
       react: 16.14.0
-      react-dom: 19.2.0(react@16.14.0)
+      react-dom: 19.2.0(react@19.2.0)
 
   '@storybook/icons@1.6.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
@@ -4978,10 +5011,10 @@ snapshots:
     dependencies:
       storybook: 8.6.14(prettier@3.6.2)
 
-  '@storybook/react-dom-shim@8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
+  '@storybook/react-dom-shim@8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
       react: 16.14.0
-      react-dom: 19.2.0(react@16.14.0)
+      react-dom: 19.2.0(react@19.2.0)
       storybook: 8.6.14(prettier@3.6.2)
 
   '@storybook/test@8.6.14(storybook@8.6.14(prettier@3.6.2))':
@@ -5133,6 +5166,15 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
+  '@testing-library/jest-dom@6.9.1':
+    dependencies:
+      '@adobe/css-tools': 4.4.4
+      aria-query: 5.3.2
+      css.escape: 1.5.1
+      dom-accessibility-api: 0.6.3
+      picocolors: 1.1.1
+      redent: 3.0.0
+
   '@testing-library/user-event@14.5.2(@testing-library/dom@10.4.0)':
     dependencies:
       '@testing-library/dom': 10.4.0
@@ -5148,6 +5190,8 @@ snapshots:
     optional: true
 
   '@types/estree@1.0.8': {}
+
+  '@types/js-cookie@3.0.6': {}
 
   '@types/jsdom@21.1.7':
     dependencies:
@@ -5278,6 +5322,12 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.46.0
       eslint-visitor-keys: 4.2.1
+
+  '@unhead/vue@2.0.19(vue@3.5.22(typescript@5.9.3))':
+    dependencies:
+      hookable: 5.5.3
+      unhead: 2.0.19
+      vue: 3.5.22(typescript@5.9.3)
 
   '@vee-validate/zod@4.15.1(vue@3.5.22(typescript@5.6.3))(zod@3.25.76)':
     dependencies:
@@ -7696,6 +7746,10 @@ snapshots:
   typescript@5.9.3: {}
 
   undici-types@6.21.0: {}
+
+  unhead@2.0.19:
+    dependencies:
+      hookable: 5.5.3
 
   unicorn-magic@0.3.0: {}
 
