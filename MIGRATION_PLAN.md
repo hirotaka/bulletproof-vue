@@ -550,16 +550,16 @@
 
 #### Task 2.2.4: ConfirmationDialog Component
 
-- [ ] Create `src/components/ui/confirmation-dialog/ConfirmationDialog.vue`
-- [ ] Define Props
-  - [ ] `open`, `title`, `body`, `confirmText`, `cancelText`
-  - [ ] `isDone`, `isLoading`
-- [ ] Define Emits: `confirm`, `cancel`
-- [ ] Use Dialog component
-- [ ] Confirm/cancel buttons
-- [ ] Loading state display
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Create `src/components/ui/confirmation-dialog/ConfirmationDialog.vue`
+- [x] Define Props
+  - [x] `open`, `title`, `body`, `confirmText`, `cancelText`
+  - [x] `isDone`, `isLoading`
+- [x] Define Emits: `confirm`, `cancel`
+- [x] Use Dialog component
+- [x] Confirm/cancel buttons
+- [x] Loading state display
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.2.5: Dropdown Component (Radix Vue)
 
