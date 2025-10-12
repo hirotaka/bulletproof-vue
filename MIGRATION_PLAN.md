@@ -178,9 +178,9 @@
 
 #### Task 0.4.1: MSW Installation and Configuration
 
-- [ ] Install `msw`, `@mswjs/data`, `@mswjs/http-middleware`
-- [ ] Install `@ngneat/falso` (fake data generation)
-- [ ] Generate Service Worker with `npx msw init public/ --save`
+- [x] Install `msw`, `@mswjs/data`, `@mswjs/http-middleware`
+- [x] Install `@ngneat/falso` (fake data generation)
+- [x] Generate Service Worker with `npx msw init public/ --save`
 
 #### Task 0.4.2: Create In-Memory DB
 
