@@ -743,13 +743,13 @@
 
 #### Task 2.4.1: Error Component
 
-- [ ] Create `src/components/ui/error/Error.vue`
-- [ ] Define Props
-  - [ ] `error: Error | string`
-- [ ] Display error message
-- [ ] Error icon
-- [ ] Styling (red theme)
-- [ ] Create Storybook stories
+- [x] Create `src/components/ui/error/Error.vue`
+- [x] Define Props
+  - [x] `error: Error | string`
+- [x] Display error message
+- [x] Error icon
+- [x] Styling (red theme)
+- [x] Create Storybook stories
 
 #### Task 2.4.2: Head (SEO) Component
 
