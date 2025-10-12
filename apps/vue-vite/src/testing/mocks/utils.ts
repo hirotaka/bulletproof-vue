@@ -3,7 +3,7 @@ import { delay } from 'msw';
 
 import { db } from './db';
 
-export const encode = (obj: any) => {
+export const encode = (obj: unknown) => {
   const btoa =
     typeof window === 'undefined'
       ? (str: string) => Buffer.from(str, 'binary').toString('base64')
@@ -98,12 +98,12 @@ export function requireAuth(cookies: Record<string, string>) {
     }
 
     return { user: sanitizeUser(user) };
-  } catch (err: any) {
+  } catch {
     return { error: 'Unauthorized', user: null };
   }
 }
 
-export function requireAdmin(user: any) {
+export function requireAdmin(user: { role: string }) {
   if (user.role !== 'ADMIN') {
     throw Error('Unauthorized');
   }
