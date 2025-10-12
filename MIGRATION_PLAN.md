@@ -591,11 +591,11 @@
 
 #### Task 2.3.1: AuthLayout Component
 
-- [ ] Create `src/components/layouts/auth-layout.vue`
-- [ ] Center-aligned layout
-- [ ] Logo display
-- [ ] Display content with `<RouterView>`
-- [ ] Responsive design
+- [x] Create `src/components/layouts/auth-layout.vue`
+- [x] Center-aligned layout
+- [x] Logo display
+- [x] Display content with `<RouterView>`
+- [x] Responsive design
 
 #### Task 2.3.2: DashboardLayout Component
 
