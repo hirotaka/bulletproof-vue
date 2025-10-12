@@ -20,7 +20,7 @@ export interface ConfirmationDialogProps {
   isLoading?: boolean
 }
 
-const props = withDefaults(defineProps<ConfirmationDialogProps>(), {
+withDefaults(defineProps<ConfirmationDialogProps>(), {
   open: false,
   title: 'Confirm',
   body: 'Are you sure you want to proceed?',
