@@ -613,11 +613,11 @@
 
 #### Task 2.3.3: ContentLayout Component
 
-- [ ] Create `src/components/layouts/content-layout.vue`
-- [ ] Define Props
-  - [ ] `title: string` - Page title
-- [ ] Display page title
-- [ ] Display content via slot
+- [x] Create `src/components/layouts/content-layout.vue`
+- [x] Define Props
+  - [x] `title: string` - Page title
+- [x] Display page title
+- [x] Display content via slot
 - [ ] Breadcrumbs (optional)
 
 ---
