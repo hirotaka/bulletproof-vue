@@ -237,10 +237,10 @@
 
 #### Task 0.4.6: Test Setup
 
-- [ ] Update `src/testing/setup-tests.ts`
-  - [ ] MSW Server start/stop/reset
-  - [ ] `beforeAll`, `afterEach`, `afterAll` hooks
-  - [ ] DB initialization
+- [x] Update `src/testing/setup-tests.ts`
+  - [x] MSW Server start/stop/reset
+  - [x] `beforeAll`, `afterEach`, `afterAll` hooks
+  - [x] DB initialization
 
 #### Task 0.4.7: Enable Mock in Development Environment
 
