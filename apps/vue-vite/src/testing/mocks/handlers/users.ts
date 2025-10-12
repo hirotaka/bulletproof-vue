@@ -62,6 +62,7 @@ export const usersHandlers = [
 
     // Remove passwords
     const usersWithoutPasswords = users.map((u) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...userWithoutPassword } = u;
       return userWithoutPassword as User;
     });
@@ -109,11 +110,20 @@ export const usersHandlers = [
         data: updates,
       });
 
+      if (!updatedUser) {
+        return HttpResponse.json(
+          { message: 'Failed to update profile' },
+          { status: 500 },
+        );
+      }
+
       await persistDb('user');
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...userWithoutPassword } = updatedUser;
 
       return HttpResponse.json({ data: userWithoutPassword as User });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       return HttpResponse.json(
         { message: 'An error occurred while updating profile' },

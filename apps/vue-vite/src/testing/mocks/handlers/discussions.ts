@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
 import { env } from '@/config/env';
-import type { Discussion, Meta } from '@/types/api';
+import type { Discussion, Meta, User } from '@/types/api';
 
 import { db, persistDb } from '../db';
 
@@ -80,11 +80,20 @@ export const discussionsHandlers = [
         },
       });
 
-      const { password, ...authorWithoutPassword } = author || {};
+      if (!author) {
+        return {
+          ...discussion,
+          author: {} as User,
+        };
+      }
+
+       
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...authorWithoutPassword } = author;
 
       return {
         ...discussion,
-        author: authorWithoutPassword,
+        author: authorWithoutPassword as User,
       };
     });
 
@@ -139,14 +148,22 @@ export const discussionsHandlers = [
       },
     });
 
-    const { password, ...authorWithoutPassword } = author || {};
+    if (!author) {
+      return HttpResponse.json(
+        { message: 'Author not found' },
+        { status: 404 },
+      );
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...authorWithoutPassword } = author;
 
     const discussionWithAuthor: Discussion = {
       id: discussion.id,
       title: discussion.title,
       body: discussion.body,
       teamId: discussion.teamId,
-      author: authorWithoutPassword,
+      author: authorWithoutPassword as User,
       createdAt: discussion.createdAt,
     };
 
@@ -173,6 +190,7 @@ export const discussionsHandlers = [
 
       await persistDb('discussion');
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...authorWithoutPassword } = user;
 
       const discussionWithAuthor: Discussion = {
@@ -180,11 +198,12 @@ export const discussionsHandlers = [
         title: discussion.title,
         body: discussion.body,
         teamId: discussion.teamId,
-        author: authorWithoutPassword,
+        author: authorWithoutPassword as User,
         createdAt: discussion.createdAt,
       };
 
       return HttpResponse.json({ data: discussionWithAuthor }, { status: 201 });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       return HttpResponse.json(
         { message: 'An error occurred while creating discussion' },
@@ -235,6 +254,13 @@ export const discussionsHandlers = [
         data: updates,
       });
 
+      if (!updatedDiscussion) {
+        return HttpResponse.json(
+          { message: 'Failed to update discussion' },
+          { status: 500 },
+        );
+      }
+
       await persistDb('discussion');
 
       const author = db.user.findFirst({
@@ -245,18 +271,28 @@ export const discussionsHandlers = [
         },
       });
 
-      const { password, ...authorWithoutPassword } = author || {};
+      if (!author) {
+        return HttpResponse.json(
+          { message: 'Author not found' },
+          { status: 404 },
+        );
+      }
+
+       
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...authorWithoutPassword } = author;
 
       const discussionWithAuthor: Discussion = {
         id: updatedDiscussion.id,
         title: updatedDiscussion.title,
         body: updatedDiscussion.body,
         teamId: updatedDiscussion.teamId,
-        author: authorWithoutPassword,
+        author: authorWithoutPassword as User,
         createdAt: updatedDiscussion.createdAt,
       };
 
       return HttpResponse.json({ data: discussionWithAuthor });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       return HttpResponse.json(
         { message: 'An error occurred while updating discussion' },

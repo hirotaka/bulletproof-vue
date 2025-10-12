@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
 import { env } from '@/config/env';
-import type { Comment } from '@/types/api';
+import type { Comment, User } from '@/types/api';
 
 import { db, persistDb } from '../db';
 
@@ -105,13 +105,24 @@ export const commentsHandlers = [
         },
       });
 
-      const { password, ...authorWithoutPassword } = author || {};
+      if (!author) {
+        return {
+          id: comment.id,
+          body: comment.body,
+          discussionId: comment.discussionId,
+          author: {} as User,
+          createdAt: comment.createdAt,
+        };
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...authorWithoutPassword } = author;
 
       const commentWithAuthor: Comment = {
         id: comment.id,
         body: comment.body,
         discussionId: comment.discussionId,
-        author: authorWithoutPassword,
+        author: authorWithoutPassword as User,
         createdAt: comment.createdAt,
       };
 
@@ -168,17 +179,19 @@ export const commentsHandlers = [
 
       await persistDb('comment');
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...authorWithoutPassword } = user;
 
       const commentWithAuthor: Comment = {
         id: comment.id,
         body: comment.body,
         discussionId: comment.discussionId,
-        author: authorWithoutPassword,
+        author: authorWithoutPassword as User,
         createdAt: comment.createdAt,
       };
 
       return HttpResponse.json({ data: commentWithAuthor }, { status: 201 });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       return HttpResponse.json(
         { message: 'An error occurred while creating comment' },

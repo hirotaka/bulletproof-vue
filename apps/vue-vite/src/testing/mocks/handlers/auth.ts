@@ -1,5 +1,4 @@
 import { http, HttpResponse } from 'msw';
-import { nanoid } from 'nanoid';
 
 import { env } from '@/config/env';
 import type { AuthResponse, User } from '@/types/api';
@@ -81,6 +80,7 @@ export const authHandlers = [
         );
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...userWithoutPassword } = user;
 
       const result: AuthResponse = {
@@ -93,6 +93,7 @@ export const authHandlers = [
           'Set-Cookie': createAuthCookie(userWithoutPassword as User),
         },
       });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       return HttpResponse.json(
         { message: 'An error occurred during login' },
@@ -154,6 +155,7 @@ export const authHandlers = [
 
       await persistDb('user');
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...userWithoutPassword } = user;
 
       const result: AuthResponse = {
@@ -167,6 +169,7 @@ export const authHandlers = [
           'Set-Cookie': createAuthCookie(userWithoutPassword as User),
         },
       });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       return HttpResponse.json(
         { message: 'An error occurred during registration' },
