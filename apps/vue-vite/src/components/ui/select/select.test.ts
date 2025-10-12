@@ -146,8 +146,8 @@ describe('Select', () => {
     await select.setValue('')
     await select.trigger('blur')
 
-    // Wait for validation to process
-    await new Promise((resolve) => setTimeout(resolve, 10))
+    // Wait for validation to process - increased delay for CI stability
+    await new Promise((resolve) => setTimeout(resolve, 100))
     await wrapper.vm.$nextTick()
 
     // Check if error message is displayed (zod's default empty string message)
