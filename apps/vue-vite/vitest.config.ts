@@ -11,6 +11,9 @@ export default mergeConfig(
       exclude: [...configDefaults.exclude, 'e2e/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
       setupFiles: ['./src/testing/setup-tests.ts'],
+      env: {
+        VITE_APP_API_URL: 'http://localhost:8080/api',
+      },
     },
   }),
 )
