@@ -150,6 +150,105 @@
   - [x] Configure DocsPage template (using default template)
   - [x] Add custom documentation blocks (deferred - can be added as needed)
 
+### 0.4 MSW Setup
+
+**Purpose**: Set up Mock Service Worker (MSW) for API mocking in development and testing. This is critical infrastructure that Phase 3 feature development will depend on.
+
+**Directory Structure**:
+
+```
+/src/testing/
+├── mocks/
+│   ├── browser.ts       # MSW for browser
+│   ├── server.ts        # MSW for Node (Vitest)
+│   ├── db.ts            # @mswjs/data in-memory DB
+│   ├── handlers/        # Request handlers
+│   │   ├── auth.ts
+│   │   ├── discussions.ts
+│   │   ├── comments.ts
+│   │   ├── users.ts
+│   │   └── teams.ts
+│   └── utils.ts
+├── data-generators.ts   # @ngneat/falso data generation
+├── setup-tests.ts       # Vitest setup
+└── test-utils.ts        # Custom render
+```
+
+**Tasks**:
+
+#### Task 0.4.1: MSW Installation and Configuration
+
+- [ ] Install `msw`, `@mswjs/data`, `@mswjs/http-middleware`
+- [ ] Install `@ngneat/falso` (fake data generation)
+- [ ] Generate Service Worker with `npx msw init public/ --save`
+
+#### Task 0.4.2: Create In-Memory DB
+
+- [ ] Create `src/testing/mocks/db.ts`
+- [ ] Define models with `@mswjs/data`
+  - [ ] `user` model (corresponding to User type)
+  - [ ] `team` model (corresponding to Team type)
+  - [ ] `discussion` model (corresponding to Discussion type)
+  - [ ] `comment` model (corresponding to Comment type)
+- [ ] Configure relationships (foreign keys)
+- [ ] Create initial data generation function `initializeDb()`
+
+#### Task 0.4.3: Data Generation Utilities
+
+- [ ] Create `src/testing/data-generators.ts`
+- [ ] Generator functions using `@ngneat/falso`
+  - [ ] `generateUser()`
+  - [ ] `generateTeam()`
+  - [ ] `generateDiscussion()`
+  - [ ] `generateComment()`
+
+#### Task 0.4.4: Create API Handlers
+
+- [ ] Create `src/testing/mocks/handlers/auth.ts`
+  - [ ] `POST /auth/login` - Login processing
+  - [ ] `POST /auth/register` - Registration processing
+  - [ ] `POST /auth/logout` - Logout processing
+  - [ ] `GET /auth/me` - Get current user
+- [ ] Create `src/testing/mocks/handlers/discussions.ts`
+  - [ ] `GET /discussions` - Get list
+  - [ ] `GET /discussions/:id` - Get details
+  - [ ] `POST /discussions` - Create
+  - [ ] `PATCH /discussions/:id` - Update
+  - [ ] `DELETE /discussions/:id` - Delete
+- [ ] Create `src/testing/mocks/handlers/comments.ts`
+  - [ ] `GET /comments?discussionId=:id` - Get list
+  - [ ] `POST /comments` - Create
+  - [ ] `DELETE /comments/:id` - Delete
+- [ ] Create `src/testing/mocks/handlers/users.ts`
+  - [ ] `GET /users` - Get list (admin only)
+  - [ ] `PATCH /profile` - Update profile
+  - [ ] `DELETE /users/:id` - Delete (admin only)
+- [ ] Create `src/testing/mocks/handlers/teams.ts`
+  - [ ] `GET /teams` - Get list
+
+#### Task 0.4.5: MSW Worker Configuration
+
+- [ ] Create `src/testing/mocks/browser.ts`
+  - [ ] Browser Service Worker configuration
+  - [ ] Register all handlers
+- [ ] Create `src/testing/mocks/server.ts`
+  - [ ] Node.js MSW Server configuration
+  - [ ] Register all handlers
+
+#### Task 0.4.6: Test Setup
+
+- [ ] Update `src/testing/setup-tests.ts`
+  - [ ] MSW Server start/stop/reset
+  - [ ] `beforeAll`, `afterEach`, `afterAll` hooks
+  - [ ] DB initialization
+
+#### Task 0.4.7: Enable Mock in Development Environment
+
+- [ ] Update `src/main.ts`
+  - [ ] Check environment variable `VITE_APP_ENABLE_API_MOCKING`
+  - [ ] Start MSW Browser Worker if `true`
+  - [ ] Await `worker.start()` before app startup
+
 ---
 
 ## Phase 1: Infrastructure Layer (1-2 weeks)
@@ -1194,110 +1293,13 @@
 
 ## Phase 5: Testing Strategy (2-3 weeks)
 
-### 5.1 MSW Setup
+**Note**: MSW Setup has been moved to Phase 0.4 as it's critical infrastructure needed before Phase 3 feature development.
 
-**Directory Structure**:
-
-```
-/src/testing/
-├── mocks/
-│   ├── browser.ts       # MSW for browser
-│   ├── server.ts        # MSW for Node (Vitest)
-│   ├── db.ts            # @mswjs/data in-memory DB
-│   ├── handlers/        # Request handlers
-│   │   ├── auth.ts
-│   │   ├── discussions.ts
-│   │   ├── comments.ts
-│   │   ├── users.ts
-│   │   └── teams.ts
-│   └── utils.ts
-├── data-generators.ts   # @ngneat/falso data generation
-├── setup-tests.ts       # Vitest setup
-└── test-utils.ts        # Custom render
-```
+### 5.1 Test Utilities
 
 **Tasks**:
 
-#### Task 5.1.1: MSW Installation and Configuration
-
-- [ ] Install `msw`, `@mswjs/data`, `@mswjs/http-middleware`
-- [ ] Install `@ngneat/falso` (fake data generation)
-- [ ] Generate Service Worker with `npx msw init public/ --save`
-
-#### Task 5.1.2: Create In-Memory DB
-
-- [ ] Create `src/testing/mocks/db.ts`
-- [ ] Define models with `@mswjs/data`
-  - [ ] `user` model (corresponding to User type)
-  - [ ] `team` model (corresponding to Team type)
-  - [ ] `discussion` model (corresponding to Discussion type)
-  - [ ] `comment` model (corresponding to Comment type)
-- [ ] Configure relationships (foreign keys)
-- [ ] Create initial data generation function `initializeDb()`
-
-#### Task 5.1.3: Data Generation Utilities
-
-- [ ] Create `src/testing/data-generators.ts`
-- [ ] Generator functions using `@ngneat/falso`
-  - [ ] `generateUser()`
-  - [ ] `generateTeam()`
-  - [ ] `generateDiscussion()`
-  - [ ] `generateComment()`
-
-#### Task 5.1.4: Create API Handlers
-
-- [ ] Create `src/testing/mocks/handlers/auth.ts`
-  - [ ] `POST /auth/login` - Login processing
-  - [ ] `POST /auth/register` - Registration processing
-  - [ ] `POST /auth/logout` - Logout processing
-  - [ ] `GET /auth/me` - Get current user
-- [ ] Create `src/testing/mocks/handlers/discussions.ts`
-  - [ ] `GET /discussions` - Get list
-  - [ ] `GET /discussions/:id` - Get details
-  - [ ] `POST /discussions` - Create
-  - [ ] `PATCH /discussions/:id` - Update
-  - [ ] `DELETE /discussions/:id` - Delete
-- [ ] Create `src/testing/mocks/handlers/comments.ts`
-  - [ ] `GET /comments?discussionId=:id` - Get list
-  - [ ] `POST /comments` - Create
-  - [ ] `DELETE /comments/:id` - Delete
-- [ ] Create `src/testing/mocks/handlers/users.ts`
-  - [ ] `GET /users` - Get list (admin only)
-  - [ ] `PATCH /profile` - Update profile
-  - [ ] `DELETE /users/:id` - Delete (admin only)
-- [ ] Create `src/testing/mocks/handlers/teams.ts`
-  - [ ] `GET /teams` - Get list
-
-#### Task 5.1.5: MSW Worker Configuration
-
-- [ ] Create `src/testing/mocks/browser.ts`
-  - [ ] Browser Service Worker configuration
-  - [ ] Register all handlers
-- [ ] Create `src/testing/mocks/server.ts`
-  - [ ] Node.js MSW Server configuration
-  - [ ] Register all handlers
-
-#### Task 5.1.6: Test Setup
-
-- [ ] Update `src/testing/setup-tests.ts`
-  - [ ] MSW Server start/stop/reset
-  - [ ] `beforeAll`, `afterEach`, `afterAll` hooks
-  - [ ] DB initialization
-
-#### Task 5.1.7: Enable Mock in Development Environment
-
-- [ ] Update `src/main.ts`
-  - [ ] Check environment variable `VITE_APP_ENABLE_API_MOCKING`
-  - [ ] Start MSW Browser Worker if `true`
-  - [ ] Await `worker.start()` before app startup
-
----
-
-### 5.2 Test Utilities
-
-**Tasks**:
-
-#### Task 5.2.1: Custom Render Function
+#### Task 5.1.1: Custom Render Function
 
 - [ ] Create `src/testing/test-utils.ts`
 - [ ] Implement `renderWithProviders` function
@@ -1308,7 +1310,7 @@
   - [ ] Set initial state (logged-in user, etc.)
 - [ ] `createWrapper` helper function (Provider wrapper)
 
-#### Task 5.2.2: Mock Utilities
+#### Task 5.1.2: Mock Utilities
 
 - [ ] Create `src/testing/mocks/utils.ts`
 - [ ] Authentication state mock functions
@@ -1320,11 +1322,11 @@
 
 ---
 
-### 5.3 Component Tests
+### 5.2 Component Tests
 
 **Tasks**:
 
-#### Task 5.3.1: UI Component Tests
+#### Task 5.2.1: UI Component Tests
 
 - [ ] `Button.spec.ts` - Button component
   - [ ] Rendering of each variant
@@ -1348,7 +1350,7 @@
   - [ ] Close button
 - [ ] Create tests for all other UI components
 
-#### Task 5.3.2: Feature Component Tests
+#### Task 5.2.2: Feature Component Tests
 
 - [ ] `LoginForm.spec.ts`
   - [ ] Form input
@@ -1375,7 +1377,7 @@
   - [ ] Loading state
 - [ ] Create tests for all other feature components
 
-#### Task 5.3.3: Composables Tests
+#### Task 5.2.3: Composables Tests
 
 - [ ] `useAuth.spec.ts`
   - [ ] Login
@@ -1387,7 +1389,7 @@
 
 ---
 
-### 5.4 E2E Tests
+### 5.3 E2E Tests
 
 **Directory Structure**:
 
@@ -1404,19 +1406,19 @@
 
 **Tasks**:
 
-#### Task 5.4.1: Authentication Setup
+#### Task 5.3.1: Authentication Setup
 
 - [ ] Create `e2e/tests/auth.setup.ts`
 - [ ] Login with test user
 - [ ] Save authentication state (Playwright storage feature)
 
-#### Task 5.4.2: Smoke Tests
+#### Task 5.3.2: Smoke Tests
 
 - [ ] Create `e2e/tests/smoke.spec.ts`
 - [ ] Verify navigation to all major pages
 - [ ] Verify pages render correctly
 
-#### Task 5.4.3: Authentication Flow Tests
+#### Task 5.3.3: Authentication Flow Tests
 
 - [ ] Create `e2e/tests/auth.spec.ts`
 - [ ] Login flow
@@ -1429,7 +1431,7 @@
   - [ ] After successful registration, redirect to dashboard
 - [ ] Logout flow
 
-#### Task 5.4.4: Discussions Feature Tests
+#### Task 5.3.4: Discussions Feature Tests
 
 - [ ] Create `e2e/tests/discussions.spec.ts`
 - [ ] Display discussion list
@@ -1439,7 +1441,7 @@
 - [ ] Discussion deletion flow
 - [ ] Pagination behavior
 
-#### Task 5.4.5: Comments Feature Tests
+#### Task 5.3.5: Comments Feature Tests
 
 - [ ] Create `e2e/tests/comments.spec.ts`
 - [ ] Display comments list
@@ -1447,14 +1449,14 @@
 - [ ] Comment deletion flow
 - [ ] Infinite scroll behavior
 
-#### Task 5.4.6: Profile Editing Tests
+#### Task 5.3.6: Profile Editing Tests
 
 - [ ] Create `e2e/tests/profile.spec.ts`
 - [ ] Access profile page
 - [ ] Profile editing flow
 - [ ] Verify saved changes
 
-#### Task 5.4.7: User Management Tests (Admin)
+#### Task 5.3.7: User Management Tests (Admin)
 
 - [ ] Create `e2e/tests/users.spec.ts`
 - [ ] Login as admin
@@ -1878,10 +1880,10 @@
 
 ### Week 15-17: Test Implementation
 
-- [ ] Phase 5.1: MSW Setup (Tasks 5.1.1-5.1.7)
-- [ ] Phase 5.2: Test Utilities (Tasks 5.2.1-5.2.2)
-- [ ] Phase 5.3: Component Tests (Tasks 5.3.1-5.3.3)
-- [ ] Phase 5.4: E2E Tests (Tasks 5.4.1-5.4.7)
+- [ ] Phase 0.4: MSW Setup (Tasks 0.4.1-0.4.7) - Moved to Phase 0
+- [ ] Phase 5.1: Test Utilities (Tasks 5.1.1-5.1.2)
+- [ ] Phase 5.2: Component Tests (Tasks 5.2.1-5.2.3)
+- [ ] Phase 5.3: E2E Tests (Tasks 5.3.1-5.3.7)
 
 ### Week 18: Developer Experience Improvement
 
