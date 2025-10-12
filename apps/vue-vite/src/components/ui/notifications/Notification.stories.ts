@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Notification, { icons } from './Notification.vue';
+import Notification from './Notification.vue';
 
 const meta = {
   title: 'UI/Notifications/Notification',
