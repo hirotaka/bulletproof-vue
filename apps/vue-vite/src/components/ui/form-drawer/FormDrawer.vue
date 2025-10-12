@@ -68,7 +68,7 @@ watch(
         <DrawerClose as-child>
           <Button variant="outline" type="button"> Close </Button>
         </DrawerClose>
-        <Button type="submit" :is-loading="isLoading" @click="emit('submit')">
+        <Button type="submit" :is-loading="isLoading" :disabled="isLoading" @click="emit('submit')">
           {{ submitText }}
         </Button>
       </DrawerFooter>
