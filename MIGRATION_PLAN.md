@@ -501,8 +501,8 @@
 
 #### Task 2.2.1: Create Notifications Store
 
-- [ ] Create `src/stores/notifications.ts`
-- [ ] Notification type definition
+- [x] Create `src/stores/notifications.ts`
+- [x] Notification type definition
 
   ```typescript
   type Notification = {
@@ -513,12 +513,12 @@
   }
   ```
 
-- [ ] Store state: `notifications: Notification[]`
-- [ ] Actions
-  - [ ] `addNotification(notification)`
-  - [ ] `removeNotification(id)`
-  - [ ] `showNotification(type, title, message)` (helper)
-- [ ] Auto-removal feature (after 5 seconds)
+- [x] Store state: `notifications: Notification[]`
+- [x] Actions
+  - [x] `addNotification(notification)`
+  - [x] `removeNotification(id)`
+  - [x] `showNotification(type, title, message)` (helper)
+- [x] Auto-removal feature (after 5 seconds)
 
 #### Task 2.2.2: Notifications Component
 
@@ -550,29 +550,29 @@
 
 #### Task 2.2.4: ConfirmationDialog Component
 
-- [ ] Create `src/components/ui/confirmation-dialog/ConfirmationDialog.vue`
-- [ ] Define Props
-  - [ ] `open`, `title`, `body`, `confirmText`, `cancelText`
-  - [ ] `isDone`, `isLoading`
-- [ ] Define Emits: `confirm`, `cancel`
-- [ ] Use Dialog component
-- [ ] Confirm/cancel buttons
-- [ ] Loading state display
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Create `src/components/ui/confirmation-dialog/ConfirmationDialog.vue`
+- [x] Define Props
+  - [x] `open`, `title`, `body`, `confirmText`, `cancelText`
+  - [x] `isDone`, `isLoading`
+- [x] Define Emits: `confirm`, `cancel`
+- [x] Use Dialog component
+- [x] Confirm/cancel buttons
+- [x] Loading state display
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 #### Task 2.2.5: Dropdown Component (Radix Vue)
 
-- [ ] Install Radix Vue DropdownMenu (check existing)
-- [ ] Create multiple components under `src/components/ui/dropdown/`
-  - [ ] `Dropdown.vue` (root)
-  - [ ] `DropdownTrigger.vue`
-  - [ ] `DropdownContent.vue`
-  - [ ] `DropdownItem.vue`
-  - [ ] `DropdownSeparator.vue`
-- [ ] Keyboard navigation support
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Install Radix Vue DropdownMenu (check existing)
+- [x] Create multiple components under `src/components/ui/dropdown/`
+  - [x] `Dropdown.vue` (root)
+  - [x] `DropdownTrigger.vue`
+  - [x] `DropdownContent.vue`
+  - [x] `DropdownItem.vue`
+  - [x] `DropdownSeparator.vue`
+- [x] Keyboard navigation support
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 ---
 
