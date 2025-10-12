@@ -204,27 +204,27 @@
 
 #### Task 0.4.4: Create API Handlers
 
-- [ ] Create `src/testing/mocks/handlers/auth.ts`
-  - [ ] `POST /auth/login` - Login processing
-  - [ ] `POST /auth/register` - Registration processing
-  - [ ] `POST /auth/logout` - Logout processing
-  - [ ] `GET /auth/me` - Get current user
-- [ ] Create `src/testing/mocks/handlers/discussions.ts`
-  - [ ] `GET /discussions` - Get list
-  - [ ] `GET /discussions/:id` - Get details
-  - [ ] `POST /discussions` - Create
-  - [ ] `PATCH /discussions/:id` - Update
-  - [ ] `DELETE /discussions/:id` - Delete
-- [ ] Create `src/testing/mocks/handlers/comments.ts`
-  - [ ] `GET /comments?discussionId=:id` - Get list
-  - [ ] `POST /comments` - Create
-  - [ ] `DELETE /comments/:id` - Delete
-- [ ] Create `src/testing/mocks/handlers/users.ts`
-  - [ ] `GET /users` - Get list (admin only)
-  - [ ] `PATCH /profile` - Update profile
-  - [ ] `DELETE /users/:id` - Delete (admin only)
-- [ ] Create `src/testing/mocks/handlers/teams.ts`
-  - [ ] `GET /teams` - Get list
+- [x] Create `src/testing/mocks/handlers/auth.ts`
+  - [x] `POST /auth/login` - Login processing
+  - [x] `POST /auth/register` - Registration processing
+  - [x] `POST /auth/logout` - Logout processing
+  - [x] `GET /auth/me` - Get current user
+- [x] Create `src/testing/mocks/handlers/discussions.ts`
+  - [x] `GET /discussions` - Get list
+  - [x] `GET /discussions/:id` - Get details
+  - [x] `POST /discussions` - Create
+  - [x] `PATCH /discussions/:id` - Update
+  - [x] `DELETE /discussions/:id` - Delete
+- [x] Create `src/testing/mocks/handlers/comments.ts`
+  - [x] `GET /comments?discussionId=:id` - Get list
+  - [x] `POST /comments` - Create
+  - [x] `DELETE /comments/:id` - Delete
+- [x] Create `src/testing/mocks/handlers/users.ts`
+  - [x] `GET /users` - Get list (admin only)
+  - [x] `PATCH /profile` - Update profile
+  - [x] `DELETE /users/:id` - Delete (admin only)
+- [x] Create `src/testing/mocks/handlers/teams.ts`
+  - [x] `GET /teams` - Get list
 
 #### Task 0.4.5: MSW Worker Configuration
 
