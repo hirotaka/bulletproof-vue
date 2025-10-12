@@ -522,16 +522,16 @@
 
 #### Task 2.2.2: Notifications Component
 
-- [ ] Create `src/components/ui/notifications/Notifications.vue`
-- [ ] Integrate with notifications store
-- [ ] Display notification list (fixed position)
-- [ ] Animation (enter/leave)
-- [ ] Create `src/components/ui/notifications/Notification.vue`
-  - [ ] Display individual notification
-  - [ ] Close button
-  - [ ] Type-based styling (color coding)
-- [ ] Add Notifications component to `src/app/provider.ts`
-- [ ] Create Storybook stories
+- [x] Create `src/components/ui/notifications/Notifications.vue`
+- [x] Integrate with notifications store
+- [x] Display notification list (fixed position)
+- [x] Animation (enter/leave)
+- [x] Create `src/components/ui/notifications/Notification.vue`
+  - [x] Display individual notification
+  - [x] Close button
+  - [x] Type-based styling (color coding)
+- [x] Add Notifications component to `src/app/provider.ts`
+- [x] Create Storybook stories
 
 #### Task 2.2.3: Dialog Component (Radix Vue)
 

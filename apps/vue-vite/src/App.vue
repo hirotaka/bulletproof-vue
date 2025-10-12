@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 import HelloWorld from './components/HelloWorld.vue'
+import { Notifications } from '@/components/ui/notifications'
 
 const isDev = import.meta.env.DEV
 </script>
@@ -21,6 +22,7 @@ const isDev = import.meta.env.DEV
   </header>
 
   <RouterView />
+  <Notifications />
   <VueQueryDevtools v-if="isDev" />
 </template>
 
