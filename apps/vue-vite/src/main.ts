@@ -6,16 +6,19 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import { setupProviders } from './app/provider'
+import { enableMocking } from './testing/mocks'
 
 import VueDOMPurifyHTML from 'vue-dompurify-html'
 
-const app = createApp(App)
+enableMocking().then(() => {
+  const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-app.use(VueDOMPurifyHTML)
+  app.use(createPinia())
+  app.use(router)
+  app.use(VueDOMPurifyHTML)
 
-// Setup Vue Query and other providers
-setupProviders(app)
+  // Setup Vue Query and other providers
+  setupProviders(app)
 
-app.mount('#app')
+  app.mount('#app')
+})

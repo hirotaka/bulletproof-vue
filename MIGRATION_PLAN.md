@@ -228,12 +228,12 @@
 
 #### Task 0.4.5: MSW Worker Configuration
 
-- [ ] Create `src/testing/mocks/browser.ts`
-  - [ ] Browser Service Worker configuration
-  - [ ] Register all handlers
-- [ ] Create `src/testing/mocks/server.ts`
-  - [ ] Node.js MSW Server configuration
-  - [ ] Register all handlers
+- [x] Create `src/testing/mocks/browser.ts`
+  - [x] Browser Service Worker configuration
+  - [x] Register all handlers
+- [x] Create `src/testing/mocks/server.ts`
+  - [x] Node.js MSW Server configuration
+  - [x] Register all handlers
 
 #### Task 0.4.6: Test Setup
 
@@ -244,10 +244,10 @@
 
 #### Task 0.4.7: Enable Mock in Development Environment
 
-- [ ] Update `src/main.ts`
-  - [ ] Check environment variable `VITE_APP_ENABLE_API_MOCKING`
-  - [ ] Start MSW Browser Worker if `true`
-  - [ ] Await `worker.start()` before app startup
+- [x] Update `src/main.ts`
+  - [x] Check environment variable `VITE_APP_ENABLE_API_MOCKING`
+  - [x] Start MSW Browser Worker if `true`
+  - [x] Await `worker.start()` before app startup
 
 ---
 
