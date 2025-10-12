@@ -49,8 +49,8 @@ export const loadDb = async () => {
     try {
       const data = await readFile(dbFilePath, 'utf8');
       return JSON.parse(data);
-    } catch (error: any) {
-      if (error?.code === 'ENOENT') {
+    } catch (error: unknown) {
+      if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
         const emptyDB = {};
         await writeFile(dbFilePath, JSON.stringify(emptyDB, null, 2));
         return emptyDB;
@@ -89,7 +89,7 @@ export const initializeDb = async () => {
   Object.entries(db).forEach(([key, model]) => {
     const dataEntres = database[key];
     if (dataEntres) {
-      dataEntres?.forEach((entry: Record<string, any>) => {
+      dataEntres?.forEach((entry: Record<string, unknown>) => {
         model.create(entry);
       });
     }
