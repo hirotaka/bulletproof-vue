@@ -29,6 +29,9 @@ importers:
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
+      unhead:
+        specifier: ^2.0.19
+        version: 2.0.19
       vue:
         specifier: ^3.5.13
         version: 3.5.22(typescript@5.9.3)
