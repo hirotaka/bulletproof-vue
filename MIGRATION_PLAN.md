@@ -599,17 +599,17 @@
 
 #### Task 2.3.2: DashboardLayout Component
 
-- [ ] Create `src/components/layouts/dashboard-layout.vue`
-- [ ] Implement sidebar navigation
-  - [ ] Logo
-  - [ ] Navigation links (Discussions, Users, Profile)
-  - [ ] Active state highlighting
-- [ ] Implement header
-  - [ ] User menu (use Dropdown component)
-  - [ ] Logout button
-- [ ] Main content area
-- [ ] Mobile support (hamburger menu)
-- [ ] Responsive design
+- [x] Create `src/components/layouts/dashboard-layout.vue`
+- [x] Implement sidebar navigation
+  - [x] Logo
+  - [x] Navigation links (Discussions, Users, Profile)
+  - [x] Active state highlighting
+- [x] Implement header
+  - [x] User menu (use Dropdown component)
+  - [x] Logout button
+- [x] Main content area
+- [x] Mobile support (hamburger menu)
+- [x] Responsive design
 
 #### Task 2.3.3: ContentLayout Component
 
