@@ -195,12 +195,12 @@
 
 #### Task 0.4.3: Data Generation Utilities
 
-- [ ] Create `src/testing/data-generators.ts`
-- [ ] Generator functions using `@ngneat/falso`
-  - [ ] `generateUser()`
-  - [ ] `generateTeam()`
-  - [ ] `generateDiscussion()`
-  - [ ] `generateComment()`
+- [x] Create `src/testing/data-generators.ts`
+- [x] Generator functions using `@ngneat/falso`
+  - [x] `generateUser()`
+  - [x] `generateTeam()`
+  - [x] `generateDiscussion()`
+  - [x] `generateComment()`
 
 #### Task 0.4.4: Create API Handlers
 
