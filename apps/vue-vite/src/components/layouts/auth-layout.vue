@@ -11,7 +11,8 @@ interface Props {
   title: string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
+
 const router = useRouter()
 const route = useRoute()
 const user = useUser()
