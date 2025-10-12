@@ -41,7 +41,7 @@ importers:
         version: 8.6.14(storybook@8.6.14(prettier@3.6.2))
       '@storybook/addon-links':
         specifier: ^8.6.14
-        version: 8.6.14(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
+        version: 8.6.14(react@19.2.0)(storybook@8.6.14(prettier@3.6.2))
       '@storybook/vue3':
         specifier: ^8.6.14
         version: 8.6.14(storybook@8.6.14(prettier@3.6.2))(vue@3.5.22(typescript@5.9.3))
@@ -81,6 +81,12 @@ importers:
 
   apps/vue-vite:
     dependencies:
+      '@headlessui/vue':
+        specifier: ^1.7.23
+        version: 1.7.23(vue@3.5.22(typescript@5.6.3))
+      '@heroicons/vue':
+        specifier: ^2.2.0
+        version: 2.2.0(vue@3.5.22(typescript@5.6.3))
       '@radix-icons/vue':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.22(typescript@5.6.3))
@@ -108,6 +114,9 @@ importers:
       marked:
         specifier: ^15.0.6
         version: 15.0.12
+      nanoid:
+        specifier: ^5.1.6
+        version: 5.1.6
       pinia:
         specifier: ^2.3.1
         version: 2.3.1(typescript@5.6.3)(vue@3.5.22(typescript@5.6.3))
@@ -787,6 +796,17 @@ packages:
 
   '@floating-ui/vue@1.1.9':
     resolution: {integrity: sha512-BfNqNW6KA83Nexspgb9DZuz578R7HT8MZw1CfK9I6Ah4QReNWEJsXWHN+SdmOVLNGmTPDi+fDT535Df5PzMLbQ==}
+
+  '@headlessui/vue@1.7.23':
+    resolution: {integrity: sha512-JzdCNqurrtuu0YW6QaDtR2PIYCKPUWq28csDyMvN4zmGccmE7lz40Is6hc3LA4HFeCI7sekZ/PQMTNmn9I/4Wg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      vue: ^3.2.0
+
+  '@heroicons/vue@2.2.0':
+    resolution: {integrity: sha512-G3dbSxoeEKqbi/DFalhRxJU4mTXJn7GwZ7ae8NuEQzd1bqdd0jAbdaBZlHPcvPD2xI1iGzNVB4k20Un2AguYPw==}
+    peerDependencies:
+      vue: '>= 3'
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -4247,6 +4267,15 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+  '@headlessui/vue@1.7.23(vue@3.5.22(typescript@5.6.3))':
+    dependencies:
+      '@tanstack/vue-virtual': 3.13.12(vue@3.5.22(typescript@5.6.3))
+      vue: 3.5.22(typescript@5.6.3)
+
+  '@heroicons/vue@2.2.0(vue@3.5.22(typescript@5.6.3))':
+    dependencies:
+      vue: 3.5.22(typescript@5.6.3)
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.7':
@@ -4487,9 +4516,9 @@ snapshots:
   '@storybook/addon-docs@8.6.14(@types/react@19.2.2)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
       '@mdx-js/react': 3.1.1(@types/react@19.2.2)(react@16.14.0)
-      '@storybook/blocks': 8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
+      '@storybook/blocks': 8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
       '@storybook/csf-plugin': 8.6.14(storybook@8.6.14(prettier@3.6.2))
-      '@storybook/react-dom-shim': 8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
+      '@storybook/react-dom-shim': 8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))
       react: 16.14.0
       react-dom: 19.2.0(react@16.14.0)
       storybook: 8.6.14(prettier@3.6.2)
@@ -4527,13 +4556,13 @@ snapshots:
       storybook: 8.6.14(prettier@3.6.2)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-links@8.6.14(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
+  '@storybook/addon-links@8.6.14(react@19.2.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
       '@storybook/global': 5.0.0
       storybook: 8.6.14(prettier@3.6.2)
       ts-dedent: 2.2.0
     optionalDependencies:
-      react: 16.14.0
+      react: 19.2.0
 
   '@storybook/addon-measure@8.6.14(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
@@ -4560,14 +4589,14 @@ snapshots:
       memoizerific: 1.11.3
       storybook: 8.6.14(prettier@3.6.2)
 
-  '@storybook/blocks@8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
+  '@storybook/blocks@8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
-      '@storybook/icons': 1.6.0(react-dom@19.2.0(react@16.14.0))(react@16.14.0)
+      '@storybook/icons': 1.6.0(react-dom@19.2.0(react@19.2.0))(react@16.14.0)
       storybook: 8.6.14(prettier@3.6.2)
       ts-dedent: 2.2.0
     optionalDependencies:
       react: 16.14.0
-      react-dom: 19.2.0(react@16.14.0)
+      react-dom: 19.2.0(react@19.2.0)
 
   '@storybook/blocks@8.6.14(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
@@ -4630,10 +4659,10 @@ snapshots:
 
   '@storybook/global@5.0.0': {}
 
-  '@storybook/icons@1.6.0(react-dom@19.2.0(react@16.14.0))(react@16.14.0)':
+  '@storybook/icons@1.6.0(react-dom@19.2.0(react@19.2.0))(react@16.14.0)':
     dependencies:
       react: 16.14.0
-      react-dom: 19.2.0(react@16.14.0)
+      react-dom: 19.2.0(react@19.2.0)
 
   '@storybook/icons@1.6.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
@@ -4654,10 +4683,10 @@ snapshots:
     dependencies:
       storybook: 8.6.14(prettier@3.6.2)
 
-  '@storybook/react-dom-shim@8.6.14(react-dom@19.2.0(react@16.14.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
+  '@storybook/react-dom-shim@8.6.14(react-dom@19.2.0(react@19.2.0))(react@16.14.0)(storybook@8.6.14(prettier@3.6.2))':
     dependencies:
       react: 16.14.0
-      react-dom: 19.2.0(react@16.14.0)
+      react-dom: 19.2.0(react@19.2.0)
       storybook: 8.6.14(prettier@3.6.2)
 
   '@storybook/test@8.6.14(storybook@8.6.14(prettier@3.6.2))':
