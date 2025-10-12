@@ -654,14 +654,14 @@
 
 #### Task 2.4.2: Head (SEO) Component
 
-- [ ] Install `@unhead/vue`
-- [ ] Create `src/components/ui/seo/Head.vue`
-- [ ] Define Props
-  - [ ] `title`, `description`
-- [ ] Use `useHead` composable
-- [ ] Set page title
-- [ ] Set meta description
-- [ ] Configure `createHead()` in `src/app/provider.ts`
+- [x] Install `@unhead/vue`
+- [x] Create `src/components/seo/Head.vue`
+- [x] Define Props
+  - [x] `title`, `description`
+- [x] Use `useHead` composable
+- [x] Set page title
+- [x] Set meta description
+- [x] Configure `createHead()` in `src/app/provider.ts`
 
 #### Task 2.4.3: FormDrawer Component
 
