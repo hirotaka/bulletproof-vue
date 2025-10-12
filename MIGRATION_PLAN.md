@@ -764,16 +764,16 @@
 
 #### Task 2.4.3: FormDrawer Component
 
-- [ ] Create `src/components/ui/form-drawer/FormDrawer.vue`
-- [ ] Define Props
-  - [ ] `open`, `title`, `submitText`, `isLoading`
-- [ ] Define Emits: `close`, `submit`
-- [ ] Use Drawer component
-- [ ] Form slot
-- [ ] Submit/cancel buttons
-- [ ] Loading state
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Create `src/components/ui/form-drawer/FormDrawer.vue`
+- [x] Define Props
+  - [x] `open`, `title`, `submitText`, `isLoading`
+- [x] Define Emits: `close`, `submit`
+- [x] Use Drawer component
+- [x] Form slot
+- [x] Submit/cancel buttons
+- [x] Loading state
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 ---
 
