@@ -3,7 +3,7 @@ import { computed, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 import logo from '@/assets/logo.svg'
-import Link from '@/components/ui/link/Link.vue'
+import { Link } from '@/components/ui/link'
 import { paths } from '@/config/paths'
 import { useUser } from '@/lib/auth'
 
