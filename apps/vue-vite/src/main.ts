@@ -9,13 +9,29 @@ import { setupProviders } from './app/provider'
 
 import VueDOMPurifyHTML from 'vue-dompurify-html'
 
-const app = createApp(App)
+const enableMocking = async () => {
+  if (import.meta.env.VITE_APP_ENABLE_API_MOCKING !== 'true') {
+    return
+  }
 
-app.use(createPinia())
-app.use(router)
-app.use(VueDOMPurifyHTML)
+  try {
+    const { worker } = await import('./testing/mocks/browser')
+    return worker.start()
+  } catch (error) {
+    console.warn('Failed to start MSW worker:', error)
+    return
+  }
+}
 
-// Setup Vue Query and other providers
-setupProviders(app)
+enableMocking().then(() => {
+  const app = createApp(App)
 
-app.mount('#app')
+  app.use(createPinia())
+  app.use(router)
+  app.use(VueDOMPurifyHTML)
+
+  // Setup Vue Query and other providers
+  setupProviders(app)
+
+  app.mount('#app')
+})
