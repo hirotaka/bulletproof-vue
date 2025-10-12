@@ -244,10 +244,10 @@
 
 #### Task 0.4.7: Enable Mock in Development Environment
 
-- [ ] Update `src/main.ts`
-  - [ ] Check environment variable `VITE_APP_ENABLE_API_MOCKING`
-  - [ ] Start MSW Browser Worker if `true`
-  - [ ] Await `worker.start()` before app startup
+- [x] Update `src/main.ts`
+  - [x] Check environment variable `VITE_APP_ENABLE_API_MOCKING`
+  - [x] Start MSW Browser Worker if `true`
+  - [x] Await `worker.start()` before app startup
 
 ---
 
