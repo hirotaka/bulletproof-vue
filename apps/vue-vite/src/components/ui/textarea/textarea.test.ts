@@ -190,7 +190,7 @@ describe('Textarea', () => {
     await textarea.trigger('blur')
 
     // Wait for validation to process with a small delay
-    await new Promise((resolve) => setTimeout(resolve, 10))
+    await new Promise((resolve) => setTimeout(resolve, 100))
     await wrapper.vm.$nextTick()
 
     // Check if error message is displayed

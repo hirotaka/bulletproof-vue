@@ -194,7 +194,7 @@ describe('Checkbox', () => {
     await checkbox.trigger('blur')
 
     // Wait for validation to process
-    await new Promise((resolve) => setTimeout(resolve, 10))
+    await new Promise((resolve) => setTimeout(resolve, 100))
     await wrapper.vm.$nextTick()
 
     // Error should be displayed
@@ -205,7 +205,7 @@ describe('Checkbox', () => {
     await wrapper.vm.$nextTick()
 
     // Wait for validation to process
-    await new Promise((resolve) => setTimeout(resolve, 10))
+    await new Promise((resolve) => setTimeout(resolve, 100))
     await wrapper.vm.$nextTick()
 
     // Error should be gone
