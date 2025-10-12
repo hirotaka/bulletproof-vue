@@ -57,12 +57,12 @@ With proper team allocation and parallel execution, significant time savings are
 
 | Phase | Tasks | Weeks | Description |
 |-------|-------|-------|-------------|
-| **Phase 0** | 3 sub-phases | 0.5-1 week | Initial Setup (CI/CD, Cloudflare, Storybook) |
+| **Phase 0** | 4 sub-phases | 1-1.5 weeks | Initial Setup (CI/CD, Cloudflare, Storybook, MSW) |
 | **Phase 1** | 12 tasks | 1-2 weeks | Infrastructure Layer (API Client, Auth, Config) |
 | **Phase 2** | 23 tasks | 2-3 weeks | UI Components (Forms, Feedback, Layouts) |
 | **Phase 3** | 26 tasks | 4-6 weeks | Feature Modules (Discussions, Comments, Users, Auth) |
 | **Phase 4** | 14 tasks | 2 weeks | Routing + Pages |
-| **Phase 5** | 19 tasks | 2-3 weeks | Testing (MSW, Unit Tests, E2E) |
+| **Phase 5** | 12 tasks | 1.5-2 weeks | Testing (Unit Tests, E2E) |
 | **Phase 6** | 12 tasks | 1 week | Developer Experience (ESLint, Plop, Husky) |
 | **Phase 7** | 11 tasks | 1-2 weeks | Final Adjustments + Documentation |
 | **Total** | **120+ tasks** | **13.5-21 weeks** | Complete migration |
@@ -118,12 +118,13 @@ All React version principles are maintained in Vue version:
    - Understand the 7 phases and how they build on each other
 
 2. **Team allocation** (if parallel work)
+   - Phase 0: 1 person (complete MSW Setup before Phase 3)
    - Phase 1: 1 person (foundation must be sequential)
    - Phase 2: 2-3 people (Forms, Feedback, Layouts can be parallel)
-   - Phase 3: 3-4 people (Each feature can be parallel)
+   - Phase 3: 3-4 people (Each feature can be parallel - requires Phase 0.4 MSW)
 
-3. **Start with Phase 1, Task 1.1.1**
-   - Complete Axios Client Setup
+3. **Start with Phase 0, then Phase 1, Task 1.1.1**
+   - Complete Phase 0.4 MSW Setup early (critical for Phase 3)
    - Build the foundation before expanding
 
 ---
