@@ -563,16 +563,16 @@
 
 #### Task 2.2.5: Dropdown Component (Radix Vue)
 
-- [ ] Install Radix Vue DropdownMenu (check existing)
-- [ ] Create multiple components under `src/components/ui/dropdown/`
-  - [ ] `Dropdown.vue` (root)
-  - [ ] `DropdownTrigger.vue`
-  - [ ] `DropdownContent.vue`
-  - [ ] `DropdownItem.vue`
-  - [ ] `DropdownSeparator.vue`
-- [ ] Keyboard navigation support
-- [ ] Create Storybook stories
-- [ ] Create Vitest unit tests
+- [x] Install Radix Vue DropdownMenu (check existing)
+- [x] Create multiple components under `src/components/ui/dropdown/`
+  - [x] `Dropdown.vue` (root)
+  - [x] `DropdownTrigger.vue`
+  - [x] `DropdownContent.vue`
+  - [x] `DropdownItem.vue`
+  - [x] `DropdownSeparator.vue`
+- [x] Keyboard navigation support
+- [x] Create Storybook stories
+- [x] Create Vitest unit tests
 
 ---
 
