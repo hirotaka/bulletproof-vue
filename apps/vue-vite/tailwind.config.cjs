@@ -1,9 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 
+const path = require('path')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: [
+    path.join(__dirname, './index.html'),
+    path.join(__dirname, './src/**/*.{vue,js,ts,jsx,tsx,mdx}'),
+    path.join(__dirname, '../../.storybook/**/*.{js,ts,jsx,tsx,mdx}'),
+  ],
+  safelist: [],
+  blocklist: [],
   theme: {
     container: {
       center: true,

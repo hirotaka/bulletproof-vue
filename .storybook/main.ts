@@ -1,6 +1,10 @@
 import type { StorybookConfig } from '@storybook/vue3-vite';
 import { mergeConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
+import path from 'node:path';
+import vue from '@vitejs/plugin-vue';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 const config: StorybookConfig = {
   stories: [
@@ -20,10 +24,21 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   typescript: {
-    check: true,
+    check: false,
   },
   async viteFinal(config) {
+    const tailwindConfigPath = path.resolve(__dirname, '../apps/vue-vite/tailwind.config.cjs');
+
     return mergeConfig(config, {
+      plugins: [vue()],
+      css: {
+        postcss: {
+          plugins: [
+            tailwindcss(tailwindConfigPath),
+            autoprefixer(),
+          ],
+        },
+      },
       resolve: {
         alias: {
           '@': fileURLToPath(new URL('../apps/vue-vite/src', import.meta.url)),
