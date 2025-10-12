@@ -501,8 +501,8 @@
 
 #### Task 2.2.1: Create Notifications Store
 
-- [ ] Create `src/stores/notifications.ts`
-- [ ] Notification type definition
+- [x] Create `src/stores/notifications.ts`
+- [x] Notification type definition
 
   ```typescript
   type Notification = {
@@ -513,12 +513,12 @@
   }
   ```
 
-- [ ] Store state: `notifications: Notification[]`
-- [ ] Actions
-  - [ ] `addNotification(notification)`
-  - [ ] `removeNotification(id)`
-  - [ ] `showNotification(type, title, message)` (helper)
-- [ ] Auto-removal feature (after 5 seconds)
+- [x] Store state: `notifications: Notification[]`
+- [x] Actions
+  - [x] `addNotification(notification)`
+  - [x] `removeNotification(id)`
+  - [x] `showNotification(type, title, message)` (helper)
+- [x] Auto-removal feature (after 5 seconds)
 
 #### Task 2.2.2: Notifications Component
 
