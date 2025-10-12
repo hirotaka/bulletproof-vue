@@ -14,9 +14,13 @@ const enableMocking = async () => {
     return
   }
 
-  const { worker } = await import('./testing/mocks/browser')
-
-  return worker.start()
+  try {
+    const { worker } = await import('./testing/mocks/browser')
+    return worker.start()
+  } catch (error) {
+    console.warn('Failed to start MSW worker:', error)
+    return
+  }
 }
 
 enableMocking().then(() => {
