@@ -184,14 +184,14 @@
 
 #### Task 0.4.2: Create In-Memory DB
 
-- [ ] Create `src/testing/mocks/db.ts`
-- [ ] Define models with `@mswjs/data`
-  - [ ] `user` model (corresponding to User type)
-  - [ ] `team` model (corresponding to Team type)
-  - [ ] `discussion` model (corresponding to Discussion type)
-  - [ ] `comment` model (corresponding to Comment type)
-- [ ] Configure relationships (foreign keys)
-- [ ] Create initial data generation function `initializeDb()`
+- [x] Create `src/testing/mocks/db.ts`
+- [x] Define models with `@mswjs/data`
+  - [x] `user` model (corresponding to User type)
+  - [x] `team` model (corresponding to Team type)
+  - [x] `discussion` model (corresponding to Discussion type)
+  - [x] `comment` model (corresponding to Comment type)
+- [x] Configure relationships (foreign keys)
+- [x] Create initial data generation function `initializeDb()`
 
 #### Task 0.4.3: Data Generation Utilities
 
