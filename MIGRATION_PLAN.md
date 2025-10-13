@@ -805,82 +805,82 @@
 
 #### Task 3.1.1: Discussions API Functions
 
-- [ ] Create `src/features/discussions/types/index.ts`
-  - [ ] `Discussion`, `DiscussionInput` type definitions
-- [ ] Create `src/features/discussions/api/get-discussions.ts`
-  - [ ] `GET /discussions` API call
-  - [ ] Pagination support (`page` parameter)
-  - [ ] `getDiscussionsQueryOptions` function (for Vue Query)
-- [ ] Create `src/features/discussions/api/get-discussion.ts`
-  - [ ] `GET /discussions/:id` API call
-  - [ ] `getDiscussionQueryOptions` function
-- [ ] Create `src/features/discussions/api/create-discussion.ts`
-  - [ ] `POST /discussions` API call
-  - [ ] `useCreateDiscussion` mutation
-- [ ] Create `src/features/discussions/api/update-discussion.ts`
-  - [ ] `PATCH /discussions/:id` API call
-  - [ ] `useUpdateDiscussion` mutation
-- [ ] Create `src/features/discussions/api/delete-discussion.ts`
-  - [ ] `DELETE /discussions/:id` API call
-  - [ ] `useDeleteDiscussion` mutation
+- [x] Create `src/features/discussions/types/index.ts`
+  - [x] `Discussion`, `DiscussionInput` type definitions
+- [x] Create `src/features/discussions/api/get-discussions.ts`
+  - [x] `GET /discussions` API call
+  - [x] Pagination support (`page` parameter)
+  - [x] `getDiscussionsQueryOptions` function (for Vue Query)
+- [x] Create `src/features/discussions/api/get-discussion.ts`
+  - [x] `GET /discussions/:id` API call
+  - [x] `getDiscussionQueryOptions` function
+- [x] Create `src/features/discussions/api/create-discussion.ts`
+  - [x] `POST /discussions` API call
+  - [x] `useCreateDiscussion` mutation
+- [x] Create `src/features/discussions/api/update-discussion.ts`
+  - [x] `PATCH /discussions/:id` API call
+  - [x] `useUpdateDiscussion` mutation
+- [x] Create `src/features/discussions/api/delete-discussion.ts`
+  - [x] `DELETE /discussions/:id` API call
+  - [x] `useDeleteDiscussion` mutation
 
 #### Task 3.1.2: DiscussionsList Component
 
-- [ ] Create `src/features/discussions/components/discussions-list.vue`
-- [ ] Define Props: `page: number`
-- [ ] Fetch data with `useQuery(getDiscussionsQueryOptions({ page }))`
-- [ ] Display list using Table component
-- [ ] Define columns (Title, Team, Author, Created At, Actions)
-- [ ] Implement pagination
-- [ ] Prefetching (on hover next page)
-- [ ] Loading state
+- [x] Create `src/features/discussions/components/discussions-list.vue`
+- [x] Define Props: `page: number`
+- [x] Fetch data with `useQuery(getDiscussionsQueryOptions({ page }))`
+- [x] Display list using Table component
+- [x] Define columns (Title, Team, Author, Created At, Actions)
+- [x] Implement pagination
+- [x] Prefetching (on hover next page)
+- [x] Loading state
 - [ ] Error state
 - [ ] Empty state (no data)
 - [ ] Create Vitest unit tests
 
 #### Task 3.1.3: DiscussionView Component
 
-- [ ] Create `src/features/discussions/components/discussion-view.vue`
-- [ ] Define Props: `discussionId: string`
-- [ ] Fetch data with `useQuery(getDiscussionQueryOptions({ discussionId }))`
-- [ ] Display discussion details
+- [x] Create `src/features/discussions/components/discussion-view.vue`
+- [x] Define Props: `discussionId: string`
+- [x] Fetch data with `useQuery(getDiscussionQueryOptions({ discussionId }))`
+- [x] Display discussion details
   - [ ] Title
-  - [ ] Author information
-  - [ ] Body (display with MDPreview)
-  - [ ] Created date
-- [ ] Edit/delete buttons (permission check)
+  - [x] Author information
+  - [x] Body (display with MDPreview)
+  - [x] Created date
+- [x] Edit/delete buttons (permission check)
 - [ ] Create Vitest unit tests
 
 #### Task 3.1.4: CreateDiscussion Component
 
-- [ ] Create `src/features/discussions/components/create-discussion.vue`
-- [ ] Create Zod schema (`title`, `body`)
-- [ ] Use FormDrawer component
-- [ ] Form using Form, Input, Textarea
-- [ ] `useCreateDiscussion` mutation
-- [ ] Handle success (notification, list update, close Drawer)
+- [x] Create `src/features/discussions/components/create-discussion.vue`
+- [x] Create Zod schema (`title`, `body`)
+- [x] Use FormDrawer component
+- [x] Form using Form, Input, Textarea
+- [x] `useCreateDiscussion` mutation
+- [x] Handle success (notification, list update, close Drawer)
 - [ ] Error handling
 - [ ] Create Vitest unit tests
 
 #### Task 3.1.5: UpdateDiscussion Component
 
-- [ ] Create `src/features/discussions/components/update-discussion.vue`
-- [ ] Define Props: `discussionId: string`
-- [ ] Fetch existing data and set initial values
-- [ ] Create Zod schema
-- [ ] Use FormDrawer component
-- [ ] `useUpdateDiscussion` mutation
-- [ ] Handle success (notification, refetch data, close Drawer)
+- [x] Create `src/features/discussions/components/update-discussion.vue`
+- [x] Define Props: `discussionId: string`
+- [x] Fetch existing data and set initial values
+- [x] Create Zod schema
+- [x] Use FormDrawer component
+- [x] `useUpdateDiscussion` mutation
+- [x] Handle success (notification, refetch data, close Drawer)
 - [ ] Error handling
 - [ ] Create Vitest unit tests
 
 #### Task 3.1.6: DeleteDiscussion Component
 
-- [ ] Create `src/features/discussions/components/delete-discussion.vue`
-- [ ] Define Props: `discussionId: string`
-- [ ] Use ConfirmationDialog component
-- [ ] `useDeleteDiscussion` mutation
-- [ ] Handle success (notification, remove from list, close Dialog)
+- [x] Create `src/features/discussions/components/delete-discussion.vue`
+- [x] Define Props: `discussionId: string`
+- [x] Use ConfirmationDialog component
+- [x] `useDeleteDiscussion` mutation
+- [x] Handle success (notification, remove from list, close Dialog)
 - [ ] Error handling
 - [ ] Create Vitest unit tests
 
