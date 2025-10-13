@@ -1,4 +1,8 @@
-import { QueryClient, type QueryClientConfig } from '@tanstack/vue-query';
+import {
+  QueryClient,
+  type QueryClientConfig,
+  type UseMutationOptions,
+} from '@tanstack/vue-query';
 
 const queryConfig: QueryClientConfig = {
   defaultOptions: {
@@ -20,3 +24,21 @@ const queryConfig: QueryClientConfig = {
 };
 
 export const queryClient = new QueryClient(queryConfig);
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type ApiFnReturnType<FnType extends (...args: any) => Promise<any>> =
+  Awaited<ReturnType<FnType>>;
+
+export type QueryConfig<T extends (...args: any[]) => any> = Omit<
+  ReturnType<T>,
+  'queryKey' | 'queryFn'
+>;
+
+export type MutationConfig<
+  MutationFnType extends (...args: any[]) => Promise<any>,
+> = UseMutationOptions<
+  ApiFnReturnType<MutationFnType>,
+  Error,
+  Parameters<MutationFnType>[0]
+>;
+/* eslint-enable @typescript-eslint/no-explicit-any */
