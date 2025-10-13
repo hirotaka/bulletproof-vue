@@ -25,6 +25,7 @@ const queryConfig: QueryClientConfig = {
 
 export const queryClient = new QueryClient(queryConfig);
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type ApiFnReturnType<FnType extends (...args: any) => Promise<any>> =
   Awaited<ReturnType<FnType>>;
 
@@ -40,3 +41,4 @@ export type MutationConfig<
   Error,
   Parameters<MutationFnType>[0]
 >;
+/* eslint-enable @typescript-eslint/no-explicit-any */

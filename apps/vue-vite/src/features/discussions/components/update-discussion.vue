@@ -70,7 +70,7 @@ const handleSubmit = (values: Record<string, unknown>) => {
         :initial-values="initialValues"
         @submit="handleSubmit"
       >
-        <template #default="{ errors, isSubmitting }">
+        <template #default="{ isSubmitting }">
           <div class="space-y-4">
             <Input name="title" label="Title" :disabled="isSubmitting" />
             <Textarea name="body" label="Body" :disabled="isSubmitting" />
