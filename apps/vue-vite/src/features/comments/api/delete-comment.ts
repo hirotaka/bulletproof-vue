@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
+import { toValue } from 'vue'
 
 import { api } from '@/lib/api-client'
 import type { MutationConfig } from '@/lib/vue-query'
@@ -19,17 +20,19 @@ export const useDeleteComment = ({
   discussionId,
 }: UseDeleteCommentOptions) => {
   const queryClient = useQueryClient()
-
-  const { onSuccess, ...restConfig } = mutationConfig || {}
+  const config = toValue(mutationConfig)
+  const onSuccessCallback = toValue(config?.onSuccess)
 
   return useMutation({
+    ...mutationConfig,
+    mutationFn: deleteComment,
     onSuccess: (...args) => {
       queryClient.invalidateQueries({
         queryKey: getInfiniteCommentsQueryOptions(discussionId).queryKey,
       })
-      onSuccess?.(...args)
+      if (onSuccessCallback && typeof onSuccessCallback === 'function') {
+        onSuccessCallback(...args)
+      }
     },
-    ...restConfig,
-    mutationFn: deleteComment,
   })
 }

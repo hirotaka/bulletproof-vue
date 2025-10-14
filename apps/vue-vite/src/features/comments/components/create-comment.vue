@@ -45,7 +45,7 @@ const handleSubmit = (values: Record<string, unknown>) => {
     :is-done="createCommentMutation.isSuccess.value"
     title="Create Comment"
     :is-loading="createCommentMutation.isPending.value"
-    @submit="handleSubmit"
+    @submit="() => {}"
   >
     <template #trigger>
       <Button size="sm" @click="isOpen = true">
