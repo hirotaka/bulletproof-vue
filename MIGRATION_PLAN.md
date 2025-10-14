@@ -836,7 +836,6 @@
 - [x] Loading state
 - [ ] Error state
 - [ ] Empty state (no data)
-- [ ] Create Vitest unit tests
 
 #### Task 3.1.3: DiscussionView Component
 
@@ -849,7 +848,6 @@
   - [x] Body (display with MDPreview)
   - [x] Created date
 - [x] Edit/delete buttons (permission check)
-- [ ] Create Vitest unit tests
 
 #### Task 3.1.4: CreateDiscussion Component
 
@@ -860,7 +858,6 @@
 - [x] `useCreateDiscussion` mutation
 - [x] Handle success (notification, list update, close Drawer)
 - [ ] Error handling
-- [ ] Create Vitest unit tests
 
 #### Task 3.1.5: UpdateDiscussion Component
 
@@ -872,7 +869,6 @@
 - [x] `useUpdateDiscussion` mutation
 - [x] Handle success (notification, refetch data, close Drawer)
 - [ ] Error handling
-- [ ] Create Vitest unit tests
 
 #### Task 3.1.6: DeleteDiscussion Component
 
@@ -882,7 +878,6 @@
 - [x] `useDeleteDiscussion` mutation
 - [x] Handle success (notification, remove from list, close Dialog)
 - [ ] Error handling
-- [ ] Create Vitest unit tests
 
 **Differences from React**:
 
@@ -915,63 +910,60 @@
 
 #### Task 3.2.1: Comments API Functions
 
-- [ ] Create `src/features/comments/types/index.ts`
-  - [ ] `Comment`, `CommentInput` type definitions
-- [ ] Create `src/features/comments/api/get-comments.ts`
-  - [ ] `GET /comments?discussionId=:id` API call
-  - [ ] Infinite Query support (`pageParam`)
-  - [ ] `getCommentsInfiniteQueryOptions` function
-- [ ] Create `src/features/comments/api/create-comment.ts`
-  - [ ] `POST /comments` API call
-  - [ ] `useCreateComment` mutation
-- [ ] Create `src/features/comments/api/delete-comment.ts`
-  - [ ] `DELETE /comments/:id` API call
-  - [ ] `useDeleteComment` mutation
+- [x] Create `src/features/comments/types/index.ts`
+  - [x] `Comment`, `CommentInput` type definitions
+- [x] Create `src/features/comments/api/get-comments.ts`
+  - [x] `GET /comments?discussionId=:id` API call
+  - [x] Infinite Query support (`pageParam`)
+  - [x] `getCommentsInfiniteQueryOptions` function
+- [x] Create `src/features/comments/api/create-comment.ts`
+  - [x] `POST /comments` API call
+  - [x] `useCreateComment` mutation
+- [x] Create `src/features/comments/api/delete-comment.ts`
+  - [x] `DELETE /comments/:id` API call
+  - [x] `useDeleteComment` mutation
 
 #### Task 3.2.2: CommentsList Component
 
-- [ ] Create `src/features/comments/components/comments-list.vue`
-- [ ] Define Props: `discussionId: string`
-- [ ] Fetch data with `useInfiniteQuery(getCommentsInfiniteQueryOptions({ discussionId }))`
-- [ ] Display comment list
-  - [ ] Author information
-  - [ ] Comment body (MDPreview)
-  - [ ] Created date
-  - [ ] Delete button (permission check)
-- [ ] Implement infinite scroll (Intersection Observer)
-- [ ] "Load more" button (alternative)
-- [ ] Loading state
-- [ ] Empty state (no comments)
-- [ ] Create Vitest unit tests
+- [x] Create `src/features/comments/components/comments-list.vue`
+- [x] Define Props: `discussionId: string`
+- [x] Fetch data with `useInfiniteQuery(getCommentsInfiniteQueryOptions({ discussionId }))`
+- [x] Display comment list
+  - [x] Author information
+  - [x] Comment body (MDPreview)
+  - [x] Created date
+  - [x] Delete button (permission check)
+- [x] Implement infinite scroll (Intersection Observer)
+- [x] "Load more" button (alternative)
+- [x] Loading state
+- [x] Empty state (no comments)
 
 #### Task 3.2.3: Comments Component (Container)
 
-- [ ] Create `src/features/comments/components/comments.vue`
-- [ ] Define Props: `discussionId: string`
-- [ ] Integrate CommentsList and CreateComment
-- [ ] Layout
+- [x] Create `src/features/comments/components/comments.vue`
+- [x] Define Props: `discussionId: string`
+- [x] Integrate CommentsList and CreateComment
+- [x] Layout
 
 #### Task 3.2.4: CreateComment Component
 
-- [ ] Create `src/features/comments/components/create-comment.vue`
-- [ ] Define Props: `discussionId: string`
-- [ ] Create Zod schema (`body`)
-- [ ] Form using Form, Textarea
-- [ ] `useCreateComment` mutation
-- [ ] Handle success (notification, update comment list, reset form)
-- [ ] Error handling
-- [ ] Create Vitest unit tests
+- [x] Create `src/features/comments/components/create-comment.vue`
+- [x] Define Props: `discussionId: string`
+- [x] Create Zod schema (`body`)
+- [x] Form using Form, Textarea
+- [x] `useCreateComment` mutation
+- [x] Handle success (notification, update comment list, reset form)
+- [x] Error handling
 
 #### Task 3.2.5: DeleteComment Component
 
-- [ ] Create `src/features/comments/components/delete-comment.vue`
-- [ ] Define Props: `commentId: string`
-- [ ] Authorization check (`comment:delete` policy with `useAuthorization`)
-- [ ] Use ConfirmationDialog component
-- [ ] `useDeleteComment` mutation
-- [ ] Handle success (notification, update comment list, close Dialog)
-- [ ] Error handling
-- [ ] Create Vitest unit tests
+- [x] Create `src/features/comments/components/delete-comment.vue`
+- [x] Define Props: `commentId: string`
+- [x] Authorization check (`comment:delete` policy with `useAuthorization`)
+- [x] Use ConfirmationDialog component
+- [x] `useDeleteComment` mutation
+- [x] Handle success (notification, update comment list, close Dialog)
+- [x] Error handling
 
 ---
 
