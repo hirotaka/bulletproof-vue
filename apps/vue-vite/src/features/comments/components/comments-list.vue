@@ -6,8 +6,6 @@ import { Button } from '@/components/ui/button'
 import { MDPreview } from '@/components/ui/mdPreview'
 import { Spinner } from '@/components/ui/spinner'
 import { Authorization } from '@/components/ui/authorization'
-import { useUser } from '@/lib/auth'
-import { POLICIES } from '@/lib/authorization'
 import { formatDate } from '@/utils/format'
 
 import { useInfiniteComments } from '../api/get-comments'
@@ -19,18 +17,11 @@ interface CommentsListProps {
 
 const props = defineProps<CommentsListProps>()
 
-const user = useUser()
 const commentsQuery = useInfiniteComments({ discussionId: props.discussionId })
 
 const comments = computed(() => {
   return commentsQuery.data.value?.pages.flatMap((page) => page.data) ?? []
 })
-
-const canDeleteComment = (commentId: string) => {
-  const comment = comments.value.find((c) => c.id === commentId)
-  if (!comment || !user.data.value) return false
-  return POLICIES['comment:delete'](user.data.value, comment)
-}
 </script>
 
 <template>
