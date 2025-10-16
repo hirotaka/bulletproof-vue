@@ -2,7 +2,7 @@
 import { DialogContent, DialogPortal, DialogClose } from 'radix-vue'
 import { Cross2Icon } from '@radix-icons/vue'
 import { cn } from '@/utils/cn'
-import DialogOverlay from './DialogOverlay.vue'
+import DialogOverlay from './dialog-overlay.vue'
 
 export interface DialogContentProps {
   class?: string

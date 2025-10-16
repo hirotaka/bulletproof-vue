@@ -1,10 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
-import Notification from './Notification.vue';
+import type { Meta, StoryObj } from '@storybook/vue3'
+import Notification from './notification.vue'
 
 const meta = {
-  title: 'UI/Notifications/Notification',
+  title: 'Components/Notifications',
   component: Notification,
-  tags: ['autodocs'],
   argTypes: {
     notification: {
       description: 'Notification object containing id, type, title, and optional message',
@@ -13,10 +12,10 @@ const meta = {
       action: 'dismiss',
     },
   },
-} satisfies Meta<typeof Notification>;
+} satisfies Meta<typeof Notification>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Info: Story = {
   args: {
@@ -27,7 +26,7 @@ export const Info: Story = {
       message: 'This is an informational notification',
     },
   },
-};
+}
 
 export const Success: Story = {
   args: {
@@ -38,7 +37,7 @@ export const Success: Story = {
       message: 'Your operation completed successfully',
     },
   },
-};
+}
 
 export const Warning: Story = {
   args: {
@@ -49,7 +48,7 @@ export const Warning: Story = {
       message: 'Please be careful with this action',
     },
   },
-};
+}
 
 export const Error: Story = {
   args: {
@@ -60,7 +59,7 @@ export const Error: Story = {
       message: 'Something went wrong, please try again',
     },
   },
-};
+}
 
 export const WithoutMessage: Story = {
   args: {
@@ -70,4 +69,4 @@ export const WithoutMessage: Story = {
       title: 'Quick notification',
     },
   },
-};
+}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MDPreview } from '@/components/ui/mdPreview';
+import { MDPreview } from '@/components/ui/md-preview';
 import { Spinner } from '@/components/ui/spinner';
 import { formatDate } from '@/utils/format';
 

@@ -1,27 +1,18 @@
 import { DropdownMenu as DropdownPrimitive } from 'radix-vue/namespaced'
 
-const DropdownLabel = DropdownPrimitive.Label
 const DropdownGroup = DropdownPrimitive.Group
 const DropdownSub = DropdownPrimitive.Sub
-const DropdownSubTrigger = DropdownPrimitive.SubTrigger
-const DropdownSubContent = DropdownPrimitive.SubContent
 const DropdownRadioGroup = DropdownPrimitive.RadioGroup
-const DropdownRadioItem = DropdownPrimitive.RadioItem
-const DropdownCheckboxItem = DropdownPrimitive.CheckboxItem
 
-export {
-  DropdownLabel,
-  DropdownGroup,
-  DropdownSub,
-  DropdownSubTrigger,
-  DropdownSubContent,
-  DropdownRadioGroup,
-  DropdownRadioItem,
-  DropdownCheckboxItem,
-}
+export { DropdownGroup, DropdownSub, DropdownRadioGroup }
 
-export { default as Dropdown } from './Dropdown.vue'
-export { default as DropdownTrigger } from './DropdownTrigger.vue'
-export { default as DropdownContent } from './DropdownContent.vue'
-export { default as DropdownItem } from './DropdownItem.vue'
-export { default as DropdownSeparator } from './DropdownSeparator.vue'
+export { default as Dropdown } from './dropdown.vue'
+export { default as DropdownTrigger } from './dropdown-trigger.vue'
+export { default as DropdownContent } from './dropdown-content.vue'
+export { default as DropdownItem } from './dropdown-item.vue'
+export { default as DropdownSeparator } from './dropdown-separator.vue'
+export { default as DropdownCheckboxItem } from './dropdown-checkbox-item.vue'
+export { default as DropdownRadioItem } from './dropdown-radio-item.vue'
+export { default as DropdownLabel } from './dropdown-label.vue'
+export { default as DropdownSubTrigger } from './dropdown-sub-trigger.vue'
+export { default as DropdownSubContent } from './dropdown-sub-content.vue'

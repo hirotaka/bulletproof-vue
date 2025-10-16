@@ -1,2 +1,2 @@
-export { default as Notifications } from './Notifications.vue';
-export { default as Notification } from './Notification.vue';
+export { default as Notifications } from './notifications.vue';
+export { default as Notification } from './notification.vue';

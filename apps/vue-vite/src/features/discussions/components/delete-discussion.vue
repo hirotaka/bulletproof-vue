@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { Trash } from 'lucide-vue-next';
 
 import { Button } from '@/components/ui/button';
-import { ConfirmationDialog } from '@/components/ui/confirmation-dialog';
+import { ConfirmationDialog } from '@/components/ui/dialog/confirmation-dialog';
 import { Authorization } from '@/components/ui/authorization';
 import { useNotificationStore } from '@/stores/notifications';
 
