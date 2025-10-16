@@ -7,13 +7,13 @@ const DrawerPortal = DrawerPrimitive.Portal
 
 export { DrawerTrigger, DrawerClose, DrawerPortal }
 
-export { default as Drawer } from './Drawer.vue'
-export { default as DrawerContent } from './DrawerContent.vue'
-export { default as DrawerDescription } from './DrawerDescrition.vue'
-export { default as DrawerFooter } from './DrawerFooter.vue'
-export { default as DrawerHeader } from './DrawerHeader.vue'
-export { default as DrawerOverlay } from './DrawerOverlay.vue'
-export { default as DrawerTitle } from './DrawerTitle.vue'
+export { default as Drawer } from './drawer.vue'
+export { default as DrawerContent } from './drawer-content.vue'
+export { default as DrawerDescription } from './drawer-description.vue'
+export { default as DrawerFooter } from './drawer-footer.vue'
+export { default as DrawerHeader } from './drawer-header.vue'
+export { default as DrawerOverlay } from './drawer-overlay.vue'
+export { default as DrawerTitle } from './drawer-title.vue'
 
 import type { DialogContentProps } from 'radix-vue'
 import { cva, type VariantProps } from 'class-variance-authority'

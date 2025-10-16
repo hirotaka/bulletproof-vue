@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
 import { defineComponent } from 'vue'
 
-import CheckboxComponent from './Checkbox.vue'
+import CheckboxComponent from './checkbox.vue'
 
 // Helper component to wrap Checkbox with Form context
 const TestWrapper = defineComponent({

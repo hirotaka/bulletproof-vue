@@ -1,154 +1,145 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta } from '@storybook/vue3'
+import { ref } from 'vue'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '../button'
 
 import {
   Dropdown,
+  DropdownCheckboxItem,
   DropdownContent,
   DropdownItem,
+  DropdownLabel,
+  DropdownRadioGroup,
+  DropdownRadioItem,
   DropdownSeparator,
+  DropdownSub,
+  DropdownSubContent,
+  DropdownSubTrigger,
   DropdownTrigger,
 } from './'
 
-const meta: Meta<typeof Dropdown> = {
+const meta: Meta = {
   component: Dropdown,
-  render: (args) => ({
-    components: {
-      Button,
-      Dropdown,
-      DropdownContent,
-      DropdownItem,
-      DropdownSeparator,
-      DropdownTrigger,
-    },
-    setup() {
-      const handleSelect = (value: string) => {
-        console.log('Selected:', value)
-      }
-
-      return { args, handleSelect }
-    },
-    template: `
-      <Dropdown>
-        <DropdownTrigger as-child>
-          <Button variant="outline">Open Menu</Button>
-        </DropdownTrigger>
-        <DropdownContent>
-          <DropdownItem @click="handleSelect('profile')">Profile</DropdownItem>
-          <DropdownItem @click="handleSelect('settings')">Settings</DropdownItem>
-          <DropdownSeparator />
-          <DropdownItem @click="handleSelect('logout')">Logout</DropdownItem>
-        </DropdownContent>
-      </Dropdown>
-    `,
-  }),
 }
 
 export default meta
 
-type Story = StoryObj<typeof Dropdown>
+export const Default = () => ({
+  components: {
+    Button,
+    Dropdown,
+    DropdownContent,
+    DropdownItem,
+    DropdownSeparator,
+    DropdownTrigger,
+  },
+  template: `
+    <Dropdown>
+      <DropdownTrigger as-child>
+        <Button>Open Menu</Button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownItem>Item One</DropdownItem>
+        <DropdownItem>Item Two</DropdownItem>
+        <DropdownSeparator />
+        <DropdownItem>Item Three</DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  `,
+})
 
-export const Default: Story = {}
+export const WithCheckboxItems = () => ({
+  components: {
+    Button,
+    Dropdown,
+    DropdownCheckboxItem,
+    DropdownContent,
+    DropdownTrigger,
+  },
+  setup() {
+    const checked = ref(true)
+    const checked2 = ref(false)
 
-export const WithDisabledItem: Story = {
-  render: () => ({
-    components: {
-      Button,
-      Dropdown,
-      DropdownContent,
-      DropdownItem,
-      DropdownSeparator,
-      DropdownTrigger,
-    },
-    setup() {
-      const handleSelect = (value: string) => {
-        console.log('Selected:', value)
-      }
+    return { checked, checked2 }
+  },
+  template: `
+    <Dropdown>
+      <DropdownTrigger as-child>
+        <Button>Open Menu</Button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownCheckboxItem v-model:checked="checked">
+          Option One
+        </DropdownCheckboxItem>
+        <DropdownCheckboxItem v-model:checked="checked2">
+          Option Two
+        </DropdownCheckboxItem>
+      </DropdownContent>
+    </Dropdown>
+  `,
+})
 
-      return { handleSelect }
-    },
-    template: `
-      <Dropdown>
-        <DropdownTrigger as-child>
-          <Button variant="outline">Open Menu</Button>
-        </DropdownTrigger>
-        <DropdownContent>
-          <DropdownItem @click="handleSelect('profile')">Profile</DropdownItem>
-          <DropdownItem disabled>Settings (Disabled)</DropdownItem>
-          <DropdownSeparator />
-          <DropdownItem @click="handleSelect('logout')">Logout</DropdownItem>
-        </DropdownContent>
-      </Dropdown>
-    `,
-  }),
-}
+export const WithRadioItems = () => ({
+  components: {
+    Button,
+    Dropdown,
+    DropdownContent,
+    DropdownLabel,
+    DropdownRadioGroup,
+    DropdownRadioItem,
+    DropdownSeparator,
+    DropdownTrigger,
+  },
+  setup() {
+    const value = ref('one')
 
-export const WithMultipleSections: Story = {
-  render: () => ({
-    components: {
-      Button,
-      Dropdown,
-      DropdownContent,
-      DropdownItem,
-      DropdownSeparator,
-      DropdownTrigger,
-    },
-    setup() {
-      const handleSelect = (value: string) => {
-        console.log('Selected:', value)
-      }
+    return { value }
+  },
+  template: `
+    <Dropdown>
+      <DropdownTrigger as-child>
+        <Button>Open Menu</Button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownLabel>Select an option</DropdownLabel>
+        <DropdownSeparator />
+        <DropdownRadioGroup v-model="value">
+          <DropdownRadioItem value="one">Option One</DropdownRadioItem>
+          <DropdownRadioItem value="two">Option Two</DropdownRadioItem>
+          <DropdownRadioItem value="three">Option Three</DropdownRadioItem>
+        </DropdownRadioGroup>
+      </DropdownContent>
+    </Dropdown>
+  `,
+})
 
-      return { handleSelect }
-    },
-    template: `
-      <Dropdown>
-        <DropdownTrigger as-child>
-          <Button variant="outline">Open Menu</Button>
-        </DropdownTrigger>
-        <DropdownContent>
-          <DropdownItem @click="handleSelect('new-tab')">New Tab</DropdownItem>
-          <DropdownItem @click="handleSelect('new-window')">New Window</DropdownItem>
-          <DropdownSeparator />
-          <DropdownItem @click="handleSelect('history')">History</DropdownItem>
-          <DropdownItem @click="handleSelect('downloads')">Downloads</DropdownItem>
-          <DropdownSeparator />
-          <DropdownItem @click="handleSelect('settings')">Settings</DropdownItem>
-          <DropdownItem @click="handleSelect('help')">Help</DropdownItem>
-        </DropdownContent>
-      </Dropdown>
-    `,
-  }),
-}
-
-export const AlignStart: Story = {
-  render: () => ({
-    components: {
-      Button,
-      Dropdown,
-      DropdownContent,
-      DropdownItem,
-      DropdownSeparator,
-      DropdownTrigger,
-    },
-    setup() {
-      const handleSelect = (value: string) => {
-        console.log('Selected:', value)
-      }
-
-      return { handleSelect }
-    },
-    template: `
-      <Dropdown>
-        <DropdownTrigger as-child>
-          <Button variant="outline">Open Menu (Align Start)</Button>
-        </DropdownTrigger>
-        <DropdownContent align="start">
-          <DropdownItem @click="handleSelect('profile')">Profile</DropdownItem>
-          <DropdownItem @click="handleSelect('settings')">Settings</DropdownItem>
-          <DropdownSeparator />
-          <DropdownItem @click="handleSelect('logout')">Logout</DropdownItem>
-        </DropdownContent>
-      </Dropdown>
-    `,
-  }),
-}
+export const WithSubmenus = () => ({
+  components: {
+    Button,
+    Dropdown,
+    DropdownContent,
+    DropdownItem,
+    DropdownSub,
+    DropdownSubContent,
+    DropdownSubTrigger,
+    DropdownTrigger,
+  },
+  template: `
+    <Dropdown>
+      <DropdownTrigger>
+        <Button>Open Menu</Button>
+      </DropdownTrigger>
+      <DropdownContent>
+        <DropdownItem>Item One</DropdownItem>
+        <DropdownSub>
+          <DropdownSubTrigger>More Options</DropdownSubTrigger>
+          <DropdownSubContent>
+            <DropdownItem>Sub Item One</DropdownItem>
+            <DropdownItem>Sub Item Two</DropdownItem>
+          </DropdownSubContent>
+        </DropdownSub>
+        <DropdownItem>Item Three</DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  `,
+})

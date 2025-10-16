@@ -1,1 +1,1 @@
-export { default as Authorization } from './Authorization.vue'
+export { default as Authorization } from './authorization.vue'

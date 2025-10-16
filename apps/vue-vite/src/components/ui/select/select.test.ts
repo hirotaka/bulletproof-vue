@@ -5,8 +5,8 @@ import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
 import { defineComponent } from 'vue'
 
-import SelectComponent from './Select.vue'
-import type { Option } from './Select.vue'
+import SelectComponent from './select.vue'
+import type { Option } from './select.vue'
 
 // Helper component to wrap Select with Form context
 const TestWrapper = defineComponent({

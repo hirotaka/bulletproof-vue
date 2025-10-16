@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { ArchiveX } from 'lucide-vue-next'
 
 import { Button } from '@/components/ui/button'
-import { MDPreview } from '@/components/ui/mdPreview'
+import { MDPreview } from '@/components/ui/md-preview'
 import { Spinner } from '@/components/ui/spinner'
 import { Authorization } from '@/components/ui/authorization'
 import { formatDate } from '@/utils/format'

@@ -1,12 +1,12 @@
-import { defineStore } from 'pinia';
-import { nanoid } from 'nanoid';
+import { defineStore } from 'pinia'
+import { nanoid } from 'nanoid'
 
 export type Notification = {
-  id: string;
-  type: 'info' | 'warning' | 'success' | 'error';
-  title: string;
-  message?: string;
-};
+  id: string
+  type: 'info' | 'warning' | 'success' | 'error'
+  title: string
+  message?: string
+}
 
 export const useNotificationStore = defineStore({
   id: 'notification',
@@ -15,15 +15,10 @@ export const useNotificationStore = defineStore({
   }),
   actions: {
     add(notification: Omit<Notification, 'id'>) {
-      this.notifications = [
-        ...this.notifications,
-        { id: nanoid(), ...notification },
-      ];
+      this.notifications = [...this.notifications, { id: nanoid(), ...notification }]
     },
     dismiss(id: string) {
-      this.notifications = this.notifications.filter(
-        (notification) => notification.id !== id,
-      );
+      this.notifications = this.notifications.filter((notification) => notification.id !== id)
     },
   },
-});
+})

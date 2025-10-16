@@ -1,151 +1,127 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { z } from 'zod'
-import { ref } from 'vue'
+import { h } from 'vue'
+
+import { Button } from '../button'
+import { FormDrawer } from '../form-drawer'
+import { Input } from '../input'
+import { Select } from '../select'
+import { Textarea } from '../textarea'
 
 import { Form } from './'
-import { Button } from '../button'
 
-const meta: Meta<typeof Form> = {
+const MyForm = (hideSubmit = false) => ({
+  components: { Form, Input, Textarea, Select, Button },
+  setup() {
+    const handleSubmit = async (values: Record<string, unknown>) => {
+      alert(JSON.stringify(values, null, 2))
+    }
+
+    const schema = z.object({
+      title: z.string().min(1, 'Required'),
+      description: z.string().min(1, 'Required'),
+      type: z.string().min(1, 'Required'),
+    })
+
+    return { handleSubmit, schema, hideSubmit }
+  },
+  template: `
+    <Form
+      :schema="schema"
+      @submit="handleSubmit"
+      id="my-form"
+    >
+      <Input
+        name="title"
+        label="Title"
+      />
+      <Textarea
+        name="description"
+        label="Description"
+      />
+      <Select
+        name="type"
+        label="Type"
+        :options="[
+          { label: 'A', value: 'A' },
+          { label: 'B', value: 'B' },
+          { label: 'C', value: 'C' }
+        ]"
+      />
+
+      <div v-if="!hideSubmit">
+        <Button type="submit" class="w-full">
+          Submit
+        </Button>
+      </div>
+    </Form>
+  `,
+})
+
+const meta: Meta = {
   component: Form,
-  title: 'Components/UI/Form',
-  tags: ['autodocs'],
 }
 
 export default meta
 
-type Story = StoryObj<typeof Form>
+type Story = StoryObj
 
-const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-})
-
-export const Basic: Story = {
-  render: (args) => ({
-    components: { Form, Button },
-    setup() {
-      const submittedData = ref<Record<string, unknown> | null>(null)
-
-      const handleSubmit = (values: Record<string, unknown>) => {
-        submittedData.value = values
-        console.log('Form submitted:', values)
-      }
-
-      return { args, handleSubmit, submittedData }
-    },
-    template: `
-      <div class="max-w-md space-y-4">
-        <Form v-bind="args" @submit="handleSubmit">
-          <template #default="{ errors, isSubmitting }">
-            <div class="space-y-4">
-              <div>
-                <label for="email" class="block text-sm font-medium mb-1">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  class="w-full px-3 py-2 border rounded-md"
-                  :class="errors.email ? 'border-red-500' : 'border-gray-300'"
-                />
-                <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
-              </div>
-
-              <div>
-                <label for="password" class="block text-sm font-medium mb-1">Password</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  class="w-full px-3 py-2 border rounded-md"
-                  :class="errors.password ? 'border-red-500' : 'border-gray-300'"
-                />
-                <p v-if="errors.password" class="text-red-500 text-sm mt-1">{{ errors.password }}</p>
-              </div>
-
-              <Button type="submit" :is-loading="isSubmitting">
-                Submit
-              </Button>
-            </div>
-          </template>
-        </Form>
-
-        <div v-if="submittedData" class="mt-4 p-4 bg-gray-100 rounded-md">
-          <h3 class="font-semibold mb-2">Submitted Data:</h3>
-          <pre>{{ JSON.stringify(submittedData, null, 2) }}</pre>
-        </div>
-      </div>
-    `,
-  }),
-  args: {
-    schema: loginSchema,
-    initialValues: {
-      email: '',
-      password: '',
-    },
-  },
+export const Default: Story = {
+  render: () => MyForm(false),
 }
 
-export const WithInitialValues: Story = {
-  render: (args) => ({
-    components: { Form, Button },
+export const AsFormDrawer: Story = {
+  render: () => ({
+    components: { FormDrawer, Form, Input, Textarea, Select, Button },
     setup() {
-      const submittedData = ref<Record<string, unknown> | null>(null)
-
-      const handleSubmit = (values: Record<string, unknown>) => {
-        submittedData.value = values
-        console.log('Form submitted:', values)
+      const handleSubmit = async (values: Record<string, unknown>) => {
+        alert(JSON.stringify(values, null, 2))
       }
 
-      return { args, handleSubmit, submittedData }
+      const schema = z.object({
+        title: z.string().min(1, 'Required'),
+        description: z.string().min(1, 'Required'),
+        type: z.string().min(1, 'Required'),
+      })
+
+      return {
+        handleSubmit,
+        schema,
+        triggerButton: h(Button, {}, () => 'Open Form'),
+        submitButton: h(Button, { form: 'my-form', type: 'submit' }, () => 'Submit'),
+      }
     },
     template: `
-      <div class="max-w-md space-y-4">
-        <Form v-bind="args" @submit="handleSubmit">
-          <template #default="{ errors, isSubmitting }">
-            <div class="space-y-4">
-              <div>
-                <label for="email" class="block text-sm font-medium mb-1">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  class="w-full px-3 py-2 border rounded-md"
-                  :class="errors.email ? 'border-red-500' : 'border-gray-300'"
-                />
-                <p v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</p>
-              </div>
-
-              <div>
-                <label for="password" class="block text-sm font-medium mb-1">Password</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  class="w-full px-3 py-2 border rounded-md"
-                  :class="errors.password ? 'border-red-500' : 'border-gray-300'"
-                />
-                <p v-if="errors.password" class="text-red-500 text-sm mt-1">{{ errors.password }}</p>
-              </div>
-
-              <Button type="submit" :is-loading="isSubmitting">
-                Submit
-              </Button>
-            </div>
-          </template>
+      <FormDrawer
+        :trigger-button="triggerButton"
+        :is-done="true"
+        title="My Form"
+        :submit-button="submitButton"
+      >
+        <Form
+          :schema="schema"
+          @submit="handleSubmit"
+          id="my-form"
+        >
+          <Input
+            name="title"
+            label="Title"
+          />
+          <Textarea
+            name="description"
+            label="Description"
+          />
+          <Select
+            name="type"
+            label="Type"
+            :options="[
+              { label: 'A', value: 'A' },
+              { label: 'B', value: 'B' },
+              { label: 'C', value: 'C' }
+            ]"
+          />
         </Form>
-
-        <div v-if="submittedData" class="mt-4 p-4 bg-gray-100 rounded-md">
-          <h3 class="font-semibold mb-2">Submitted Data:</h3>
-          <pre>{{ JSON.stringify(submittedData, null, 2) }}</pre>
-        </div>
-      </div>
+      </FormDrawer>
     `,
   }),
-  args: {
-    schema: loginSchema,
-    initialValues: {
-      email: 'test@example.com',
-      password: 'password123',
-    },
-  },
 }
