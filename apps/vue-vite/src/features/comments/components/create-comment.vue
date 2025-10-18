@@ -3,9 +3,7 @@ import { ref } from 'vue'
 import { Plus } from 'lucide-vue-next'
 
 import { Button } from '@/components/ui/button'
-import { FormDrawer } from '@/components/ui/form-drawer'
-import { Form } from '@/components/ui/form'
-import { Textarea } from '@/components/ui/textarea'
+import { FormDrawer, Form, Textarea } from '@/components/ui/form'
 import { useNotificationStore } from '@/stores/notifications'
 
 import { useCreateComment } from '../api/create-comment'

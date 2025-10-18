@@ -3,12 +3,7 @@ import { z } from 'zod'
 import { h } from 'vue'
 
 import { Button } from '../button'
-import { FormDrawer } from '../form-drawer'
-import { Input } from '../input'
-import { Select } from '../select'
-import { Textarea } from '../textarea'
-
-import { Form } from './'
+import { Form, FormDrawer, Input, Select, Textarea } from './'
 
 const MyForm = (hideSubmit = false) => ({
   components: { Form, Input, Textarea, Select, Button },

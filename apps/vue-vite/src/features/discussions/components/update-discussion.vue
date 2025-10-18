@@ -3,10 +3,7 @@ import { ref, computed } from 'vue';
 import { Pen } from 'lucide-vue-next';
 
 import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
-import { FormDrawer } from '@/components/ui/form-drawer';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Form, FormDrawer, Input, Textarea } from '@/components/ui/form';
 import { Authorization } from '@/components/ui/authorization';
 import { useNotificationStore } from '@/stores/notifications';
 

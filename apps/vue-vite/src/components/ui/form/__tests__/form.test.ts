@@ -5,8 +5,7 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { rtlRender, screen, waitFor, userEvent } from '@/testing/test-utils'
 
-import { Form } from '../'
-import { Input } from '../../input'
+import { Form, Input } from '../'
 
 const testData = {
   title: 'Hello World',
