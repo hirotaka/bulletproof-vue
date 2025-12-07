@@ -45,7 +45,7 @@
     "clsx": "^2.1.1",
     "dayjs": "^1.11.18",
     "dotenv": "^17.2.3",
-    "drizzle-orm": "^0.44.7",
+    "drizzle-orm": "^0.45.0",
     "lucide-vue-next": "^0.556.0",
     "marked": "^15.0.12",
     "nuxt": "^4.2.1",
