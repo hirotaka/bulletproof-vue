@@ -1,4 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-npm run validate
+cd apps/vue-vite && pnpm lint-staged && cd ../.. && cd apps/nuxt && pnpm lint-staged

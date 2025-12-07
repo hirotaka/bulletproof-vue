@@ -1,43 +1,64 @@
-# 🛡️ Bulletproof Vue
-A simple, scalable, and powerful architecture for building production ready Vue applications.
+# 🛡️ Bulletproof Vue & Nuxt
 
-This repository is a migration of [bulletproof-react](https://github.com/alan2207/bulletproof-react) to Vue and its ecosystem.
-
-Still work in progress. In particular, items labeled WIP have not yet been migrated.
+A simple, scalable, and powerful architecture aiming for production-ready Vue and Nuxt applications.
 
 ## Introduction
 
-Vue is a great tool for building frontend applications. It has a very diverse ecosystem with hundreds of great libraries for literally anything you might need. However, it can be overwhelming to be forced to make so many choices.
-It is also very flexible, you can write Vue applications in any way you like but that flexibility comes with a cost. Since there is no pre-defined architecture developers can follow, it often leads to messy, inconsistent, or over-complicated codebases.
+Vue is an excellent tool for building front-end applications. It has a diverse ecosystem with hundreds of great libraries for literally anything you might need. However, being forced to make so many choices can be overwhelming. It is also very flexible, you can write Vue applications in any way you like, but that flexibility comes with a cost. Since there is no pre-defined architecture that developers can follow, it often leads to a messy, inconsistent, and over-complicated codebase.
 
-This is an attempt to present a way of creating Vue applications using the best tools in the ecosystem with a good project structure that scales very well. It is based on the experience of working with many different codebases, and this architecture turns out to be the most effective one.
+This repo attempts to present a way of creating Vue applications using some of the best tools in the ecosystem with a good project structure that scales very well. Based on the patterns from [Bulletproof React](https://github.com/alan2207/bulletproof-react), this architecture is adapted for the Vue ecosystem.
 
-The goal of this repo is to serve as a collection of resources and good practices when developing Vue applications. It is supposed to showcase solving most of the real-world problems of an application in a practical way and help developers writing better applications.
+The goal here is to serve as a collection of resources and best practices when developing Vue applications. It is supposed to showcase solving most of the real-world problems of an application in a practical way and help developers write better applications.
 
-Feel free to explore the codebase to get the most value out of the repo.
+Feel free to explore the sample app codebases to get the most value out of the repo.
 
-#### Disclaimer:
+## 📦 Sample Applications
+
+This monorepo contains two sample applications with different architectures:
+
+### ⚡ [Vue (SPA)](apps/vue-vite)
+
+A client-side Single Page Application using Vue + Vite.
+
+- **Architecture**: Feature-based structure
+- **Routing**: Vue Router with lazy loading
+- **State**: TanStack Query (Vue Query) + Pinia
+- **Best for**: Traditional SPAs, dashboards, admin panels
+
+[View Documentation](/apps/vue-vite/docs/index.md)
+
+### 🌐 [Nuxt (Full-Stack)](apps/nuxt)
+
+A full-stack application using Nuxt with SSR capabilities.
+
+- **Architecture**: Nuxt Layers for modular features
+- **Routing**: File-based routing with Nuxt
+- **State**: Nuxt built-in composables
+- **Best for**: SEO-critical apps, marketing sites, full-stack applications
+
+[View Documentation](/apps/nuxt/docs/index.md)
+
+## 🎯 What makes a Vue and Nuxt application "bulletproof"?
+
+This repo doesn't aim to be a silver bullet for all Vue applications as there are many different use cases, but it tries to provide a solid foundation for building applications based on the following principles:
+
+- ✅ Easy to get started with
+- ✅ Simple to understand and maintain
+- ✅ Uses the right tools for the job
+- ✅ Clean boundaries between different parts of the application
+- ✅ Everyone on the team is on the same page when it comes to how things are done
+- ✅ Secure
+- ✅ Performant
+- ✅ Scalable in terms of codebase and team size
+- ✅ Issues detectable as early as possible
+
+### Disclaimer
 
 This is not supposed to be a template, boilerplate or a framework. It is an opinionated guide that shows how to do some things in a certain way. You are not forced to do everything exactly as it is shown here, decide what works best for you and your team and stay consistent with your style.
 
-## Table Of Contents:
+To get most out of it, do not get limited by the technologies used in these sample apps, but rather focus on the principles and the concepts that are being presented here. The tools and libraries used here are just a suggestion, you can always replace them with something that fits your needs better. Sometimes, your project might require a slightly different approach, and that's totally fine.
 
-- [💻 Application Overview](docs/application-overview.md)
-- [⚙️ Project Configuration](docs/project-configuration.md)
-- [👁️ Style Guide](docs/style-guide.md)
-- [🗄️ Project Structure](docs/project-structure.md)
-- [🧱 Components And Styling](docs/components-and-styling.md)
-- [📡 API Layer](docs/api-layer.md)
-- [🗃️ State Management](docs/state-management.md)
-- [🧪 Testing](docs/testing.md)
-- [⚠️ Error Handling](docs/error-handling.md)
-- [🔐 Security](docs/security.md)
-- [WIP] [🚄 Performance](docs/performance.md)
-- [🌐 Deployment](docs/deployment.md)
-- [📚 Additional Resources](docs/additional-resources.md)
-
-
-## Contributing
+## 🤝 Contributing
 
 Contributions are always welcome! If you have any ideas, suggestions, fixes, feel free to contribute. You can do that by going through the following steps:
 
@@ -47,6 +68,10 @@ Contributions are always welcome! If you have any ideas, suggestions, fixes, fee
 4. Test your changes
 5. Push your branch and open a Pull Request
 
-## License
+## 📄 License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](/LICENSE)
+
+## 🙏 Credits
+
+This project is inspired by [Bulletproof React](https://github.com/alan2207/bulletproof-react) by Alan Alickovic.

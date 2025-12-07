@@ -13,6 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
+storybook-static
 
 /cypress/videos/
 /cypress/screenshots/

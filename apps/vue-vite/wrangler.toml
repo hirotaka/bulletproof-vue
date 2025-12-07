@@ -1,0 +1,5 @@
+name = "bulletproof-vue"
+pages_build_output_dir = "./dist"
+
+[vars]
+VITE_APP_ENABLE_API_MOCKING = "true"
