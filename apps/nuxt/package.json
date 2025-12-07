@@ -46,7 +46,7 @@
     "dayjs": "^1.11.18",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.7",
-    "lucide-vue-next": "^0.469.0",
+    "lucide-vue-next": "^0.556.0",
     "marked": "^15.0.12",
     "nuxt": "^4.2.1",
     "nuxt-auth-utils": "^0.5.25",
