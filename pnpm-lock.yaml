@@ -401,8 +401,8 @@ importers:
         specifier: ^8.5.1
         version: 8.6.14(prettier@3.7.4)
       storybook-vue3-router:
-        specifier: ^5.0.0
-        version: 5.1.0(@storybook/preview-api@8.6.14(storybook@8.6.14(prettier@3.7.4)))(@storybook/vue3@8.6.14(storybook@8.6.14(prettier@3.7.4))(vue@3.5.25(typescript@5.9.3)))(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))
+        specifier: ^7.0.0
+        version: 7.0.0(@storybook/vue3@8.6.14(storybook@8.6.14(prettier@3.7.4))(vue@3.5.25(typescript@5.9.3)))(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3))
       tailwindcss:
         specifier: 4.1.17
         version: 4.1.17
@@ -7613,11 +7613,10 @@ packages:
     resolution: {integrity: sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw==}
     engines: {node: '>=4', npm: '>=6'}
 
-  storybook-vue3-router@5.1.0:
-    resolution: {integrity: sha512-3qO2N/mK+rzj5+s1J7EILDoiziVoo41A/0pgbFx+ohMR/JlPmNQ5/bAdxptMpFZNkpCo2ZBPnlJe0mAmXjOLsQ==}
+  storybook-vue3-router@7.0.0:
+    resolution: {integrity: sha512-4OaamqjgUmMKywNmwn5VCneQa5NQTVSRTJ0rtqX1KDq2tsVFlhXT2s7AQFjBl4aSoUnz/4BSzichhFUMAb2Uxg==}
     peerDependencies:
-      '@storybook/preview-api': 8.x||>=8.0.0-rc.0
-      '@storybook/vue3': 8.x||>=8.0.0-rc.0
+      '@storybook/vue3': 10.x
       vue: 3.5.25
       vue-router: 4.x
     peerDependenciesMeta:
@@ -16704,9 +16703,8 @@ snapshots:
 
   stoppable@1.1.0: {}
 
-  storybook-vue3-router@5.1.0(@storybook/preview-api@8.6.14(storybook@8.6.14(prettier@3.7.4)))(@storybook/vue3@8.6.14(storybook@8.6.14(prettier@3.7.4))(vue@3.5.25(typescript@5.9.3)))(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3)):
+  storybook-vue3-router@7.0.0(@storybook/vue3@8.6.14(storybook@8.6.14(prettier@3.7.4))(vue@3.5.25(typescript@5.9.3)))(vue-router@4.6.3(vue@3.5.25(typescript@5.9.3)))(vue@3.5.25(typescript@5.9.3)):
     dependencies:
-      '@storybook/preview-api': 8.6.14(storybook@8.6.14(prettier@3.7.4))
       '@storybook/vue3': 8.6.14(storybook@8.6.14(prettier@3.7.4))(vue@3.5.25(typescript@5.9.3))
     optionalDependencies:
       vue: 3.5.25(typescript@5.9.3)
