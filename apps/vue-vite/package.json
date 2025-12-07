@@ -84,7 +84,7 @@
     "jsdom": "^25.0.1",
     "lint-staged": "^16.2.6",
     "msw": "^2.11.5",
-    "npm-run-all2": "^7.0.2",
+    "npm-run-all2": "^8.0.0",
     "pino-http": "^11.0.0",
     "pino-pretty": "^13.1.2",
     "plop": "^4.0.4",
