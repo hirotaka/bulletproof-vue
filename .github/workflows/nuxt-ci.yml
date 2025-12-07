@@ -1,0 +1,74 @@
+name: Nuxt CI
+
+on:
+  push:
+    branches: [main, renewal]
+    paths:
+      - "apps/nuxt/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/nuxt-ci.yml"
+  pull_request:
+    branches: [main, renewal]
+    paths:
+      - "apps/nuxt/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/nuxt-ci.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  all-cli-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/nuxt
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build application
+        run: pnpm build
+      - name: Run tests
+        run: pnpm test:unit
+      - name: Run linter
+        run: pnpm run lint
+      - name: Check types
+        run: pnpm exec nuxi typecheck
+  e2e:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/nuxt
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+      - name: Run Playwright tests
+        run: pnpm test:e2e:ci
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: apps/nuxt/playwright/playwright-report/
+          retention-days: 30
+          if-no-files-found: ignore

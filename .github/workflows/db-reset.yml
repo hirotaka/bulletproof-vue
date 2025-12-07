@@ -1,0 +1,48 @@
+name: Database Reset
+on:
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      database:
+        description: "Target database"
+        required: true
+        default: "production"
+        type: choice
+        options:
+          - production
+          - preview
+env:
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+jobs:
+  reset-database:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/nuxt
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Clear production database
+        if: github.event_name == 'schedule' || github.event.inputs.database == 'production'
+        run: |
+          echo "Clearing production database..."
+          pnpm db:clear:d1
+          echo "Production database cleared successfully!"
+      - name: Clear preview database
+        if: github.event_name == 'schedule' || github.event.inputs.database == 'preview'
+        run: |
+          echo "Clearing preview database..."
+          pnpm db:clear:d1:preview
+          echo "Preview database cleared successfully!"

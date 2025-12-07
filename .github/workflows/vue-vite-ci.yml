@@ -1,0 +1,68 @@
+name: Vue Vite CI
+on:
+  push:
+    branches: [main, renewal]
+    paths:
+      - "apps/vue-vite/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/vue-vite-ci.yml"
+  pull_request:
+    branches: [main, renewal]
+    paths:
+      - "apps/vue-vite/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/vue-vite-ci.yml"
+jobs:
+  all-cli-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/vue-vite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "pnpm"
+      - name: Set environment variables
+        run: mv .env.example .env
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build application
+        run: pnpm run build
+      - name: Run tests
+        run: pnpm run test:unit
+      - name: Run linter
+        run: pnpm run lint
+      - name: Check types
+        run: pnpm run type-check
+  e2e:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/vue-vite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: "pnpm"
+      - name: Set environment variables
+        run: mv .env.example-e2e .env
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+      - name: Run Playwright tests
+        run: pnpm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            apps/vue-vite/playwright-report/
+            apps/vue-vite/mocked-db.json
+          retention-days: 30
