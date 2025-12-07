@@ -2,13 +2,13 @@ name: Nuxt CI
 
 on:
   push:
-    branches: [main, renewal]
+    branches: [main]
     paths:
       - "apps/nuxt/**"
       - "pnpm-lock.yaml"
       - ".github/workflows/nuxt-ci.yml"
   pull_request:
-    branches: [main, renewal]
+    branches: [main]
     paths:
       - "apps/nuxt/**"
       - "pnpm-lock.yaml"

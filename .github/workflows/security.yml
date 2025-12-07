@@ -1,20 +1,15 @@
 name: OSV-Scanner Scan
-
 on:
   push:
-    branches: [main, renewal]
+    branches: [main]
   pull_request:
-    branches: [main, renewal]
+    branches: [main]
   schedule:
     - cron: "0 9 * * 1" # Every Monday at 9:00 AM UTC
-
 permissions:
   actions: read
   security-events: write
   contents: read
-
 jobs:
   osv-scan:
     uses: "google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@v2.3.0"
-    with:
-      upload-sarif: false
