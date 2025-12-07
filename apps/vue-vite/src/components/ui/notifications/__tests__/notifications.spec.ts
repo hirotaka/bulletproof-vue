@@ -27,10 +27,10 @@ test('should add and remove notifications', () => {
   // Should have one notification
   expect(notifications.value).toHaveLength(1)
   expect(notifications.value[0]).toMatchObject(notification)
-  expect(notifications.value[0].id).toBeDefined()
+  expect(notifications.value[0]!.id).toBeDefined()
 
   // Dismiss notification
-  const notificationId = notifications.value[0].id
+  const notificationId = notifications.value[0]!.id
   dismissNotification(notificationId)
 
   // Should be empty again
