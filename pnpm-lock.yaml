@@ -220,8 +220,8 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
       pinia:
-        specifier: ^2.3.1
-        version: 2.3.1(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
+        specifier: ^3.0.0
+        version: 3.0.4(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
       reka-ui:
         specifier: ^2.6.0
         version: 2.6.1(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
@@ -6613,15 +6613,6 @@ packages:
       '@pinia/nuxt':
         optional: true
       pinia:
-        optional: true
-
-  pinia@2.3.1:
-    resolution: {integrity: sha512-khUlZSwt9xXCaTbbxFYBKDc/bWAGWJjOgvxETwkTN7KRm66EeT1ZdZj6i2ceh9sP2Pzqsbc704r2yngBrxBVug==}
-    peerDependencies:
-      typescript: '>=4.4.4'
-      vue: 3.5.25
-    peerDependenciesMeta:
-      typescript:
         optional: true
 
   pinia@3.0.4:
@@ -15427,16 +15418,6 @@ snapshots:
       '@nuxt/kit': 4.2.1(magicast@0.5.1)
       '@pinia/nuxt': 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3)))
       pinia: 3.0.4(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
-
-  pinia@2.3.1(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3)):
-    dependencies:
-      '@vue/devtools-api': 6.6.4
-      vue: 3.5.25(typescript@5.9.3)
-      vue-demi: 0.14.10(vue@3.5.25(typescript@5.9.3))
-    optionalDependencies:
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - '@vue/composition-api'
 
   pinia@3.0.4(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3)):
     dependencies:
