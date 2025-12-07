@@ -1,13 +1,13 @@
 name: Vue Vite CI
 on:
   push:
-    branches: [main, renewal]
+    branches: [main]
     paths:
       - "apps/vue-vite/**"
       - "pnpm-lock.yaml"
       - ".github/workflows/vue-vite-ci.yml"
   pull_request:
-    branches: [main, renewal]
+    branches: [main]
     paths:
       - "apps/vue-vite/**"
       - "pnpm-lock.yaml"
