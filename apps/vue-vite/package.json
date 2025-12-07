@@ -42,7 +42,7 @@
     "zod": "^3.24.0"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.4",
+    "@chromatic-com/storybook": "^4.0.0",
     "@mswjs/data": "^0.16.2",
     "@mswjs/http-middleware": "^0.10.3",
     "@ngneat/falso": "^8.0.2",
