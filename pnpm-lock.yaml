@@ -60,8 +60,8 @@ importers:
         specifier: ^0.556.0
         version: 0.556.0(vue@3.5.25(typescript@5.9.3))
       marked:
-        specifier: ^15.0.12
-        version: 15.0.12
+        specifier: ^17.0.0
+        version: 17.0.1
       nuxt:
         specifier: ^4.2.1
         version: 4.2.1(@libsql/client@0.15.15)(@parcel/watcher@2.5.1)(@types/node@22.19.1)(@vue/compiler-sfc@3.5.25)(db0@0.3.4(@libsql/client@0.15.15)(drizzle-orm@0.45.0(@cloudflare/workers-types@4.20251205.0)(@libsql/client@0.15.15)))(drizzle-orm@0.45.0(@cloudflare/workers-types@4.20251205.0)(@libsql/client@0.15.15))(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(lightningcss@1.30.2)(magicast@0.5.1)(optionator@0.9.4)(rollup@4.53.3)(terser@5.44.1)(tsx@4.21.0)(typescript@5.9.3)(vite@6.4.1(@types/node@22.19.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))(vue-tsc@2.2.12(typescript@5.9.3))(yaml@2.8.2)
@@ -214,8 +214,8 @@ importers:
         specifier: ^0.556.0
         version: 0.556.0(vue@3.5.25(typescript@5.9.3))
       marked:
-        specifier: ^15.0.6
-        version: 15.0.12
+        specifier: ^17.0.0
+        version: 17.0.1
       nanoid:
         specifier: ^5.1.6
         version: 5.1.6
@@ -5978,9 +5978,9 @@ packages:
   map-stream@0.1.0:
     resolution: {integrity: sha512-CkYQrPYZfWnu/DAmVCpTSX/xHpKZ80eKh2lAkyA6AJTef6bW+6JpbQZN5rofum7da+SyN1bi5ctTm+lTfcCW3g==}
 
-  marked@15.0.12:
-    resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
-    engines: {node: '>= 18'}
+  marked@17.0.1:
+    resolution: {integrity: sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   math-intrinsics@1.1.0:
@@ -14695,7 +14695,7 @@ snapshots:
 
   map-stream@0.1.0: {}
 
-  marked@15.0.12: {}
+  marked@17.0.1: {}
 
   math-intrinsics@1.1.0: {}
 
