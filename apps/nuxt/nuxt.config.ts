@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     "@nuxt/test-utils/module",
   ],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: tailwindcss(),
   },
   css: ['./app/assets/css/main.css'],
   devtools: { enabled: true },
