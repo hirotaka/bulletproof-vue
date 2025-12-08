@@ -17,7 +17,7 @@
       "prisma": "npm:empty-npm-package@1.0.0",
       "@prisma/client": "npm:empty-npm-package@1.0.0",
       "esbuild": ">=0.25.0",
-      "@types/node": "^22.0.0"
+      "@types/node": "^24.0.0"
     }
   },
   "devDependencies": {
