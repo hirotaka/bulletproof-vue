@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { factory, primaryKey } from '@mswjs/data'
 import { nanoid } from 'nanoid'
 
