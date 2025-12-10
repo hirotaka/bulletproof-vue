@@ -1,1 +1,3 @@
-cd apps/vue-vite && pnpm lint-staged && cd ../.. && cd apps/nuxt && pnpm lint-staged
+for app in vue-vite nuxt nuxt-regle; do
+  (cd apps/$app && pnpm lint-staged)
+done

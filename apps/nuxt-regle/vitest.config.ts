@@ -1,0 +1,28 @@
+import { defineVitestConfig } from "@nuxt/test-utils/config";
+
+export default defineVitestConfig({
+  test: {
+    environment: "nuxt",
+    globals: true,
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/.nuxt/**",
+      "**/e2e/**",
+      "**/__tests__/integration/**",
+    ],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      exclude: [
+        "node_modules/",
+        "test/",
+        "**/*.d.ts",
+        "**/*.config.*",
+        "**/mockServiceWorker.js",
+        "**/.nuxt/**",
+        "**/dist/**",
+      ],
+    },
+  },
+});
