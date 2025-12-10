@@ -2,11 +2,11 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed, watch, provide, reactive } from "vue";
 import { useRegleSchema } from "@regle/schemas";
-import type { ZodSchema } from "zod";
+import type { ZodObject } from "zod";
 import { cn } from "~base/app/lib/utils";
 
 interface Props {
-  schema: ZodSchema;
+  schema: ZodObject;
   class?: HTMLAttributes["class"];
   id?: string;
   initialValues?: Record<string, unknown>;
@@ -40,10 +40,7 @@ watch(
   () => props.initialValues,
   (newValues) => {
     if (newValues) {
-      Object.keys(newValues).forEach((key) => {
-        state[key] = newValues[key];
-      });
-      r$.$reset();
+      r$.$reset({toState: newValues});
     }
   },
   { deep: true }
@@ -51,7 +48,7 @@ watch(
 
 const formState = computed(() => ({
   errors: r$.$errors,
-  isSubmitting: '$pending' in r$ ? (r$ as { $pending: boolean }).$pending : false,
+  isSubmitting: r$.$pending,
 }));
 
 const onFormSubmit = async (e: Event) => {
@@ -64,11 +61,10 @@ const onFormSubmit = async (e: Event) => {
 
 const resetForm = (options?: { values?: Record<string, unknown> }) => {
   if (options?.values) {
-    Object.keys(options.values).forEach((key) => {
-      state[key] = options.values![key];
-    });
+    r$.$reset({toState: options.values});
+  } else {
+    r$.$reset({toInitialState: true});
   }
-  r$.$reset();
 };
 
 const setValues = (values: Record<string, unknown>) => {
