@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogFooter,
 } from '../index'
 import { useDisclosure } from "~base/app/composables/useDisclosure"
@@ -50,7 +51,10 @@ const TestDialog = defineComponent({
               {
                 default: () => [
                   h(DialogHeader, {}, {
-                    default: () => h(DialogTitle, {}, { default: () => titleText }),
+                    default: () => [
+                      h(DialogTitle, {}, { default: () => titleText }),
+                      h(DialogDescription, { class: 'sr-only' }, { default: () => 'Dialog description' }),
+                    ],
                   }),
                   h(DialogFooter, {}, {
                     default: () => [

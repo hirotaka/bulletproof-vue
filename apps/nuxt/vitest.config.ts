@@ -24,5 +24,11 @@ export default defineVitestConfig({
         "**/dist/**",
       ],
     },
+    onConsoleLog(log) {
+      // Suppress known warnings that can't be fixed at the moment
+      if (log.includes("<Suspense> is an experimental feature")) {
+        return false;
+      }
+    },
   },
 });
