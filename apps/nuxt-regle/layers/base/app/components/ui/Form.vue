@@ -2,11 +2,11 @@
 <script setup lang="ts">
 import { type HTMLAttributes, computed, watch, provide, reactive } from "vue";
 import { useRegleSchema } from "@regle/schemas";
-import type { ZodObject } from "zod";
+import type { ZodSchema } from "zod";
 import { cn } from "~base/app/lib/utils";
 
 interface Props {
-  schema: ZodObject;
+  schema: ZodSchema;
   class?: HTMLAttributes["class"];
   id?: string;
   initialValues?: Record<string, unknown>;
