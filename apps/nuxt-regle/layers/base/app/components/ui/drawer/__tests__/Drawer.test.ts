@@ -9,6 +9,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
+  DrawerDescription,
   DrawerFooter,
 } from '../index'
 import { useDisclosure } from "~base/app/composables/useDisclosure"
@@ -53,7 +54,10 @@ const TestDrawer = defineComponent({
                 default: () => [
                   h('div', { class: 'flex flex-col' }, [
                     h(DrawerHeader, {}, {
-                      default: () => h(DrawerTitle, {}, { default: () => titleText }),
+                      default: () => [
+                        h(DrawerTitle, {}, { default: () => titleText }),
+                        h(DrawerDescription, { class: 'sr-only' }, { default: () => 'Drawer description' }),
+                      ],
                     }),
                     h('div', {}, drawerContentText),
                   ]),
