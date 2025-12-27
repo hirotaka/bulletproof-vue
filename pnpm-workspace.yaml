@@ -2,3 +2,4 @@ packages:
   - 'apps/vue-vite'
   - 'apps/nuxt'
   - 'apps/nuxt-regle'
+  - 'apps/nuxt-tanstack-form'
