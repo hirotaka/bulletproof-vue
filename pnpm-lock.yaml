@@ -203,7 +203,7 @@ importers:
         version: 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.13.0
-        version: 1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)
+        version: 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -2477,6 +2477,20 @@ packages:
 
   '@regle/schemas@1.14.1':
     resolution: {integrity: sha512-cqz8yDbhsWm6us3jTbn4luGTPXFOI8JVN6DL2gQDRo8nXAvCWryhwVLM/4IRTlzcZRPFB7BSAyKCtz2Go3681w==}
+    peerDependencies:
+      arktype: ^2.1.0
+      valibot: ^1.0.0
+      zod: ^3.24.0 || ^4.0.0
+    peerDependenciesMeta:
+      arktype:
+        optional: true
+      valibot:
+        optional: true
+      zod:
+        optional: true
+
+  '@regle/schemas@1.14.7':
+    resolution: {integrity: sha512-teqbVcWUB3XKb5GWq56Ch2R/jIvrL2eSqBRywDf9WkuFJFZWFQtKBHB6UPGSXYGCPo1mIJq0a0/cV0sKSuVURg==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -10987,6 +11001,19 @@ snapshots:
     dependencies:
       '@regle/core': 1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@regle/rules': 1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
+      '@standard-schema/spec': 1.0.0
+      type-fest: 5.2.0
+    optionalDependencies:
+      zod: 4.2.0
+    transitivePeerDependencies:
+      - pinia
+      - vue
+    optional: true
+
+  '@regle/schemas@1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)':
+    dependencies:
+      '@regle/core': 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
+      '@regle/rules': 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@standard-schema/spec': 1.0.0
       type-fest: 5.2.0
     optionalDependencies:
