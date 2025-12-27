@@ -7,6 +7,7 @@ on:
       - "apps/nuxt/**"
       - "apps/nuxt-regle/**"
       - "apps/nuxt-tanstack-form/**"
+      - "apps/nuxt-formwerk/**"
       - "pnpm-lock.yaml"
       - ".github/workflows/nuxt-ci.yml"
   pull_request:
@@ -15,6 +16,7 @@ on:
       - "apps/nuxt/**"
       - "apps/nuxt-regle/**"
       - "apps/nuxt-tanstack-form/**"
+      - "apps/nuxt-formwerk/**"
       - "pnpm-lock.yaml"
       - ".github/workflows/nuxt-ci.yml"
 concurrency:
@@ -25,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: [nuxt, nuxt-regle, nuxt-tanstack-form]
+        app: [nuxt, nuxt-regle, nuxt-tanstack-form, nuxt-formwerk]
     defaults:
       run:
         working-directory: ./apps/${{ matrix.app }}
@@ -54,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: [nuxt, nuxt-regle, nuxt-tanstack-form]
+        app: [nuxt, nuxt-regle, nuxt-tanstack-form, nuxt-formwerk]
     defaults:
       run:
         working-directory: ./apps/${{ matrix.app }}
