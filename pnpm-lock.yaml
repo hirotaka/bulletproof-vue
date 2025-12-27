@@ -203,7 +203,7 @@ importers:
         version: 1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.13.0
-        version: 1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)
+        version: 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -2456,6 +2456,15 @@ packages:
       pinia:
         optional: true
 
+  '@regle/core@1.14.7':
+    resolution: {integrity: sha512-1G34NhTwjLa/l9ZFI5qKCnYVYV/Ab3Na+Zsy8uLQwvEdbOWqbknP3YO2TFbRqixO+Nu+REmEnQnf+LAVfjPiew==}
+    peerDependencies:
+      pinia: '>=2.2.5'
+      vue: 3.5.26
+    peerDependenciesMeta:
+      pinia:
+        optional: true
+
   '@regle/nuxt@1.14.1':
     resolution: {integrity: sha512-WHOWghnD7yC65LmRKO3gA++muau91jfNz6mlwSiA1M3t0cGZRWI0YA9NV0m7km+QYbhhzfpPydaO5QrdUZqTIA==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -2463,8 +2472,25 @@ packages:
   '@regle/rules@1.14.1':
     resolution: {integrity: sha512-b8vNtnD0VtOWzXJzw+ozs59y/Ctcpml/s6Lyd/RWwXVEJ7poJsp38Y4/x39miKChcn8FCX+NzLNc+ygiow9WYQ==}
 
+  '@regle/rules@1.14.7':
+    resolution: {integrity: sha512-0ZvGMscrCp1Pji/zGuCgYQ3D9ar7JbrcTEpkRO/qM+AWYWH1dRkcs5PYELo5+I9i6e16h3fDNwwWEMdVBfH4Og==}
+
   '@regle/schemas@1.14.1':
     resolution: {integrity: sha512-cqz8yDbhsWm6us3jTbn4luGTPXFOI8JVN6DL2gQDRo8nXAvCWryhwVLM/4IRTlzcZRPFB7BSAyKCtz2Go3681w==}
+    peerDependencies:
+      arktype: ^2.1.0
+      valibot: ^1.0.0
+      zod: ^3.24.0 || ^4.0.0
+    peerDependenciesMeta:
+      arktype:
+        optional: true
+      valibot:
+        optional: true
+      zod:
+        optional: true
+
+  '@regle/schemas@1.14.7':
+    resolution: {integrity: sha512-teqbVcWUB3XKb5GWq56Ch2R/jIvrL2eSqBRywDf9WkuFJFZWFQtKBHB6UPGSXYGCPo1mIJq0a0/cV0sKSuVURg==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -2685,6 +2711,9 @@ packages:
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
+  '@standard-schema/spec@1.1.0':
+    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
   '@storybook/addon-actions@8.6.14':
     resolution: {integrity: sha512-mDQxylxGGCQSK7tJPkD144J8jWh9IU9ziJMHfB84PKpI/V5ZgqMDnpr2bssTrUaGDqU5e1/z8KcRF+Melhs9pQ==}
@@ -10932,6 +10961,15 @@ snapshots:
     optionalDependencies:
       pinia: 3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
 
+  '@regle/core@1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))':
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      '@vue/devtools-api': 7.7.9
+      type-fest: 5.2.0
+      vue: 3.5.26(typescript@5.9.3)
+    optionalDependencies:
+      pinia: 3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
+
   '@regle/nuxt@1.14.1(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)':
     dependencies:
       '@nuxt/kit': 4.2.1(magicast@0.5.1)
@@ -10956,10 +10994,31 @@ snapshots:
       - pinia
       - vue
 
+  '@regle/rules@1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))':
+    dependencies:
+      '@regle/core': 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
+      type-fest: 5.2.0
+    transitivePeerDependencies:
+      - pinia
+      - vue
+
   '@regle/schemas@1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)':
     dependencies:
       '@regle/core': 1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@regle/rules': 1.14.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
+      '@standard-schema/spec': 1.0.0
+      type-fest: 5.2.0
+    optionalDependencies:
+      zod: 4.2.0
+    transitivePeerDependencies:
+      - pinia
+      - vue
+    optional: true
+
+  '@regle/schemas@1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.2.0)':
+    dependencies:
+      '@regle/core': 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
+      '@regle/rules': 1.14.7(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@standard-schema/spec': 1.0.0
       type-fest: 5.2.0
     optionalDependencies:
@@ -11112,6 +11171,8 @@ snapshots:
   '@speed-highlight/core@1.2.12': {}
 
   '@standard-schema/spec@1.0.0': {}
+
+  '@standard-schema/spec@1.1.0': {}
 
   '@storybook/addon-actions@8.6.14(storybook@8.6.15(prettier@3.7.4))':
     dependencies:
@@ -14795,7 +14856,7 @@ snapshots:
       '@hapi/pinpoint': 2.0.1
       '@hapi/tlds': 1.1.4
       '@hapi/topo': 6.0.2
-      '@standard-schema/spec': 1.0.0
+      '@standard-schema/spec': 1.1.0
 
   jose@6.1.3: {}
 
