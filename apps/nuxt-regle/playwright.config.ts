@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 import type { ConfigOptions } from "@nuxt/test-utils/playwright";
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from "url";
 
 /**
  * Read environment variables from file.
@@ -40,32 +40,32 @@ export default defineConfig<ConfigOptions>({
   /* Run tests simultaneously on a single worker */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html', { outputFolder: 'playwright/playwright-report' }]],
+  reporter: [["html", { outputFolder: "playwright/playwright-report" }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   /* Output directory for test results */
-  outputDir: './playwright/test-results',
+  outputDir: "./playwright/test-results",
   use: {
     nuxt: {
       rootDir: fileURLToPath(new URL(".", import.meta.url)),
       host: `http://localhost:${PORT}`,
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'setup',
+      name: "setup",
       testMatch: /.*\.setup\.ts$/,
     },
     {
-      name: 'chromium',
+      name: "chromium",
       use: {
-        ...devices['Desktop Chrome'],
-        storageState: 'e2e/.auth/user.json',
+        ...devices["Desktop Chrome"],
+        storageState: "e2e/.auth/user.json",
       },
-      dependencies: ['setup'],
+      dependencies: ["setup"],
     },
   ],
 });

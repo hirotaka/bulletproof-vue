@@ -66,8 +66,9 @@ export default defineEventHandler(async (event) => {
         createdAt: user.createdAt,
       },
     };
-  } catch (error: unknown) {
-    if (error && typeof error === 'object' && 'statusCode' in error) {
+  }
+  catch (error: unknown) {
+    if (error && typeof error === "object" && "statusCode" in error) {
       throw error;
     }
 

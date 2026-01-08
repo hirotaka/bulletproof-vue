@@ -91,7 +91,10 @@ const nextPage = () => {
       <span class="sr-only">Previous page</span>
     </Button>
 
-    <template v-for="(page, index) in pages" :key="index">
+    <template
+      v-for="(page, index) in pages"
+      :key="index"
+    >
       <Button
         v-if="typeof page === 'number'"
         :variant="page === currentPage ? 'outline' : 'ghost'"
@@ -101,7 +104,10 @@ const nextPage = () => {
       >
         {{ page }}
       </Button>
-      <span v-else class="px-2 text-sm text-muted-foreground">{{ page }}</span>
+      <span
+        v-else
+        class="px-2 text-sm text-muted-foreground"
+      >{{ page }}</span>
     </template>
 
     <Button

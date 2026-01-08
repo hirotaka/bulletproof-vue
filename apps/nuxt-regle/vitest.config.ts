@@ -27,9 +27,9 @@ export default defineVitestConfig({
     onConsoleLog(log) {
       // Suppress known warnings that can't be fixed at the moment
       if (
-        log.includes("<Suspense> is an experimental feature") ||
-        log.includes('injection "Symbol(regle)" not found') ||
-        log.includes("Regle Devtools are not available")
+        log.includes("<Suspense> is an experimental feature")
+        || log.includes("injection \"Symbol(regle)\" not found")
+        || log.includes("Regle Devtools are not available")
       ) {
         return false;
       }

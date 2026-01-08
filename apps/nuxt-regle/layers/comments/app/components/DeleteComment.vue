@@ -1,40 +1,41 @@
 <script setup lang="ts">
-import { Trash } from 'lucide-vue-next'
-import { ref } from 'vue'
-import { useDeleteComment } from "~comments/app/composables/useDeleteComment"
-import { useNotifications } from '#layers/base/app/composables/useNotifications'
+import { Trash } from "lucide-vue-next";
+import { ref } from "vue";
+import { useDeleteComment } from "~comments/app/composables/useDeleteComment";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
 
 interface DeleteCommentProps {
-  commentId: string
+  commentId: string;
 }
 
-const props = defineProps<DeleteCommentProps>()
+const props = defineProps<DeleteCommentProps>();
 const emit = defineEmits<{
-  deleted: []
-}>()
+  deleted: [];
+}>();
 
-const { addNotification } = useNotifications()
-const isOpen = ref(false)
+const { addNotification } = useNotifications();
+const isOpen = ref(false);
 
 const deleteComment = useDeleteComment({
   onSuccess: async () => {
     addNotification({
-      type: 'success',
-      title: 'Comment Deleted',
-    })
-    await refreshNuxtData()
-    isOpen.value = false
-    emit('deleted')
+      type: "success",
+      title: "Comment Deleted",
+    });
+    await refreshNuxtData();
+    isOpen.value = false;
+    emit("deleted");
   },
-})
+});
 
 const handleDelete = async () => {
   try {
-    await deleteComment.mutate(props.commentId)
-  } catch {
+    await deleteComment.mutate(props.commentId);
+  }
+  catch {
     // Error is already handled in the composable
   }
-}
+};
 </script>
 
 <template>
@@ -48,7 +49,10 @@ const handleDelete = async () => {
     @confirm="handleDelete"
   >
     <template #triggerButton>
-      <UButton variant="destructive" size="sm">
+      <UButton
+        variant="destructive"
+        size="sm"
+      >
         <template #icon>
           <Trash class="size-4" />
         </template>

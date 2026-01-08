@@ -28,11 +28,11 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  'update:checked': [value: boolean];
+  "update:checked": [value: boolean];
 }>();
 
 const handleCheckedChange = (value: boolean) => {
-  emit('update:checked', value);
+  emit("update:checked", value);
 };
 </script>
 

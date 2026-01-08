@@ -37,7 +37,11 @@ const props = defineProps<Props>();
         stroke-linejoin="round"
         class="h-3.5 w-3.5 fill-primary"
       >
-        <circle cx="12" cy="12" r="10" />
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+        />
       </svg>
     </RadioGroupIndicator>
   </RadioGroupItem>

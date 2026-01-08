@@ -21,12 +21,12 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  submit: [values: Record<string, unknown>]
+  submit: [values: Record<string, unknown>];
 }>();
 
 // Create reactive state from initialValues or empty object
 const state = reactive<Record<string, unknown>>(
-  props.initialValues ? { ...props.initialValues } : {}
+  props.initialValues ? { ...props.initialValues } : {},
 );
 
 // Use Regle with Zod schema
@@ -40,10 +40,10 @@ watch(
   () => props.initialValues,
   (newValues) => {
     if (newValues) {
-      r$.$reset({toState: newValues});
+      r$.$reset({ toState: newValues });
     }
   },
-  { deep: true }
+  { deep: true },
 );
 
 const formState = computed(() => ({
@@ -55,15 +55,16 @@ const onFormSubmit = async (e: Event) => {
   e.preventDefault();
   const result = await r$.$validate();
   if (result.valid) {
-    emit('submit', result.data as Record<string, unknown>);
+    emit("submit", result.data as Record<string, unknown>);
   }
 };
 
 const resetForm = (options?: { values?: Record<string, unknown> }) => {
   if (options?.values) {
-    r$.$reset({toState: options.values});
-  } else {
-    r$.$reset({toInitialState: true});
+    r$.$reset({ toState: options.values });
+  }
+  else {
+    r$.$reset({ toInitialState: true });
   }
 };
 
@@ -93,6 +94,9 @@ defineExpose({
     :class="cn('space-y-6', props.class)"
     @submit="onFormSubmit"
   >
-    <slot :form-state="formState" :reset-form="resetForm" />
+    <slot
+      :form-state="formState"
+      :reset-form="resetForm"
+    />
   </form>
 </template>

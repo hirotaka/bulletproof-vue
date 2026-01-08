@@ -67,13 +67,15 @@ export function useMutation<TInput, TOutput>(
         data = await (
           mutationFn as (input: TInput) => Promise<TOutput>
         )(input);
-      } else {
+      }
+      else {
         data = await (mutationFn as () => Promise<TOutput>)();
       }
       isSuccess.value = true;
       config?.onSuccess?.(data);
       return data;
-    } catch (err: unknown) {
+    }
+    catch (err: unknown) {
       const message = extractErrorMessage(err, "Operation failed");
       error.value = new Error(message);
 
@@ -87,7 +89,8 @@ export function useMutation<TInput, TOutput>(
 
       config?.onError?.(error.value);
       throw error.value;
-    } finally {
+    }
+    finally {
       isPending.value = false;
     }
   };

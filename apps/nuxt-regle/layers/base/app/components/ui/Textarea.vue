@@ -38,9 +38,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   "update:modelValue": [value: string];
-  input: [event: Event];
-  focus: [event: FocusEvent];
-  blur: [event: FocusEvent];
+  "input": [event: Event];
+  "focus": [event: FocusEvent];
+  "blur": [event: FocusEvent];
 }>();
 
 const textareaRef = ref<HTMLTextAreaElement | null>(null);
@@ -59,7 +59,7 @@ const adjustHeight = () => {
   const textarea = textareaRef.value;
 
   // Reset height to auto to get the correct scrollHeight
-  textarea.style.height = 'auto';
+  textarea.style.height = "auto";
 
   // Calculate new height based on content
   let newHeight = textarea.scrollHeight;
@@ -129,12 +129,15 @@ watch(
         adjustHeight();
       });
     }
-  }
+  },
 );
 </script>
 
 <template>
-  <FieldWrapper :label="label" :error="errorMessage">
+  <FieldWrapper
+    :label="label"
+    :error="errorMessage"
+  >
     <textarea
       :id="name"
       ref="textareaRef"

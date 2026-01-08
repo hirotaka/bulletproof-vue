@@ -33,8 +33,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   "update:open": [value: boolean];
-  confirm: [];
-  cancel: [];
+  "confirm": [];
+  "cancel": [];
 }>();
 
 const icon = computed(() => {
@@ -63,8 +63,14 @@ const handleOpenChange = (value: boolean) => {
 </script>
 
 <template>
-  <DialogRoot :open="open" @update:open="handleOpenChange">
-    <DialogTrigger as-child :aria-hidden="open ? 'true' : undefined">
+  <DialogRoot
+    :open="open"
+    @update:open="handleOpenChange"
+  >
+    <DialogTrigger
+      as-child
+      :aria-hidden="open ? 'true' : undefined"
+    >
       <slot name="triggerButton" />
     </DialogTrigger>
     <DialogContent>

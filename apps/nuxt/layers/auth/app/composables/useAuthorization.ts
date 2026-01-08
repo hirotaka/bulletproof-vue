@@ -1,37 +1,37 @@
-import type { User } from '~auth/shared/types'
-import type { Comment } from '#layers/comments/shared/types'
+import type { User } from "~auth/shared/types";
+import type { Comment } from "#layers/comments/shared/types";
 
 export enum ROLES {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
+  ADMIN = "ADMIN",
+  USER = "USER",
 }
 
-export type RoleTypes = keyof typeof ROLES
+export type RoleTypes = keyof typeof ROLES;
 
 export const POLICIES = {
-  'comment:delete': (user: User, comment: Comment) => {
-    if (user.role === 'ADMIN') {
-      return true
+  "comment:delete": (user: User, comment: Comment) => {
+    if (user.role === "ADMIN") {
+      return true;
     }
 
-    if (user.role === 'USER' && comment.authorId === user.id) {
-      return true
+    if (user.role === "USER" && comment.authorId === user.id) {
+      return true;
     }
 
-    return false
+    return false;
   },
-}
+};
 
 export const useAuthorization = () => {
-  const { user } = useUser()
+  const { user } = useUser();
 
   const checkAccess = ({ allowedRoles }: { allowedRoles: RoleTypes[] }) => {
     if (allowedRoles && allowedRoles.length > 0 && user.value) {
-      return allowedRoles?.includes(user.value.role as RoleTypes)
+      return allowedRoles?.includes(user.value.role as RoleTypes);
     }
 
-    return true
-  }
+    return true;
+  };
 
-  return { checkAccess, role: user.value?.role }
-}
+  return { checkAccess, role: user.value?.role };
+};

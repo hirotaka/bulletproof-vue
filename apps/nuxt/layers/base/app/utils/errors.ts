@@ -15,11 +15,11 @@ export function extractErrorMessage(
 
   // Handle Nuxt $fetch error format: err.data.message
   if (
-    "data" in err &&
-    err.data &&
-    typeof err.data === "object" &&
-    "message" in err.data &&
-    typeof err.data.message === "string"
+    "data" in err
+    && err.data
+    && typeof err.data === "object"
+    && "message" in err.data
+    && typeof err.data.message === "string"
   ) {
     return err.data.message;
   }

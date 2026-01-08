@@ -1,6 +1,6 @@
-import type { H3Event } from 'h3';
-import { users } from '~~/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import type { H3Event } from "h3";
+import { users } from "~~/db/schema";
+import { eq, desc } from "drizzle-orm";
 
 export interface User {
   id: string;
@@ -8,7 +8,7 @@ export interface User {
   firstName: string;
   lastName: string;
   bio?: string;
-  role: 'ADMIN' | 'USER';
+  role: "ADMIN" | "USER";
   teamId: string;
   createdAt: Date;
 }
@@ -33,7 +33,7 @@ export const createUserRepository = async (event: H3Event) => {
       firstName: result.firstName,
       lastName: result.lastName,
       bio: result.bio ?? undefined,
-      role: result.role as 'ADMIN' | 'USER',
+      role: result.role as "ADMIN" | "USER",
       teamId: result.teamId,
       password: result.password,
       createdAt: result.createdAt,
@@ -53,7 +53,7 @@ export const createUserRepository = async (event: H3Event) => {
       firstName: result.firstName,
       lastName: result.lastName,
       bio: result.bio ?? undefined,
-      role: result.role as 'ADMIN' | 'USER',
+      role: result.role as "ADMIN" | "USER",
       teamId: result.teamId,
       createdAt: result.createdAt,
     };
@@ -71,7 +71,7 @@ export const createUserRepository = async (event: H3Event) => {
       firstName: user.firstName,
       lastName: user.lastName,
       bio: user.bio ?? undefined,
-      role: user.role as 'ADMIN' | 'USER',
+      role: user.role as "ADMIN" | "USER",
       teamId: user.teamId,
       createdAt: user.createdAt,
     }));
@@ -83,7 +83,7 @@ export const createUserRepository = async (event: H3Event) => {
     lastName: string;
     password: string;
     teamId: string;
-    role?: 'ADMIN' | 'USER';
+    role?: "ADMIN" | "USER";
   }): Promise<User> => {
     const [user] = await db
       .insert(users)
@@ -93,12 +93,12 @@ export const createUserRepository = async (event: H3Event) => {
         lastName: data.lastName,
         password: data.password,
         teamId: data.teamId,
-        role: data.role || 'USER',
+        role: data.role || "USER",
       })
       .returning();
 
     if (!user) {
-      throw new Error('Failed to create user');
+      throw new Error("Failed to create user");
     }
 
     return {
@@ -107,7 +107,7 @@ export const createUserRepository = async (event: H3Event) => {
       firstName: user.firstName,
       lastName: user.lastName,
       bio: user.bio ?? undefined,
-      role: user.role as 'ADMIN' | 'USER',
+      role: user.role as "ADMIN" | "USER",
       teamId: user.teamId,
       createdAt: user.createdAt,
     };
@@ -120,7 +120,7 @@ export const createUserRepository = async (event: H3Event) => {
       firstName?: string;
       lastName?: string;
       bio?: string;
-    }
+    },
   ): Promise<User> => {
     const [user] = await db
       .update(users)
@@ -129,7 +129,7 @@ export const createUserRepository = async (event: H3Event) => {
       .returning();
 
     if (!user) {
-      throw new Error('Failed to update user');
+      throw new Error("Failed to update user");
     }
 
     return {
@@ -138,7 +138,7 @@ export const createUserRepository = async (event: H3Event) => {
       firstName: user.firstName,
       lastName: user.lastName,
       bio: user.bio ?? undefined,
-      role: user.role as 'ADMIN' | 'USER',
+      role: user.role as "ADMIN" | "USER",
       teamId: user.teamId,
       createdAt: user.createdAt,
     };

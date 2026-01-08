@@ -1,11 +1,11 @@
 <script setup lang="ts">
 interface ContentLayoutProps {
-  title?: string
+  title?: string;
 }
 
-const props = defineProps<ContentLayoutProps>()
+const props = defineProps<ContentLayoutProps>();
 
-const title = computed(() => props.title || '')
+const title = computed(() => props.title || "");
 </script>
 
 <template>

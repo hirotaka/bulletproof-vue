@@ -11,7 +11,7 @@ vi.mock("vue-router", async () => {
     useRoute: vi.fn(() => ({
       query: {},
       params: {},
-      path: '/auth/register',
+      path: "/auth/register",
     })),
   };
 });
@@ -45,8 +45,8 @@ test("should register new user and call onSuccess cb which should navigate the u
   mockFetch.mockResolvedValueOnce([]);
 
   await renderComponent(RegisterForm, {
-    url: '/auth/register',
-    path: '/auth/register',
+    url: "/auth/register",
+    path: "/auth/register",
     props: {
       onSuccess,
       chooseTeam: false,
@@ -72,7 +72,7 @@ test("should register new user and call onSuccess cb which should navigate the u
 
   // Verify $fetch was called with correct parameters (skip the first call which is for teams)
   const registerCall = mockFetch.mock.calls.find(
-    (call) => call[0] === "/api/auth/register"
+    call => call[0] === "/api/auth/register",
   );
   expect(registerCall).toBeDefined();
   expect(registerCall?.[1]).toMatchObject({

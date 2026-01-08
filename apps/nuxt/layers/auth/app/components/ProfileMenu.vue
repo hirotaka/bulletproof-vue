@@ -1,29 +1,37 @@
 <script setup lang="ts">
-import { useUser } from '~auth/app/composables/useUser'
-import { useLogout } from '~auth/app/composables/useLogout'
+import { useUser } from "~auth/app/composables/useUser";
+import { useLogout } from "~auth/app/composables/useLogout";
 
-const { user, isAuthenticated } = useUser()
-const route = useRoute()
-const router = useRouter()
+const { user, isAuthenticated } = useUser();
+const route = useRoute();
+const router = useRouter();
 
-const logout = useLogout()
+const logout = useLogout();
 
 const handleLogout = async () => {
   try {
-    const currentPath = route.fullPath
-    await logout.mutate()
-    await router.push(`/auth/login?redirectTo=${encodeURIComponent(currentPath)}`)
-  } catch (error) {
-    console.error('Logout failed:', error)
+    const currentPath = route.fullPath;
+    await logout.mutate();
+    await router.push(`/auth/login?redirectTo=${encodeURIComponent(currentPath)}`);
   }
-}
+  catch (error) {
+    console.error("Logout failed:", error);
+  }
+};
 </script>
 
 <template>
-  <div v-if="isAuthenticated" class="flex items-center gap-4">
+  <div
+    v-if="isAuthenticated"
+    class="flex items-center gap-4"
+  >
     <div class="text-sm">
-      <p class="font-medium">{{ user?.firstName }} {{ user?.lastName }}</p>
-      <p class="text-gray-600">{{ user?.email }}</p>
+      <p class="font-medium">
+        {{ user?.firstName }} {{ user?.lastName }}
+      </p>
+      <p class="text-gray-600">
+        {{ user?.email }}
+      </p>
     </div>
     <button
       :disabled="logout.isPending.value"
@@ -33,7 +41,13 @@ const handleLogout = async () => {
       {{ logout.isPending.value ? 'Logging out...' : 'Logout' }}
     </button>
   </div>
-  <div v-else class="text-sm">
-    <NuxtLink to="/auth/login" class="text-blue-600 hover:underline">Log In</NuxtLink>
+  <div
+    v-else
+    class="text-sm"
+  >
+    <NuxtLink
+      to="/auth/login"
+      class="text-blue-600 hover:underline"
+    >Log In</NuxtLink>
   </div>
 </template>

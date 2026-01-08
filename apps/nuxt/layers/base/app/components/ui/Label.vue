@@ -30,6 +30,9 @@ const props = withDefaults(defineProps<Props>(), {
     "
   >
     <slot />
-    <span v-if="required" class="ml-1 text-destructive">*</span>
+    <span
+      v-if="required"
+      class="ml-1 text-destructive"
+    >*</span>
   </label>
 </template>

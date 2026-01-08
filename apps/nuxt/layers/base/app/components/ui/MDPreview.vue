@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { parse } from 'marked'
+import { parse } from "marked";
 
 interface MDPreviewProps {
-  value?: string
+  value?: string;
 }
 
 withDefaults(defineProps<MDPreviewProps>(), {
-  value: '',
-})
+  value: "",
+});
 </script>
 
 <template>
-  <div v-dompurify-html="parse(value)" class="prose prose-slate w-full p-2" />
+  <div
+    v-dompurify-html="parse(value)"
+    class="prose prose-slate w-full p-2"
+  />
 </template>

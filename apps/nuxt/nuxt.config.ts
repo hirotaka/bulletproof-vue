@@ -1,12 +1,7 @@
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2025-07-15",
-  // Nuxt 4 compatibility
-  future: {
-    compatibilityVersion: 4,
-  },
   // Layers configuration
   extends: [
     "./layers/base",
@@ -22,24 +17,37 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxt/test-utils/module",
   ],
-  vite: {
-    plugins: tailwindcss(),
-  },
-  css: ['./app/assets/css/main.css'],
   devtools: { enabled: true },
   app: {
     head: {
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
-      ]
-    }
+        { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      ],
+    },
+  },
+  css: ["./app/assets/css/main.css"],
+  // Nuxt 4 compatibility
+  future: {
+    compatibilityVersion: 4,
+  },
+  // Nuxt 4 experimental features
+  experimental: {
+    sharedPrerenderData: true,
+  },
+  compatibilityDate: "2025-07-15",
+  vite: {
+    plugins: tailwindcss(),
   },
   typescript: {
     strict: true,
     typeCheck: true,
   },
-  // Nuxt 4 experimental features
-  experimental: {
-    sharedPrerenderData: true,
+  eslint: {
+    config: {
+      stylistic: {
+        quotes: "double",
+        semi: true,
+      },
+    },
   },
 });

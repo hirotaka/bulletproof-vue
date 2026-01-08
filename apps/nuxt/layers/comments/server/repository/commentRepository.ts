@@ -1,7 +1,7 @@
-import type { H3Event } from 'h3';
-import type { Comment, PaginatedComments } from '~comments/shared/types';
-import { comments, users } from '~~/db/schema';
-import { eq, desc, sql } from 'drizzle-orm';
+import type { H3Event } from "h3";
+import type { Comment, PaginatedComments } from "~comments/shared/types";
+import { comments, users } from "~~/db/schema";
+import { eq, desc, sql } from "drizzle-orm";
 
 export const createCommentRepository = async (event: H3Event) => {
   const db = await useDb(event);
@@ -82,7 +82,7 @@ export const createCommentRepository = async (event: H3Event) => {
       .returning();
 
     if (!comment) {
-      throw new Error('Failed to create comment');
+      throw new Error("Failed to create comment");
     }
 
     const author = await db.query.users.findFirst({

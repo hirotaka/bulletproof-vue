@@ -1,6 +1,6 @@
-import type { H3Event } from 'h3';
-import { teams } from '~~/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import type { H3Event } from "h3";
+import { teams } from "~~/db/schema";
+import { eq, desc } from "drizzle-orm";
 
 export interface Team {
   id: string;
@@ -19,7 +19,7 @@ export const createTeamRepository = async (event: H3Event) => {
       .returning();
 
     if (!team) {
-      throw new Error('Failed to create team');
+      throw new Error("Failed to create team");
     }
 
     return {

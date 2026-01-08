@@ -27,3 +27,6 @@ storybook-static
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code
+CLAUDE.md

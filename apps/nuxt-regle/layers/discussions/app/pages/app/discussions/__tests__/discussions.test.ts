@@ -1,33 +1,33 @@
-import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { waitFor } from '@testing-library/vue'
-import { mountSuspended } from '@nuxt/test-utils/runtime'
-import type { Discussion, PaginatedDiscussions } from '~discussions/shared/types'
-import type { User } from '~auth/shared/types'
+import { describe, test, expect, vi, beforeEach } from "vitest";
+import { waitFor } from "@testing-library/vue";
+import { mountSuspended } from "@nuxt/test-utils/runtime";
+import type { Discussion, PaginatedDiscussions } from "~discussions/shared/types";
+import type { User } from "~auth/shared/types";
 
 // Import components after mocks
-import DiscussionsList from '~discussions/app/components/DiscussionsList.vue'
-import CreateDiscussion from '~discussions/app/components/CreateDiscussion.vue'
+import DiscussionsList from "~discussions/app/components/DiscussionsList.vue";
+import CreateDiscussion from "~discussions/app/components/CreateDiscussion.vue";
 
 // Use vi.hoisted to define mock data that can be used in vi.mock factories
 const { mockUser, mockPaginatedDiscussions } = vi.hoisted(() => {
   const mockUser: User = {
-    id: '1',
-    email: 'test@example.com',
-    firstName: 'Test',
-    lastName: 'User',
-    role: 'ADMIN',
-    bio: '',
-    teamId: 'team-1',
+    id: "1",
+    email: "test@example.com",
+    firstName: "Test",
+    lastName: "User",
+    role: "ADMIN",
+    bio: "",
+    teamId: "team-1",
     createdAt: new Date(),
-  }
+  };
 
   const mockDiscussions: Discussion[] = [
     {
-      id: '1',
-      title: 'First Discussion',
-      body: 'First discussion body',
+      id: "1",
+      title: "First Discussion",
+      body: "First discussion body",
       authorId: mockUser.id,
-      teamId: 'team-1',
+      teamId: "team-1",
       createdAt: new Date(),
       updatedAt: new Date(),
       author: {
@@ -37,11 +37,11 @@ const { mockUser, mockPaginatedDiscussions } = vi.hoisted(() => {
       },
     },
     {
-      id: '2',
-      title: 'Second Discussion',
-      body: 'Second discussion body',
+      id: "2",
+      title: "Second Discussion",
+      body: "Second discussion body",
       authorId: mockUser.id,
-      teamId: 'team-1',
+      teamId: "team-1",
       createdAt: new Date(Date.now() - 1000),
       updatedAt: new Date(Date.now() - 1000),
       author: {
@@ -50,7 +50,7 @@ const { mockUser, mockPaginatedDiscussions } = vi.hoisted(() => {
         lastName: mockUser.lastName,
       },
     },
-  ]
+  ];
 
   const mockPaginatedDiscussions: PaginatedDiscussions = {
     data: mockDiscussions,
@@ -60,14 +60,14 @@ const { mockUser, mockPaginatedDiscussions } = vi.hoisted(() => {
       total: mockDiscussions.length,
       totalPages: 1,
     },
-  }
+  };
 
-  return { mockUser, mockDiscussions, mockPaginatedDiscussions }
-})
+  return { mockUser, mockDiscussions, mockPaginatedDiscussions };
+});
 
 // Mock Nuxt composables
-vi.mock('#imports', async () => {
-  const actual = await vi.importActual('#imports')
+vi.mock("#imports", async () => {
+  const actual = await vi.importActual("#imports");
   return {
     ...(actual as object),
     useHead: vi.fn(),
@@ -82,11 +82,11 @@ vi.mock('#imports', async () => {
     }),
     refreshNuxtData: vi.fn(),
     useFetch: vi.fn(),
-  }
-})
+  };
+});
 
 // Mock useDiscussions composable
-vi.mock('~discussions/app/composables/useDiscussions', () => ({
+vi.mock("~discussions/app/composables/useDiscussions", () => ({
   useDiscussions: () => ({
     data: { value: mockPaginatedDiscussions },
     isPending: { value: false },
@@ -95,55 +95,55 @@ vi.mock('~discussions/app/composables/useDiscussions', () => ({
     fetch: vi.fn(),
     refresh: vi.fn(),
   }),
-}))
+}));
 
 // Mock useCreateDiscussion composable
-vi.mock('~discussions/app/composables/useCreateDiscussion', () => ({
+vi.mock("~discussions/app/composables/useCreateDiscussion", () => ({
   useCreateDiscussion: () => ({
     mutate: vi.fn(),
     isPending: { value: false },
     isSuccess: { value: false },
     error: { value: null },
   }),
-}))
+}));
 
 // Mock useDeleteDiscussion composable
-vi.mock('~discussions/app/composables/useDeleteDiscussion', () => ({
+vi.mock("~discussions/app/composables/useDeleteDiscussion", () => ({
   useDeleteDiscussion: () => ({
     mutate: vi.fn(),
     isPending: { value: false },
     isSuccess: { value: false },
     error: { value: null },
   }),
-}))
+}));
 
 // Mock useUser composable
-vi.mock('#layers/auth/app/composables/useUser', () => ({
+vi.mock("#layers/auth/app/composables/useUser", () => ({
   useUser: () => ({
     user: { value: mockUser },
     isAdmin: { value: true },
   }),
-}))
+}));
 
 // Mock useNotifications composable
-vi.mock('#layers/base/app/composables/useNotifications', () => ({
+vi.mock("#layers/base/app/composables/useNotifications", () => ({
   useNotifications: () => ({
     addNotification: vi.fn(),
   }),
-}))
+}));
 
-describe('Discussions Page', () => {
+describe("Discussions Page", () => {
   beforeEach(() => {
-    vi.clearAllMocks()
-  })
+    vi.clearAllMocks();
+  });
 
-  test('should render discussions list', async () => {
+  test("should render discussions list", async () => {
     const wrapper = await mountSuspended(DiscussionsList, {
       global: {
         stubs: {
           NuxtLink: {
-            template: '<a><slot /></a>',
-            props: ['to'],
+            template: "<a><slot /></a>",
+            props: ["to"],
           },
           USpinner: true,
           UTable: {
@@ -158,29 +158,29 @@ describe('Discussions Page', () => {
                 </table>
               </div>
             `,
-            props: ['data', 'columns', 'pagination'],
+            props: ["data", "columns", "pagination"],
           },
           DeleteDiscussion: true,
         },
       },
-    })
+    });
 
     await waitFor(() => {
-      expect(wrapper.text()).toContain('First Discussion')
-      expect(wrapper.text()).toContain('Second Discussion')
-    })
-  })
+      expect(wrapper.text()).toContain("First Discussion");
+      expect(wrapper.text()).toContain("Second Discussion");
+    });
+  });
 
-  test('should render create discussion button', async () => {
+  test("should render create discussion button", async () => {
     const wrapper = await mountSuspended(CreateDiscussion, {
       global: {
         stubs: {
           UFormDrawer: {
-            template: '<div><slot name="triggerButton" /></div>',
+            template: "<div><slot name=\"triggerButton\" /></div>",
           },
           UButton: {
-            template: '<button><slot name="icon" /><slot /></button>',
-            props: ['size', 'isLoading'],
+            template: "<button><slot name=\"icon\" /><slot /></button>",
+            props: ["size", "isLoading"],
           },
           UForm: true,
           UInput: true,
@@ -188,8 +188,8 @@ describe('Discussions Page', () => {
           Plus: true,
         },
       },
-    })
+    });
 
-    expect(wrapper.text()).toContain('Create Discussion')
-  })
-})
+    expect(wrapper.text()).toContain("Create Discussion");
+  });
+});

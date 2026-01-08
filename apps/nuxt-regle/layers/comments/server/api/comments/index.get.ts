@@ -26,7 +26,8 @@ export default defineEventHandler(async (event): Promise<PaginatedComments> => {
     });
 
     return comments;
-  } catch (error: unknown) {
+  }
+  catch (error: unknown) {
     if (error && typeof error === "object" && "statusCode" in error) {
       throw error;
     }

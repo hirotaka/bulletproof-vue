@@ -7,7 +7,7 @@ import {
   randPassword,
   randCatchPhrase,
   randText,
-} from '@ngneat/falso';
+} from "@ngneat/falso";
 
 const generateUser = () => ({
   id: randUuid() + Math.random(),
@@ -17,7 +17,7 @@ const generateUser = () => ({
   password: randPassword(),
   teamId: randUuid(),
   teamName: randCompanyName(),
-  role: 'ADMIN',
+  role: "ADMIN",
   bio: randParagraph(),
   createdAt: Date.now(),
 });

@@ -1,40 +1,43 @@
 <script setup lang="ts">
-import { watch } from 'vue'
-import { DialogClose } from 'reka-ui'
-import { useDisclosure } from '#layers/base/app/composables/useDisclosure'
-import DrawerRoot from './drawer/DrawerRoot.vue'
-import DrawerTrigger from './drawer/DrawerTrigger.vue'
-import DrawerContent from './drawer/DrawerContent.vue'
-import DrawerHeader from './drawer/DrawerHeader.vue'
-import DrawerTitle from './drawer/DrawerTitle.vue'
-import DrawerDescription from './drawer/DrawerDescription.vue'
-import DrawerFooter from './drawer/DrawerFooter.vue'
-import Button from './Button.vue'
+import { watch } from "vue";
+import { DialogClose } from "reka-ui";
+import { useDisclosure } from "#layers/base/app/composables/useDisclosure";
+import DrawerRoot from "./drawer/DrawerRoot.vue";
+import DrawerTrigger from "./drawer/DrawerTrigger.vue";
+import DrawerContent from "./drawer/DrawerContent.vue";
+import DrawerHeader from "./drawer/DrawerHeader.vue";
+import DrawerTitle from "./drawer/DrawerTitle.vue";
+import DrawerDescription from "./drawer/DrawerDescription.vue";
+import DrawerFooter from "./drawer/DrawerFooter.vue";
+import Button from "./Button.vue";
 
 interface Props {
-  isDone?: boolean
-  title: string
+  isDone?: boolean;
+  title: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isDone: false,
-})
+});
 
-const { isOpen, open, close } = useDisclosure()
+const { isOpen, open, close } = useDisclosure();
 
 // Close drawer when form submission is done
 watch(
   () => props.isDone,
   (newValue) => {
     if (newValue) {
-      close()
+      close();
     }
   },
-)
+);
 </script>
 
 <template>
-  <DrawerRoot :open="isOpen" @update:open="(value) => value ? open() : close()">
+  <DrawerRoot
+    :open="isOpen"
+    @update:open="(value) => value ? open() : close()"
+  >
     <DrawerTrigger as-child>
       <slot name="triggerButton" />
     </DrawerTrigger>
@@ -52,7 +55,10 @@ watch(
       </div>
       <DrawerFooter>
         <DialogClose as-child>
-          <Button variant="outline" type="button">
+          <Button
+            variant="outline"
+            type="button"
+          >
             Close
           </Button>
         </DialogClose>

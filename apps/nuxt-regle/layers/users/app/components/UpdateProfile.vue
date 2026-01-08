@@ -1,48 +1,51 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Pen } from 'lucide-vue-next'
-import { useUpdateProfile } from '~users/app/composables/useUpdateProfile'
-import { updateProfileInputSchema, type UpdateProfileInput } from '~users/shared/schemas'
-import { useNotifications } from '#layers/base/app/composables/useNotifications'
-import { useUser } from '#layers/auth/app/composables/useUser'
+import { computed } from "vue";
+import { Pen } from "lucide-vue-next";
+import { useUpdateProfile } from "~users/app/composables/useUpdateProfile";
+import { updateProfileInputSchema, type UpdateProfileInput } from "~users/shared/schemas";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
+import { useUser } from "#layers/auth/app/composables/useUser";
 
-const { addNotification } = useNotifications()
-const { user } = useUser()
-const { fetch: fetchSession } = useUserSession()
+const { addNotification } = useNotifications();
+const { user } = useUser();
+const { fetch: fetchSession } = useUserSession();
 
 const updateProfile = useUpdateProfile({
   onSuccess: async () => {
     // Refresh user session from server
-    await fetchSession()
+    await fetchSession();
 
     addNotification({
-      type: 'success',
-      title: 'Profile Updated',
-    })
+      type: "success",
+      title: "Profile Updated",
+    });
   },
   onError: (error) => {
     addNotification({
-      type: 'error',
-      title: 'Failed to update profile',
+      type: "error",
+      title: "Failed to update profile",
       message: error.message,
-    })
+    });
   },
-})
+});
 
 const handleSubmit = async (values: Record<string, unknown>) => {
-  await updateProfile.mutate(values as UpdateProfileInput)
-}
+  await updateProfile.mutate(values as UpdateProfileInput);
+};
 
 const initialValues = computed(() => ({
-  email: user.value?.email || '',
-  firstName: user.value?.firstName || '',
-  lastName: user.value?.lastName || '',
-  bio: user.value?.bio || '',
-}))
+  email: user.value?.email || "",
+  firstName: user.value?.firstName || "",
+  lastName: user.value?.lastName || "",
+  bio: user.value?.bio || "",
+}));
 </script>
 
 <template>
-  <UFormDrawer :is-done="updateProfile.isSuccess.value" title="Update Profile">
+  <UFormDrawer
+    :is-done="updateProfile.isSuccess.value"
+    title="Update Profile"
+  >
     <template #triggerButton>
       <UButton size="sm">
         <template #icon>

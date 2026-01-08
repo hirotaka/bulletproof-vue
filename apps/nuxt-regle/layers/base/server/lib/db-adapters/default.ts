@@ -1,10 +1,10 @@
-import { drizzle } from 'drizzle-orm/libsql';
-import { createClient } from '@libsql/client';
-import type { H3Event } from 'h3';
-import { resolve, dirname } from 'node:path';
-import { existsSync, mkdirSync } from 'node:fs';
-import * as schema from '~~/db/schema';
-import type { Database } from './types';
+import { drizzle } from "drizzle-orm/libsql";
+import { createClient } from "@libsql/client";
+import type { H3Event } from "h3";
+import { resolve, dirname } from "node:path";
+import { existsSync, mkdirSync } from "node:fs";
+import * as schema from "~~/db/schema";
+import type { Database } from "./types";
 
 // Singleton for database client
 let dbInstance: Database | null = null;
@@ -27,19 +27,19 @@ export const createDb = async (_event: H3Event): Promise<Database> => {
   const databaseUrl = process.env.DATABASE_URL;
 
   if (!databaseUrl) {
-    throw new Error('DATABASE_URL is not set');
+    throw new Error("DATABASE_URL is not set");
   }
 
   // SQLite with relative path - resolve to absolute path
-  if (databaseUrl.startsWith('file:./')) {
+  if (databaseUrl.startsWith("file:./")) {
     let projectRoot = process.env.INIT_CWD || process.env.PWD || process.cwd();
 
     // If we're in the .output directory, go up one level to the project root
-    if (projectRoot.endsWith('/.output') || projectRoot.endsWith('\\.output')) {
+    if (projectRoot.endsWith("/.output") || projectRoot.endsWith("\\.output")) {
       projectRoot = dirname(projectRoot);
     }
 
-    const relativePath = databaseUrl.replace('file:./', '');
+    const relativePath = databaseUrl.replace("file:./", "");
     const absolutePath = resolve(projectRoot, relativePath);
 
     // Ensure parent directory exists

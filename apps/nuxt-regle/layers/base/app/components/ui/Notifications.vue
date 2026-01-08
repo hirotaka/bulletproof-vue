@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useNotifications } from "~base/app/composables/useNotifications"
+import { useNotifications } from "~base/app/composables/useNotifications";
 
-const { notifications, dismissNotification } = useNotifications()
+const { notifications, dismissNotification } = useNotifications();
 </script>
 
 <template>
