@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  submit: [values: GenericObject]
+  submit: [values: GenericObject];
 }>();
 
 const { handleSubmit, errors, isSubmitting, resetForm, setValues, setFieldValue } = useForm({
@@ -40,7 +40,7 @@ watch(
       resetForm({ values: newValues });
     }
   },
-  { deep: true }
+  { deep: true },
 );
 
 const formState = computed(() => ({
@@ -54,7 +54,7 @@ const onFormSubmit = (e: Event) => {
 };
 
 const handleFormSubmit = handleSubmit(async (values) => {
-  emit('submit', values);
+  emit("submit", values);
 }, (_errors) => {
   // Validation failed
 });
@@ -74,6 +74,9 @@ defineExpose({
     :class="cn('space-y-6', props.class)"
     @submit="onFormSubmit"
   >
-    <slot :form-state="formState" :reset-form="resetForm" />
+    <slot
+      :form-state="formState"
+      :reset-form="resetForm"
+    />
   </form>
 </template>

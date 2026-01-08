@@ -62,7 +62,7 @@ const props = withDefaults(defineProps<Props>(), {
 const isDisabled = computed(() => props.disabled || props.isLoading);
 
 // Always use 'sm' spinner size for consistency (as vue-vite does)
-const spinnerSize = computed(() => 'sm' as const);
+const spinnerSize = computed(() => "sm" as const);
 </script>
 
 <template>
@@ -71,10 +71,23 @@ const spinnerSize = computed(() => 'sm' as const);
     :type="type"
     :disabled="isDisabled"
   >
-    <Spinner v-if="isLoading" :size="spinnerSize" class="text-current" />
-    <span v-if="!isLoading && (icon || $slots.icon)" class="mr-2">
-      <component :is="icon" v-if="icon" />
-      <slot v-else name="icon" />
+    <Spinner
+      v-if="isLoading"
+      :size="spinnerSize"
+      class="text-current"
+    />
+    <span
+      v-if="!isLoading && (icon || $slots.icon)"
+      class="mr-2"
+    >
+      <component
+        :is="icon"
+        v-if="icon"
+      />
+      <slot
+        v-else
+        name="icon"
+      />
     </span>
     <span class="mx-2">
       <slot />

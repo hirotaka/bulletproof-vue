@@ -85,7 +85,8 @@ export default defineEventHandler(async (event) => {
     const discussion = await discussionRepository.update(id, updateData);
 
     return { discussion };
-  } catch (error: unknown) {
+  }
+  catch (error: unknown) {
     if (error && typeof error === "object" && "statusCode" in error) {
       throw error;
     }

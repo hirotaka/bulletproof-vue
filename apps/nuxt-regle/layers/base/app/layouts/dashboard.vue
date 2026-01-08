@@ -1,79 +1,80 @@
 <script setup lang="ts">
-import { Home, PanelLeft, Folder, Users, User2 } from 'lucide-vue-next'
-import { computed, ref, onMounted, type Component } from 'vue'
-import { cn } from '~base/app/utils/cn'
-import { useLogout } from '#layers/auth/app/composables/useLogout'
-import { ROLES } from '#layers/auth/app/composables/useAuthorization'
+import { Home, PanelLeft, Folder, Users, User2 } from "lucide-vue-next";
+import { computed, ref, onMounted, type Component } from "vue";
+import { cn } from "~base/app/utils/cn";
+import { useLogout } from "#layers/auth/app/composables/useLogout";
+import { ROLES } from "#layers/auth/app/composables/useAuthorization";
 
 type SideNavigationItem = {
-  name: string
-  to: string
-  icon: Component
-  end?: boolean
-}
+  name: string;
+  to: string;
+  icon: Component;
+  end?: boolean;
+};
 
-const router = useRouter()
-const route = useRoute()
-const { checkAccess } = useAuthorization()
-const logout = useLogout()
+const router = useRouter();
+const route = useRoute();
+const { checkAccess } = useAuthorization();
+const logout = useLogout();
 
 // Progress indicator for route loading
-const progress = ref(0)
-const isLoading = ref(false)
+const progress = ref(0);
+const isLoading = ref(false);
 
 onMounted(() => {
   router.beforeEach(() => {
-    isLoading.value = true
-    progress.value = 0
+    isLoading.value = true;
+    progress.value = 0;
 
     const interval = setInterval(() => {
       if (progress.value >= 100) {
-        clearInterval(interval)
-      } else {
-        progress.value += 10
+        clearInterval(interval);
       }
-    }, 300)
+      else {
+        progress.value += 10;
+      }
+    }, 300);
 
     // Clear after navigation completes
     setTimeout(() => {
-      isLoading.value = false
-      clearInterval(interval)
-    }, 1000)
-  })
-})
+      isLoading.value = false;
+      clearInterval(interval);
+    }, 1000);
+  });
+});
 
 const navigation = computed<SideNavigationItem[]>(() => {
   return [
-    { name: 'Dashboard', to: '/app', icon: Home, end: true },
-    { name: 'Discussions', to: '/app/discussions', icon: Folder, end: false },
+    { name: "Dashboard", to: "/app", icon: Home, end: true },
+    { name: "Discussions", to: "/app/discussions", icon: Folder, end: false },
     checkAccess({ allowedRoles: [ROLES.ADMIN] }) && {
-      name: 'Users',
-      to: '/app/users',
+      name: "Users",
+      to: "/app/users",
       icon: Users,
       end: true,
     },
-  ].filter(Boolean) as SideNavigationItem[]
-})
+  ].filter(Boolean) as SideNavigationItem[];
+});
 
 const isActive = (item: SideNavigationItem) => {
-  const currentPath = route.path
+  const currentPath = route.path;
   if (item.end) {
-    return currentPath === item.to
+    return currentPath === item.to;
   }
-  return currentPath.startsWith(item.to)
-}
+  return currentPath.startsWith(item.to);
+};
 
 const handleLogout = async () => {
   const currentPath = route.fullPath;
   await logout.mutate();
   await router.push(`/auth/login?redirectTo=${encodeURIComponent(currentPath)}`);
-}
+};
 
 const handleProfileClick = () => {
-  router.push('/app/profile')
-}
+  router.push("/app/profile");
+};
 
-const mobileMenuOpen = ref(false)
+const mobileMenuOpen = ref(false);
 </script>
 
 <template>
@@ -82,12 +83,22 @@ const mobileMenuOpen = ref(false)
     <aside class="fixed inset-y-0 left-0 z-10 hidden w-60 flex-col border-r bg-black sm:flex">
       <nav class="flex flex-col items-center gap-4 px-2 py-4">
         <div class="flex h-16 shrink-0 items-center px-4">
-          <ULink class="flex items-center text-white" to="/">
-            <img class="h-8 w-auto p-1.5" src="/logo.svg" alt="Workflow" >
+          <ULink
+            class="flex items-center text-white"
+            to="/"
+          >
+            <img
+              class="h-8 w-auto p-1.5"
+              src="/logo.svg"
+              alt="Workflow"
+            >
             <span class="text-sm font-semibold text-white">Bulletproof Nuxt</span>
           </ULink>
         </div>
-        <template v-for="item in navigation" :key="item.name">
+        <template
+          v-for="item in navigation"
+          :key="item.name"
+        >
           <ULink
             :to="item.to"
             :class="
@@ -125,20 +136,38 @@ const mobileMenuOpen = ref(false)
         <ClientOnly>
           <UDrawerRoot v-model:open="mobileMenuOpen">
             <UDrawerTrigger>
-              <UButton size="icon" variant="outline" class="sm:hidden">
+              <UButton
+                size="icon"
+                variant="outline"
+                class="sm:hidden"
+              >
                 <PanelLeft class="size-5" />
                 <span class="sr-only">Toggle Menu</span>
               </UButton>
             </UDrawerTrigger>
-            <UDrawerContent side="left" class="bg-black pt-10 text-white sm:max-w-60">
+            <UDrawerContent
+              side="left"
+              class="bg-black pt-10 text-white sm:max-w-60"
+            >
               <nav class="grid gap-6 text-lg font-medium">
                 <div class="flex h-16 shrink-0 items-center px-4">
-                  <ULink class="flex items-center text-white" to="/" @click="mobileMenuOpen = false">
-                    <img class="h-8 w-auto" src="/logo.svg" alt="Workflow" >
+                  <ULink
+                    class="flex items-center text-white"
+                    to="/"
+                    @click="mobileMenuOpen = false"
+                  >
+                    <img
+                      class="h-8 w-auto"
+                      src="/logo.svg"
+                      alt="Workflow"
+                    >
                     <span class="text-sm font-semibold text-white">Bulletproof Nuxt</span>
                   </ULink>
                 </div>
-                <template v-for="item in navigation" :key="item.name">
+                <template
+                  v-for="item in navigation"
+                  :key="item.name"
+                >
                   <ULink
                     :to="item.to"
                     :class="
@@ -167,7 +196,11 @@ const mobileMenuOpen = ref(false)
         <ClientOnly>
           <UDropdownRoot>
             <UDropdownTrigger as-child>
-              <UButton variant="outline" size="icon" class="overflow-hidden rounded-full">
+              <UButton
+                variant="outline"
+                size="icon"
+                class="overflow-hidden rounded-full"
+              >
                 <span class="sr-only">Open user menu</span>
                 <User2 class="size-6 rounded-full" />
               </UButton>

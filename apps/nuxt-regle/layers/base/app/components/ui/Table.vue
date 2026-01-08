@@ -22,31 +22,31 @@
   ]
 -->
 <script setup lang="ts" generic="T extends { id: string }">
-import { ArchiveX } from 'lucide-vue-next'
-import { useSlots } from 'vue'
-import type { TableColumn } from './types'
+import { ArchiveX } from "lucide-vue-next";
+import { useSlots } from "vue";
+import type { TableColumn } from "./types";
 
 type TableProps<Entry> = {
-  data: readonly Entry[]
-  columns: TableColumn<Entry>[]
+  data: readonly Entry[];
+  columns: TableColumn<Entry>[];
   pagination?: {
-    totalPages: number
-    currentPage: number
-  }
-}
+    totalPages: number;
+    currentPage: number;
+  };
+};
 
-defineProps<TableProps<T>>()
+defineProps<TableProps<T>>();
 const emit = defineEmits<{
-  'page-change': [page: number]
-}>()
+  "page-change": [page: number];
+}>();
 
-const slots = useSlots()
+const slots = useSlots();
 
-const hasSlot = (name: string) => !!slots[name]
+const hasSlot = (name: string) => !!slots[name];
 
 const handlePageChange = (page: number) => {
-  emit('page-change', page)
-}
+  emit("page-change", page);
+};
 </script>
 
 <template>
@@ -61,13 +61,19 @@ const handlePageChange = (page: number) => {
     <UTableElement>
       <UTableHeader>
         <UTableRow>
-          <UTableHead v-for="(column, index) in columns" :key="column.title + index">
+          <UTableHead
+            v-for="(column, index) in columns"
+            :key="column.title + index"
+          >
             {{ column.title }}
           </UTableHead>
         </UTableRow>
       </UTableHeader>
       <UTableBody>
-        <UTableRow v-for="(entry, entryIndex) in data" :key="entry?.id || entryIndex">
+        <UTableRow
+          v-for="(entry, entryIndex) in data"
+          :key="entry?.id || entryIndex"
+        >
           <UTableCell
             v-for="({ field, title, name }, columnIndex) in columns"
             :key="title + columnIndex"
@@ -77,12 +83,17 @@ const handlePageChange = (page: number) => {
               :name="`cell-${name ?? String(field)}`"
               :entry="entry"
             />
-            <template v-else>{{ entry[field] }}</template>
+            <template v-else>
+              {{ entry[field] }}
+            </template>
           </UTableCell>
         </UTableRow>
       </UTableBody>
     </UTableElement>
-    <div v-if="pagination" class="flex justify-end py-8">
+    <div
+      v-if="pagination"
+      class="flex justify-end py-8"
+    >
       <UPagination
         :current-page="pagination.currentPage"
         :total-pages="pagination.totalPages"

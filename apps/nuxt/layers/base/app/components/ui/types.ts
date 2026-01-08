@@ -9,13 +9,13 @@
  */
 export type TableColumn<Entry> = {
   /** Column header text */
-  title: string
+  title: string;
   /** Field key from entry object */
-  field: keyof Entry
+  field: keyof Entry;
   /**
    * Custom slot name. If provided, use `#cell-{name}` for the slot.
    * Otherwise, slot name defaults to `#cell-{field}`.
    * Useful when multiple columns use the same field (e.g., actions).
    */
-  name?: string
-}
+  name?: string;
+};

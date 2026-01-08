@@ -40,7 +40,10 @@ const inputClass = computed(() =>
 </script>
 
 <template>
-  <FieldWrapper :label="label" :error="errorMessage">
+  <FieldWrapper
+    :label="label"
+    :error="errorMessage"
+  >
     <input
       :id="name"
       v-model="value"

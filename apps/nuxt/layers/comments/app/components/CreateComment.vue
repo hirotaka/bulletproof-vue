@@ -1,44 +1,47 @@
 <script setup lang="ts">
-import { Plus } from 'lucide-vue-next'
-import { useCreateComment } from "~comments/app/composables/useCreateComment"
+import { Plus } from "lucide-vue-next";
+import { useCreateComment } from "~comments/app/composables/useCreateComment";
 import {
   createCommentInputSchema,
   type CreateCommentInput,
-} from "~comments/shared/schemas"
-import { useNotifications } from '#layers/base/app/composables/useNotifications'
+} from "~comments/shared/schemas";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
 
 interface CreateCommentProps {
-  discussionId: string
+  discussionId: string;
 }
 
-const props = defineProps<CreateCommentProps>()
+const props = defineProps<CreateCommentProps>();
 const emit = defineEmits<{
-  created: []
-}>()
+  created: [];
+}>();
 
-const { addNotification } = useNotifications()
+const { addNotification } = useNotifications();
 
 const createComment = useCreateComment({
   onSuccess: async () => {
     addNotification({
-      type: 'success',
-      title: 'Comment Created',
-    })
-    await refreshNuxtData()
-    emit('created')
+      type: "success",
+      title: "Comment Created",
+    });
+    await refreshNuxtData();
+    emit("created");
   },
-})
+});
 
 const handleSubmit = (values: Record<string, unknown>) => {
   createComment.mutate({
     body: values.body as string,
     discussionId: props.discussionId,
-  } as CreateCommentInput)
-}
+  } as CreateCommentInput);
+};
 </script>
 
 <template>
-  <UFormDrawer :is-done="createComment.isSuccess.value" title="Create Comment">
+  <UFormDrawer
+    :is-done="createComment.isSuccess.value"
+    title="Create Comment"
+  >
     <template #triggerButton>
       <UButton size="sm">
         <template #icon>
@@ -58,7 +61,11 @@ const handleSubmit = (values: Record<string, unknown>) => {
       @submit="handleSubmit"
     >
       <template #default="{ formState }">
-        <UTextarea name="body" label="Body" :disabled="formState.isSubmitting" />
+        <UTextarea
+          name="body"
+          label="Body"
+          :disabled="formState.isSubmitting"
+        />
       </template>
     </UForm>
 

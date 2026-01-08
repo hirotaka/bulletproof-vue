@@ -1,8 +1,8 @@
-import { expect, test } from 'vitest'
-import { defineComponent, h } from 'vue'
-import { mountSuspended } from '@nuxt/test-utils/runtime'
-import { within, waitFor } from '@testing-library/vue'
-import userEvent from '@testing-library/user-event'
+import { expect, test } from "vitest";
+import { defineComponent, h } from "vue";
+import { mountSuspended } from "@nuxt/test-utils/runtime";
+import { within, waitFor } from "@testing-library/vue";
+import userEvent from "@testing-library/user-event";
 import {
   DialogRoot,
   DialogTrigger,
@@ -11,27 +11,28 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from '../index'
-import { useDisclosure } from "~base/app/composables/useDisclosure"
+} from "../index";
+import { useDisclosure } from "~base/app/composables/useDisclosure";
 
-const openButtonText = 'Open Modal'
-const cancelButtonText = 'Cancel'
-const titleText = 'Modal Title'
+const openButtonText = "Open Modal";
+const cancelButtonText = "Cancel";
+const titleText = "Modal Title";
 
 const TestDialog = defineComponent({
   setup() {
-    const { close, open, isOpen } = useDisclosure()
+    const { close, open, isOpen } = useDisclosure();
 
     return () =>
       h(
         DialogRoot,
         {
-          open: isOpen.value,
-          'onUpdate:open': (value: boolean) => {
+          "open": isOpen.value,
+          "onUpdate:open": (value: boolean) => {
             if (!value) {
-              close()
-            } else {
-              open()
+              close();
+            }
+            else {
+              open();
             }
           },
         },
@@ -42,54 +43,54 @@ const TestDialog = defineComponent({
               { asChild: true },
               {
                 default: () =>
-                  h('button', { class: 'outline' }, openButtonText),
-              }
+                  h("button", { class: "outline" }, openButtonText),
+              },
             ),
             h(
               DialogContent,
-              { class: 'sm:max-w-[425px]' },
+              { class: "sm:max-w-[425px]" },
               {
                 default: () => [
                   h(DialogHeader, {}, {
                     default: () => [
                       h(DialogTitle, {}, { default: () => titleText }),
-                      h(DialogDescription, { class: 'sr-only' }, { default: () => 'Dialog description' }),
+                      h(DialogDescription, { class: "sr-only" }, { default: () => "Dialog description" }),
                     ],
                   }),
                   h(DialogFooter, {}, {
                     default: () => [
-                      h('button', { type: 'submit' }, 'Submit'),
+                      h("button", { type: "submit" }, "Submit"),
                       h(
-                        'button',
+                        "button",
                         {
-                          class: 'outline',
+                          class: "outline",
                           onClick: close,
                         },
-                        cancelButtonText
+                        cancelButtonText,
                       ),
                     ],
                   }),
                 ],
-              }
+              },
             ),
           ],
-        }
-      )
+        },
+      );
   },
-})
+});
 
-test('should handle basic dialog flow', async () => {
-  const wrapper = await mountSuspended(TestDialog)
-  const screen = within(wrapper.element as HTMLElement)
-  const bodyScreen = within(document.body)
+test("should handle basic dialog flow", async () => {
+  const wrapper = await mountSuspended(TestDialog);
+  const screen = within(wrapper.element as HTMLElement);
+  const bodyScreen = within(document.body);
 
-  expect(bodyScreen.queryByText(titleText)).toBeFalsy()
+  expect(bodyScreen.queryByText(titleText)).toBeFalsy();
 
-  await userEvent.click(screen.getByRole('button', { name: openButtonText }))
+  await userEvent.click(screen.getByRole("button", { name: openButtonText }));
 
-  expect(await bodyScreen.findByText(titleText)).toBeTruthy()
+  expect(await bodyScreen.findByText(titleText)).toBeTruthy();
 
-  await userEvent.click(bodyScreen.getByRole('button', { name: cancelButtonText }))
+  await userEvent.click(bodyScreen.getByRole("button", { name: cancelButtonText }));
 
-  await waitFor(() => expect(bodyScreen.queryByText(titleText)).toBeFalsy())
-})
+  await waitFor(() => expect(bodyScreen.queryByText(titleText)).toBeFalsy());
+});

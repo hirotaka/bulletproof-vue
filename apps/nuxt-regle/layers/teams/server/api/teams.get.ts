@@ -9,7 +9,8 @@ export default defineEventHandler(async (event) => {
     const teams = await teamRepository.findAll();
 
     return teams;
-  } catch {
+  }
+  catch {
     throw createError({
       statusCode: 500,
       statusMessage: "Failed to fetch teams",

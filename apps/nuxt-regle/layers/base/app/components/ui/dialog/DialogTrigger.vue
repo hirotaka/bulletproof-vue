@@ -8,7 +8,10 @@ defineProps<Props>();
 </script>
 
 <template>
-  <DialogTrigger v-bind="$props" as-child>
+  <DialogTrigger
+    v-bind="$props"
+    as-child
+  >
     <slot />
   </DialogTrigger>
 </template>

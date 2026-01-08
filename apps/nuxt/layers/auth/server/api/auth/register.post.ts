@@ -48,12 +48,14 @@ export default defineEventHandler(async (event) => {
       }
       teamId = data.teamId;
       role = "USER";
-    } else if (data.teamName) {
+    }
+    else if (data.teamName) {
       // Create new team - first member becomes ADMIN
       const newTeam = await teamRepository.create(data.teamName);
       teamId = newTeam.id;
       role = "ADMIN";
-    } else {
+    }
+    else {
       throw createError({
         statusCode: 400,
         statusMessage: "Either teamId or teamName must be provided",
@@ -99,8 +101,9 @@ export default defineEventHandler(async (event) => {
         createdAt: user.createdAt,
       },
     };
-  } catch (error: unknown) {
-    if (error && typeof error === 'object' && 'statusCode' in error) {
+  }
+  catch (error: unknown) {
+    if (error && typeof error === "object" && "statusCode" in error) {
       throw error;
     }
 

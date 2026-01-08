@@ -1,12 +1,12 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: 'auth',
-  layout: 'dashboard',
-})
+  middleware: "auth",
+  layout: "dashboard",
+});
 
 useHead({
-  title: 'Discussions',
-})
+  title: "Discussions",
+});
 </script>
 
 <template>

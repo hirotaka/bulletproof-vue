@@ -25,7 +25,7 @@ const labelFor = computed(() => {
   if (defaultSlot && defaultSlot.length > 0) {
     const firstNode = defaultSlot[0];
     // Check if it's an Input/Select/Textarea component with a name prop
-    if (firstNode && firstNode.props && 'name' in firstNode.props) {
+    if (firstNode && firstNode.props && "name" in firstNode.props) {
       return firstNode.props.name as string;
     }
   }
@@ -36,18 +36,33 @@ const labelFor = computed(() => {
 
 <template>
   <div :class="props.class">
-    <Label v-if="label" :for="labelFor" :required="required" :error="!!error">
+    <Label
+      v-if="label"
+      :for="labelFor"
+      :required="required"
+      :error="!!error"
+    >
       {{ label }}
       <div class="mt-1">
         <slot />
       </div>
     </Label>
-    <div v-else class="mt-1">
+    <div
+      v-else
+      class="mt-1"
+    >
       <slot />
     </div>
-    <p v-if="description" class="mt-1 text-sm text-muted-foreground">
+    <p
+      v-if="description"
+      class="mt-1 text-sm text-muted-foreground"
+    >
       {{ description }}
     </p>
-    <FieldError v-if="error" :message="error" class="mt-1" />
+    <FieldError
+      v-if="error"
+      :message="error"
+      class="mt-1"
+    />
   </div>
 </template>

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import UpdateDiscussion from './UpdateDiscussion.vue'
-import { formatDate } from '#layers/base/app/utils/format'
-import { useDiscussion } from "~discussions/app/composables/useDiscussion"
+import { computed } from "vue";
+import UpdateDiscussion from "./UpdateDiscussion.vue";
+import { formatDate } from "#layers/base/app/utils/format";
+import { useDiscussion } from "~discussions/app/composables/useDiscussion";
 
 interface DiscussionViewProps {
-  discussionId: string
+  discussionId: string;
 }
 
-const props = defineProps<DiscussionViewProps>()
+const props = defineProps<DiscussionViewProps>();
 
-const discussion = useDiscussion(props.discussionId)
-const discussionData = computed(() => discussion.data.value.discussion)
+const discussion = useDiscussion(props.discussionId);
+const discussionData = computed(() => discussion.data.value.discussion);
 </script>
 
 <template>
@@ -19,7 +19,10 @@ const discussionData = computed(() => discussion.data.value.discussion)
     <span class="text-xs font-bold">
       {{ formatDate(new Date(discussionData.createdAt).getTime()) }}
     </span>
-    <span v-if="discussionData.author" class="ml-2 text-sm font-bold">
+    <span
+      v-if="discussionData.author"
+      class="ml-2 text-sm font-bold"
+    >
       by {{ discussionData.author.firstName }}
       {{ discussionData.author.lastName }}
     </span>

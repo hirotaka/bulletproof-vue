@@ -1,33 +1,33 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { RoleTypes } from '~auth/app/composables/useAuthorization'
+import { computed } from "vue";
+import type { RoleTypes } from "~auth/app/composables/useAuthorization";
 
 type AuthorizationProps = {
-  allowedRoles?: RoleTypes[]
-  policyCheck?: boolean
-}
+  allowedRoles?: RoleTypes[];
+  policyCheck?: boolean;
+};
 
 const props = withDefaults(defineProps<AuthorizationProps>(), {
   allowedRoles: undefined,
   policyCheck: undefined,
-})
+});
 
-const { checkAccess } = useAuthorization()
+const { checkAccess } = useAuthorization();
 
 const canAccess = computed(() => {
-  let access = false
+  let access = false;
 
   if (props.allowedRoles) {
-    access = checkAccess({ allowedRoles: props.allowedRoles })
+    access = checkAccess({ allowedRoles: props.allowedRoles });
   }
 
   if (props.policyCheck !== undefined) {
-    access = props.policyCheck
+    access = props.policyCheck;
   }
 
-  return access
-})
+  return access;
+});
 </script>
 
 <template>

@@ -59,7 +59,8 @@ export default defineEventHandler(async (event) => {
     await commentRepository.delete(id);
 
     return { success: true };
-  } catch (error: unknown) {
+  }
+  catch (error: unknown) {
     if (error && typeof error === "object" && "statusCode" in error) {
       throw error;
     }

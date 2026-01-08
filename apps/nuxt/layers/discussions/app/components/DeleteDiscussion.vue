@@ -1,38 +1,39 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Trash } from 'lucide-vue-next'
-import { useDeleteDiscussion } from "~discussions/app/composables/useDeleteDiscussion"
-import { useNotifications } from '#layers/base/app/composables/useNotifications'
-import { useUser } from '#layers/auth/app/composables/useUser'
+import { ref } from "vue";
+import { Trash } from "lucide-vue-next";
+import { useDeleteDiscussion } from "~discussions/app/composables/useDeleteDiscussion";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
+import { useUser } from "#layers/auth/app/composables/useUser";
 
 interface DeleteDiscussionProps {
-  id: string
+  id: string;
 }
 
-const props = defineProps<DeleteDiscussionProps>()
-const { addNotification } = useNotifications()
-const { isAdmin } = useUser()
+const props = defineProps<DeleteDiscussionProps>();
+const { addNotification } = useNotifications();
+const { isAdmin } = useUser();
 
-const isOpen = ref(false)
+const isOpen = ref(false);
 
 const deleteDiscussion = useDeleteDiscussion({
   onSuccess: async () => {
     addNotification({
-      type: 'success',
-      title: 'Discussion Deleted',
-    })
-    await refreshNuxtData()
-    isOpen.value = false
+      type: "success",
+      title: "Discussion Deleted",
+    });
+    await refreshNuxtData();
+    isOpen.value = false;
   },
-})
+});
 
 const handleDelete = async () => {
   try {
-    await deleteDiscussion.mutate(props.id)
-  } catch {
+    await deleteDiscussion.mutate(props.id);
+  }
+  catch {
     // Error is already handled in the composable
   }
-}
+};
 </script>
 
 <template>

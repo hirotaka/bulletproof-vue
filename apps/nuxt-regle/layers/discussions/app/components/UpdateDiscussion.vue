@@ -1,60 +1,61 @@
 <script setup lang="ts">
-import { Pen } from 'lucide-vue-next'
-import { computed, ref, watch } from 'vue'
-import { useUpdateDiscussion } from "~discussions/app/composables/useUpdateDiscussion"
-import { useDiscussion } from "~discussions/app/composables/useDiscussion"
-import { updateDiscussionInputSchema } from "~discussions/shared/schemas"
-import { useNotifications } from '#layers/base/app/composables/useNotifications'
-import { useUser } from '#layers/auth/app/composables/useUser'
+import { Pen } from "lucide-vue-next";
+import { computed, ref, watch } from "vue";
+import { useUpdateDiscussion } from "~discussions/app/composables/useUpdateDiscussion";
+import { useDiscussion } from "~discussions/app/composables/useDiscussion";
+import { updateDiscussionInputSchema } from "~discussions/shared/schemas";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
+import { useUser } from "#layers/auth/app/composables/useUser";
 
 interface UpdateDiscussionProps {
-  discussionId: string
+  discussionId: string;
 }
 
-const props = defineProps<UpdateDiscussionProps>()
+const props = defineProps<UpdateDiscussionProps>();
 
-const { addNotification } = useNotifications()
-const { isAdmin } = useUser()
-const isOpen = ref(false)
+const { addNotification } = useNotifications();
+const { isAdmin } = useUser();
+const isOpen = ref(false);
 
-const discussion = useDiscussion(props.discussionId)
-const discussionData = computed(() => discussion.data.value.discussion)
+const discussion = useDiscussion(props.discussionId);
+const discussionData = computed(() => discussion.data.value.discussion);
 
 const updateDiscussion = useUpdateDiscussion({
   onSuccess: async () => {
     addNotification({
-      type: 'success',
-      title: 'Discussion Updated',
-    })
-    await refreshNuxtData()
+      type: "success",
+      title: "Discussion Updated",
+    });
+    await refreshNuxtData();
   },
-})
+});
 
 const initialValues = computed(() => ({
-  title: discussionData.value?.title ?? '',
-  body: discussionData.value?.body ?? '',
-}))
+  title: discussionData.value?.title ?? "",
+  body: discussionData.value?.body ?? "",
+}));
 
 const handleSubmit = async (values: Record<string, unknown>) => {
   try {
     await updateDiscussion.mutate({
       id: props.discussionId,
       data: values as { title: string; body: string },
-    })
-  } catch {
+    });
+  }
+  catch {
     // Error is already handled in the composable
   }
-}
+};
 
 // Close drawer when form submission is done
 watch(
   () => updateDiscussion.isSuccess.value,
   (newValue) => {
     if (newValue) {
-      isOpen.value = false
+      isOpen.value = false;
     }
   },
-)
+);
 </script>
 
 <template>
@@ -81,14 +82,28 @@ watch(
               @submit="handleSubmit"
             >
               <template #default="{ formState }">
-                <UInput name="title" label="Title" :disabled="formState.isSubmitting" />
-                <UTextarea name="body" label="Body" :disabled="formState.isSubmitting" />
+                <UInput
+                  name="title"
+                  label="Title"
+                  :disabled="formState.isSubmitting"
+                />
+                <UTextarea
+                  name="body"
+                  label="Body"
+                  :disabled="formState.isSubmitting"
+                />
               </template>
             </UForm>
           </div>
         </div>
         <UDrawerFooter>
-          <UButton variant="outline" type="button" @click="isOpen = false">Close</UButton>
+          <UButton
+            variant="outline"
+            type="button"
+            @click="isOpen = false"
+          >
+            Close
+          </UButton>
           <UButton
             type="submit"
             form="update-discussion"

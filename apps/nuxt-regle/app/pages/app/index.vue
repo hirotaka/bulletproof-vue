@@ -1,14 +1,14 @@
 <script setup lang="ts">
-const { user } = useUser()
+const { user } = useUser();
 
 definePageMeta({
-  middleware: 'auth',
-  layout: 'dashboard',
-})
+  middleware: "auth",
+  layout: "dashboard",
+});
 
 useHead({
-  title: 'Dashboard',
-})
+  title: "Dashboard",
+});
 </script>
 
 <template>
@@ -33,11 +33,17 @@ useHead({
       <p class="font-medium">
         In this application you can:
       </p>
-      <ul v-if="user?.role === 'USER'" class="my-4 list-inside list-disc">
+      <ul
+        v-if="user?.role === 'USER'"
+        class="my-4 list-inside list-disc"
+      >
         <li>Create comments in discussions</li>
         <li>Delete own comments</li>
       </ul>
-      <ul v-if="user?.role === 'ADMIN'" class="my-4 list-inside list-disc">
+      <ul
+        v-if="user?.role === 'ADMIN'"
+        class="my-4 list-inside list-disc"
+      >
         <li>Create discussions</li>
         <li>Edit discussions</li>
         <li>Delete discussions</li>

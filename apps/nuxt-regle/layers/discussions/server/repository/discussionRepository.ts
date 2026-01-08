@@ -1,10 +1,10 @@
-import type { H3Event } from 'h3';
+import type { H3Event } from "h3";
 import type {
   Discussion,
   PaginatedDiscussions,
-} from '~discussions/shared/types';
-import { discussions, users } from '~~/db/schema';
-import { eq, and, desc, sql } from 'drizzle-orm';
+} from "~discussions/shared/types";
+import { discussions, users } from "~~/db/schema";
+import { eq, and, desc, sql } from "drizzle-orm";
 
 export const createDiscussionRepository = async (event: H3Event) => {
   const db = await useDb(event);
@@ -90,7 +90,7 @@ export const createDiscussionRepository = async (event: H3Event) => {
 
   const findByIdAndTeam = async (
     id: string,
-    teamId: string
+    teamId: string,
   ): Promise<Discussion | null> => {
     const result = await db.query.discussions.findFirst({
       where: and(eq(discussions.id, id), eq(discussions.teamId, teamId)),
@@ -128,7 +128,7 @@ export const createDiscussionRepository = async (event: H3Event) => {
     const [discussion] = await db.insert(discussions).values(data).returning();
 
     if (!discussion) {
-      throw new Error('Failed to create discussion');
+      throw new Error("Failed to create discussion");
     }
 
     const author = await db.query.users.findFirst({
@@ -157,7 +157,7 @@ export const createDiscussionRepository = async (event: H3Event) => {
     data: {
       title?: string;
       body?: string;
-    }
+    },
   ): Promise<Discussion> => {
     const [discussion] = await db
       .update(discussions)
@@ -166,7 +166,7 @@ export const createDiscussionRepository = async (event: H3Event) => {
       .returning();
 
     if (!discussion) {
-      throw new Error('Failed to update discussion');
+      throw new Error("Failed to update discussion");
     }
 
     const author = await db.query.users.findFirst({

@@ -1,31 +1,34 @@
 <script setup lang="ts">
-import { Plus } from 'lucide-vue-next'
-import { useCreateDiscussion } from "~discussions/app/composables/useCreateDiscussion"
+import { Plus } from "lucide-vue-next";
+import { useCreateDiscussion } from "~discussions/app/composables/useCreateDiscussion";
 import {
   createDiscussionInputSchema,
   type CreateDiscussionInput,
-} from "~discussions/shared/schemas"
-import { useNotifications } from '#layers/base/app/composables/useNotifications'
+} from "~discussions/shared/schemas";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
 
-const { addNotification } = useNotifications()
+const { addNotification } = useNotifications();
 
 const createDiscussion = useCreateDiscussion({
   onSuccess: async () => {
     addNotification({
-      type: 'success',
-      title: 'Discussion Created',
-    })
-    await refreshNuxtData()
+      type: "success",
+      title: "Discussion Created",
+    });
+    await refreshNuxtData();
   },
-})
+});
 
 const handleSubmit = async (values: Record<string, unknown>) => {
-  await createDiscussion.mutate(values as CreateDiscussionInput)
-}
+  await createDiscussion.mutate(values as CreateDiscussionInput);
+};
 </script>
 
 <template>
-  <UFormDrawer :is-done="createDiscussion.isSuccess.value" title="Create Discussion">
+  <UFormDrawer
+    :is-done="createDiscussion.isSuccess.value"
+    title="Create Discussion"
+  >
     <template #triggerButton>
       <UButton size="sm">
         <template #icon>
@@ -35,7 +38,11 @@ const handleSubmit = async (values: Record<string, unknown>) => {
       </UButton>
     </template>
 
-    <UForm id="create-discussion" :schema="createDiscussionInputSchema" @submit="handleSubmit">
+    <UForm
+      id="create-discussion"
+      :schema="createDiscussionInputSchema"
+      @submit="handleSubmit"
+    >
       <template #default="{ formState }">
         <UInput
           name="title"

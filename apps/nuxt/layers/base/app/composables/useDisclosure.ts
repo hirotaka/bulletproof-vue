@@ -1,19 +1,19 @@
-import { ref } from 'vue'
+import { ref } from "vue";
 
 export const useDisclosure = (initial = false) => {
-  const isOpen = ref(initial)
+  const isOpen = ref(initial);
 
   const open = () => {
-    isOpen.value = true
-  }
+    isOpen.value = true;
+  };
 
   const close = () => {
-    isOpen.value = false
-  }
+    isOpen.value = false;
+  };
 
   const toggle = () => {
-    isOpen.value = !isOpen.value
-  }
+    isOpen.value = !isOpen.value;
+  };
 
-  return { isOpen, open, close, toggle }
-}
+  return { isOpen, open, close, toggle };
+};
