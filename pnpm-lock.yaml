@@ -76,7 +76,7 @@ importers:
         version: 4.7.1(@nuxt/kit@4.2.2(magicast@0.5.1))(@pinia/nuxt@0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))))(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))
       reka-ui:
         specifier: ^2.6.0
-        version: 2.6.1(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
+        version: 2.7.0(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
       tailwind-merge:
         specifier: ^3.0.0
         version: 3.4.0
@@ -242,7 +242,7 @@ importers:
         version: 4.7.1(@nuxt/kit@4.2.2(magicast@0.5.1))(@pinia/nuxt@0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))))(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))
       reka-ui:
         specifier: ^2.6.0
-        version: 2.6.1(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
+        version: 2.7.0(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
       tailwind-merge:
         specifier: ^3.0.0
         version: 3.4.0
@@ -396,7 +396,7 @@ importers:
         version: 4.7.1(@nuxt/kit@4.2.2(magicast@0.5.1))(@pinia/nuxt@0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))))(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))
       reka-ui:
         specifier: ^2.6.0
-        version: 2.6.1(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
+        version: 2.7.0(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
       tailwind-merge:
         specifier: ^3.0.0
         version: 3.4.0
@@ -541,7 +541,7 @@ importers:
         version: 3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
       reka-ui:
         specifier: ^2.6.0
-        version: 2.6.1(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
+        version: 2.7.0(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
       tailwind-merge:
         specifier: ^3.0.0
         version: 3.4.0
@@ -1722,8 +1722,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@internationalized/date@3.10.0':
-    resolution: {integrity: sha512-oxDR/NTEJ1k+UFVQElaNIk65E/Z83HK1z1WI3lQyhTtnNg4R5oVXaPzK3jcpKG8UHKDVuDQHzn+wsxSz8RP3aw==}
+  '@internationalized/date@3.10.1':
+    resolution: {integrity: sha512-oJrXtQiAXLvT9clCf1K4kxp3eKsQhIaZqxEyowkBcsvZDdZkbWrVmnGknxs5flTD0VGsxrxKgBCZty1EzoiMzA==}
 
   '@internationalized/number@3.6.5':
     resolution: {integrity: sha512-6hY4Kl4HPBvtfS62asS/R22JzNNy8vi/Ssev7x6EobfCp+9QIB2hKvI2EtbdJ0VSQacxVNtqhE/NmF/NZ0gm6g==}
@@ -3003,8 +3003,8 @@ packages:
     peerDependencies:
       eslint: '>=9.0.0'
 
-  '@swc/helpers@0.5.17':
-    resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
+  '@swc/helpers@0.5.18':
+    resolution: {integrity: sha512-TXTnIcNJQEKwThMMqBXsZ4VGAza6bvN4pa41Rkqoio6QBKMvo+5lexeTMScGCIxtzgQJzElcvIltani+adC5PQ==}
 
   '@tailwindcss/node@4.1.18':
     resolution: {integrity: sha512-DoR7U1P7iYhw16qJ49fgXUlry1t4CpXeErJHnQ44JgTSKMaZUdf17cfn5mHchfJ4KRBZRFA/Coo+MUF5+gOaCQ==}
@@ -3125,8 +3125,8 @@ packages:
   '@tanstack/store@0.7.7':
     resolution: {integrity: sha512-xa6pTan1bcaqYDS9BDpSiS63qa6EoDkPN9RsRaxHuDdVDNntzq3xNwR5YKTU/V3SkSyC9T4YVOPh2zRQN0nhIQ==}
 
-  '@tanstack/virtual-core@3.13.13':
-    resolution: {integrity: sha512-uQFoSdKKf5S8k51W5t7b2qpfkyIbdHMzAn+AMQvHPxKUPeo1SsGaA4JRISQT87jm28b7z8OEqPcg1IOZagQHcA==}
+  '@tanstack/virtual-core@3.13.18':
+    resolution: {integrity: sha512-Mx86Hqu1k39icq2Zusq+Ey2J6dDWTjDvEv43PJtRCoEYTLyfaPnxIQ6iy7YAOK0NV/qOEmZQ/uCufrppZxTgcg==}
 
   '@tanstack/vue-form@1.27.7':
     resolution: {integrity: sha512-wET2d3R/9GYGgBHMwWnKlHuGczpyTNm7bfkJyZahVDLLm7tI/6HBT970lBN44obvD4Ayu/FX0jF0ARI5JGJgpA==}
@@ -3157,8 +3157,8 @@ packages:
       '@vue/composition-api':
         optional: true
 
-  '@tanstack/vue-virtual@3.13.13':
-    resolution: {integrity: sha512-Cf2xIEE8nWAfsX0N5nihkPYMeQRT+pHt4NEkuP8rNCn6lVnLDiV8rC8IeIxbKmQC0yPnj4SIBLwXYVf86xxKTQ==}
+  '@tanstack/vue-virtual@3.13.18':
+    resolution: {integrity: sha512-6pT8HdHtTU5Z+t906cGdCroUNA5wHjFXsNss9gwk7QAr1VNZtz9IQCs2Nhx0gABK48c+OocHl2As+TMg8+Hy4A==}
     peerDependencies:
       vue: 3.5.26
 
@@ -7790,8 +7790,8 @@ packages:
     resolution: {integrity: sha512-NZQZdC5wOE/H3UT28fVGL+ikOZcEzfMGk/c3iN9UGxzWHMa1op7274oyiUVrAG4B2EuFhus8SvkaYnhvW92p9Q==}
     hasBin: true
 
-  reka-ui@2.6.1:
-    resolution: {integrity: sha512-XK7cJDQoNuGXfCNzBBo/81Yg/OgjPwvbabnlzXG2VsdSgNsT6iIkuPBPr+C0Shs+3bb0x0lbPvgQAhMSCKm5Ww==}
+  reka-ui@2.7.0:
+    resolution: {integrity: sha512-m+XmxQN2xtFzBP3OAdIafKq7C8OETo2fqfxcIIxYmNN2Ch3r5oAf6yEYCIJg5tL/yJU2mHqF70dCCekUkrAnXA==}
     peerDependencies:
       vue: 3.5.26
 
@@ -10175,13 +10175,13 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.10.4
 
-  '@internationalized/date@3.10.0':
+  '@internationalized/date@3.10.1':
     dependencies:
-      '@swc/helpers': 0.5.17
+      '@swc/helpers': 0.5.18
 
   '@internationalized/number@3.6.5':
     dependencies:
-      '@swc/helpers': 0.5.17
+      '@swc/helpers': 0.5.18
 
   '@ioredis/commands@1.4.0': {}
 
@@ -11699,7 +11699,7 @@ snapshots:
       estraverse: 5.3.0
       picomatch: 4.0.3
 
-  '@swc/helpers@0.5.17':
+  '@swc/helpers@0.5.18':
     dependencies:
       tslib: 2.8.1
 
@@ -11796,7 +11796,7 @@ snapshots:
 
   '@tanstack/store@0.7.7': {}
 
-  '@tanstack/virtual-core@3.13.13': {}
+  '@tanstack/virtual-core@3.13.18': {}
 
   '@tanstack/vue-form@1.27.7(vue@3.5.26(typescript@5.9.3))':
     dependencies:
@@ -11826,9 +11826,9 @@ snapshots:
       vue: 3.5.26(typescript@5.9.3)
       vue-demi: 0.14.10(vue@3.5.26(typescript@5.9.3))
 
-  '@tanstack/vue-virtual@3.13.13(vue@3.5.26(typescript@5.9.3))':
+  '@tanstack/vue-virtual@3.13.18(vue@3.5.26(typescript@5.9.3))':
     dependencies:
-      '@tanstack/virtual-core': 3.13.13
+      '@tanstack/virtual-core': 3.13.18
       vue: 3.5.26(typescript@5.9.3)
 
   '@testing-library/dom@10.4.0':
@@ -17106,13 +17106,13 @@ snapshots:
     dependencies:
       jsesc: 3.1.0
 
-  reka-ui@2.6.1(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)):
+  reka-ui@2.7.0(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)):
     dependencies:
       '@floating-ui/dom': 1.7.4
       '@floating-ui/vue': 1.1.9(vue@3.5.26(typescript@5.9.3))
-      '@internationalized/date': 3.10.0
+      '@internationalized/date': 3.10.1
       '@internationalized/number': 3.6.5
-      '@tanstack/vue-virtual': 3.13.13(vue@3.5.26(typescript@5.9.3))
+      '@tanstack/vue-virtual': 3.13.18(vue@3.5.26(typescript@5.9.3))
       '@vueuse/core': 12.8.2(typescript@5.9.3)
       '@vueuse/shared': 12.8.2(typescript@5.9.3)
       aria-hidden: 1.2.6
