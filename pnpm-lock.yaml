@@ -508,7 +508,7 @@ importers:
         version: 5.92.5(vue@3.5.26(typescript@5.9.3))
       '@unhead/vue':
         specifier: ^2.0.19
-        version: 2.0.19(vue@3.5.26(typescript@5.9.3))
+        version: 2.1.2(vue@3.5.26(typescript@5.9.3))
       '@vee-validate/zod':
         specifier: ^4.15.1
         version: 4.15.1(vue@3.5.26(typescript@5.9.3))(zod@3.25.76)
@@ -547,7 +547,7 @@ importers:
         version: 3.4.0
       unhead:
         specifier: ^2.0.19
-        version: 2.0.19
+        version: 2.1.2
       vee-validate:
         specifier: ^4.15.1
         version: 4.15.1(vue@3.5.26(typescript@5.9.3))
@@ -3399,6 +3399,11 @@ packages:
     peerDependencies:
       vue: 3.5.26
 
+  '@unhead/vue@2.1.2':
+    resolution: {integrity: sha512-w5yxH/fkkLWAFAOnMSIbvAikNHYn6pgC7zGF/BasXf+K3CO1cYIPFehYAk5jpcsbiNPMc3goyyw1prGLoyD14g==}
+    peerDependencies:
+      vue: 3.5.26
+
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
     resolution: {integrity: sha512-ppLRUgHVaGRWUx0R0Ut06Mjo9gBaBkg3v/8AxusGLhsIotbBLuRk51rAzqLC8gq6NyyAojEXglNjzf6R948DNw==}
     cpu: [arm]
@@ -5797,6 +5802,9 @@ packages:
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
+
+  hookable@6.0.1:
+    resolution: {integrity: sha512-uKGyY8BuzN/a5gvzvA+3FVWo0+wUjgtfSdnmjtrOVwQCZPHpHDH2WRO3VZSOeluYrHoDCiXFffZXs8Dj1ULWtw==}
 
   html-encoding-sniffer@6.0.0:
     resolution: {integrity: sha512-CV9TW3Y3f8/wT0BRFc1/KAVQ3TUHiXmaAb6VW9vtiMFf7SLoMd1PdAc4W3KFOFETBJUb90KatHqlsZMWV+R9Gg==}
@@ -8588,6 +8596,9 @@ packages:
 
   unhead@2.0.19:
     resolution: {integrity: sha512-gEEjkV11Aj+rBnY6wnRfsFtF2RxKOLaPN4i+Gx3UhBxnszvV6ApSNZbGk7WKyy/lErQ6ekPN63qdFL7sa1leow==}
+
+  unhead@2.1.2:
+    resolution: {integrity: sha512-vSihrxyb+zsEUfEbraZBCjdE0p/WSoc2NGDrpwwSNAwuPxhYK1nH3eegf02IENLpn1sUhL8IoO84JWmRQ6tILA==}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -12183,6 +12194,12 @@ snapshots:
       unhead: 2.0.19
       vue: 3.5.26(typescript@5.9.3)
 
+  '@unhead/vue@2.1.2(vue@3.5.26(typescript@5.9.3))':
+    dependencies:
+      hookable: 6.0.1
+      unhead: 2.1.2
+      vue: 3.5.26(typescript@5.9.3)
+
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
     optional: true
 
@@ -14891,6 +14908,8 @@ snapshots:
       parse-passwd: 1.0.0
 
   hookable@5.5.3: {}
+
+  hookable@6.0.1: {}
 
   html-encoding-sniffer@6.0.0:
     dependencies:
@@ -18226,6 +18245,10 @@ snapshots:
   unhead@2.0.19:
     dependencies:
       hookable: 5.5.3
+
+  unhead@2.1.2:
+    dependencies:
+      hookable: 6.0.1
 
   unicorn-magic@0.1.0: {}
 
