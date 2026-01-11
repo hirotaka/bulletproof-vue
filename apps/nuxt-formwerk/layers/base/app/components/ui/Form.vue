@@ -24,7 +24,7 @@ const emit = defineEmits<{
   submit: [values: GenericObject];
 }>();
 
-const { handleSubmit, isSubmitting, setFieldValue, reset } = useForm({
+const { handleSubmit, isSubmitting, setValue, reset } = useForm({
   schema: props.schema,
   initialValues: props.initialValues,
 });
@@ -36,7 +36,7 @@ watch(
     if (newValues) {
       reset();
       Object.entries(newValues).forEach(([key, value]) => {
-        setFieldValue(key, value);
+        setValue(key, value);
       });
     }
   },
@@ -59,7 +59,7 @@ const resetForm = () => {
 defineExpose({
   resetForm,
   formState,
-  setFieldValue,
+  setValue,
 });
 </script>
 
