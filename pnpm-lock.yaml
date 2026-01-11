@@ -37,7 +37,7 @@ importers:
         version: 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))
       '@vee-validate/zod':
         specifier: ^4.15.1
-        version: 4.15.1(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)
+        version: 4.15.1(vue@3.5.26(typescript@5.9.3))(zod@3.25.76)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -94,7 +94,7 @@ importers:
         version: 4.6.4(vue@3.5.26(typescript@5.9.3))
       zod:
         specifier: ^3.24.0
-        version: 4.3.5
+        version: 3.25.76
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20251128.0
@@ -668,7 +668,7 @@ importers:
         version: 2.1.2(vue@3.5.26(typescript@5.9.3))
       '@vee-validate/zod':
         specifier: ^4.15.1
-        version: 4.15.1(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)
+        version: 4.15.1(vue@3.5.26(typescript@5.9.3))(zod@3.25.76)
       axios:
         specifier: ^1.12.2
         version: 1.13.2
@@ -719,7 +719,7 @@ importers:
         version: 4.6.4(vue@3.5.26(typescript@5.9.3))
       zod:
         specifier: ^3.24.0
-        version: 4.3.5
+        version: 3.25.76
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^4.0.0
@@ -12436,11 +12436,11 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vee-validate/zod@4.15.1(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)':
+  '@vee-validate/zod@4.15.1(vue@3.5.26(typescript@5.9.3))(zod@3.25.76)':
     dependencies:
       type-fest: 4.41.0
       vee-validate: 4.15.1(vue@3.5.26(typescript@5.9.3))
-      zod: 4.3.5
+      zod: 3.25.76
     transitivePeerDependencies:
       - vue
 
