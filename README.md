@@ -14,7 +14,7 @@ Feel free to explore the sample app codebases to get the most value out of the r
 
 ## 📦 Sample Applications
 
-This monorepo contains two sample applications with different architectures:
+This monorepo contains sample applications with different architectures:
 
 ### ⚡ [Vue (SPA)](apps/vue-vite)
 
@@ -25,18 +25,26 @@ A client-side Single Page Application using Vue + Vite.
 - **State**: TanStack Query (Vue Query) + Pinia
 - **Best for**: Traditional SPAs, dashboards, admin panels
 
-[View Documentation](/apps/vue-vite/docs/index.md)
+[View Documentation](apps/vue-vite/README.md)
 
-### 🌐 [Nuxt (Full-Stack)](apps/nuxt)
+### 🌐 Nuxt (Full-Stack)
 
-A full-stack application using Nuxt with SSR capabilities.
+Full-stack applications using Nuxt with SSR capabilities and Nuxt Layers architecture.
 
 - **Architecture**: Nuxt Layers for modular features
 - **Routing**: File-based routing with Nuxt
 - **State**: Nuxt built-in composables
 - **Best for**: SEO-critical apps, marketing sites, full-stack applications
 
-[View Documentation](/apps/nuxt/docs/index.md)
+[View Documentation](apps/nuxt/README.md)
+
+#### Variations
+
+The following apps demonstrate different form validation libraries based on the same architecture:
+
+- [nuxt-regle](apps/nuxt-regle) - [Regle](https://reglejs.dev/)
+- [nuxt-tanstack-form](apps/nuxt-tanstack-form) - [TanStack Form](https://tanstack.com/form/)
+- [nuxt-formwerk](apps/nuxt-formwerk) - [Formwerk](https://formwerk.dev/)
 
 ## 🎯 What makes a Vue and Nuxt application "bulletproof"?
 

@@ -2,8 +2,6 @@
 
 A client-side Single Page Application using Vue + Vite with feature-based architecture.
 
-[View Documentation](./docs/index.md)
-
 ## Get Started
 
 Prerequisites:
@@ -35,3 +33,18 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://vitejs.dev/guide/static-deploy.html) for more information.
+
+## Documentation
+
+- [💻 Application Overview](./docs/application-overview.md)
+- [⚙️ Project Standards](./docs/project-standards.md)
+- [🗄️ Project Structure](./docs/project-structure.md)
+- [🧱 Components And Styling](./docs/components-and-styling.md)
+- [📡 API Layer](./docs/api-layer.md)
+- [🗃️ State Management](./docs/state-management.md)
+- [🧪 Testing](./docs/testing.md)
+- [⚠️ Error Handling](./docs/error-handling.md)
+- [🔐 Security](./docs/security.md)
+- [🚄 Performance](./docs/performance.md)
+- [🌐 Deployment](./docs/deployment.md)
+- [📚 Additional Resources](./docs/additional-resources.md)
