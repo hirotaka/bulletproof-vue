@@ -4,7 +4,9 @@ A full-stack application using Nuxt with SSR capabilities,
 Nuxt Layers architecture, and [Formwerk](https://formwerk.dev/)
 for form handling.
 
-[View Documentation](./docs/index.md)
+This app is based on [apps/nuxt](../nuxt/README.md).
+The main difference is that this app uses Formwerk for form handling
+instead of VeeValidate.
 
 ## Get Started
 
@@ -58,3 +60,7 @@ for the best performance.
 See the section about
 [deployment](https://nuxt.com/docs/getting-started/deployment)
 for more information.
+
+## Documentation
+
+See [apps/nuxt documentation](../nuxt/README.md#documentation) for the base documentation.
