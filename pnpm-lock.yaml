@@ -360,7 +360,7 @@ importers:
         version: 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.13.0
-        version: 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)
+        version: 1.17.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -2678,20 +2678,6 @@ packages:
 
   '@regle/rules@1.17.0':
     resolution: {integrity: sha512-b9tqweVeopty668RLFnqGtwm3Oc6PnD9YpnQnmn15A+xxZ6p4YsKFBJWx/Vvshxz4MnFqcgI+ogeuc65GjmL7A==}
-
-  '@regle/schemas@1.16.2':
-    resolution: {integrity: sha512-2A9xMHcbniSVfOkFl5B1XizjLKYQH+Vd1eJjbv2bL511mqJEMDE1IT+wBUFPukqEP+5Wxl2IQ/UFZo75l4/RVQ==}
-    peerDependencies:
-      arktype: ^2.1.0
-      valibot: ^1.0.0
-      zod: ^3.24.0 || ^4.0.0
-    peerDependenciesMeta:
-      arktype:
-        optional: true
-      valibot:
-        optional: true
-      zod:
-        optional: true
 
   '@regle/schemas@1.17.0':
     resolution: {integrity: sha512-iJwej6JQa/RQ9eO1ydho/RdJZkl3LR1pOB8m1w74mF+4DnaRcHYGLP/UlcF5pewTXb4rxpH9HR9KGy+qqVYtfA==}
@@ -11487,18 +11473,6 @@ snapshots:
       - pinia
       - vue
 
-  '@regle/schemas@1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)':
-    dependencies:
-      '@regle/core': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
-      '@regle/rules': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
-      '@standard-schema/spec': 1.1.0
-      type-fest: 5.3.1
-    optionalDependencies:
-      zod: 4.3.5
-    transitivePeerDependencies:
-      - pinia
-      - vue
-
   '@regle/schemas@1.17.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))(zod@4.3.5)':
     dependencies:
       '@regle/core': 1.17.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))(vue@3.5.26(typescript@5.9.3))
@@ -11510,7 +11484,6 @@ snapshots:
     transitivePeerDependencies:
       - pinia
       - vue
-    optional: true
 
   '@rolldown/pluginutils@1.0.0-beta.53': {}
 
