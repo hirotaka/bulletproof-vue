@@ -1,10 +1,17 @@
-import { expect, test, vi } from "vitest";
+import { afterEach, expect, test, vi } from "vitest";
 import { defineComponent, h } from "vue";
 import { z } from "zod";
 import Form from "../Form.vue";
 import Input from "../Input.vue";
 import Button from "../Button.vue";
-import { renderComponent, screen, userEvent, waitFor } from "~~/test/test-utils";
+import { cleanup, renderComponent, screen, userEvent, waitFor } from "~~/test/test-utils";
+
+// Clean up after each test and wait for pending operations
+afterEach(async () => {
+  cleanup();
+  // Wait for any pending async operations from formwerk
+  await new Promise(resolve => setTimeout(resolve, 100));
+});
 
 const testData = {
   title: "Hello World",
