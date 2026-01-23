@@ -351,7 +351,7 @@ importers:
         version: 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))
       '@regle/core':
         specifier: ^1.0.0
-        version: 1.17.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+        version: 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/nuxt':
         specifier: ^1.0.0
         version: 1.17.0(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
@@ -2653,6 +2653,15 @@ packages:
 
   '@regle/core@1.17.0':
     resolution: {integrity: sha512-WfU4yuGllIpq7570emoh07nRqBPkXNHu8BtyEboA6rLlissBxkiB1LXz4sosJcDXfalCSfiGFL5SAh1FjcTavw==}
+    peerDependencies:
+      pinia: '>=2.2.5'
+      vue: 3.5.27
+    peerDependenciesMeta:
+      pinia:
+        optional: true
+
+  '@regle/core@1.17.1':
+    resolution: {integrity: sha512-XKwvSgxmkQB37i/bVbQOYTvMi93dR6PmaHX6TBZiMlBbK+EYxVWbPKKsRmxJdW62GapRyZin/bXnJw9F2ztwCw==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: 3.5.27
@@ -9133,8 +9142,8 @@ packages:
   vue-component-type-helpers@2.2.12:
     resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
 
-  vue-component-type-helpers@3.2.2:
-    resolution: {integrity: sha512-x8C2nx5XlUNM0WirgfTkHjJGO/ABBxlANZDtHw2HclHtQnn+RFPTnbjMJn8jHZW4TlUam0asHcA14lf1C6Jb+A==}
+  vue-component-type-helpers@3.2.3:
+    resolution: {integrity: sha512-lpJTa8a+12Cgy/n5OdlQTzQhSWOCu+6zQoNFbl3KYxwAoB95mYIgMLKEYMvQykPJ2ucBDjJJISdIBHc1d9Hd3w==}
 
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
@@ -11428,6 +11437,15 @@ snapshots:
     optionalDependencies:
       pinia: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
 
+  '@regle/core@1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      '@vue/devtools-api': 7.7.9
+      type-fest: 5.4.1
+      vue: 3.5.27(typescript@5.9.3)
+    optionalDependencies:
+      pinia: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
+
   '@regle/nuxt@1.17.0(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)':
     dependencies:
       '@nuxt/kit': 4.2.2(magicast@0.5.1)
@@ -11937,7 +11955,7 @@ snapshots:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.5.27(typescript@5.9.3)
-      vue-component-type-helpers: 3.2.2
+      vue-component-type-helpers: 3.2.3
 
   '@stylistic/eslint-plugin@5.6.1(eslint@9.39.2(jiti@2.6.1))':
     dependencies:
@@ -18803,7 +18821,7 @@ snapshots:
 
   vue-component-type-helpers@2.2.12: {}
 
-  vue-component-type-helpers@3.2.2: {}
+  vue-component-type-helpers@3.2.3: {}
 
   vue-demi@0.14.10(vue@3.5.27(typescript@5.9.3)):
     dependencies:
