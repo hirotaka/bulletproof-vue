@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-regle",
+  "name": "bulletproof-nuxt-tanstack-form",
   "type": "module",
   "private": true,
   "scripts": {
@@ -39,10 +39,7 @@
   "dependencies": {
     "@libsql/client": "^0.17.0",
     "@pinia/nuxt": "^0.11.3",
-    "@regle/core": "^1.0.0",
-    "@regle/nuxt": "^1.0.0",
-    "@regle/rules": "^1.0.0",
-    "@regle/schemas": "^1.13.0",
+    "@tanstack/vue-form": "^1.0.0",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -63,7 +60,7 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251128.0",
+    "@cloudflare/workers-types": "^4.20260124.0",
     "@ngneat/falso": "^8.0.2",
     "@nuxt/eslint": "^1.10.0",
     "@nuxt/test-utils": "^3.20.1",
@@ -91,7 +88,7 @@
     "unplugin-vue-components": "^31.0.0",
     "vitest": "^4.0.0",
     "vue-tsc": "^3.0.0",
-    "wrangler": "^4.53.0"
+    "wrangler": "^4.60.0"
   },
   "lint-staged": {
     "*.+(ts|tsx|vue)": [

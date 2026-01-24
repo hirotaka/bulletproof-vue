@@ -1,8 +1,16 @@
-# Vue Vite Application
+# 🛡️ Bulletproof Vue Vite
 
 A client-side Single Page Application using Vue + Vite with feature-based architecture.
 
-## Get Started
+## 🛠️ Tech Stack
+
+- **Framework**: Vue 3 + Vite
+- **Routing**: Vue Router with lazy loading
+- **State**: TanStack Query (Vue Query) + Pinia
+- **Styling**: Tailwind CSS
+- **Testing**: Vitest + Playwright
+
+## 🚀 Get Started
 
 Prerequisites:
 
@@ -12,9 +20,9 @@ Prerequisites:
 To set up the app execute the following commands.
 
 ```bash
-git clone https://github.com/hirotaka/bulletproof-vue.git
-cd bulletproof-vue
-cd apps/vue-vite
+git clone https://github.com/hirotaka/pragmatic-nuxt.git
+cd pragmatic-nuxt
+cd apps/bulletproof-vue-vite
 cp .env.example .env
 pnpm install
 ```
@@ -34,7 +42,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://vitejs.dev/guide/static-deploy.html) for more information.
 
-## Documentation
+## 📚 Documentation
 
 - [💻 Application Overview](./docs/application-overview.md)
 - [⚙️ Project Standards](./docs/project-standards.md)
