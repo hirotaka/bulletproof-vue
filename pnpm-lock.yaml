@@ -351,7 +351,7 @@ importers:
         version: 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))
       '@regle/core':
         specifier: ^1.0.0
-        version: 1.17.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+        version: 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/nuxt':
         specifier: ^1.0.0
         version: 1.17.0(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
