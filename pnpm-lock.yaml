@@ -360,7 +360,7 @@ importers:
         version: 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.13.0
-        version: 1.17.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
+        version: 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -2681,6 +2681,20 @@ packages:
 
   '@regle/schemas@1.17.0':
     resolution: {integrity: sha512-iJwej6JQa/RQ9eO1ydho/RdJZkl3LR1pOB8m1w74mF+4DnaRcHYGLP/UlcF5pewTXb4rxpH9HR9KGy+qqVYtfA==}
+    peerDependencies:
+      arktype: ^2.1.0
+      valibot: ^1.0.0
+      zod: ^3.24.0 || ^4.0.0
+    peerDependenciesMeta:
+      arktype:
+        optional: true
+      valibot:
+        optional: true
+      zod:
+        optional: true
+
+  '@regle/schemas@1.17.1':
+    resolution: {integrity: sha512-3fMoiD6IgD0/yr5Vuxg9tihXCoRzEBG3nhVrgOMQFuqF0YutACse6OVKYHK/YeRq6wNdLrePB/4pnV6x5y6NYg==}
     peerDependencies:
       arktype: ^2.1.0
       valibot: ^1.0.0
@@ -11487,6 +11501,19 @@ snapshots:
       '@regle/rules': 1.17.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.3.1
+    optionalDependencies:
+      zod: 4.3.5
+    transitivePeerDependencies:
+      - pinia
+      - vue
+    optional: true
+
+  '@regle/schemas@1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)':
+    dependencies:
+      '@regle/core': 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+      '@regle/rules': 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+      '@standard-schema/spec': 1.1.0
+      type-fest: 5.4.1
     optionalDependencies:
       zod: 4.3.5
     transitivePeerDependencies:
