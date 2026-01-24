@@ -1,5 +1,5 @@
 {
-  "name": "nuxt",
+  "name": "bulletproof-nuxt",
   "type": "module",
   "private": true,
   "scripts": {
@@ -61,7 +61,7 @@
     "zod": "^3.24.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251128.0",
+    "@cloudflare/workers-types": "^4.20260124.0",
     "@ngneat/falso": "^8.0.2",
     "@nuxt/eslint": "^1.10.0",
     "@nuxt/test-utils": "^3.20.1",
@@ -89,7 +89,7 @@
     "unplugin-vue-components": "^31.0.0",
     "vitest": "^4.0.0",
     "vue-tsc": "^3.0.0",
-    "wrangler": "^4.53.0"
+    "wrangler": "^4.60.0"
   },
   "lint-staged": {
     "*.+(ts|tsx|vue)": [

@@ -1,6 +1,6 @@
 packages:
-  - 'apps/vue-vite'
-  - 'apps/nuxt'
-  - 'apps/nuxt-regle'
-  - 'apps/nuxt-tanstack-form'
-  - 'apps/nuxt-formwerk'
+  - 'apps/bulletproof-vue-vite'
+  - 'apps/bulletproof-nuxt'
+  - 'apps/bulletproof-nuxt-regle'
+  - 'apps/bulletproof-nuxt-tanstack-form'
+  - 'apps/bulletproof-nuxt-formwerk'

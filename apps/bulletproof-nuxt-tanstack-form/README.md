@@ -1,10 +1,24 @@
-# Nuxt Application
+# 🛡️ Bulletproof Nuxt TanStack Form
 
 A full-stack application using Nuxt with SSR capabilities,
-Nuxt Layers architecture, and [VeeValidate](https://vee-validate.logaretm.com/v4/)
-for form validation.
+Nuxt Layers architecture, and [TanStack Form](https://tanstack.com/form/)
+for form handling.
 
-## Get Started
+This app is based on [bulletproof-nuxt](../bulletproof-nuxt/README.md).
+The main difference is that this app uses TanStack Form for form handling
+instead of VeeValidate.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Nuxt 4
+- **Architecture**: Nuxt Layers for modular features
+- **Form Handling**: TanStack Form + Zod v4
+- **Database**: SQLite (libsql) + Drizzle ORM
+- **Auth**: nuxt-auth-utils
+- **Styling**: Tailwind CSS + Reka UI
+- **Testing**: Vitest + Playwright
+
+## 🚀 Get Started
 
 Prerequisites:
 
@@ -14,14 +28,14 @@ Prerequisites:
 To set up the app execute the following commands.
 
 ```bash
-git clone https://github.com/hirotaka/bulletproof-vue.git
-cd bulletproof-vue
-cd apps/nuxt
+git clone https://github.com/hirotaka/pragmatic-nuxt.git
+cd pragmatic-nuxt
+cd apps/bulletproof-nuxt-tanstack-form
 cp .env.example .env
 pnpm install
 ```
 
-### Database Setup
+### 🗄️ Database Setup
 
 Initialize the database schema:
 
@@ -57,17 +71,6 @@ See the section about
 [deployment](https://nuxt.com/docs/getting-started/deployment)
 for more information.
 
-## Documentation
+## 📚 Documentation
 
-- [💻 Application Overview](./docs/application-overview.md)
-- [⚙️ Project Standards](./docs/project-standards.md)
-- [🗄️ Project Structure](./docs/project-structure.md)
-- [🧱 Components And Styling](./docs/components-and-styling.md)
-- [📡 API Layer](./docs/api-layer.md)
-- [🗃️ State Management](./docs/state-management.md)
-- [🧪 Testing](./docs/testing.md)
-- [⚠️ Error Handling](./docs/error-handling.md)
-- [🔐 Security](./docs/security.md)
-- [🚄 Performance](./docs/performance.md)
-- [🌐 Deployment](./docs/deployment.md)
-- [📚 Additional Resources](./docs/additional-resources.md)
+See [bulletproof-nuxt documentation](../bulletproof-nuxt/README.md#-documentation) for the base documentation.

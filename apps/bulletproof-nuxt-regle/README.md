@@ -1,14 +1,24 @@
-# Nuxt Regle Application
+# 🛡️ Bulletproof Nuxt Regle
 
 A full-stack application using Nuxt with SSR capabilities,
 Nuxt Layers architecture, and [Regle](https://reglejs.dev/)
 for form validation.
 
-This app is based on [apps/nuxt](../nuxt/README.md).
+This app is based on [bulletproof-nuxt](../bulletproof-nuxt/README.md).
 The main difference is that this app uses Regle for form validation
 instead of VeeValidate.
 
-## Get Started
+## 🛠️ Tech Stack
+
+- **Framework**: Nuxt 4
+- **Architecture**: Nuxt Layers for modular features
+- **Form Validation**: Regle + Zod v4
+- **Database**: SQLite (libsql) + Drizzle ORM
+- **Auth**: nuxt-auth-utils
+- **Styling**: Tailwind CSS + Reka UI
+- **Testing**: Vitest + Playwright
+
+## 🚀 Get Started
 
 Prerequisites:
 
@@ -18,14 +28,14 @@ Prerequisites:
 To set up the app execute the following commands.
 
 ```bash
-git clone https://github.com/hirotaka/bulletproof-vue.git
-cd bulletproof-vue
-cd apps/nuxt-regle
+git clone https://github.com/hirotaka/pragmatic-nuxt.git
+cd pragmatic-nuxt
+cd apps/bulletproof-nuxt-regle
 cp .env.example .env
 pnpm install
 ```
 
-### Database Setup
+### 🗄️ Database Setup
 
 Initialize the database schema:
 
@@ -61,6 +71,6 @@ See the section about
 [deployment](https://nuxt.com/docs/getting-started/deployment)
 for more information.
 
-## Documentation
+## 📚 Documentation
 
-See [apps/nuxt documentation](../nuxt/README.md#documentation) for the base documentation.
+See [bulletproof-nuxt documentation](../bulletproof-nuxt/README.md#-documentation) for the base documentation.

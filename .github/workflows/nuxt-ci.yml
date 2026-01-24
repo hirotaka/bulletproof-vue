@@ -4,19 +4,19 @@ on:
   push:
     branches: [main]
     paths:
-      - "apps/nuxt/**"
-      - "apps/nuxt-regle/**"
-      - "apps/nuxt-tanstack-form/**"
-      - "apps/nuxt-formwerk/**"
+      - "apps/bulletproof-nuxt/**"
+      - "apps/bulletproof-nuxt-regle/**"
+      - "apps/bulletproof-nuxt-tanstack-form/**"
+      - "apps/bulletproof-nuxt-formwerk/**"
       - "pnpm-lock.yaml"
       - ".github/workflows/nuxt-ci.yml"
   pull_request:
     branches: [main]
     paths:
-      - "apps/nuxt/**"
-      - "apps/nuxt-regle/**"
-      - "apps/nuxt-tanstack-form/**"
-      - "apps/nuxt-formwerk/**"
+      - "apps/bulletproof-nuxt/**"
+      - "apps/bulletproof-nuxt-regle/**"
+      - "apps/bulletproof-nuxt-tanstack-form/**"
+      - "apps/bulletproof-nuxt-formwerk/**"
       - "pnpm-lock.yaml"
       - ".github/workflows/nuxt-ci.yml"
 concurrency:
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: [nuxt, nuxt-regle, nuxt-tanstack-form, nuxt-formwerk]
+        app: [bulletproof-nuxt, bulletproof-nuxt-regle, bulletproof-nuxt-tanstack-form, bulletproof-nuxt-formwerk]
     defaults:
       run:
         working-directory: ./apps/${{ matrix.app }}
@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app: [nuxt, nuxt-regle, nuxt-tanstack-form, nuxt-formwerk]
+        app: [bulletproof-nuxt, bulletproof-nuxt-regle, bulletproof-nuxt-tanstack-form, bulletproof-nuxt-formwerk]
     defaults:
       run:
         working-directory: ./apps/${{ matrix.app }}
