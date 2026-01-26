@@ -37,7 +37,7 @@ importers:
         version: 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))
       '@vee-validate/zod':
         specifier: ^4.15.1
-        version: 4.15.1(vue@3.5.27(typescript@5.9.3))(zod@3.25.76)
+        version: 4.15.1(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -94,7 +94,7 @@ importers:
         version: 4.6.4(vue@3.5.27(typescript@5.9.3))
       zod:
         specifier: ^3.24.0
-        version: 3.25.76
+        version: 4.3.6
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20260124.0
@@ -248,7 +248,7 @@ importers:
         version: 4.6.4(vue@3.5.27(typescript@5.9.3))
       zod:
         specifier: ^4.0.0
-        version: 4.3.5
+        version: 4.3.6
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20260124.0
@@ -354,13 +354,13 @@ importers:
         version: 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/nuxt':
         specifier: ^1.0.0
-        version: 1.16.2(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
+        version: 1.16.2(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)
       '@regle/rules':
         specifier: ^1.0.0
         version: 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.13.0
-        version: 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
+        version: 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -414,7 +414,7 @@ importers:
         version: 4.6.4(vue@3.5.27(typescript@5.9.3))
       zod:
         specifier: ^4.0.0
-        version: 4.3.5
+        version: 4.3.6
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20260124.0
@@ -568,7 +568,7 @@ importers:
         version: 4.6.4(vue@3.5.27(typescript@5.9.3))
       zod:
         specifier: ^4.0.0
-        version: 4.3.5
+        version: 4.3.6
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20260124.0
@@ -668,7 +668,7 @@ importers:
         version: 2.1.2(vue@3.5.27(typescript@5.9.3))
       '@vee-validate/zod':
         specifier: ^4.15.1
-        version: 4.15.1(vue@3.5.27(typescript@5.9.3))(zod@3.25.76)
+        version: 4.15.1(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)
       axios:
         specifier: ^1.12.2
         version: 1.13.2
@@ -719,7 +719,7 @@ importers:
         version: 4.6.4(vue@3.5.27(typescript@5.9.3))
       zod:
         specifier: ^3.24.0
-        version: 3.25.76
+        version: 4.3.6
     devDependencies:
       '@chromatic-com/storybook':
         specifier: ^5.0.0
@@ -9241,8 +9241,8 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
-  zod@4.3.5:
-    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
 snapshots:
 
@@ -11122,14 +11122,14 @@ snapshots:
     optionalDependencies:
       pinia: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
 
-  '@regle/nuxt@1.16.2(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)':
+  '@regle/nuxt@1.16.2(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)':
     dependencies:
       '@nuxt/kit': 4.2.2(magicast@0.5.1)
       '@nuxt/schema': 4.2.2
       '@regle/core': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/rules': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
     optionalDependencies:
-      '@regle/schemas': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
+      '@regle/schemas': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)
     transitivePeerDependencies:
       - arktype
       - magicast
@@ -11146,14 +11146,14 @@ snapshots:
       - pinia
       - vue
 
-  '@regle/schemas@1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)':
+  '@regle/schemas@1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)':
     dependencies:
       '@regle/core': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/rules': 1.16.2(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.3.1
     optionalDependencies:
-      zod: 4.3.5
+      zod: 4.3.6
     transitivePeerDependencies:
       - pinia
       - vue
@@ -12153,11 +12153,11 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vee-validate/zod@4.15.1(vue@3.5.27(typescript@5.9.3))(zod@3.25.76)':
+  '@vee-validate/zod@4.15.1(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)':
     dependencies:
       type-fest: 4.41.0
       vee-validate: 4.15.1(vue@3.5.27(typescript@5.9.3))
-      zod: 3.25.76
+      zod: 4.3.6
     transitivePeerDependencies:
       - vue
 
@@ -18629,4 +18629,4 @@ snapshots:
 
   zod@3.25.76: {}
 
-  zod@4.3.5: {}
+  zod@4.3.6: {}
