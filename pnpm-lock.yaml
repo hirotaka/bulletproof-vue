@@ -351,7 +351,7 @@ importers:
         version: 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))
       '@regle/core':
         specifier: ^1.0.0
-        version: 1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+        version: 1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/nuxt':
         specifier: ^1.0.0
         version: 1.17.1(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
@@ -2658,6 +2658,15 @@ packages:
 
   '@regle/core@1.17.1':
     resolution: {integrity: sha512-XKwvSgxmkQB37i/bVbQOYTvMi93dR6PmaHX6TBZiMlBbK+EYxVWbPKKsRmxJdW62GapRyZin/bXnJw9F2ztwCw==}
+    peerDependencies:
+      pinia: '>=2.2.5'
+      vue: 3.5.27
+    peerDependenciesMeta:
+      pinia:
+        optional: true
+
+  '@regle/core@1.17.3':
+    resolution: {integrity: sha512-rI0SCEU///057lpxfqSqVxvvE+nFg5JjeLcWu4ZfUczRNPcsrZCOvUO7SN7nVbUfRZCEiJSYawbzWZjB1MHgWQ==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: 3.5.27
@@ -11466,6 +11475,15 @@ snapshots:
       secure-json-parse: 4.1.0
 
   '@regle/core@1.17.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      '@vue/devtools-api': 7.7.9
+      type-fest: 5.4.1
+      vue: 3.5.27(typescript@5.9.3)
+    optionalDependencies:
+      pinia: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
+
+  '@regle/core@1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@vue/devtools-api': 7.7.9
