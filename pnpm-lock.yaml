@@ -357,7 +357,7 @@ importers:
         version: 1.17.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
       '@regle/rules':
         specifier: ^1.0.0
-        version: 1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+        version: 1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.13.0
         version: 1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
@@ -2680,6 +2680,9 @@ packages:
 
   '@regle/rules@1.17.3':
     resolution: {integrity: sha512-JJcmxszLTuXBbqcTttLio8YKPscU9gFqwwJAcjJKgHgNVIiF7CWWeHSVNPGsH7BE3rznnEC4FRyxxxJH/dkMoA==}
+
+  '@regle/rules@1.17.4':
+    resolution: {integrity: sha512-1sBqLwcW67pSEs4n2MP4lNl/b1cX9tHVxXRvgf33XoQgUZYcM3SQT+I7YM1TSu+wIXd8gB4Sh8hVN+KqVbNNmw==}
 
   '@regle/schemas@1.17.3':
     resolution: {integrity: sha512-ROH2tugcldzamtnxd2S3OTora/b6pDWlnSUDc1wEg4P2ozXiCW0SU5CrtqEdcl6WCb/hMhKWV2vWHGYNZWDAxQ==}
@@ -11516,6 +11519,14 @@ snapshots:
   '@regle/rules@1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@regle/core': 1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+      type-fest: 5.4.1
+    transitivePeerDependencies:
+      - pinia
+      - vue
+
+  '@regle/rules@1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      '@regle/core': 1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       type-fest: 5.4.1
     transitivePeerDependencies:
       - pinia
