@@ -360,7 +360,7 @@ importers:
         version: 1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/schemas':
         specifier: ^1.13.0
-        version: 1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
+        version: 1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -11550,6 +11550,19 @@ snapshots:
     dependencies:
       '@regle/core': 1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/rules': 1.17.3(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+      '@standard-schema/spec': 1.1.0
+      type-fest: 5.4.1
+    optionalDependencies:
+      zod: 4.3.5
+    transitivePeerDependencies:
+      - pinia
+      - vue
+    optional: true
+
+  '@regle/schemas@1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.5)':
+    dependencies:
+      '@regle/core': 1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+      '@regle/rules': 1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@standard-schema/spec': 1.1.0
       type-fest: 5.4.1
     optionalDependencies:
