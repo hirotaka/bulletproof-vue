@@ -351,7 +351,7 @@ importers:
         version: 0.11.3(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))
       '@regle/core':
         specifier: ^1.0.0
-        version: 1.17.4(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+        version: 1.18.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
       '@regle/nuxt':
         specifier: ^1.0.0
         version: 1.17.4(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))(zod@4.3.6)
@@ -2636,6 +2636,15 @@ packages:
 
   '@regle/core@1.17.4':
     resolution: {integrity: sha512-J1fEY6HZpIDXbc9h7LovwgpHqcHkmhg0DmvJv7mkz3FvE4TPsLAR/U43g6TTUmAj6BfKN27SNDH7XTi6AxviYg==}
+    peerDependencies:
+      pinia: '>=2.2.5'
+      vue: 3.5.27
+    peerDependenciesMeta:
+      pinia:
+        optional: true
+
+  '@regle/core@1.18.0':
+    resolution: {integrity: sha512-zwyfcjJ/cPzm+Hs8UWUp8wCL26gUHmJY8RHQHKxT8mMtGC6q4ybl0n7T7IHlfKjah7bcYL3Aqa3IWwBY9YO8OA==}
     peerDependencies:
       pinia: '>=2.2.5'
       vue: 3.5.27
@@ -5673,6 +5682,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@13.0.0:
@@ -11059,6 +11069,15 @@ snapshots:
       '@standard-schema/spec': 1.1.0
       '@vue/devtools-api': 7.7.9
       type-fest: 5.4.1
+      vue: 3.5.27(typescript@5.9.3)
+    optionalDependencies:
+      pinia: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
+
+  '@regle/core@1.18.0(pinia@3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      '@vue/devtools-api': 7.7.9
+      type-fest: 5.4.3
       vue: 3.5.27(typescript@5.9.3)
     optionalDependencies:
       pinia: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
