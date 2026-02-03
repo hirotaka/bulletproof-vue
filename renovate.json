@@ -5,6 +5,11 @@
   ],
   "packageRules": [
     {
+      "description": "Auto-merge patch and minor updates",
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true
+    },
+    {
       "description": "Keep zod v3 for bulletproof-nuxt (VeeValidate compatibility)",
       "matchPackageNames": ["zod"],
       "matchFileNames": ["apps/bulletproof-nuxt/**", "apps/bulletproof-vue-vite/**"],
