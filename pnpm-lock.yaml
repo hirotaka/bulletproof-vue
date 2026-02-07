@@ -665,7 +665,7 @@ importers:
         version: 5.92.9(vue@3.5.27(typescript@5.9.3))
       '@unhead/vue':
         specifier: ^2.0.19
-        version: 2.1.2(vue@3.5.27(typescript@5.9.3))
+        version: 2.1.3(vue@3.5.27(typescript@5.9.3))
       '@vee-validate/zod':
         specifier: ^4.15.1
         version: 4.15.1(vue@3.5.27(typescript@5.9.3))(zod@3.25.76)
@@ -704,7 +704,7 @@ importers:
         version: 3.4.0
       unhead:
         specifier: ^2.0.19
-        version: 2.1.2
+        version: 2.1.3
       vee-validate:
         specifier: ^4.15.1
         version: 4.15.1(vue@3.5.27(typescript@5.9.3))
@@ -3440,6 +3440,11 @@ packages:
 
   '@unhead/vue@2.1.2':
     resolution: {integrity: sha512-w5yxH/fkkLWAFAOnMSIbvAikNHYn6pgC7zGF/BasXf+K3CO1cYIPFehYAk5jpcsbiNPMc3goyyw1prGLoyD14g==}
+    peerDependencies:
+      vue: 3.5.27
+
+  '@unhead/vue@2.1.3':
+    resolution: {integrity: sha512-Cx0SvCPPOowHteJTpsI+sAQovYnmOgMdueL/McLIYyzJcSM1RBiB+4GJSWOvPDNBSK80SkyI654iWoW5V4UTTw==}
     peerDependencies:
       vue: 3.5.27
 
@@ -8534,6 +8539,9 @@ packages:
   unhead@2.1.2:
     resolution: {integrity: sha512-vSihrxyb+zsEUfEbraZBCjdE0p/WSoc2NGDrpwwSNAwuPxhYK1nH3eegf02IENLpn1sUhL8IoO84JWmRQ6tILA==}
 
+  unhead@2.1.3:
+    resolution: {integrity: sha512-Xg1vKNzkEDM4rrbQcSyKhjy2SAmSyV8qy/2iVdBeoln3Yxz31hlhpa1B2Yx5gBLj9G4MQ6+ZguDzpJTDgrhH+w==}
+
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
@@ -11852,6 +11860,12 @@ snapshots:
     dependencies:
       hookable: 6.0.1
       unhead: 2.1.2
+      vue: 3.5.27(typescript@5.9.3)
+
+  '@unhead/vue@2.1.3(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      hookable: 6.0.1
+      unhead: 2.1.3
       vue: 3.5.27(typescript@5.9.3)
 
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
@@ -17553,6 +17567,10 @@ snapshots:
       pathe: 2.0.3
 
   unhead@2.1.2:
+    dependencies:
+      hookable: 6.0.1
+
+  unhead@2.1.3:
     dependencies:
       hookable: 6.0.1
 
