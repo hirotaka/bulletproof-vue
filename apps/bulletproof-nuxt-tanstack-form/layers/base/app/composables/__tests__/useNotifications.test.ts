@@ -3,7 +3,8 @@ import { ref } from "vue";
 import { useNotifications } from "../useNotifications";
 
 // Mock useState to return a reactive ref
-vi.mock("#app", () => ({
+vi.mock("#app", async importOriginal => ({
+  ...await importOriginal<typeof import("#app")>(),
   useState: (_key: string, init: () => unknown) => ref(init()),
 }));
 
