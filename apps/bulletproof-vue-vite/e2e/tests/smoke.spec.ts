@@ -28,7 +28,7 @@ test('smoke', async ({ page }) => {
     .click();
 
   // visit discussion page:
-  await page.getByRole('link', { name: 'View' }).click();
+  await page.getByRole('link', { name: 'View' }).first().click();
 
   await expect(
     page.getByRole('heading', { name: discussion.title }),
