@@ -37,6 +37,7 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2025-07-15",
   vite: {
+    // @ts-expect-error @nuxt/schema 4.3.1 inlines vite types, breaking compatibility with @tailwindcss/vite
     plugins: [tailwindcss()],
   },
   typescript: {
