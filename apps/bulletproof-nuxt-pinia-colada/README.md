@@ -1,14 +1,19 @@
-# 🛡️ Bulletproof Nuxt
+# 🛡️ Bulletproof Nuxt Pinia Colada
 
 A full-stack application using Nuxt with SSR capabilities,
-Nuxt Layers architecture, and [VeeValidate](https://vee-validate.logaretm.com/v4/)
-for form validation.
+Nuxt Layers architecture, and [Pinia Colada](https://pinia-colada.esm.dev/)
+for data fetching and caching.
+
+This app is based on [bulletproof-nuxt](../bulletproof-nuxt/README.md).
+The main difference is that this app uses Pinia Colada (useQuery/useMutation)
+for data fetching instead of Nuxt's useFetch and a custom useMutation composable.
 
 ## 🛠️ Tech Stack
 
 - **Framework**: Nuxt 4
 - **Architecture**: Nuxt Layers for modular features
-- **Form Validation**: VeeValidate + Zod
+- **Data Fetching**: Pinia Colada (useQuery, useMutation, useInfiniteQuery)
+- **Form Validation**: VeeValidate + Zod v3
 - **Database**: SQLite (libsql) + Drizzle ORM
 - **Auth**: nuxt-auth-utils
 - **Styling**: Tailwind CSS + Reka UI
@@ -26,7 +31,7 @@ To set up the app execute the following commands.
 ```bash
 git clone https://github.com/hirotaka/pragmatic-nuxt.git
 cd pragmatic-nuxt
-cd apps/bulletproof-nuxt
+cd apps/bulletproof-nuxt-pinia-colada
 cp .env.example .env
 pnpm install
 ```
@@ -69,15 +74,4 @@ for more information.
 
 ## 📚 Documentation
 
-- [💻 Application Overview](./docs/application-overview.md)
-- [⚙️ Project Standards](./docs/project-standards.md)
-- [🗄️ Project Structure](./docs/project-structure.md)
-- [🧱 Components And Styling](./docs/components-and-styling.md)
-- [📡 API Layer](./docs/api-layer.md)
-- [🗃️ State Management](./docs/state-management.md)
-- [🧪 Testing](./docs/testing.md)
-- [⚠️ Error Handling](./docs/error-handling.md)
-- [🔐 Security](./docs/security.md)
-- [🚄 Performance](./docs/performance.md)
-- [🌐 Deployment](./docs/deployment.md)
-- [📚 Additional Resources](./docs/additional-resources.md)
+See [bulletproof-nuxt documentation](../bulletproof-nuxt/README.md#-documentation) for the base documentation.
