@@ -135,14 +135,15 @@ vi.mock("~discussions/app/composables/useDeleteDiscussion", () => ({
 // Mock useComments composable
 vi.mock("~comments/app/composables/useComments", () => ({
   useComments: () => ({
-    data: { value: mockPaginatedComments },
+    data: { value: { pages: [mockPaginatedComments], pageParams: [1] } },
+    comments: { value: mockPaginatedComments.data },
     isPending: { value: false },
     isSuccess: { value: true },
     error: { value: null },
-    refresh: vi.fn(),
-    refetch: vi.fn(),
+    loadNextPage: vi.fn(),
+    hasNextPage: { value: false },
+    isFetchingNextPage: { value: false },
   }),
-  fetchMoreComments: vi.fn().mockResolvedValue(mockPaginatedComments),
 }));
 
 // Mock useCreateComment composable

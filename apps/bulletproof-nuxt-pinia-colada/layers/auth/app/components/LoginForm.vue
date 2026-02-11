@@ -17,7 +17,7 @@ const handleSubmit = async (values: Record<string, unknown>) => {
     await login.mutate(values as LoginInput);
   }
   catch {
-    // Error is already handled in the composable via notification
+    // Error notification is handled in the composable
   }
 };
 </script>

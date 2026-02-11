@@ -20,13 +20,6 @@ const updateProfile = useUpdateProfile({
       title: "Profile Updated",
     });
   },
-  onError: (error) => {
-    addNotification({
-      type: "error",
-      title: "Failed to update profile",
-      message: error.message,
-    });
-  },
 });
 
 const handleSubmit = async (values: Record<string, unknown>) => {
