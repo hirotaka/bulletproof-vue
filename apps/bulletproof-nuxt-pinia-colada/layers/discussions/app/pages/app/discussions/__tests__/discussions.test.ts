@@ -80,7 +80,6 @@ vi.mock("#imports", async () => {
       push: vi.fn(),
       replace: vi.fn(),
     }),
-    refreshNuxtData: vi.fn(),
   };
 });
 
