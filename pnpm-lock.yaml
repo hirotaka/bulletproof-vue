@@ -762,7 +762,7 @@ importers:
         version: 4.1.18(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
       '@tanstack/vue-query-devtools':
         specifier: ^6.0.0
-        version: 6.1.4(@tanstack/vue-query@5.92.9(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
+        version: 6.1.5(@tanstack/vue-query@5.92.9(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -3373,8 +3373,8 @@ packages:
     peerDependencies:
       vue: 3.5.28
 
-  '@tanstack/vue-query-devtools@6.1.4':
-    resolution: {integrity: sha512-DR3r0sDc317TYLxfzQIst0YEZ5Va1FpJ8A70JDU9daSpTrRMJSYuGdLx4O1qUvwRlJqo4bRC1ixUuBzTJEkIMg==}
+  '@tanstack/vue-query-devtools@6.1.5':
+    resolution: {integrity: sha512-5tQf/4GKfDyvu+Jqv/Fq1im93nXQyge0yWphCmwNHz6Y6+kqA9swJY2G/kLU2TaT2s1CE+elt5EfYNGE1tsDqQ==}
     peerDependencies:
       '@tanstack/vue-query': ^5.92.9
       vue: 3.5.28
@@ -11708,7 +11708,7 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
 
-  '@tanstack/vue-query-devtools@6.1.4(@tanstack/vue-query@5.92.9(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))':
+  '@tanstack/vue-query-devtools@6.1.5(@tanstack/vue-query@5.92.9(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))':
     dependencies:
       '@tanstack/query-devtools': 5.93.0
       '@tanstack/vue-query': 5.92.9(vue@3.5.28(typescript@5.9.3))
