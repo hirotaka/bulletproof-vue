@@ -6,11 +6,12 @@ interface UseDeleteUserConfig {
 }
 
 export const useDeleteUser = (config?: UseDeleteUserConfig) => {
+  const { $api } = useNuxtApp();
   const queryCache = useQueryCache();
 
   const { mutate, isLoading, error } = useMutation<string, string>({
     mutation: async (userId: string) => {
-      const response = await $fetch<DeleteUserResponse>(
+      const response = await $api<DeleteUserResponse>(
         `/api/users/${userId}`,
         {
           method: "DELETE",

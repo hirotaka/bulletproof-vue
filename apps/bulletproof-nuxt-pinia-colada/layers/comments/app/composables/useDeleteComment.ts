@@ -5,11 +5,12 @@ interface UseDeleteCommentConfig {
 }
 
 export const useDeleteComment = (config?: UseDeleteCommentConfig) => {
+  const { $api } = useNuxtApp();
   const queryCache = useQueryCache();
 
   const { mutate, isLoading, error } = useMutation<undefined, string>({
     mutation: async (commentId: string): Promise<undefined> => {
-      await $fetch(`/api/comments/${commentId}`, {
+      await $api(`/api/comments/${commentId}`, {
         method: "DELETE",
       });
       return undefined;

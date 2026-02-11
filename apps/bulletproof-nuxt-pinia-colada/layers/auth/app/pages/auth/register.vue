@@ -12,6 +12,7 @@ useHead({
   title: "Register your account",
 });
 
+const { $api } = useNuxtApp();
 const router = useRouter();
 const route = useRoute();
 const redirectTo = route.query.redirectTo as string | undefined;
@@ -19,7 +20,7 @@ const redirectTo = route.query.redirectTo as string | undefined;
 // Fetch teams
 const { data: teamsData } = useQuery({
   key: () => ["teams"],
-  query: () => $fetch<Team[]>("/api/teams"),
+  query: () => $api<Team[]>("/api/teams"),
 });
 
 const handleSuccess = () => {

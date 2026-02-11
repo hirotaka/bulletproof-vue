@@ -8,9 +8,11 @@ interface UseUpdateProfileConfig {
 }
 
 export const useUpdateProfile = (config?: UseUpdateProfileConfig) => {
+  const { $api } = useNuxtApp();
+
   const { mutate, isLoading, error, status } = useMutation<User, UpdateProfileInput>({
     mutation: async (input: UpdateProfileInput) => {
-      const response = await $fetch<UserResponse>("/api/profile", {
+      const response = await $api<UserResponse>("/api/profile", {
         method: "PATCH",
         body: input,
       });

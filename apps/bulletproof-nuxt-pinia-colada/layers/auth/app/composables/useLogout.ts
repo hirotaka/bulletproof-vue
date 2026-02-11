@@ -5,11 +5,12 @@ interface UseLogoutConfig {
 }
 
 export const useLogout = (config?: UseLogoutConfig) => {
+  const { $api } = useNuxtApp();
   const { clear } = useUserSession();
 
   const { mutate, isLoading, error } = useMutation({
     mutation: async (): Promise<undefined> => {
-      await $fetch("/api/auth/logout", {
+      await $api("/api/auth/logout", {
         method: "POST",
       });
 

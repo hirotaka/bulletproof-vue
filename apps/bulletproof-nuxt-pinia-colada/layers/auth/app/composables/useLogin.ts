@@ -7,11 +7,12 @@ interface UseLoginConfig {
 }
 
 export const useLogin = (config?: UseLoginConfig) => {
+  const { $api } = useNuxtApp();
   const { fetch } = useUserSession();
 
   const { mutate, isLoading, error } = useMutation<User, LoginInput>({
     mutation: async (input: LoginInput) => {
-      const response = await $fetch<{ user: User }>("/api/auth/login", {
+      const response = await $api<{ user: User }>("/api/auth/login", {
         method: "POST",
         body: input,
       });

@@ -5,6 +5,7 @@ export function useDiscussions(params: {
   page?: Ref<number>;
   limit?: Ref<number>;
 } = {}) {
+  const { $api } = useNuxtApp();
   const queryString = computed(() => {
     const query = new URLSearchParams();
     if (params.page?.value) query.set("page", params.page.value.toString());
@@ -14,7 +15,7 @@ export function useDiscussions(params: {
 
   const { data, error, isPending } = useQuery({
     key: () => ["discussions", queryString.value],
-    query: () => $fetch<PaginatedDiscussions>(`/api/discussions?${queryString.value}`),
+    query: () => $api<PaginatedDiscussions>(`/api/discussions?${queryString.value}`),
   });
 
   return {

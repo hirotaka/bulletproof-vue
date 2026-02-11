@@ -2,6 +2,7 @@ import type { PaginatedComments } from "~comments/shared/types";
 import { useInfiniteQuery } from "@pinia/colada";
 
 export function useComments(discussionId: Ref<string> | string) {
+  const { $api } = useNuxtApp();
   const id = computed(() => (typeof discussionId === "string" ? discussionId : discussionId.value));
 
   const {
@@ -14,7 +15,7 @@ export function useComments(discussionId: Ref<string> | string) {
   } = useInfiniteQuery({
     key: () => ["comments", id.value],
     query: ({ pageParam }) =>
-      $fetch<PaginatedComments>(
+      $api<PaginatedComments>(
         `/api/comments?discussionId=${id.value}&page=${pageParam}`,
       ),
     initialPageParam: 1,

@@ -7,11 +7,12 @@ interface UseRegisterConfig {
 }
 
 export const useRegister = (config?: UseRegisterConfig) => {
+  const { $api } = useNuxtApp();
   const { fetch } = useUserSession();
 
   const { mutate, isLoading, error } = useMutation<User, RegisterInput>({
     mutation: async (input: RegisterInput) => {
-      const response = await $fetch<{ user: User }>("/api/auth/register", {
+      const response = await $api<{ user: User }>("/api/auth/register", {
         method: "POST",
         body: input,
       });

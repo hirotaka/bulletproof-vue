@@ -7,11 +7,12 @@ interface UseCreateDiscussionConfig {
 }
 
 export const useCreateDiscussion = (config?: UseCreateDiscussionConfig) => {
+  const { $api } = useNuxtApp();
   const queryCache = useQueryCache();
 
   const { mutate, isLoading, error, status } = useMutation<Discussion, CreateDiscussionInput>({
     mutation: async (input: CreateDiscussionInput) => {
-      const response = await $fetch<{ discussion: Discussion }>(
+      const response = await $api<{ discussion: Discussion }>(
         "/api/discussions",
         {
           method: "POST",

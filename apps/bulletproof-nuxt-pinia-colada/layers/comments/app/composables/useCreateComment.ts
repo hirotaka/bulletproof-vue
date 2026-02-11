@@ -7,11 +7,12 @@ interface UseCreateCommentConfig {
 }
 
 export const useCreateComment = (config?: UseCreateCommentConfig) => {
+  const { $api } = useNuxtApp();
   const queryCache = useQueryCache();
 
   const { mutate, isLoading, error, status } = useMutation<Comment, CreateCommentInput>({
     mutation: async (input: CreateCommentInput) => {
-      const response = await $fetch<{ data: Comment }>("/api/comments", {
+      const response = await $api<{ data: Comment }>("/api/comments", {
         method: "POST",
         body: input,
       });

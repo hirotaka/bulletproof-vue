@@ -5,11 +5,12 @@ interface UseDeleteDiscussionConfig {
 }
 
 export const useDeleteDiscussion = (config?: UseDeleteDiscussionConfig) => {
+  const { $api } = useNuxtApp();
   const queryCache = useQueryCache();
 
   const { mutate, isLoading, error } = useMutation<undefined, string>({
     mutation: async (id: string): Promise<undefined> => {
-      await $fetch<{ success: boolean }>(`/api/discussions/${id}`, {
+      await $api<{ success: boolean }>(`/api/discussions/${id}`, {
         method: "DELETE",
       });
       return undefined;
