@@ -14,8 +14,8 @@ const handleLogout = async () => {
     await logout.mutate();
     await router.push(`/auth/login?redirectTo=${encodeURIComponent(currentPath)}`);
   }
-  catch (error) {
-    console.error("Logout failed:", error);
+  catch {
+    // Error notification is handled in the composable
   }
 };
 </script>
