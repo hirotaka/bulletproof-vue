@@ -9,22 +9,17 @@ interface DeleteCommentProps {
 }
 
 const props = defineProps<DeleteCommentProps>();
-const emit = defineEmits<{
-  deleted: [];
-}>();
 
 const { addNotification } = useNotifications();
 const isOpen = ref(false);
 
 const deleteComment = useDeleteComment({
-  onSuccess: async () => {
+  onSuccess: () => {
     addNotification({
       type: "success",
       title: "Comment Deleted",
     });
-    await refreshNuxtData();
     isOpen.value = false;
-    emit("deleted");
   },
 });
 

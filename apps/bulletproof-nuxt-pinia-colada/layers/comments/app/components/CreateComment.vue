@@ -12,20 +12,15 @@ interface CreateCommentProps {
 }
 
 const props = defineProps<CreateCommentProps>();
-const emit = defineEmits<{
-  created: [];
-}>();
 
 const { addNotification } = useNotifications();
 
 const createComment = useCreateComment({
-  onSuccess: async () => {
+  onSuccess: () => {
     addNotification({
       type: "success",
       title: "Comment Created",
     });
-    await refreshNuxtData();
-    emit("created");
   },
 });
 

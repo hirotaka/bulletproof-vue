@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArchiveX } from "lucide-vue-next";
-import { ref, onMounted } from "vue";
-import { fetchComments } from "~comments/app/composables/useComments";
+import { ref, computed, watch } from "vue";
+import { useComments, fetchMoreComments } from "~comments/app/composables/useComments";
 import type { Comment } from "~comments/shared/types";
 import { formatDate } from "#layers/base/app/utils/format";
 import { POLICIES } from "#layers/auth/app/composables/useAuthorization";
@@ -13,61 +13,50 @@ interface CommentsListProps {
 const props = defineProps<CommentsListProps>();
 
 const { user } = useUser();
-const comments = ref<Comment[]>([]);
+const commentsQuery = useComments(props.discussionId);
+
+const additionalComments = ref<Comment[]>([]);
 const currentPage = ref(1);
-const totalPages = ref(0);
 const hasMore = ref(false);
-const isLoading = ref(false);
+const isLoadingMore = ref(false);
 
-const loadComments = async (page = 1) => {
-  isLoading.value = true;
-  try {
-    const response = await fetchComments({
-      discussionId: props.discussionId,
-      page,
-    });
+const comments = computed(() => {
+  const base = commentsQuery.data.value?.data ?? [];
+  if (currentPage.value === 1) return base;
+  return [...base, ...additionalComments.value];
+});
 
-    if (page === 1) {
-      comments.value = response.data;
-    }
-    else {
-      comments.value = [...comments.value, ...response.data];
-    }
-    currentPage.value = response.meta.page;
-    totalPages.value = response.meta.totalPages;
-    hasMore.value = response.meta.hasMore || false;
+// Reset pagination when query data refreshes (e.g. after cache invalidation)
+watch(() => commentsQuery.data.value, (newData) => {
+  if (newData) {
+    currentPage.value = 1;
+    additionalComments.value = [];
+    hasMore.value = newData.meta.hasMore || false;
   }
-  catch (error) {
-    console.error("Failed to fetch comments", error);
-  }
-  finally {
-    isLoading.value = false;
-  }
-};
+});
 
 const loadMore = async () => {
-  if (!hasMore.value || isLoading.value) return;
-  await loadComments(currentPage.value + 1);
+  if (!hasMore.value || isLoadingMore.value) return;
+  isLoadingMore.value = true;
+  try {
+    const nextPage = currentPage.value + 1;
+    const response = await fetchMoreComments({
+      discussionId: props.discussionId,
+      page: nextPage,
+    });
+    additionalComments.value = [...additionalComments.value, ...response.data];
+    currentPage.value = nextPage;
+    hasMore.value = response.meta.hasMore || false;
+  }
+  finally {
+    isLoadingMore.value = false;
+  }
 };
-
-const handleCommentDeleted = async () => {
-  // Reload comments from page 1
-  await loadComments(1);
-};
-
-onMounted(async () => {
-  await loadComments(1);
-});
-
-// Expose loadComments method so parent can trigger refresh
-defineExpose({
-  loadComments,
-});
 </script>
 
 <template>
   <div
-    v-if="isLoading && currentPage === 1"
+    v-if="commentsQuery.isPending.value"
     class="flex h-48 w-full items-center justify-center"
   >
     <USpinner size="lg" />
@@ -107,10 +96,7 @@ defineExpose({
                 by {{ comment.author.firstName }} {{ comment.author.lastName }}
               </span>
             </div>
-            <DeleteComment
-              :comment-id="comment.id"
-              @deleted="handleCommentDeleted"
-            />
+            <DeleteComment :comment-id="comment.id" />
           </div>
         </Authorization>
 
@@ -123,7 +109,7 @@ defineExpose({
       class="flex items-center justify-center py-4"
     >
       <UButton @click="loadMore">
-        <USpinner v-if="isLoading && currentPage > 1" />
+        <USpinner v-if="isLoadingMore" />
         <template v-else>
           Load More Comments
         </template>
