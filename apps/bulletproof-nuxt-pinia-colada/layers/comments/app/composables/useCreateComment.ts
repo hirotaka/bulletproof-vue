@@ -1,8 +1,6 @@
 import type { CreateCommentInput } from "~comments/shared/schemas";
 import type { Comment } from "~comments/shared/types";
 import { useMutation, useQueryCache } from "@pinia/colada";
-import { useNotifications } from "#layers/base/app/composables/useNotifications";
-import { extractErrorMessage } from "~base/app/utils/errors";
 
 interface UseCreateCommentConfig {
   onSuccess?: (comment: Comment) => void;
@@ -10,7 +8,6 @@ interface UseCreateCommentConfig {
 
 export const useCreateComment = (config?: UseCreateCommentConfig) => {
   const queryCache = useQueryCache();
-  const { addNotification } = useNotifications();
 
   const { mutate, isLoading, error, status } = useMutation<Comment, CreateCommentInput>({
     mutation: async (input: CreateCommentInput) => {
@@ -24,13 +21,6 @@ export const useCreateComment = (config?: UseCreateCommentConfig) => {
     onSuccess: (comment) => {
       queryCache.invalidateQueries({ key: ["comments"] });
       config?.onSuccess?.(comment);
-    },
-    onError: (err) => {
-      addNotification({
-        type: "error",
-        title: "Error",
-        message: extractErrorMessage(err, "Operation failed"),
-      });
     },
   });
 

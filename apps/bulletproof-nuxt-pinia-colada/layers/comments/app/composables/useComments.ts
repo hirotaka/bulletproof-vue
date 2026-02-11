@@ -6,7 +6,6 @@ export function useComments(discussionId: Ref<string> | string) {
 
   const {
     data,
-    status,
     error,
     isPending,
     loadNextPage,
@@ -23,7 +22,6 @@ export function useComments(discussionId: Ref<string> | string) {
       lastPage.meta.hasMore ? lastPage.meta.page + 1 : undefined,
   });
 
-  const isSuccess = computed(() => status.value === "success");
   const isFetchingNextPage = computed(() => asyncStatus.value === "loading");
   const comments = computed(
     () => data.value?.pages.flatMap(page => page.data) ?? [],
@@ -33,7 +31,6 @@ export function useComments(discussionId: Ref<string> | string) {
     data,
     comments,
     isPending,
-    isSuccess,
     error,
     loadNextPage,
     hasNextPage,

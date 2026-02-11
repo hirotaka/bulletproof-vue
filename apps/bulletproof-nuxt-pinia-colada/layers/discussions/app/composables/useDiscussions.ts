@@ -12,19 +12,14 @@ export function useDiscussions(params: {
     return query.toString();
   });
 
-  const { data, status, error, refresh, refetch, isPending } = useQuery({
+  const { data, error, isPending } = useQuery({
     key: () => ["discussions", queryString.value],
     query: () => $fetch<PaginatedDiscussions>(`/api/discussions?${queryString.value}`),
   });
 
-  const isSuccess = computed(() => status.value === "success");
-
   return {
     data,
     isPending,
-    isSuccess,
     error,
-    refresh,
-    refetch,
   };
 }

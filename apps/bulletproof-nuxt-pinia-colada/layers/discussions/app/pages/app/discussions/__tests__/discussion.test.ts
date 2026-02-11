@@ -105,10 +105,7 @@ vi.mock("~discussions/app/composables/useDiscussion", () => ({
   useDiscussion: () => ({
     data: { value: { discussion: mockDiscussion } },
     isPending: { value: false },
-    isSuccess: { value: true },
     error: { value: null },
-    fetch: vi.fn(),
-    refresh: vi.fn(),
   }),
 }));
 
@@ -137,7 +134,6 @@ vi.mock("~comments/app/composables/useComments", () => ({
     data: { value: { pages: [mockPaginatedComments], pageParams: [1] } },
     comments: { value: mockPaginatedComments.data },
     isPending: { value: false },
-    isSuccess: { value: true },
     error: { value: null },
     loadNextPage: vi.fn(),
     hasNextPage: { value: false },

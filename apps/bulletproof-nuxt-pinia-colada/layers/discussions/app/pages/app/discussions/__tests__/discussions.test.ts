@@ -88,10 +88,7 @@ vi.mock("~discussions/app/composables/useDiscussions", () => ({
   useDiscussions: () => ({
     data: { value: mockPaginatedDiscussions },
     isPending: { value: false },
-    isSuccess: { value: true },
     error: { value: null },
-    fetch: vi.fn(),
-    refresh: vi.fn(),
   }),
 }));
 
