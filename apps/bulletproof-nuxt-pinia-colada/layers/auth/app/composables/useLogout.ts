@@ -1,4 +1,4 @@
-import { useMutation } from "#layers/base/app/composables/useMutation";
+import { useMutation } from "@pinia/colada";
 
 interface UseLogoutConfig {
   onSuccess?: () => void;
@@ -7,8 +7,8 @@ interface UseLogoutConfig {
 export const useLogout = (config?: UseLogoutConfig) => {
   const { clear } = useUserSession();
 
-  return useMutation(
-    async (): Promise<undefined> => {
+  const { mutateAsync, isLoading, error, status } = useMutation({
+    mutation: async (): Promise<undefined> => {
       await $fetch("/api/auth/logout", {
         method: "POST",
       });
@@ -18,8 +18,17 @@ export const useLogout = (config?: UseLogoutConfig) => {
 
       return undefined;
     },
-    {
-      onSuccess: config?.onSuccess,
+    onSuccess: () => {
+      config?.onSuccess?.();
     },
-  );
+  });
+
+  const isSuccess = computed(() => status.value === "success");
+
+  return {
+    mutate: mutateAsync,
+    isPending: isLoading,
+    isSuccess,
+    error,
+  };
 };

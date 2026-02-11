@@ -1,5 +1,5 @@
 import type { DeleteUserResponse } from "~users/shared/types";
-import { useMutation } from "#layers/base/app/composables/useMutation";
+import { useMutation, useQueryCache } from "@pinia/colada";
 
 interface UseDeleteUserConfig {
   onSuccess?: (message: string) => void;
@@ -7,8 +7,10 @@ interface UseDeleteUserConfig {
 }
 
 export const useDeleteUser = (config?: UseDeleteUserConfig) => {
-  return useMutation<string, string>(
-    async (userId: string) => {
+  const queryCache = useQueryCache();
+
+  const { mutateAsync, isLoading, error, status } = useMutation<string, string>({
+    mutation: async (userId: string) => {
       const response = await $fetch<DeleteUserResponse>(
         `/api/users/${userId}`,
         {
@@ -18,9 +20,21 @@ export const useDeleteUser = (config?: UseDeleteUserConfig) => {
 
       return response.message;
     },
-    {
-      onSuccess: config?.onSuccess,
-      onError: config?.onError,
+    onSuccess: (message) => {
+      queryCache.invalidateQueries({ key: ["users"] });
+      config?.onSuccess?.(message);
     },
-  );
+    onError: (err) => {
+      config?.onError?.(err as Error);
+    },
+  });
+
+  const isSuccess = computed(() => status.value === "success");
+
+  return {
+    mutate: mutateAsync,
+    isPending: isLoading,
+    isSuccess,
+    error,
+  };
 };

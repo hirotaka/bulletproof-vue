@@ -1,17 +1,13 @@
 import type { UsersResponse } from "~users/shared/types";
+import { useQuery } from "@pinia/colada";
 
 export function useUsers() {
-  const { data, status, error, refresh } = useFetch<UsersResponse>(
-    "/api/users",
-    {
-      default: () => ({
-        data: [],
-      }),
-      key: "users",
-    },
-  );
+  const { data, status, error, refresh, refetch, isPending } = useQuery({
+    key: () => ["users"],
+    query: () => $fetch<UsersResponse>("/api/users"),
+  });
 
-  const isLoading = computed(() => status.value === "pending");
+  const isLoading = isPending;
   const isSuccess = computed(() => status.value === "success");
 
   return {
@@ -20,5 +16,6 @@ export function useUsers() {
     isSuccess,
     error,
     refresh,
+    refetch,
   };
 }
