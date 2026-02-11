@@ -25,13 +25,8 @@ const deleteDiscussion = useDeleteDiscussion({
   },
 });
 
-const handleDelete = async () => {
-  try {
-    await deleteDiscussion.mutate(props.id);
-  }
-  catch {
-    // Error is already handled in the composable
-  }
+const handleDelete = () => {
+  deleteDiscussion.mutate(props.id);
 };
 </script>
 
@@ -44,7 +39,7 @@ const handleDelete = async () => {
       body="Are you sure you want to delete this discussion?"
       confirm-text="Delete Discussion"
       cancel-text="Cancel"
-      :is-loading="deleteDiscussion.isPending.value"
+      :is-loading="deleteDiscussion.isLoading.value"
       @confirm="handleDelete"
     >
       <template #triggerButton>

@@ -24,14 +24,14 @@ const registering = useRegister({
   onSuccess: () => emit("success"),
 });
 
-const handleSubmit = async (values: Record<string, unknown>): Promise<void> => {
+const handleSubmit = (values: Record<string, unknown>) => {
   const input = {
     ...values,
     teamId: chooseTeam.value && values.teamId ? values.teamId : null,
     teamName: !chooseTeam.value && values.teamName ? values.teamName : null,
   } as RegisterInput;
 
-  await registering.mutate(input);
+  registering.mutate(input);
 };
 
 const teamOptions = computed(
@@ -105,7 +105,7 @@ const teamOptions = computed(
 
         <div>
           <UButton
-            :is-loading="registering.isPending.value"
+            :is-loading="registering.isLoading.value"
             type="submit"
             class="w-full"
           >

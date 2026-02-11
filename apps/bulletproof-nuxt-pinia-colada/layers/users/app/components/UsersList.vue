@@ -19,7 +19,7 @@ const columns: TableColumn<User>[] = [
 
 <template>
   <div
-    v-if="usersQuery.isLoading.value"
+    v-if="usersQuery.isPending.value"
     class="flex h-48 w-full items-center justify-center"
   >
     <USpinner size="lg" />

@@ -55,11 +55,11 @@ const handleSubmit = (values: Record<string, unknown>) => {
       }"
       @submit="handleSubmit"
     >
-      <template #default="{ formState }">
+      <template #default>
         <UTextarea
           name="body"
           label="Body"
-          :disabled="formState.isSubmitting"
+          :disabled="createComment.isLoading.value"
         />
       </template>
     </UForm>
@@ -69,7 +69,7 @@ const handleSubmit = (values: Record<string, unknown>) => {
         type="submit"
         form="create-comment"
         size="sm"
-        :is-loading="createComment.isPending.value"
+        :is-loading="createComment.isLoading.value"
       >
         Submit
       </UButton>

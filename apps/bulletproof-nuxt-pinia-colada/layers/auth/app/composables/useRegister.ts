@@ -12,7 +12,7 @@ export const useRegister = (config?: UseRegisterConfig) => {
   const { fetch } = useUserSession();
   const { addNotification } = useNotifications();
 
-  const { mutateAsync, isLoading, error, status } = useMutation<User, RegisterInput>({
+  const { mutate, isLoading, error } = useMutation<User, RegisterInput>({
     mutation: async (input: RegisterInput) => {
       const response = await $fetch<{ user: User }>("/api/auth/register", {
         method: "POST",
@@ -36,12 +36,9 @@ export const useRegister = (config?: UseRegisterConfig) => {
     },
   });
 
-  const isSuccess = computed(() => status.value === "success");
-
   return {
-    mutate: mutateAsync,
-    isPending: isLoading,
-    isSuccess,
+    mutate,
+    isLoading,
     error,
   };
 };

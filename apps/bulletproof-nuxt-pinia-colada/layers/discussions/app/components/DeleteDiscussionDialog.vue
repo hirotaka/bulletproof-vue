@@ -28,17 +28,12 @@ const deleteDiscussion = useDeleteDiscussion({
   },
 });
 
-const handleConfirm = async () => {
-  try {
-    await deleteDiscussion.mutate(props.discussion.id);
-  }
-  catch {
-    // Error is already handled in the composable
-  }
+const handleConfirm = () => {
+  deleteDiscussion.mutate(props.discussion.id);
 };
 
 const handleOpenChange = (value: boolean) => {
-  if (!deleteDiscussion.isPending.value) {
+  if (!deleteDiscussion.isLoading.value) {
     emit("update:open", value);
   }
 };
@@ -47,7 +42,7 @@ const handleOpenChange = (value: boolean) => {
 <template>
   <UConfirmationDialog
     :open="open"
-    :is-loading="deleteDiscussion.isPending.value"
+    :is-loading="deleteDiscussion.isLoading.value"
     variant="danger"
     title="Delete Discussion"
     :description="`Are you sure you want to delete &quot;${discussion.title}&quot;? This action cannot be undone.`"

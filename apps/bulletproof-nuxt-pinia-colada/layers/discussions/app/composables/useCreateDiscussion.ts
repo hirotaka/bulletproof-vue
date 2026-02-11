@@ -12,7 +12,7 @@ export const useCreateDiscussion = (config?: UseCreateDiscussionConfig) => {
   const queryCache = useQueryCache();
   const { addNotification } = useNotifications();
 
-  const { mutateAsync, isLoading, error, status } = useMutation<Discussion, CreateDiscussionInput>({
+  const { mutate, isLoading, error, status } = useMutation<Discussion, CreateDiscussionInput>({
     mutation: async (input: CreateDiscussionInput) => {
       const response = await $fetch<{ discussion: Discussion }>(
         "/api/discussions",
@@ -40,8 +40,8 @@ export const useCreateDiscussion = (config?: UseCreateDiscussionConfig) => {
   const isSuccess = computed(() => status.value === "success");
 
   return {
-    mutate: mutateAsync,
-    isPending: isLoading,
+    mutate,
+    isLoading,
     isSuccess,
     error,
   };

@@ -10,7 +10,7 @@ export const useLogout = (config?: UseLogoutConfig) => {
   const { clear } = useUserSession();
   const { addNotification } = useNotifications();
 
-  const { mutateAsync, isLoading, error, status } = useMutation({
+  const { mutate, isLoading, error } = useMutation({
     mutation: async (): Promise<undefined> => {
       await $fetch("/api/auth/logout", {
         method: "POST",
@@ -33,12 +33,9 @@ export const useLogout = (config?: UseLogoutConfig) => {
     },
   });
 
-  const isSuccess = computed(() => status.value === "success");
-
   return {
-    mutate: mutateAsync,
-    isPending: isLoading,
-    isSuccess,
+    mutate,
+    isLoading,
     error,
   };
 };

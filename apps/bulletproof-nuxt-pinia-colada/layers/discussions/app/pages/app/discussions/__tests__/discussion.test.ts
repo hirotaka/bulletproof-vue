@@ -116,7 +116,7 @@ vi.mock("~discussions/app/composables/useDiscussion", () => ({
 vi.mock("~discussions/app/composables/useUpdateDiscussion", () => ({
   useUpdateDiscussion: () => ({
     mutate: vi.fn(),
-    isPending: { value: false },
+    isLoading: { value: false },
     isSuccess: { value: false },
     error: { value: null },
   }),
@@ -126,8 +126,7 @@ vi.mock("~discussions/app/composables/useUpdateDiscussion", () => ({
 vi.mock("~discussions/app/composables/useDeleteDiscussion", () => ({
   useDeleteDiscussion: () => ({
     mutate: vi.fn(),
-    isPending: { value: false },
-    isSuccess: { value: false },
+    isLoading: { value: false },
     error: { value: null },
   }),
 }));
@@ -150,7 +149,7 @@ vi.mock("~comments/app/composables/useComments", () => ({
 vi.mock("~comments/app/composables/useCreateComment", () => ({
   useCreateComment: () => ({
     mutate: vi.fn(),
-    isPending: { value: false },
+    isLoading: { value: false },
     isSuccess: { value: false },
     error: { value: null },
   }),
@@ -160,8 +159,7 @@ vi.mock("~comments/app/composables/useCreateComment", () => ({
 vi.mock("~comments/app/composables/useDeleteComment", () => ({
   useDeleteComment: () => ({
     mutate: vi.fn(),
-    isPending: { value: false },
-    isSuccess: { value: false },
+    isLoading: { value: false },
     error: { value: null },
   }),
 }));

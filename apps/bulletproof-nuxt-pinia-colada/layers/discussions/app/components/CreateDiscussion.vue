@@ -18,8 +18,8 @@ const createDiscussion = useCreateDiscussion({
   },
 });
 
-const handleSubmit = async (values: Record<string, unknown>) => {
-  await createDiscussion.mutate(values as CreateDiscussionInput);
+const handleSubmit = (values: Record<string, unknown>) => {
+  createDiscussion.mutate(values as CreateDiscussionInput);
 };
 </script>
 
@@ -42,18 +42,18 @@ const handleSubmit = async (values: Record<string, unknown>) => {
       :schema="createDiscussionInputSchema"
       @submit="handleSubmit"
     >
-      <template #default="{ formState }">
+      <template #default>
         <UInput
           name="title"
           type="text"
           label="Title"
-          :disabled="formState.isSubmitting"
+          :disabled="createDiscussion.isLoading.value"
         />
         <UTextarea
           name="body"
           label="Body"
           :rows="5"
-          :disabled="formState.isSubmitting"
+          :disabled="createDiscussion.isLoading.value"
         />
       </template>
     </UForm>
@@ -63,7 +63,7 @@ const handleSubmit = async (values: Record<string, unknown>) => {
         type="submit"
         form="create-discussion"
         size="sm"
-        :is-loading="createDiscussion.isPending.value"
+        :is-loading="createDiscussion.isLoading.value"
       >
         Submit
       </UButton>

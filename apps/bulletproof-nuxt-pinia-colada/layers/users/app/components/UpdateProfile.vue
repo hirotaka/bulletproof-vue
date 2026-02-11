@@ -22,8 +22,8 @@ const updateProfile = useUpdateProfile({
   },
 });
 
-const handleSubmit = async (values: Record<string, unknown>) => {
-  await updateProfile.mutate(values as UpdateProfileInput);
+const handleSubmit = (values: Record<string, unknown>) => {
+  updateProfile.mutate(values as UpdateProfileInput);
 };
 
 const initialValues = computed(() => ({
@@ -54,30 +54,30 @@ const initialValues = computed(() => ({
       :initial-values="initialValues"
       @submit="handleSubmit"
     >
-      <template #default="{ formState }">
+      <template #default>
         <UInput
           name="firstName"
           type="text"
           label="First Name"
-          :disabled="formState.isSubmitting"
+          :disabled="updateProfile.isLoading.value"
         />
         <UInput
           name="lastName"
           type="text"
           label="Last Name"
-          :disabled="formState.isSubmitting"
+          :disabled="updateProfile.isLoading.value"
         />
         <UInput
           name="email"
           type="email"
           label="Email"
-          :disabled="formState.isSubmitting"
+          :disabled="updateProfile.isLoading.value"
         />
         <UTextarea
           name="bio"
           label="Bio"
           :rows="4"
-          :disabled="formState.isSubmitting"
+          :disabled="updateProfile.isLoading.value"
         />
       </template>
     </UForm>
@@ -87,7 +87,7 @@ const initialValues = computed(() => ({
         type="submit"
         form="update-profile"
         size="sm"
-        :is-loading="updateProfile.isPending.value"
+        :is-loading="updateProfile.isLoading.value"
       >
         Submit
       </UButton>

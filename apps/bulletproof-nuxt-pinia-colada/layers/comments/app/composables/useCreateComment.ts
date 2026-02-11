@@ -12,7 +12,7 @@ export const useCreateComment = (config?: UseCreateCommentConfig) => {
   const queryCache = useQueryCache();
   const { addNotification } = useNotifications();
 
-  const { mutateAsync, isLoading, error, status } = useMutation<Comment, CreateCommentInput>({
+  const { mutate, isLoading, error, status } = useMutation<Comment, CreateCommentInput>({
     mutation: async (input: CreateCommentInput) => {
       const response = await $fetch<{ data: Comment }>("/api/comments", {
         method: "POST",
@@ -37,8 +37,8 @@ export const useCreateComment = (config?: UseCreateCommentConfig) => {
   const isSuccess = computed(() => status.value === "success");
 
   return {
-    mutate: mutateAsync,
-    isPending: isLoading,
+    mutate,
+    isLoading,
     isSuccess,
     error,
   };

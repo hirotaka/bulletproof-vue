@@ -29,13 +29,8 @@ const createDiscussion = useCreateDiscussion({
 const titleError = useFieldError("title");
 const bodyError = useFieldError("body");
 
-const handleSubmit = async (values: Record<string, unknown>) => {
-  try {
-    await createDiscussion.mutate(values as CreateDiscussionInput);
-  }
-  catch {
-    // Error is already handled in the composable
-  }
+const handleSubmit = (values: Record<string, unknown>) => {
+  createDiscussion.mutate(values as CreateDiscussionInput);
 };
 </script>
 
@@ -83,7 +78,7 @@ const handleSubmit = async (values: Record<string, unknown>) => {
 
       <div class="flex gap-2">
         <UButton
-          :is-loading="createDiscussion.isPending.value"
+          :is-loading="createDiscussion.isLoading.value"
           type="submit"
           class="flex-1"
         >

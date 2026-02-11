@@ -6,17 +6,14 @@ const { user, isAuthenticated } = useUser();
 const route = useRoute();
 const router = useRouter();
 
-const logout = useLogout();
+const logout = useLogout({
+  onSuccess: () => {
+    router.push(`/auth/login?redirectTo=${encodeURIComponent(route.fullPath)}`);
+  },
+});
 
-const handleLogout = async () => {
-  try {
-    const currentPath = route.fullPath;
-    await logout.mutate();
-    await router.push(`/auth/login?redirectTo=${encodeURIComponent(currentPath)}`);
-  }
-  catch {
-    // Error notification is handled in the composable
-  }
+const handleLogout = () => {
+  logout.mutate();
 };
 </script>
 
@@ -34,11 +31,11 @@ const handleLogout = async () => {
       </p>
     </div>
     <button
-      :disabled="logout.isPending.value"
+      :disabled="logout.isLoading.value"
       class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
       @click="handleLogout"
     >
-      {{ logout.isPending.value ? 'Logging out...' : 'Logout' }}
+      {{ logout.isLoading.value ? 'Logging out...' : 'Logout' }}
     </button>
   </div>
   <div

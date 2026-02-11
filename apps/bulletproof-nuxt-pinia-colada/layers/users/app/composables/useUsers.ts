@@ -7,12 +7,11 @@ export function useUsers() {
     query: () => $fetch<UsersResponse>("/api/users"),
   });
 
-  const isLoading = isPending;
   const isSuccess = computed(() => status.value === "success");
 
   return {
     data,
-    isLoading,
+    isPending,
     isSuccess,
     error,
     refresh,

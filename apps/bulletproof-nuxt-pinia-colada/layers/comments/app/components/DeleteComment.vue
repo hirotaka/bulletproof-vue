@@ -23,13 +23,8 @@ const deleteComment = useDeleteComment({
   },
 });
 
-const handleDelete = async () => {
-  try {
-    await deleteComment.mutate(props.commentId);
-  }
-  catch {
-    // Error is already handled in the composable
-  }
+const handleDelete = () => {
+  deleteComment.mutate(props.commentId);
 };
 </script>
 
@@ -40,7 +35,7 @@ const handleDelete = async () => {
     title="Delete Comment"
     body="Are you sure you want to delete this comment?"
     confirm-text="Delete Comment"
-    :is-loading="deleteComment.isPending.value"
+    :is-loading="deleteComment.isLoading.value"
     @confirm="handleDelete"
   >
     <template #triggerButton>

@@ -12,13 +12,8 @@ const login = useLogin({
   },
 });
 
-const handleSubmit = async (values: Record<string, unknown>) => {
-  try {
-    await login.mutate(values as LoginInput);
-  }
-  catch {
-    // Error notification is handled in the composable
-  }
+const handleSubmit = (values: Record<string, unknown>) => {
+  login.mutate(values as LoginInput);
 };
 </script>
 
@@ -41,7 +36,7 @@ const handleSubmit = async (values: Record<string, unknown>) => {
         />
         <div>
           <UButton
-            :is-loading="login.isPending.value"
+            :is-loading="login.isLoading.value"
             type="submit"
             class="w-full"
           >

@@ -15,7 +15,11 @@ type SideNavigationItem = {
 const router = useRouter();
 const route = useRoute();
 const { checkAccess } = useAuthorization();
-const logout = useLogout();
+const logout = useLogout({
+  onSuccess: () => {
+    router.push(`/auth/login?redirectTo=${encodeURIComponent(route.fullPath)}`);
+  },
+});
 
 // Progress indicator for route loading
 const progress = ref(0);
@@ -64,10 +68,8 @@ const isActive = (item: SideNavigationItem) => {
   return currentPath.startsWith(item.to);
 };
 
-const handleLogout = async () => {
-  const currentPath = route.fullPath;
-  await logout.mutate();
-  await router.push(`/auth/login?redirectTo=${encodeURIComponent(currentPath)}`);
+const handleLogout = () => {
+  logout.mutate();
 };
 
 const handleProfileClick = () => {

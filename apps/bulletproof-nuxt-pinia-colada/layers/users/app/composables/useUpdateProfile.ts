@@ -13,7 +13,7 @@ interface UseUpdateProfileConfig {
 export const useUpdateProfile = (config?: UseUpdateProfileConfig) => {
   const { addNotification } = useNotifications();
 
-  const { mutateAsync, isLoading, error, status } = useMutation<User, UpdateProfileInput>({
+  const { mutate, isLoading, error, status } = useMutation<User, UpdateProfileInput>({
     mutation: async (input: UpdateProfileInput) => {
       const response = await $fetch<UserResponse>("/api/profile", {
         method: "PATCH",
@@ -38,8 +38,8 @@ export const useUpdateProfile = (config?: UseUpdateProfileConfig) => {
   const isSuccess = computed(() => status.value === "success");
 
   return {
-    mutate: mutateAsync,
-    isPending: isLoading,
+    mutate,
+    isLoading,
     isSuccess,
     error,
   };

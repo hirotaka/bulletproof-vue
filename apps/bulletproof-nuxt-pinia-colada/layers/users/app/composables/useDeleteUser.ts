@@ -12,7 +12,7 @@ export const useDeleteUser = (config?: UseDeleteUserConfig) => {
   const queryCache = useQueryCache();
   const { addNotification } = useNotifications();
 
-  const { mutateAsync, isLoading, error, status } = useMutation<string, string>({
+  const { mutate, isLoading, error } = useMutation<string, string>({
     mutation: async (userId: string) => {
       const response = await $fetch<DeleteUserResponse>(
         `/api/users/${userId}`,
@@ -37,12 +37,9 @@ export const useDeleteUser = (config?: UseDeleteUserConfig) => {
     },
   });
 
-  const isSuccess = computed(() => status.value === "success");
-
   return {
-    mutate: mutateAsync,
-    isPending: isLoading,
-    isSuccess,
+    mutate,
+    isLoading,
     error,
   };
 };

@@ -99,7 +99,7 @@ vi.mock("~discussions/app/composables/useDiscussions", () => ({
 vi.mock("~discussions/app/composables/useCreateDiscussion", () => ({
   useCreateDiscussion: () => ({
     mutate: vi.fn(),
-    isPending: { value: false },
+    isLoading: { value: false },
     isSuccess: { value: false },
     error: { value: null },
   }),
@@ -109,8 +109,7 @@ vi.mock("~discussions/app/composables/useCreateDiscussion", () => ({
 vi.mock("~discussions/app/composables/useDeleteDiscussion", () => ({
   useDeleteDiscussion: () => ({
     mutate: vi.fn(),
-    isPending: { value: false },
-    isSuccess: { value: false },
+    isLoading: { value: false },
     error: { value: null },
   }),
 }));

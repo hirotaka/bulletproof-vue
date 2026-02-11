@@ -10,7 +10,7 @@ export const useDeleteComment = (config?: UseDeleteCommentConfig) => {
   const queryCache = useQueryCache();
   const { addNotification } = useNotifications();
 
-  const { mutateAsync, isLoading, error, status } = useMutation<undefined, string>({
+  const { mutate, isLoading, error } = useMutation<undefined, string>({
     mutation: async (commentId: string): Promise<undefined> => {
       await $fetch(`/api/comments/${commentId}`, {
         method: "DELETE",
@@ -30,12 +30,9 @@ export const useDeleteComment = (config?: UseDeleteCommentConfig) => {
     },
   });
 
-  const isSuccess = computed(() => status.value === "success");
-
   return {
-    mutate: mutateAsync,
-    isPending: isLoading,
-    isSuccess,
+    mutate,
+    isLoading,
     error,
   };
 };

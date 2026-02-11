@@ -34,16 +34,11 @@ const initialValues = computed(() => ({
   body: discussionData.value?.body ?? "",
 }));
 
-const handleSubmit = async (values: Record<string, unknown>) => {
-  try {
-    await updateDiscussion.mutate({
-      id: props.discussionId,
-      data: values as { title: string; body: string },
-    });
-  }
-  catch {
-    // Error is already handled in the composable
-  }
+const handleSubmit = (values: Record<string, unknown>) => {
+  updateDiscussion.mutate({
+    id: props.discussionId,
+    data: values as { title: string; body: string },
+  });
 };
 
 // Close drawer when form submission is done
@@ -80,16 +75,16 @@ watch(
               :initial-values="initialValues"
               @submit="handleSubmit"
             >
-              <template #default="{ formState }">
+              <template #default>
                 <UInput
                   name="title"
                   label="Title"
-                  :disabled="formState.isSubmitting"
+                  :disabled="updateDiscussion.isLoading.value"
                 />
                 <UTextarea
                   name="body"
                   label="Body"
-                  :disabled="formState.isSubmitting"
+                  :disabled="updateDiscussion.isLoading.value"
                 />
               </template>
             </UForm>
@@ -106,7 +101,7 @@ watch(
           <UButton
             type="submit"
             form="update-discussion"
-            :is-loading="updateDiscussion.isPending.value"
+            :is-loading="updateDiscussion.isLoading.value"
           >
             Submit
           </UButton>

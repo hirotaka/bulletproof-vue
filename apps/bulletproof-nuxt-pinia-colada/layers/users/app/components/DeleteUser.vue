@@ -45,7 +45,7 @@ const handleDelete = () => {
       title="Delete User"
       body="Are you sure you want to delete this user?"
       confirm-text="Delete User"
-      :is-loading="deleteUserMutation.isPending.value"
+      :is-loading="deleteUserMutation.isLoading.value"
       @confirm="handleDelete"
     />
   </div>
