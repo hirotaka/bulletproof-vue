@@ -1,32 +1,14 @@
 import type { Discussion } from "~discussions/shared/types";
+import { useQuery } from "@pinia/colada";
 
 export function useDiscussion(id: Ref<string> | string) {
   const discussionId = computed(() => (typeof id === "string" ? id : id.value));
 
-  const { data, status, error, execute, refresh } = useFetch<{
-    discussion: Discussion;
-  }>(() => `/api/discussions/${discussionId.value}`, {
-    default: () => ({
-      discussion: {
-        id: "",
-        title: "",
-        body: "",
-        authorId: "",
-        teamId: "",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        author: {
-          id: "",
-          firstName: "",
-          lastName: "",
-        },
-      },
-    }),
-    immediate: false,
-    key: () => `discussion-${discussionId.value}`,
+  const { data, status, error, refresh, refetch, isPending } = useQuery({
+    key: () => ["discussions", discussionId.value],
+    query: () => $fetch<{ discussion: Discussion }>(`/api/discussions/${discussionId.value}`),
   });
 
-  const isPending = computed(() => status.value === "pending");
   const isSuccess = computed(() => status.value === "success");
 
   return {
@@ -34,7 +16,7 @@ export function useDiscussion(id: Ref<string> | string) {
     isPending,
     isSuccess,
     error,
-    fetch: execute,
     refresh,
+    refetch,
   };
 }

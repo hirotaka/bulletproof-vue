@@ -11,7 +11,7 @@ interface DiscussionViewProps {
 const props = defineProps<DiscussionViewProps>();
 
 const discussion = useDiscussion(props.discussionId);
-const discussionData = computed(() => discussion.data.value.discussion);
+const discussionData = computed(() => discussion.data.value?.discussion);
 </script>
 
 <template>

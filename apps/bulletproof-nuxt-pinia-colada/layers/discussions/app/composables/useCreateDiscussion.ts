@@ -1,14 +1,16 @@
 import type { CreateDiscussionInput } from "~discussions/shared/schemas";
 import type { Discussion } from "~discussions/shared/types";
-import { useMutation } from "#layers/base/app/composables/useMutation";
+import { useMutation, useQueryCache } from "@pinia/colada";
 
 interface UseCreateDiscussionConfig {
   onSuccess?: (discussion: Discussion) => void;
 }
 
 export const useCreateDiscussion = (config?: UseCreateDiscussionConfig) => {
-  return useMutation<CreateDiscussionInput, Discussion>(
-    async (input: CreateDiscussionInput) => {
+  const queryCache = useQueryCache();
+
+  const { mutateAsync, isLoading, error, status } = useMutation<Discussion, CreateDiscussionInput>({
+    mutation: async (input: CreateDiscussionInput) => {
       const response = await $fetch<{ discussion: Discussion }>(
         "/api/discussions",
         {
@@ -19,8 +21,18 @@ export const useCreateDiscussion = (config?: UseCreateDiscussionConfig) => {
 
       return response.discussion;
     },
-    {
-      onSuccess: config?.onSuccess,
+    onSuccess: (discussion) => {
+      queryCache.invalidateQueries({ key: ["discussions"] });
+      config?.onSuccess?.(discussion);
     },
-  );
+  });
+
+  const isSuccess = computed(() => status.value === "success");
+
+  return {
+    mutate: mutateAsync,
+    isPending: isLoading,
+    isSuccess,
+    error,
+  };
 };

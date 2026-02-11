@@ -10,12 +10,11 @@ import { useNotifications } from "#layers/base/app/composables/useNotifications"
 const { addNotification } = useNotifications();
 
 const createDiscussion = useCreateDiscussion({
-  onSuccess: async () => {
+  onSuccess: () => {
     addNotification({
       type: "success",
       title: "Discussion Created",
     });
-    await refreshNuxtData();
   },
 });
 

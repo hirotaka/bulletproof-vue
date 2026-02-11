@@ -16,12 +16,11 @@ const { isAdmin } = useUser();
 const isOpen = ref(false);
 
 const deleteDiscussion = useDeleteDiscussion({
-  onSuccess: async () => {
+  onSuccess: () => {
     addNotification({
       type: "success",
       title: "Discussion Deleted",
     });
-    await refreshNuxtData();
     isOpen.value = false;
   },
 });

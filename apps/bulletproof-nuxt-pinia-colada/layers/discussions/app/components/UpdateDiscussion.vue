@@ -18,15 +18,14 @@ const { isAdmin } = useUser();
 const isOpen = ref(false);
 
 const discussion = useDiscussion(props.discussionId);
-const discussionData = computed(() => discussion.data.value.discussion);
+const discussionData = computed(() => discussion.data.value?.discussion);
 
 const updateDiscussion = useUpdateDiscussion({
-  onSuccess: async () => {
+  onSuccess: () => {
     addNotification({
       type: "success",
       title: "Discussion Updated",
     });
-    await refreshNuxtData();
   },
 });
 

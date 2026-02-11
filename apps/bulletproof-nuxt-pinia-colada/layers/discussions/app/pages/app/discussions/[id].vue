@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed } from "vue";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useDiscussion } from "~discussions/app/composables/useDiscussion";
 
@@ -14,17 +14,13 @@ const discussionId = computed(() => route.params.id as string);
 const discussion = useDiscussion(discussionId);
 
 useHead({
-  title: computed(() => discussion.data.value.discussion?.title || "Discussion"),
-});
-
-onMounted(async () => {
-  await discussion.fetch();
+  title: computed(() => discussion.data.value?.discussion?.title || "Discussion"),
 });
 </script>
 
 <template>
   <LayoutsContentLayout
-    :title="discussion.data.value.discussion?.title || 'Discussion'"
+    :title="discussion.data.value?.discussion?.title || 'Discussion'"
   >
     <div
       v-if="discussion.isPending.value"
@@ -32,7 +28,7 @@ onMounted(async () => {
     >
       <USpinner size="lg" />
     </div>
-    <template v-else-if="discussion.data.value.discussion">
+    <template v-else-if="discussion.data.value?.discussion">
       <DiscussionView :discussion-id="route.params.id as string" />
       <div class="mt-8">
         <Comments :discussion-id="route.params.id as string" />

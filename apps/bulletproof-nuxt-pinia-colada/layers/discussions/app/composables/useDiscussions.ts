@@ -1,4 +1,5 @@
 import type { PaginatedDiscussions } from "~discussions/shared/types";
+import { useQuery } from "@pinia/colada";
 
 export function useDiscussions(params: {
   page?: Ref<number>;
@@ -11,24 +12,11 @@ export function useDiscussions(params: {
     return query.toString();
   });
 
-  const { data, status, error, execute, refresh } = useFetch<PaginatedDiscussions>(
-    () => `/api/discussions?${queryString.value}`,
-    {
-      default: () => ({
-        data: [],
-        meta: {
-          page: 1,
-          limit: 10,
-          totalPages: 1,
-          total: 0,
-        },
-      }),
-      immediate: false,
-      key: () => `discussions-${queryString.value}`,
-    },
-  );
+  const { data, status, error, refresh, refetch, isPending } = useQuery({
+    key: () => ["discussions", queryString.value],
+    query: () => $fetch<PaginatedDiscussions>(`/api/discussions?${queryString.value}`),
+  });
 
-  const isPending = computed(() => status.value === "pending");
   const isSuccess = computed(() => status.value === "success");
 
   return {
@@ -36,7 +24,7 @@ export function useDiscussions(params: {
     isPending,
     isSuccess,
     error,
-    fetch: execute,
     refresh,
+    refetch,
   };
 }

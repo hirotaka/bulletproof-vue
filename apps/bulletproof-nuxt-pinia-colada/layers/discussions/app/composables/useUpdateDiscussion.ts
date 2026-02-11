@@ -1,6 +1,6 @@
 import type { UpdateDiscussionInput } from "~discussions/shared/schemas";
 import type { Discussion } from "~discussions/shared/types";
-import { useMutation } from "#layers/base/app/composables/useMutation";
+import { useMutation, useQueryCache } from "@pinia/colada";
 
 interface UpdateDiscussionParams {
   id: string;
@@ -12,8 +12,10 @@ interface UseUpdateDiscussionConfig {
 }
 
 export const useUpdateDiscussion = (config?: UseUpdateDiscussionConfig) => {
-  return useMutation<UpdateDiscussionParams, Discussion>(
-    async ({ id, data }: UpdateDiscussionParams) => {
+  const queryCache = useQueryCache();
+
+  const { mutateAsync, isLoading, error, status } = useMutation<Discussion, UpdateDiscussionParams>({
+    mutation: async ({ id, data }: UpdateDiscussionParams) => {
       const response = await $fetch<{ discussion: Discussion }>(
         `/api/discussions/${id}`,
         {
@@ -24,8 +26,18 @@ export const useUpdateDiscussion = (config?: UseUpdateDiscussionConfig) => {
 
       return response.discussion;
     },
-    {
-      onSuccess: config?.onSuccess,
+    onSuccess: (discussion) => {
+      queryCache.invalidateQueries({ key: ["discussions"] });
+      config?.onSuccess?.(discussion);
     },
-  );
+  });
+
+  const isSuccess = computed(() => status.value === "success");
+
+  return {
+    mutate: mutateAsync,
+    isPending: isLoading,
+    isSuccess,
+    error,
+  };
 };
