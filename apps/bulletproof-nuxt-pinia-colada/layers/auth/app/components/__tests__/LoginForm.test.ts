@@ -53,3 +53,36 @@ test("should login new user and call onSuccess cb which should navigate the user
     password: newUser.password,
   });
 });
+
+test("should display validation errors for invalid input", async () => {
+  await renderComponent(LoginForm, {
+    props: { onSuccess: vi.fn() },
+  });
+
+  // Type invalid email and short password
+  await userEvent.type(screen.getByLabelText(/email address/i), "invalid");
+  await userEvent.type(screen.getByLabelText(/password/i), "ab");
+
+  // Submit the form
+  await userEvent.click(screen.getByRole("button", { name: /log in/i }));
+
+  // Validation errors should appear
+  await waitFor(() => {
+    expect(screen.getByText(/invalid email/i)).toBeDefined();
+  });
+});
+
+test("should display validation errors for empty fields", async () => {
+  await renderComponent(LoginForm, {
+    props: { onSuccess: vi.fn() },
+  });
+
+  // Submit without filling any fields
+  await userEvent.click(screen.getByRole("button", { name: /log in/i }));
+
+  // Required errors should appear
+  await waitFor(() => {
+    const requiredErrors = screen.getAllByText(/required/i);
+    expect(requiredErrors.length).toBeGreaterThanOrEqual(2);
+  });
+});

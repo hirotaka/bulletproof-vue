@@ -18,7 +18,7 @@ const { isAdmin } = useUser();
 const isOpen = ref(false);
 
 const discussion = useDiscussion(props.discussionId);
-const discussionData = computed(() => discussion.data.value?.discussion);
+const discussionData = computed(() => discussion.data.value);
 
 const updateDiscussion = useUpdateDiscussion({
   onSuccess: () => {

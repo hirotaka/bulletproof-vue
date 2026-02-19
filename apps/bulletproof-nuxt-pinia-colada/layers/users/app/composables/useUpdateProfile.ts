@@ -1,7 +1,7 @@
 import type { User } from "#layers/auth/shared/types";
 import type { UpdateProfileInput } from "~users/shared/schemas";
 import type { UserResponse } from "~users/shared/types";
-import { useMutation } from "@pinia/colada";
+import { useMutation, useQueryCache } from "@pinia/colada";
 
 interface UseUpdateProfileConfig {
   onSuccess?: (user: User) => void;
@@ -9,6 +9,7 @@ interface UseUpdateProfileConfig {
 
 export const useUpdateProfile = (config?: UseUpdateProfileConfig) => {
   const { $api } = useNuxtApp();
+  const queryCache = useQueryCache();
 
   const { mutate, isLoading, error, status } = useMutation<User, UpdateProfileInput>({
     mutation: async (input: UpdateProfileInput) => {
@@ -20,6 +21,7 @@ export const useUpdateProfile = (config?: UseUpdateProfileConfig) => {
       return response.data;
     },
     onSuccess: (user) => {
+      queryCache.invalidateQueries({ key: ["users"] });
       config?.onSuccess?.(user);
     },
   });

@@ -17,12 +17,10 @@ export const useRegister = (config?: UseRegisterConfig) => {
         body: input,
       });
 
-      // Refresh the session from the server
-      await fetch();
-
       return response.user;
     },
-    onSuccess: (user) => {
+    onSuccess: async (user) => {
+      await fetch();
       config?.onSuccess?.(user);
     },
   });

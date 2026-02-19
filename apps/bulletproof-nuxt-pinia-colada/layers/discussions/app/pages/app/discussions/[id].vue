@@ -14,13 +14,13 @@ const discussionId = computed(() => route.params.id as string);
 const discussion = useDiscussion(discussionId);
 
 useHead({
-  title: computed(() => discussion.data.value?.discussion?.title || "Discussion"),
+  title: computed(() => discussion.data.value?.title || "Discussion"),
 });
 </script>
 
 <template>
   <LayoutsContentLayout
-    :title="discussion.data.value?.discussion?.title || 'Discussion'"
+    :title="discussion.data.value?.title || 'Discussion'"
   >
     <div
       v-if="discussion.isPending.value"
@@ -28,7 +28,7 @@ useHead({
     >
       <USpinner size="lg" />
     </div>
-    <template v-else-if="discussion.data.value?.discussion">
+    <template v-else-if="discussion.data.value">
       <DiscussionView :discussion-id="route.params.id as string" />
       <div class="mt-8">
         <Comments :discussion-id="route.params.id as string" />

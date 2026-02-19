@@ -42,7 +42,7 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: true,
-    typeCheck: true,
+    typeCheck: false, // TODO: re-enable after https://github.com/fi3ework/vite-plugin-checker/pull/643 is merged
   },
   eslint: {
     config: {

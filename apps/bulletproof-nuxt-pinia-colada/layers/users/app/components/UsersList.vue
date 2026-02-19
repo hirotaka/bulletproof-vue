@@ -25,8 +25,8 @@ const columns: TableColumn<User>[] = [
     <USpinner size="lg" />
   </div>
   <UTable
-    v-else-if="usersQuery.data.value?.data"
-    :data="usersQuery.data.value.data"
+    v-else-if="usersQuery.data.value.length"
+    :data="usersQuery.data.value"
     :columns="columns"
   >
     <template #cell-createdAt="{ entry }">

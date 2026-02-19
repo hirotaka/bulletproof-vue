@@ -1,4 +1,5 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
+import { ref } from "vue";
 import { waitFor } from "@testing-library/vue";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import type { Discussion, PaginatedDiscussions } from "~discussions/shared/types";
@@ -86,9 +87,9 @@ vi.mock("#imports", async () => {
 // Mock useDiscussions composable
 vi.mock("~discussions/app/composables/useDiscussions", () => ({
   useDiscussions: () => ({
-    data: { value: mockPaginatedDiscussions },
-    isPending: { value: false },
-    error: { value: null },
+    data: ref(mockPaginatedDiscussions),
+    isPending: ref(false),
+    error: ref(null),
   }),
 }));
 
@@ -96,9 +97,9 @@ vi.mock("~discussions/app/composables/useDiscussions", () => ({
 vi.mock("~discussions/app/composables/useCreateDiscussion", () => ({
   useCreateDiscussion: () => ({
     mutate: vi.fn(),
-    isLoading: { value: false },
-    isSuccess: { value: false },
-    error: { value: null },
+    isLoading: ref(false),
+    isSuccess: ref(false),
+    error: ref(null),
   }),
 }));
 
@@ -106,16 +107,16 @@ vi.mock("~discussions/app/composables/useCreateDiscussion", () => ({
 vi.mock("~discussions/app/composables/useDeleteDiscussion", () => ({
   useDeleteDiscussion: () => ({
     mutate: vi.fn(),
-    isLoading: { value: false },
-    error: { value: null },
+    isLoading: ref(false),
+    error: ref(null),
   }),
 }));
 
 // Mock useUser composable
 vi.mock("#layers/auth/app/composables/useUser", () => ({
   useUser: () => ({
-    user: { value: mockUser },
-    isAdmin: { value: true },
+    user: ref(mockUser),
+    isAdmin: ref(true),
   }),
 }));
 

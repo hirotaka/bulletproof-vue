@@ -1,4 +1,5 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
+import { ref } from "vue";
 import { waitFor } from "@testing-library/vue";
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import type { Discussion } from "~discussions/shared/types";
@@ -103,9 +104,9 @@ vi.mock("#imports", async () => {
 // Mock useDiscussion composable
 vi.mock("~discussions/app/composables/useDiscussion", () => ({
   useDiscussion: () => ({
-    data: { value: { discussion: mockDiscussion } },
-    isPending: { value: false },
-    error: { value: null },
+    data: ref(mockDiscussion),
+    isPending: ref(false),
+    error: ref(null),
   }),
 }));
 
@@ -113,9 +114,9 @@ vi.mock("~discussions/app/composables/useDiscussion", () => ({
 vi.mock("~discussions/app/composables/useUpdateDiscussion", () => ({
   useUpdateDiscussion: () => ({
     mutate: vi.fn(),
-    isLoading: { value: false },
-    isSuccess: { value: false },
-    error: { value: null },
+    isLoading: ref(false),
+    isSuccess: ref(false),
+    error: ref(null),
   }),
 }));
 
@@ -123,21 +124,21 @@ vi.mock("~discussions/app/composables/useUpdateDiscussion", () => ({
 vi.mock("~discussions/app/composables/useDeleteDiscussion", () => ({
   useDeleteDiscussion: () => ({
     mutate: vi.fn(),
-    isLoading: { value: false },
-    error: { value: null },
+    isLoading: ref(false),
+    error: ref(null),
   }),
 }));
 
 // Mock useComments composable
 vi.mock("~comments/app/composables/useComments", () => ({
   useComments: () => ({
-    data: { value: { pages: [mockPaginatedComments], pageParams: [1] } },
-    comments: { value: mockPaginatedComments.data },
-    isPending: { value: false },
-    error: { value: null },
+    data: ref({ pages: [mockPaginatedComments], pageParams: [1] }),
+    comments: ref(mockPaginatedComments.data),
+    isPending: ref(false),
+    error: ref(null),
     loadNextPage: vi.fn(),
-    hasNextPage: { value: false },
-    isFetchingNextPage: { value: false },
+    hasNextPage: ref(false),
+    isFetchingNextPage: ref(false),
   }),
 }));
 
@@ -145,9 +146,9 @@ vi.mock("~comments/app/composables/useComments", () => ({
 vi.mock("~comments/app/composables/useCreateComment", () => ({
   useCreateComment: () => ({
     mutate: vi.fn(),
-    isLoading: { value: false },
-    isSuccess: { value: false },
-    error: { value: null },
+    isLoading: ref(false),
+    isSuccess: ref(false),
+    error: ref(null),
   }),
 }));
 
@@ -155,16 +156,16 @@ vi.mock("~comments/app/composables/useCreateComment", () => ({
 vi.mock("~comments/app/composables/useDeleteComment", () => ({
   useDeleteComment: () => ({
     mutate: vi.fn(),
-    isLoading: { value: false },
-    error: { value: null },
+    isLoading: ref(false),
+    error: ref(null),
   }),
 }));
 
 // Mock useUser composable
 vi.mock("#layers/auth/app/composables/useUser", () => ({
   useUser: () => ({
-    user: { value: mockUser },
-    isAdmin: { value: true },
+    user: ref(mockUser),
+    isAdmin: ref(true),
   }),
 }));
 

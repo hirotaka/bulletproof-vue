@@ -84,3 +84,26 @@ test("should register new user and call onSuccess cb which should navigate the u
     teamId: null,
   });
 });
+
+test("should display validation errors for empty fields", async () => {
+  registerEndpoint("/api/teams", () => []);
+
+  await renderComponent(RegisterForm, {
+    url: "/auth/register",
+    path: "/auth/register",
+    props: {
+      onSuccess: vi.fn(),
+      chooseTeam: false,
+      setChooseTeam: vi.fn(),
+    },
+  });
+
+  // Submit without filling any fields
+  await userEvent.click(screen.getByRole("button", { name: /register/i }));
+
+  // Required errors should appear
+  await waitFor(() => {
+    const requiredErrors = screen.getAllByText(/required/i);
+    expect(requiredErrors.length).toBeGreaterThanOrEqual(4);
+  });
+});
