@@ -1,0 +1,32 @@
+import { useMutation } from "@pinia/colada";
+
+interface UseLogoutConfig {
+  onSuccess?: () => void;
+}
+
+export const useLogout = (config?: UseLogoutConfig) => {
+  const { $api } = useNuxtApp();
+  const { clear } = useUserSession();
+
+  const { mutate, isLoading, error } = useMutation({
+    mutation: async (): Promise<undefined> => {
+      await $api("/api/auth/logout", {
+        method: "POST",
+      });
+
+      // Clear the local session
+      await clear();
+
+      return undefined;
+    },
+    onSuccess: () => {
+      config?.onSuccess?.();
+    },
+  });
+
+  return {
+    mutate,
+    isLoading,
+    error,
+  };
+};

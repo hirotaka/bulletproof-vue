@@ -1,0 +1,96 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { Pen } from "lucide-vue-next";
+import { useUpdateProfile } from "~users/app/composables/useUpdateProfile";
+import { updateProfileInputSchema, type UpdateProfileInput } from "~users/shared/schemas";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
+import { useUser } from "#layers/auth/app/composables/useUser";
+
+const { addNotification } = useNotifications();
+const { user } = useUser();
+const { fetch: fetchSession } = useUserSession();
+
+const updateProfile = useUpdateProfile({
+  onSuccess: async () => {
+    // Refresh user session from server
+    await fetchSession();
+
+    addNotification({
+      type: "success",
+      title: "Profile Updated",
+    });
+  },
+});
+
+const handleSubmit = (values: Record<string, unknown>) => {
+  updateProfile.mutate(values as UpdateProfileInput);
+};
+
+const initialValues = computed(() => ({
+  email: user.value?.email || "",
+  firstName: user.value?.firstName || "",
+  lastName: user.value?.lastName || "",
+  bio: user.value?.bio || "",
+}));
+</script>
+
+<template>
+  <UFormDrawer
+    :is-done="updateProfile.isSuccess.value"
+    title="Update Profile"
+  >
+    <template #triggerButton>
+      <UButton size="sm">
+        <template #icon>
+          <Pen class="size-4" />
+        </template>
+        Update Profile
+      </UButton>
+    </template>
+
+    <UForm
+      id="update-profile"
+      :schema="updateProfileInputSchema"
+      :initial-values="initialValues"
+      @submit="handleSubmit"
+    >
+      <template #default>
+        <UInput
+          name="firstName"
+          type="text"
+          label="First Name"
+          :disabled="updateProfile.isLoading.value"
+        />
+        <UInput
+          name="lastName"
+          type="text"
+          label="Last Name"
+          :disabled="updateProfile.isLoading.value"
+        />
+        <UInput
+          name="email"
+          type="email"
+          label="Email"
+          :disabled="updateProfile.isLoading.value"
+        />
+        <UTextarea
+          name="bio"
+          label="Bio"
+          :rows="4"
+          :disabled="updateProfile.isLoading.value"
+        />
+      </template>
+    </UForm>
+
+    <template #submitButton>
+      <UButton
+        type="submit"
+        form="update-profile"
+        size="sm"
+        :is-loading="updateProfile.isLoading.value"
+      >
+        Submit
+      </UButton>
+    </template>
+  </UFormDrawer>
+</template>

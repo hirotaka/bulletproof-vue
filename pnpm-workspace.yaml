@@ -4,3 +4,4 @@ packages:
   - 'apps/bulletproof-nuxt-regle'
   - 'apps/bulletproof-nuxt-tanstack-form'
   - 'apps/bulletproof-nuxt-formwerk'
+  - 'apps/bulletproof-nuxt-pinia-colada'
