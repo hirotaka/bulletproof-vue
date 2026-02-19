@@ -1,16 +1,9 @@
-import { expect, test, vi, beforeEach } from "vitest";
+import { expect, test, vi } from "vitest";
+import { registerEndpoint } from "@nuxt/test-utils/runtime";
+import { readBody } from "h3";
 import LoginForm from "../LoginForm.vue";
 import { createUser } from "~~/test/data-generators";
 import { renderComponent, screen, userEvent, waitFor } from "~~/test/test-utils";
-
-// Create a typed mock for $fetch
-const mockFetch = vi.fn();
-
-// Mock $fetch globally
-beforeEach(() => {
-  vi.stubGlobal("$fetch", mockFetch);
-  mockFetch.mockReset();
-});
 
 test("should login new user and call onSuccess cb which should navigate the user to the app", async () => {
   const newUser = createUser({ teamId: undefined });
@@ -27,7 +20,18 @@ test("should login new user and call onSuccess cb which should navigate the user
     createdAt: Date.now(),
   };
 
-  mockFetch.mockResolvedValue({ user: mockUser });
+  let capturedBody: Record<string, unknown> | undefined;
+
+  registerEndpoint("/api/auth/login", {
+    method: "POST",
+    handler: async (event) => {
+      capturedBody = await readBody(event);
+      return { user: mockUser };
+    },
+  });
+
+  // Mock session refresh endpoint
+  registerEndpoint("/api/_auth/session", () => ({}));
 
   await renderComponent(LoginForm, {
     props: { onSuccess },
@@ -43,12 +47,9 @@ test("should login new user and call onSuccess cb which should navigate the user
   // Wait for the onSuccess callback to be called
   await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
 
-  // Verify $fetch was called with correct parameters
-  expect(mockFetch).toHaveBeenCalledWith("/api/auth/login", {
-    method: "POST",
-    body: {
-      email: newUser.email,
-      password: newUser.password,
-    },
+  // Verify the request body
+  expect(capturedBody).toMatchObject({
+    email: newUser.email,
+    password: newUser.password,
   });
 });

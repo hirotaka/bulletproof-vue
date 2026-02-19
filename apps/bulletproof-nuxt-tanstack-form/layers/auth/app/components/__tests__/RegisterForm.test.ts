@@ -1,4 +1,6 @@
-import { expect, test, vi, beforeEach } from "vitest";
+import { expect, test, vi } from "vitest";
+import { registerEndpoint } from "@nuxt/test-utils/runtime";
+import { readBody } from "h3";
 import RegisterForm from "../RegisterForm.vue";
 import { createUser } from "~~/test/data-generators";
 import { renderComponent, screen, userEvent, waitFor } from "~~/test/test-utils";
@@ -14,15 +16,6 @@ vi.mock("vue-router", async () => {
       path: "/auth/register",
     })),
   };
-});
-
-// Create a typed mock for $fetch
-const mockFetch = vi.fn();
-
-// Mock $fetch globally
-beforeEach(() => {
-  vi.stubGlobal("$fetch", mockFetch);
-  mockFetch.mockReset();
 });
 
 test("should register new user and call onSuccess cb which should navigate the user to the app", async () => {
@@ -41,8 +34,22 @@ test("should register new user and call onSuccess cb which should navigate the u
     createdAt: Date.now(),
   };
 
-  // Mock the teams API call first (for the component's onMounted)
-  mockFetch.mockResolvedValueOnce([]);
+  let capturedBody: Record<string, unknown> | undefined;
+
+  // Mock the teams endpoint (fetched on mount)
+  registerEndpoint("/api/teams", () => []);
+
+  // Mock the register endpoint
+  registerEndpoint("/api/auth/register", {
+    method: "POST",
+    handler: async (event) => {
+      capturedBody = await readBody(event);
+      return { user: mockUser };
+    },
+  });
+
+  // Mock session refresh endpoint
+  registerEndpoint("/api/_auth/session", () => ({}));
 
   await renderComponent(RegisterForm, {
     url: "/auth/register",
@@ -53,9 +60,6 @@ test("should register new user and call onSuccess cb which should navigate the u
       setChooseTeam,
     },
   });
-
-  // Mock the register API call
-  mockFetch.mockResolvedValueOnce({ user: mockUser });
 
   // Fill in the form
   await userEvent.type(screen.getByLabelText(/first name/i), newUser.firstName);
@@ -70,20 +74,13 @@ test("should register new user and call onSuccess cb which should navigate the u
   // Wait for the onSuccess callback to be called
   await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
 
-  // Verify $fetch was called with correct parameters (skip the first call which is for teams)
-  const registerCall = mockFetch.mock.calls.find(
-    call => call[0] === "/api/auth/register",
-  );
-  expect(registerCall).toBeDefined();
-  expect(registerCall?.[1]).toMatchObject({
-    method: "POST",
-    body: {
-      email: newUser.email,
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
-      password: newUser.password,
-      teamName: newUser.teamName,
-      teamId: null,
-    },
+  // Verify the request body
+  expect(capturedBody).toMatchObject({
+    email: newUser.email,
+    firstName: newUser.firstName,
+    lastName: newUser.lastName,
+    password: newUser.password,
+    teamName: newUser.teamName,
+    teamId: null,
   });
 });
