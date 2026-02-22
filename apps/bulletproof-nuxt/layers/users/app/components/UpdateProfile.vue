@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { Pen } from "lucide-vue-next";
 import { useUpdateProfile } from "~users/app/composables/useUpdateProfile";
-import { updateProfileInputSchema, type UpdateProfileInput } from "~users/shared/schemas";
+import { updateProfileInputSchema } from "~users/shared/schemas";
 import { useNotifications } from "#layers/base/app/composables/useNotifications";
 import { useUser } from "#layers/auth/app/composables/useUser";
 
@@ -30,14 +30,19 @@ const updateProfile = useUpdateProfile({
 });
 
 const handleSubmit = async (values: Record<string, unknown>) => {
-  await updateProfile.mutate(values as UpdateProfileInput);
+  await updateProfile.mutate({
+    email: String(values.email ?? ""),
+    firstName: String(values.firstName ?? ""),
+    lastName: String(values.lastName ?? ""),
+    bio: String(values.bio ?? ""),
+  });
 };
 
 const initialValues = computed(() => ({
-  email: user.value?.email || "",
-  firstName: user.value?.firstName || "",
-  lastName: user.value?.lastName || "",
-  bio: user.value?.bio || "",
+  email: user.value?.email ?? "",
+  firstName: user.value?.firstName ?? "",
+  lastName: user.value?.lastName ?? "",
+  bio: user.value?.bio ?? "",
 }));
 </script>
 
