@@ -5,6 +5,7 @@ import { fetchComments } from "~comments/app/composables/useComments";
 import type { Comment } from "~comments/shared/types";
 import { formatDate } from "#layers/base/app/utils/format";
 import { POLICIES } from "#layers/auth/app/composables/useAuthorization";
+import { useNotifications } from "#layers/base/app/composables/useNotifications";
 
 interface CommentsListProps {
   discussionId: string;
@@ -13,6 +14,7 @@ interface CommentsListProps {
 const props = defineProps<CommentsListProps>();
 
 const { user } = useUser();
+const { addNotification } = useNotifications();
 const comments = ref<Comment[]>([]);
 const currentPage = ref(1);
 const totalPages = ref(0);
@@ -37,8 +39,11 @@ const loadComments = async (page = 1) => {
     totalPages.value = response.meta.totalPages;
     hasMore.value = response.meta.hasMore || false;
   }
-  catch (error) {
-    console.error("Failed to fetch comments", error);
+  catch {
+    addNotification({
+      type: "error",
+      title: "Failed to load comments",
+    });
   }
   finally {
     isLoading.value = false;
@@ -90,7 +95,7 @@ defineExpose({
     >
       <li
         v-for="(comment, index) in comments"
-        :key="comment.id || index"
+        :key="comment.id"
         :aria-label="`comment-${comment.body}-${index}`"
         class="w-full bg-white p-4 shadow-sm"
       >

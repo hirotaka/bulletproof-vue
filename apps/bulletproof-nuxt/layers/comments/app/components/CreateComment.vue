@@ -19,12 +19,11 @@ const emit = defineEmits<{
 const { addNotification } = useNotifications();
 
 const createComment = useCreateComment({
-  onSuccess: async () => {
+  onSuccess: () => {
     addNotification({
       type: "success",
       title: "Comment Created",
     });
-    await refreshNuxtData();
     emit("created");
   },
 });
