@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Pen } from "lucide-vue-next";
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, toRef } from "vue";
 import { useUpdateDiscussion } from "~discussions/app/composables/useUpdateDiscussion";
 import { useDiscussion } from "~discussions/app/composables/useDiscussion";
 import { updateDiscussionInputSchema } from "~discussions/shared/schemas";
@@ -17,7 +17,7 @@ const { addNotification } = useNotifications();
 const { isAdmin } = useUser();
 const isOpen = ref(false);
 
-const discussion = useDiscussion(props.discussionId);
+const discussion = useDiscussion(toRef(props, "discussionId"));
 const discussionData = computed(() => discussion.data.value);
 
 const updateDiscussion = useUpdateDiscussion({

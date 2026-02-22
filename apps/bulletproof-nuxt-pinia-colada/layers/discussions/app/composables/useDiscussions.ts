@@ -2,14 +2,16 @@ import type { PaginatedDiscussions } from "~discussions/shared/types";
 import { useQuery } from "@pinia/colada";
 
 export function useDiscussions(params: {
-  page?: Ref<number>;
-  limit?: Ref<number>;
+  page?: MaybeRefOrGetter<number>;
+  limit?: MaybeRefOrGetter<number>;
 } = {}) {
   const { $api } = useNuxtApp();
   const queryString = computed(() => {
     const query = new URLSearchParams();
-    if (params.page?.value) query.set("page", params.page.value.toString());
-    if (params.limit?.value) query.set("limit", params.limit.value.toString());
+    const page = toValue(params.page);
+    const limit = toValue(params.limit);
+    if (page) query.set("page", page.toString());
+    if (limit) query.set("limit", limit.toString());
     return query.toString();
   });
 
