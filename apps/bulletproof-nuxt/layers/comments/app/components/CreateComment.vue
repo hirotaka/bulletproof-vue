@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { Plus } from "lucide-vue-next";
 import { useCreateComment } from "~comments/app/composables/useCreateComment";
-import {
-  createCommentInputSchema,
-  type CreateCommentInput,
-} from "~comments/shared/schemas";
+import { createCommentInputSchema } from "~comments/shared/schemas";
 import { useNotifications } from "#layers/base/app/composables/useNotifications";
 
 interface CreateCommentProps {
@@ -30,9 +27,9 @@ const createComment = useCreateComment({
 
 const handleSubmit = (values: Record<string, unknown>) => {
   createComment.mutate({
-    body: values.body as string,
+    body: String(values.body),
     discussionId: props.discussionId,
-  } as CreateCommentInput);
+  });
 };
 </script>
 

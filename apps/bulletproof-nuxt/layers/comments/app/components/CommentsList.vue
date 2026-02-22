@@ -1,62 +1,23 @@
 <script setup lang="ts">
 import { ArchiveX } from "lucide-vue-next";
-import { ref, onMounted } from "vue";
-import { fetchComments } from "~comments/app/composables/useComments";
-import type { Comment } from "~comments/shared/types";
+import { onMounted } from "vue";
+import { useComments } from "~comments/app/composables/useComments";
 import { formatDate } from "#layers/base/app/utils/format";
 import { POLICIES } from "#layers/auth/app/composables/useAuthorization";
-import { useNotifications } from "#layers/base/app/composables/useNotifications";
 
 interface CommentsListProps {
   discussionId: string;
+  refreshTrigger?: number;
 }
 
 const props = defineProps<CommentsListProps>();
 
 const { user } = useUser();
-const { addNotification } = useNotifications();
-const comments = ref<Comment[]>([]);
-const currentPage = ref(1);
-const totalPages = ref(0);
-const hasMore = ref(false);
-const isLoading = ref(false);
-
-const loadComments = async (page = 1) => {
-  isLoading.value = true;
-  try {
-    const response = await fetchComments({
-      discussionId: props.discussionId,
-      page,
-    });
-
-    if (page === 1) {
-      comments.value = response.data;
-    }
-    else {
-      comments.value = [...comments.value, ...response.data];
-    }
-    currentPage.value = response.meta.page;
-    totalPages.value = response.meta.totalPages;
-    hasMore.value = response.meta.hasMore || false;
-  }
-  catch {
-    addNotification({
-      type: "error",
-      title: "Failed to load comments",
-    });
-  }
-  finally {
-    isLoading.value = false;
-  }
-};
-
-const loadMore = async () => {
-  if (!hasMore.value || isLoading.value) return;
-  await loadComments(currentPage.value + 1);
-};
+const { comments, currentPage, hasMore, isLoading, loadComments, loadMore } = useComments(
+  () => props.discussionId,
+);
 
 const handleCommentDeleted = async () => {
-  // Reload comments from page 1
   await loadComments(1);
 };
 
@@ -64,10 +25,14 @@ onMounted(async () => {
   await loadComments(1);
 });
 
-// Expose loadComments method so parent can trigger refresh
-defineExpose({
-  loadComments,
-});
+watch(
+  () => props.refreshTrigger,
+  async (val) => {
+    if (val !== undefined) {
+      await loadComments(1);
+    }
+  },
+);
 </script>
 
 <template>
@@ -80,7 +45,6 @@ defineExpose({
 
   <div
     v-else-if="!comments.length"
-    role="list"
     aria-label="comments"
     class="flex h-40 flex-col items-center justify-center bg-white text-gray-500"
   >
