@@ -51,7 +51,7 @@ const initialValues = computed(() => ({
     :is-done="updateProfile.isSuccess.value"
     title="Update Profile"
   >
-    <template #triggerButton>
+    <template #trigger-button>
       <UButton size="sm">
         <template #icon>
           <Pen class="size-4" />
@@ -94,7 +94,7 @@ const initialValues = computed(() => ({
       </template>
     </UForm>
 
-    <template #submitButton>
+    <template #submit-button>
       <UButton
         type="submit"
         form="update-profile"

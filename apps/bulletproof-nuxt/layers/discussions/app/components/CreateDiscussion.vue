@@ -29,7 +29,7 @@ const handleSubmit = async (values: Record<string, unknown>) => {
     :is-done="createDiscussion.isSuccess.value"
     title="Create Discussion"
   >
-    <template #triggerButton>
+    <template #trigger-button>
       <UButton size="sm">
         <template #icon>
           <Plus class="size-4" />
@@ -59,7 +59,7 @@ const handleSubmit = async (values: Record<string, unknown>) => {
       </template>
     </UForm>
 
-    <template #submitButton>
+    <template #submit-button>
       <UButton
         type="submit"
         form="create-discussion"

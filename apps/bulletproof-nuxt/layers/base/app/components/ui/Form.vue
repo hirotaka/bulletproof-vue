@@ -27,8 +27,7 @@ const emit = defineEmits<{
 
 const { handleSubmit, errors, isSubmitting, resetForm, setValues, setFieldValue } = useForm({
   validationSchema: toTypedSchema(props.schema),
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  initialValues: props.initialValues as any,
+  initialValues: props.initialValues,
   keepValuesOnUnmount: props.keepValuesOnUnmount,
 });
 
@@ -48,15 +47,8 @@ const formState = computed(() => ({
   isSubmitting: isSubmitting.value,
 }));
 
-const onFormSubmit = (e: Event) => {
-  e.preventDefault();
-  handleFormSubmit(e);
-};
-
-const handleFormSubmit = handleSubmit(async (values) => {
+const onFormSubmit = handleSubmit(async (values) => {
   emit("submit", values);
-}, (_errors) => {
-  // Validation failed
 });
 
 // Expose form methods for parent components and tests

@@ -56,9 +56,6 @@ const handleCancel = () => {
 
 const handleOpenChange = (value: boolean) => {
   emit("update:open", value);
-  if (!value) {
-    emit("cancel");
-  }
 };
 </script>
 

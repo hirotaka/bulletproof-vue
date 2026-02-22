@@ -93,7 +93,7 @@ const nextPage = () => {
 
     <template
       v-for="(page, index) in pages"
-      :key="index"
+      :key="`${page}-${index}`"
     >
       <Button
         v-if="typeof page === 'number'"
