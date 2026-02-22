@@ -11,7 +11,7 @@ interface CommentsListProps {
 const props = defineProps<CommentsListProps>();
 
 const { user } = useUser();
-const commentsQuery = useComments(props.discussionId);
+const commentsQuery = useComments(() => props.discussionId);
 </script>
 
 <template>
@@ -24,7 +24,6 @@ const commentsQuery = useComments(props.discussionId);
 
   <div
     v-else-if="!commentsQuery.comments.value.length"
-    role="list"
     aria-label="comments"
     class="flex h-40 flex-col items-center justify-center bg-white text-gray-500"
   >
@@ -38,9 +37,9 @@ const commentsQuery = useComments(props.discussionId);
       class="flex flex-col space-y-3"
     >
       <li
-        v-for="(comment, index) in commentsQuery.comments.value"
-        :key="comment.id || index"
-        :aria-label="`comment-${comment.body}-${index}`"
+        v-for="comment in commentsQuery.comments.value"
+        :key="comment.id"
+        :aria-label="`comment-${comment.body}`"
         class="w-full bg-white p-4 shadow-sm"
       >
         <Authorization :policy-check="user ? POLICIES['comment:delete'](user, comment) : false">

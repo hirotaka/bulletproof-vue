@@ -5,6 +5,7 @@ import { useMutation, useQueryCache } from "@pinia/colada";
 
 interface UseUpdateProfileConfig {
   onSuccess?: (user: User) => void;
+  onError?: (error: Error) => void;
 }
 
 export const useUpdateProfile = (config?: UseUpdateProfileConfig) => {
@@ -23,6 +24,9 @@ export const useUpdateProfile = (config?: UseUpdateProfileConfig) => {
     onSuccess: (user) => {
       queryCache.invalidateQueries({ key: ["users"] });
       config?.onSuccess?.(user);
+    },
+    onError: (err) => {
+      config?.onError?.(err instanceof Error ? err : new Error(String(err)));
     },
   });
 
