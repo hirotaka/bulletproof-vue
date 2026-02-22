@@ -19,7 +19,7 @@ const emit = defineEmits<{
 <template>
   <RadioGroupRoot
     v-bind="props"
-    @update:model-value="emit('update:modelValue', $event)"
+    @update:model-value="emit('update:modelValue', String($event))"
   >
     <slot />
   </RadioGroupRoot>
