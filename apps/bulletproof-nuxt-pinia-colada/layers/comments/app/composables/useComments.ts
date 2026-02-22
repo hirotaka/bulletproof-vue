@@ -1,9 +1,9 @@
 import type { PaginatedComments } from "~comments/shared/types";
 import { useInfiniteQuery } from "@pinia/colada";
 
-export function useComments(discussionId: Ref<string> | string) {
+export function useComments(discussionId: MaybeRefOrGetter<string>) {
   const { $api } = useNuxtApp();
-  const id = computed(() => (typeof discussionId === "string" ? discussionId : discussionId.value));
+  const id = computed(() => toValue(discussionId));
 
   const {
     data,
