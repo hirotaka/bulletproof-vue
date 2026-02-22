@@ -8,15 +8,13 @@ export const useLogout = (config?: UseLogoutConfig) => {
   const { clear } = useUserSession();
 
   return useMutation(
-    async (): Promise<undefined> => {
+    async (): Promise<void> => {
       await $fetch("/api/auth/logout", {
         method: "POST",
       });
 
       // Clear the local session
       await clear();
-
-      return undefined;
     },
     {
       onSuccess: config?.onSuccess,
