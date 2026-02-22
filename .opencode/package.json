@@ -1,0 +1,9 @@
+{
+  "name": "opencode-plugins",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "jsonc-parser": "3.3.1",
+    "zod": "4.3.5"
+  }
+}
