@@ -9,15 +9,13 @@ export const useLogout = (config?: UseLogoutConfig) => {
   const { clear } = useUserSession();
 
   const { mutate, isLoading, error } = useMutation({
-    mutation: async (): Promise<undefined> => {
+    mutation: async (): Promise<void> => {
       await $api("/api/auth/logout", {
         method: "POST",
       });
 
       // Clear the local session
       await clear();
-
-      return undefined;
     },
     onSuccess: () => {
       config?.onSuccess?.();

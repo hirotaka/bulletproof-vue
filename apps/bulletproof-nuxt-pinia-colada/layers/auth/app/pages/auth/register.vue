@@ -24,7 +24,7 @@ const { data: teamsData } = useQuery({
 });
 
 const handleSuccess = () => {
-  router.replace(redirectTo ? redirectTo : "/app");
+  router.replace(redirectTo ?? "/app");
 };
 
 const teams = computed(() => teamsData.value ?? []);
