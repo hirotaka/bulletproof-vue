@@ -99,9 +99,6 @@ vi.mock("#imports", async () => {
     }),
     refreshNuxtData: vi.fn(),
     useFetch: vi.fn(),
-    computed: vi.fn(fn => ({ value: fn() })),
-    ref: vi.fn(val => ({ value: val })),
-    onMounted: vi.fn(fn => fn()),
   };
 });
 
