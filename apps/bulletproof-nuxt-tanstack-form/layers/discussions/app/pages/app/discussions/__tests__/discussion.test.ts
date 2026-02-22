@@ -99,9 +99,6 @@ vi.mock("#imports", async () => {
     }),
     refreshNuxtData: vi.fn(),
     useFetch: vi.fn(),
-    computed: vi.fn(fn => ({ value: fn() })),
-    ref: vi.fn(val => ({ value: val })),
-    onMounted: vi.fn(fn => fn()),
   };
 });
 
@@ -137,10 +134,21 @@ vi.mock("~discussions/app/composables/useDeleteDiscussion", () => ({
   }),
 }));
 
-// Mock useComments (fetchComments function)
-vi.mock("~comments/app/composables/useComments", () => ({
-  fetchComments: vi.fn().mockResolvedValue(mockPaginatedComments),
-}));
+// Mock useComments composable
+vi.mock("~comments/app/composables/useComments", async () => {
+  const { ref } = await import("vue");
+  return {
+    useComments: () => ({
+      comments: ref(mockPaginatedComments.data),
+      currentPage: ref(1),
+      totalPages: ref(1),
+      hasMore: ref(false),
+      isLoading: ref(false),
+      loadComments: vi.fn(),
+      loadMore: vi.fn(),
+    }),
+  };
+});
 
 // Mock useCreateComment composable
 vi.mock("~comments/app/composables/useCreateComment", () => ({
