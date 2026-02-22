@@ -13,20 +13,25 @@ const props = withDefaults(defineProps<AuthorizationProps>(), {
   policyCheck: undefined,
 });
 
+defineSlots<{
+  "default"(): unknown;
+  "forbidden-fallback"?(): unknown;
+}>();
+
 const { checkAccess } = useAuthorization();
 
 const canAccess = computed(() => {
-  let access = false;
+  // If both allowedRoles and policyCheck are provided, both must pass (AND)
+  // If only one is provided, that one must pass
+  const roleAccess = props.allowedRoles !== undefined
+    ? checkAccess({ allowedRoles: props.allowedRoles })
+    : true;
 
-  if (props.allowedRoles) {
-    access = checkAccess({ allowedRoles: props.allowedRoles });
-  }
+  const policyAccess = props.policyCheck !== undefined
+    ? props.policyCheck
+    : true;
 
-  if (props.policyCheck !== undefined) {
-    access = props.policyCheck;
-  }
-
-  return access;
+  return roleAccess && policyAccess;
 });
 </script>
 
@@ -35,6 +40,6 @@ const canAccess = computed(() => {
     <slot />
   </template>
   <template v-else>
-    <slot name="forbiddenFallback" />
+    <slot name="forbidden-fallback" />
   </template>
 </template>

@@ -51,7 +51,7 @@ const handlePageChange = (page: number) => {
 
 <template>
   <div
-    v-if="!data?.length"
+    v-if="!data.length"
     class="flex h-80 flex-col items-center justify-center bg-white text-gray-500"
   >
     <ArchiveX class="size-16" />
@@ -63,7 +63,7 @@ const handlePageChange = (page: number) => {
         <UTableRow>
           <UTableHead
             v-for="(column, index) in columns"
-            :key="column.title + index"
+            :key="`header-${column.title}-${index}`"
           >
             {{ column.title }}
           </UTableHead>
@@ -71,12 +71,12 @@ const handlePageChange = (page: number) => {
       </UTableHeader>
       <UTableBody>
         <UTableRow
-          v-for="(entry, entryIndex) in data"
-          :key="entry?.id || entryIndex"
+          v-for="entry in data"
+          :key="entry.id"
         >
           <UTableCell
             v-for="({ field, title, name }, columnIndex) in columns"
-            :key="title + columnIndex"
+            :key="`cell-${String(title)}-${columnIndex}`"
           >
             <slot
               v-if="hasSlot(`cell-${name ?? String(field)}`)"

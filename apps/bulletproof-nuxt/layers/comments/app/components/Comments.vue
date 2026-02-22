@@ -7,11 +7,10 @@ interface CommentsProps {
 }
 
 const props = defineProps<CommentsProps>();
-const commentsListRef = ref<{ loadComments: (page?: number) => Promise<void> } | null>(null);
+const refreshTrigger = ref(0);
 
 const handleCommentCreated = () => {
-  // Reload comments list when a new comment is created
-  commentsListRef.value?.loadComments(1);
+  refreshTrigger.value++;
 };
 </script>
 
@@ -27,8 +26,8 @@ const handleCommentCreated = () => {
       />
     </div>
     <CommentsList
-      ref="commentsListRef"
       :discussion-id="props.discussionId"
+      :refresh-trigger="refreshTrigger"
     />
   </div>
 </template>

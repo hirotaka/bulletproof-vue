@@ -7,7 +7,7 @@ import FieldWrapper from "./FieldWrapper.vue";
 
 interface Props {
   name: string;
-  type?: string;
+  type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search" | "date";
   placeholder?: string;
   disabled?: boolean;
   readonly?: boolean;

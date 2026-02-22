@@ -33,9 +33,9 @@ onMounted(async () => {
       <USpinner size="lg" />
     </div>
     <template v-else-if="discussion.data.value.discussion">
-      <DiscussionView :discussion-id="route.params.id as string" />
+      <DiscussionView :discussion-id="discussionId" />
       <div class="mt-8">
-        <Comments :discussion-id="route.params.id as string" />
+        <Comments :discussion-id="discussionId" />
       </div>
     </template>
   </LayoutsContentLayout>

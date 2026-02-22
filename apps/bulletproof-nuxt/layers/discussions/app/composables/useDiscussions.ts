@@ -1,19 +1,16 @@
 import type { PaginatedDiscussions } from "~discussions/shared/types";
 
 export function useDiscussions(params: {
-  page?: Ref<number>;
-  limit?: Ref<number>;
+  page?: MaybeRefOrGetter<number>;
+  limit?: MaybeRefOrGetter<number>;
 } = {}) {
-  const queryString = computed(() => {
-    const query = new URLSearchParams();
-    if (params.page?.value) query.set("page", params.page.value.toString());
-    if (params.limit?.value) query.set("limit", params.limit.value.toString());
-    return query.toString();
-  });
-
   const { data, status, error, execute, refresh } = useFetch<PaginatedDiscussions>(
-    () => `/api/discussions?${queryString.value}`,
+    "/api/discussions",
     {
+      query: {
+        page: computed(() => toValue(params.page)),
+        limit: computed(() => toValue(params.limit)),
+      },
       default: () => ({
         data: [],
         meta: {
@@ -24,7 +21,6 @@ export function useDiscussions(params: {
         },
       }),
       immediate: false,
-      key: () => `discussions-${queryString.value}`,
     },
   );
 

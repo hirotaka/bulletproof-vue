@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { Plus } from "lucide-vue-next";
 import { useCreateComment } from "~comments/app/composables/useCreateComment";
-import {
-  createCommentInputSchema,
-  type CreateCommentInput,
-} from "~comments/shared/schemas";
+import { createCommentInputSchema } from "~comments/shared/schemas";
 import { useNotifications } from "#layers/base/app/composables/useNotifications";
 
 interface CreateCommentProps {
@@ -19,21 +16,20 @@ const emit = defineEmits<{
 const { addNotification } = useNotifications();
 
 const createComment = useCreateComment({
-  onSuccess: async () => {
+  onSuccess: () => {
     addNotification({
       type: "success",
       title: "Comment Created",
     });
-    await refreshNuxtData();
     emit("created");
   },
 });
 
 const handleSubmit = (values: Record<string, unknown>) => {
   createComment.mutate({
-    body: values.body as string,
+    body: String(values.body),
     discussionId: props.discussionId,
-  } as CreateCommentInput);
+  });
 };
 </script>
 
@@ -42,7 +38,7 @@ const handleSubmit = (values: Record<string, unknown>) => {
     :is-done="createComment.isSuccess.value"
     title="Create Comment"
   >
-    <template #triggerButton>
+    <template #trigger-button>
       <UButton size="sm">
         <template #icon>
           <Plus class="size-4" />
@@ -69,7 +65,7 @@ const handleSubmit = (values: Record<string, unknown>) => {
       </template>
     </UForm>
 
-    <template #submitButton>
+    <template #submit-button>
       <UButton
         type="submit"
         form="create-comment"
