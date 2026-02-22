@@ -11,14 +11,14 @@ export function useUsers() {
     },
   );
 
-  const isLoading = computed(() => status.value === "pending");
+  const isPending = computed(() => status.value === "pending");
   const isSuccess = computed(() => status.value === "success");
 
   return {
-    data,
-    isLoading,
+    data: readonly(data),
+    isPending,
     isSuccess,
-    error,
+    error: readonly(error),
     refresh,
   };
 }
