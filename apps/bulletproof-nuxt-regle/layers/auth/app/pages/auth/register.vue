@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import type { Team } from "~auth/shared/types";
 
@@ -20,15 +19,13 @@ const redirectTo = route.query.redirectTo as string | undefined;
 const { data: teamsData } = await useFetch<Team[]>("/api/teams");
 
 const handleSuccess = () => {
-  router.replace(redirectTo ? redirectTo : "/app");
+  router.replace(redirectTo ?? "/app");
 };
-
-const teams = computed(() => teamsData.value);
 </script>
 
 <template>
   <RegisterForm
-    :teams="teams"
+    :teams="teamsData"
     @success="handleSuccess"
   />
 </template>
