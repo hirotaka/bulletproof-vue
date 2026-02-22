@@ -1,7 +1,7 @@
 import type { Discussion } from "~discussions/shared/types";
 
-export function useDiscussion(id: Ref<string> | string) {
-  const discussionId = computed(() => (typeof id === "string" ? id : id.value));
+export function useDiscussion(id: MaybeRefOrGetter<string>) {
+  const discussionId = computed(() => toValue(id));
 
   const { data, status, error, execute, refresh } = useFetch<{
     discussion: Discussion;
@@ -13,8 +13,8 @@ export function useDiscussion(id: Ref<string> | string) {
         body: "",
         authorId: "",
         teamId: "",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date(0),
+        updatedAt: new Date(0),
         author: {
           id: "",
           firstName: "",
@@ -23,7 +23,6 @@ export function useDiscussion(id: Ref<string> | string) {
       },
     }),
     immediate: false,
-    key: () => `discussion-${discussionId.value}`,
   });
 
   const isPending = computed(() => status.value === "pending");

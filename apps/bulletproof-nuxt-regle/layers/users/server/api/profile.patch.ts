@@ -1,13 +1,6 @@
 import { createUserRepository } from "~users/server/repository/userRepository";
 import { updateProfileInputSchema } from "~users/shared/schemas";
 
-interface SessionUser {
-  id: string;
-  email: string;
-  role: string;
-  teamId: string;
-}
-
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event);
 
@@ -31,7 +24,6 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Create repository
   const userRepository = await createUserRepository(event);
 
   const updatedUser = await userRepository.update(sessionUser.id, {
@@ -41,7 +33,6 @@ export default defineEventHandler(async (event) => {
     bio: validationResult.data.bio,
   });
 
-  // Update session with new user data
   await setUserSession(event, {
     user: {
       id: updatedUser.id,
