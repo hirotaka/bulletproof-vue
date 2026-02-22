@@ -54,7 +54,7 @@ test("should not view protected resource if user role does not match and show fa
     },
     slots: {
       default: () => protectedResource,
-      forbiddenFallback: () => forbiddenMessage,
+      "forbidden-fallback": () => forbiddenMessage,
     },
   });
 
@@ -101,7 +101,7 @@ test("should not view protected resource if policy check fails and show fallback
     },
     slots: {
       default: () => protectedResource,
-      forbiddenFallback: () => forbiddenMessage,
+      "forbidden-fallback": () => forbiddenMessage,
     },
   });
 
