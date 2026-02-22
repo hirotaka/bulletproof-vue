@@ -4,18 +4,13 @@ export function useDiscussions(params: {
   page?: MaybeRefOrGetter<number>;
   limit?: MaybeRefOrGetter<number>;
 } = {}) {
-  const queryString = computed(() => {
-    const page = toValue(params.page);
-    const limit = toValue(params.limit);
-    const query = new URLSearchParams();
-    if (page) query.set("page", page.toString());
-    if (limit) query.set("limit", limit.toString());
-    return query.toString();
-  });
-
   const { data, status, error, execute, refresh } = useFetch<PaginatedDiscussions>(
-    () => `/api/discussions?${queryString.value}`,
+    "/api/discussions",
     {
+      query: {
+        page: computed(() => toValue(params.page)),
+        limit: computed(() => toValue(params.limit)),
+      },
       default: () => ({
         data: [],
         meta: {
