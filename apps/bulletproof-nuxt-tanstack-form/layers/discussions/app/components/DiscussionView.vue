@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, toRef } from "vue";
 import UpdateDiscussion from "./UpdateDiscussion.vue";
 import { formatDate } from "#layers/base/app/utils/format";
 import { useDiscussion } from "~discussions/app/composables/useDiscussion";
@@ -10,7 +10,7 @@ interface DiscussionViewProps {
 
 const props = defineProps<DiscussionViewProps>();
 
-const discussion = useDiscussion(props.discussionId);
+const discussion = useDiscussion(toRef(props, "discussionId"));
 const discussionData = computed(() => discussion.data.value.discussion);
 </script>
 

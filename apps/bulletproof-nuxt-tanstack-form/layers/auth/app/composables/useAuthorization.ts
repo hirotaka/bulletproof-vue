@@ -33,5 +33,7 @@ export const useAuthorization = () => {
     return true;
   };
 
-  return { checkAccess, role: user.value?.role };
+  const role = computed(() => user.value?.role);
+
+  return { checkAccess, role };
 };

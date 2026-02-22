@@ -23,6 +23,13 @@ const deleteUserMutation = useDeleteUser({
     });
     isOpen.value = false;
   },
+  onError: (error) => {
+    addNotification({
+      type: "error",
+      title: "Failed to delete user",
+      message: error.message,
+    });
+  },
 });
 
 const handleDelete = () => {

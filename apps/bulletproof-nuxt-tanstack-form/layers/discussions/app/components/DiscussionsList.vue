@@ -11,7 +11,7 @@ const emit = defineEmits<{
 }>();
 
 const currentPage = ref(1);
-const limit = ref(10);
+const limit = 10;
 
 const discussions = useDiscussions({
   page: currentPage,

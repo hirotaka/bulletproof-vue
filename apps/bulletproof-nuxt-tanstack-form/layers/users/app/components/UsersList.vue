@@ -5,7 +5,7 @@ import type { User } from "~auth/shared/types";
 import type { TableColumn } from "#layers/base/app/components/ui/types";
 import DeleteUser from "./DeleteUser.vue";
 
-const usersQuery = useUsers();
+const { data, isPending } = useUsers();
 
 const columns: TableColumn<User>[] = [
   { title: "First Name", field: "firstName" },
@@ -19,14 +19,14 @@ const columns: TableColumn<User>[] = [
 
 <template>
   <div
-    v-if="usersQuery.isLoading.value"
+    v-if="isPending"
     class="flex h-48 w-full items-center justify-center"
   >
     <USpinner size="lg" />
   </div>
   <UTable
-    v-else-if="usersQuery.data.value?.data"
-    :data="usersQuery.data.value.data"
+    v-else-if="data?.data"
+    :data="data.data"
     :columns="columns"
   >
     <template #cell-createdAt="{ entry }">
