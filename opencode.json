@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["CLAUDE.md"],
+  "watcher": {
+    "ignore": ["node_modules/**", "dist/**", ".git/**", ".nuxt/**", ".output/**"]
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true
+  }
+}
