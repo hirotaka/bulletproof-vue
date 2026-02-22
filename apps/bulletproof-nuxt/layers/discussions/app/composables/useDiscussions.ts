@@ -1,13 +1,15 @@
 import type { PaginatedDiscussions } from "~discussions/shared/types";
 
 export function useDiscussions(params: {
-  page?: Ref<number>;
-  limit?: Ref<number>;
+  page?: MaybeRefOrGetter<number>;
+  limit?: MaybeRefOrGetter<number>;
 } = {}) {
   const queryString = computed(() => {
+    const page = toValue(params.page);
+    const limit = toValue(params.limit);
     const query = new URLSearchParams();
-    if (params.page?.value) query.set("page", params.page.value.toString());
-    if (params.limit?.value) query.set("limit", params.limit.value.toString());
+    if (page) query.set("page", page.toString());
+    if (limit) query.set("limit", limit.toString());
     return query.toString();
   });
 
@@ -24,7 +26,6 @@ export function useDiscussions(params: {
         },
       }),
       immediate: false,
-      key: () => `discussions-${queryString.value}`,
     },
   );
 

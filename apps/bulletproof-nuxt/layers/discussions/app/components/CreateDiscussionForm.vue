@@ -29,6 +29,10 @@ const createDiscussion = useCreateDiscussion({
 const titleError = useFieldError("title");
 const bodyError = useFieldError("body");
 
+const handleCancel = () => {
+  router.push("/app/discussions");
+};
+
 const handleSubmit = async (values: Record<string, unknown>) => {
   try {
     await createDiscussion.mutate(values as CreateDiscussionInput);
@@ -92,7 +96,7 @@ const handleSubmit = async (values: Record<string, unknown>) => {
         <UButton
           variant="outline"
           type="button"
-          @click="router.push('/app/discussions')"
+          @click="handleCancel"
         >
           Cancel
         </UButton>
