@@ -1,12 +1,5 @@
 import { createUserRepository } from "~users/server/repository/userRepository";
 
-interface SessionUser {
-  id: string;
-  email: string;
-  role: string;
-  teamId: string;
-}
-
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event);
 
@@ -19,7 +12,6 @@ export default defineEventHandler(async (event) => {
 
   const sessionUser = session.user as SessionUser;
 
-  // Only ADMIN can view users list
   if (sessionUser.role !== "ADMIN") {
     throw createError({
       statusCode: 403,
@@ -27,10 +19,9 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // Create repository
   const userRepository = await createUserRepository(event);
 
-  const users = await userRepository.findAll(sessionUser.teamId);
+  const users = await userRepository.findAll(sessionUser.teamId as string);
 
   return {
     data: users,
