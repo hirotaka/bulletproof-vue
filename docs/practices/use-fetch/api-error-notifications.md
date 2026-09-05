@@ -64,7 +64,7 @@ export const useAPI = createUseFetch(() => ({
 }));
 ```
 
-## Verified App Examples
+## App Examples
 
 - [`useAPI`](../../../apps/bulletproof-nuxt/layers/base/app/composables/useAPI.ts) reports failures from page-rendering API reads.
 - [`$api`](../../../apps/bulletproof-nuxt/layers/base/app/plugins/api.ts) applies the same rules to imperative API requests.

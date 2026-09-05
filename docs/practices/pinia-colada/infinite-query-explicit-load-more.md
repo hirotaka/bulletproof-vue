@@ -80,7 +80,7 @@ const comments = computed(() => data.value?.pages.flatMap(page => page.data) ?? 
 The component can render `comments` as one list and show a "Load More" button while
 `hasNextPage` is true.
 
-## Verified App Examples
+## App Examples
 
 - [`comments.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/comments/app/queries/comments.ts)
   defines a discussion-scoped Query key, keeps the page number out of that key, passes

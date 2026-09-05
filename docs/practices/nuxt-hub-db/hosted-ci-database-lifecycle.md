@@ -93,7 +93,7 @@ jobs:
 
 This example shows a lifecycle that installs dependencies on a hosted runner, applies migrations to a disposable database, runs Playwright E2E against the real application server, and preserves the test report.
 
-## Verified App Examples
+## App Examples
 
 - [Nuxt CI workflow](../../../.github/workflows/nuxt-ci.yml) triggers the Nuxt application checks, keeps matrix jobs independent, and uploads per-application Playwright reports.
 - [`package.json`](../../../apps/bulletproof-nuxt/package.json) exposes the same `test:e2e:ci` lifecycle used by Local and hosted E2E.

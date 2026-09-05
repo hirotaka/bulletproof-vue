@@ -100,7 +100,7 @@ import { users } from "@nuxthub/db/schema";
 
 The example demonstrates the Drizzle and NuxtHub integration boundary. Deployment, migration rollout, seed, reset, and test database operations are defined by separate Practices.
 
-## Verified App Examples
+## App Examples
 
 - [`nuxt.config.ts`](../../../apps/bulletproof-nuxt/nuxt.config.ts) enables `@nuxthub/core` and configures the SQLite database path.
 - [`server/db/schema.sqlite.ts`](../../../apps/bulletproof-nuxt/server/db/schema.sqlite.ts) defines the application's SQLite schema with Drizzle ORM.

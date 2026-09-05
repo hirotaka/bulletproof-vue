@@ -68,7 +68,7 @@ request is pending, `placeholderData` keeps the previous page's result in `data`
 `status` remains `success`, and `asyncStatus` is `loading`. When the request
 completes, `data` changes to the new page's result.
 
-## Verified App Examples
+## App Examples
 
 - [`discussions.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/queries/discussions.ts)
   includes `page` and `limit` in the Discussions list Query key, sends the same

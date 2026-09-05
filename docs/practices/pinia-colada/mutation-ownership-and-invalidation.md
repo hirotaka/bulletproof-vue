@@ -117,7 +117,7 @@ associated with executing the Mutation, such as pending feedback and confirmatio
 `discussionId` is not used by the delete request, but it is included in the Mutation input to
 identify which Comments Query to invalidate after success.
 
-## Verified App Examples
+## App Examples
 
 - [`discussions.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/queries/discussions.ts)
   defines create, update, and delete Mutation options in the Discussions domain module.

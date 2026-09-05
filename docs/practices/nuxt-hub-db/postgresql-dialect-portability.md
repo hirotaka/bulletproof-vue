@@ -135,7 +135,7 @@ PGlite and Neon use different drivers and connection mechanisms. They can
 share PostgreSQL schema and migration artifacts, but each runtime still needs
 its own verification.
 
-## Verified App Examples
+## App Examples
 
 - [`nuxt.config.ts`](../../../apps/bulletproof-nuxt/nuxt.config.ts) selects the
   PostgreSQL path explicitly while preserving the SQLite/D1 baseline. The

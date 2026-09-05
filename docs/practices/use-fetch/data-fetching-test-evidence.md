@@ -62,7 +62,7 @@ export async function useProject(id: MaybeRefOrGetter<string>) {
 
 For this thin read, focused coverage may protect the endpoint and reactive input when they carry an independent contract. Configured hooks belong to the common `useAPI` owner. Nuxt runtime or browser coverage is warranted only when the accepted claim depends on installed AsyncData, SSR, hydration, or navigation behavior.
 
-## Verified App Examples
+## App Examples
 
 - [`usePaginatedData.test.ts`](../../../apps/bulletproof-nuxt/layers/base/app/composables/__tests__/usePaginatedData.test.ts) protects common append and replace behavior, retained data during refresh, page clamping, stale-result rejection, and disposal at the shared pagination owner.
 - The [Discussion detail Page test](../../../apps/bulletproof-nuxt/layers/discussions/app/pages/app/discussions/__tests__/[id].test.ts) protects route-to-read and settled-ID child composition. Its mocked Read does not prove the production endpoint, SSR request, hydration, or browser behavior.

@@ -60,7 +60,7 @@ const isRefreshing = computed(() => status.value === "pending" && projects.value
 </template>
 ```
 
-## Verified App Examples
+## App Examples
 
 - The discussion list shows a spinner during initial loading when no data exists.
 - When discussion rows exist, the list keeps them visible during refresh and shows `Refreshing discussions...`.

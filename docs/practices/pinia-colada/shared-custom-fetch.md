@@ -116,7 +116,7 @@ destination after URL normalization or redirects.
 
 The Query definition retains the requested resource, endpoint, abort signal, and response type.
 
-## Verified App Examples
+## App Examples
 
 - [`api.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/base/app/plugins/api.ts) provides the custom
   `$fetch` instance for internal API requests as `$api`.

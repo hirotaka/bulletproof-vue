@@ -76,7 +76,7 @@ export default defineNuxtConfig({
 
 The example illustrates the lifecycle boundary. The exact preview command, environment selector, and process runner should follow the application and NuxtHub version being used.
 
-## Verified App Examples
+## App Examples
 
 - [`nuxt.config.ts`](../../../apps/bulletproof-nuxt/nuxt.config.ts) selects NuxtHub SQLite and resolves the database directory through `hub.dir`.
 - [`package.json`](../../../apps/bulletproof-nuxt/package.json) discards `.data/e2e` before the E2E build, applies migrations through NuxtHub, and reuses `start-server-and-test` for preview and Playwright.

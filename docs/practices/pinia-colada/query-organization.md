@@ -113,7 +113,7 @@ This example defines the Project domain's key factory and detail Query options i
 `queries/projects.ts` file. The `id` is used in both the Query key and the query
 function.
 
-## Verified App Examples
+## App Examples
 
 - [`discussions.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/queries/discussions.ts)
   defines the Discussions domain's key factory and list/detail Query options.

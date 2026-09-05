@@ -56,7 +56,7 @@ export function useProject(id: MaybeRefOrGetter<string>) {
 const { data, refresh } = await useProject(() => props.projectId);
 ```
 
-## Verified App Examples
+## App Examples
 
 - The [discussion detail page](../../../apps/bulletproof-nuxt/layers/discussions/app/pages/app/discussions/%5Bid%5D.vue) owns initial settlement and passes a settled resource identity to dependent UI.
 - [DiscussionView](../../../apps/bulletproof-nuxt/layers/discussions/app/components/DiscussionView.vue) calls the same detail composable for shared display data.

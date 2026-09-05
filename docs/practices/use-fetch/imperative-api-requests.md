@@ -84,7 +84,7 @@ const submit = async (input: { name: string }) => {
 
 The action defines and sends the API request. The component starts the operation, manages pending state, and emits `created` only after the request succeeds.
 
-## Verified App Examples
+## App Examples
 
 - [`useCreateDiscussion`](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useCreateDiscussion.ts) sends its request through the app-provided `$api` client when the returned function is called.
 - [`UpdateDiscussion`](../../../apps/bulletproof-nuxt/layers/discussions/app/components/UpdateDiscussion.vue) tracks pending state, waits for the update and data refresh, and then closes the drawer.

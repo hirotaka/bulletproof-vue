@@ -85,7 +85,7 @@ export const activityQuery = defineQueryOptions(() => ({
 }));
 ```
 
-## Verified App Examples
+## App Examples
 
 - [`colada.options.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/colada.options.ts) registers `PiniaColadaDelayQuery({ delay: 200 })` on the client only. A 200ms delay and client-only registration are choices for this application.
 - [`DiscussionsList.vue`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/components/DiscussionsList.vue) renders initial loading from Query `status`. During a refetch, it keeps the table visible and shows the accessible `Refreshing discussions` status after delayed `asyncStatus` becomes `loading`.

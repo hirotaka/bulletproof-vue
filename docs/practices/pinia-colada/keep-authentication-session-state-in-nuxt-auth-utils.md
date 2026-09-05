@@ -96,7 +96,7 @@ const reloadAfterSessionExpiry = (statusCode: number) => {
 };
 ```
 
-## Verified App Examples
+## App Examples
 
 - [`auth.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/auth/app/queries/auth.ts) defines Pinia Colada Mutations for login and registration. After the authentication request succeeds, each Mutation awaits `useUserSession().fetch()` before it completes.
 - [`profile.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/users/app/queries/profile.ts) defines a Pinia Colada Mutation for profile updates. After the update request succeeds, it awaits `useUserSession().fetch()` so `useUserSession()` provides the updated current user.

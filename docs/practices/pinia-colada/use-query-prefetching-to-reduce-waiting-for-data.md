@@ -110,7 +110,7 @@ If the prefetch has completed, `useQuery()` uses the cached result.
 If it is still running, `useQuery()` reuses the same request.
 If no prefetch occurred, `useQuery()` starts the normal request.
 
-## Verified App Examples
+## App Examples
 
 - [`discussions.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/queries/discussions.ts) defines the Discussion detail Query options shared by prefetching, the detail page, and `DiscussionView.vue`.
 - [`DiscussionsList.vue`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/components/DiscussionsList.vue) passes those options to Query Cache `ensure()` and starts `refresh()` from the View link's `pointerdown` without waiting for the request or replacing native link navigation.

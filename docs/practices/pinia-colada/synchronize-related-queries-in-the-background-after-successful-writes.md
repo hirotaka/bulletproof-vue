@@ -76,7 +76,7 @@ The `mutation` waits for the DELETE request to complete. The `onSuccess` hook th
 
 If the refetch fails, the application reports that it could not load the latest data rather than presenting the deletion as failed. The deletion remains successful because the server write has already completed.
 
-## Verified App Examples
+## App Examples
 
 - The current CRUD Mutations start related Query invalidation after the server write succeeds without waiting for the refetch to finish. This includes create, update, and delete in [`discussions.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/queries/discussions.ts), create and delete in [`comments.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/comments/app/queries/comments.ts), and delete in [`users.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/users/app/queries/users.ts).
 - The shared Query error hook in [`colada.options.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/colada.options.ts) reports Query refetch failures separately from write failures.
