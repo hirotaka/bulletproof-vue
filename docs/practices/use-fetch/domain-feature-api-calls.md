@@ -90,7 +90,7 @@ async function handleCreate(name: string) {
 </script>
 ```
 
-## Verified App Examples
+## App Examples
 
 - [`useDiscussion`](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useDiscussion.ts) builds the detail URL from a reactive Discussion ID and returns the resulting `AsyncData`.
 - [`useDiscussions`](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useDiscussions.ts) keeps the collection URL and reactive page and limit options together and returns `AsyncData`.

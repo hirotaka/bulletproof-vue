@@ -101,7 +101,7 @@ const save = async () => {
 
 This request, loading, success, and Query synchronization shape can remain consistent across Mutations even when their domain details differ.
 
-## Verified App Examples
+## App Examples
 
 - The create, update, and delete Mutations in [`discussions.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/discussions/app/queries/discussions.ts) run `onSuccess` after the server request completes.
 - The Mutations in [`comments.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/comments/app/queries/comments.ts) and [`users.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/users/app/queries/users.ts) also wait for the server request to complete and invalidate related Queries from `onSuccess`.

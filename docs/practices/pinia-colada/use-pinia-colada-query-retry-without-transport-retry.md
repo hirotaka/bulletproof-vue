@@ -87,7 +87,7 @@ export const projectQuery = defineQueryOptions((id: string) => ({
 
 With this setup, Pinia Colada can call the Query function at most three times: once initially and twice as retries. Each call makes one `$api` request because `$api` uses `retry: 0`, so a failed Query sends no more than three requests.
 
-## Verified App Examples
+## App Examples
 
 - [`createAppApi.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/base/app/utils/createAppApi.ts) creates the shared `$api` instance with `retry: 0`. A failed `$api` request does not start an automatic `$fetch` retry.
 - [`teams.ts`](../../../apps/reference/bulletproof-nuxt-pinia-colada/layers/teams/app/queries/teams.ts) defines the Teams Query with one `$api` call per Query function invocation, forwards the abort signal, and does not override `retry`.

@@ -61,7 +61,7 @@ const handleSubmit = async (input: UpdateDiscussionInput) => {
 };
 ```
 
-## Verified App Examples
+## App Examples
 
 - Discussion create, update, and delete operations present mutation success before refreshing the affected list or detail.
 - Comment create and delete operations treat mutation success and a comments refresh failure as separate outcomes.

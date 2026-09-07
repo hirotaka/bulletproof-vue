@@ -87,7 +87,7 @@ export function useCreateProject() {
 
 `useProjects()` keeps page-rendering data in AsyncData. `useCreateProject()` returns an imperative request function. Both keep the `/projects` path and request options out of components and pages.
 
-## Verified App Examples
+## App Examples
 
 - [`useAPI`](../../../apps/bulletproof-nuxt/layers/base/app/composables/useAPI.ts) defines the custom `useFetch` composable for AsyncData reads. It adds shared `onRequestError` and `onResponseError` notification functions before functions supplied for a specific API call. Its notification functions are not restricted to browser execution.
 - The [API plugin](../../../apps/bulletproof-nuxt/layers/base/app/plugins/api.ts) creates the custom `$fetch` instance and provides it as `$api` for imperative requests. Its error hooks add notifications in the browser and skip notification updates during SSR.

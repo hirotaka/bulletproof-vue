@@ -77,7 +77,7 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-## Verified App Examples
+## App Examples
 
 - Login and registration send their requests through `$api`, await `useUserSession().fetch()`, and then report success.
 - Profile update refreshes the session before the form interaction completes.

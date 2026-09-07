@@ -81,7 +81,7 @@ The `build` script selects the Production build for the configured Production br
 
 Disable NuxtHub build-time migration for the Cloudflare D1 path so the release scripts apply the committed migration authority at release time.
 
-## Verified App Examples
+## App Examples
 
 - [`package.json`](../../../apps/bulletproof-nuxt/package.json) exposes the branch-aware build, Production／Preview build, and migration-aware deploy／version-upload scripts used by Workers Builds.
 - [`nuxt.config.ts`](../../../apps/bulletproof-nuxt/nuxt.config.ts) selects different D1 resources for Production and Preview and disables build-time migration for the Cloudflare D1 path.

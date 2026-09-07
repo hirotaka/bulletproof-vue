@@ -10,65 +10,69 @@ status: confirmed
 
 ## Practice
 
-Prefer Nuxt's generated AsyncData key when the request URL and fetch options fully describe request identity. Use a manual key only when the key itself is an explicit application contract.
+Use Nuxt-generated AsyncData keys by default. When request inputs such as page numbers or resource IDs change, pass them as reactive query values or URLs rather than duplicating them in a manually constructed key. Provide an explicit key when your application needs to access data by key or keep separate state for otherwise identical requests.
 
 ## Apply When
 
-- A fixed URL and its options fully identify a read.
-- Reactive query values describe replacement-style list identity.
-- A reactive URL describes the current resource identity.
-- An explicit key is needed for `useNuxtData()`, an optimistic update, or intentionally independent state for otherwise identical requests.
+- The request URL and query parameters do not change, as with a simple user list.
+- Query parameters such as page number, search text, or sort order determine which results to fetch.
+- The resource ID in the URL determines which resource to fetch.
+- You need to access the fetched data by a known key through `useNuxtData()`.
+- You need to keep AsyncData state separate for otherwise identical requests.
 
 ## Do Not Apply When
 
-- A manual key would only give a request a readable label.
-- The key duplicates identity already present in the URL or query.
-- A watcher would only call `refresh()` after changing an input that `useAPI` can watch directly.
-- Calls sharing a manual key use different request or data-shaping options.
+- Requests need a separate AsyncData state for values that Nuxt does not include in the generated key, such as a language header.
+- The application controls when to fetch data after request inputs change, instead of relying on automatic refetching.
 
 ## Why
 
-Generated identity keeps the key aligned with the resolved request inputs and avoids application helpers that duplicate URL and option state. Reactive request inputs also let Nuxt start the corresponding request without a second watcher dedicated to refresh.
+Letting Nuxt generate the key means that adding or changing a page number, search term, or resource ID does not require a matching change to a manually constructed key.
+
+Reactive URLs and query values also let Nuxt handle data fetching when those inputs change, without a separate watcher just to call `refresh()`.
 
 ## Implementation Guidance
 
-- Pass reactive pagination, search, or sort values through the `query` option.
-- Pass a reactive resource URL as a ref, computed value, or getter.
-- Use the raw `refresh()` returned by the owning call for an explicit rerun of its current request.
-- When a manual key is required, keep the request and `default`, `transform`, `pick`, `deep`, and `getCachedData` options compatible across callers.
-- Evaluate dedupe separately when the app has a concrete same-key concurrency requirement; generated identity alone does not define an application-specific execution policy.
+- Keep pagination, search, and sort inputs reactive when passing them through the `query` option.
+- Use a reactive URL when the resource to fetch can change.
+- Let Nuxt handle refetching when those inputs change. Use `refresh()` for an explicit rerun of the current request.
+- If an explicit key depends on changing request inputs, keep the key reactive as well.
 
 ## Minimal Nuxt Example
 
 ```ts
 const page = ref(1);
-const route = useRoute();
-const projectId = computed(() => route.params.id as string);
+const projectId = ref("project-1");
 
-const projects = await useAPI("/api/projects", {
+const { data: projects } = await useFetch("/api/projects", {
   query: { page },
 });
 
-const project = await useAPI(
+const { data: project } = await useFetch(
   () => `/api/projects/${projectId.value}`,
 );
 ```
 
-## Verified App Examples
+Nuxt generates the keys for both calls. Changing the value of `page` changes the list's query parameters and generated key. Changing the value of `projectId` changes the URL for the detail request and its generated key. With automatic refetching enabled, Nuxt fetches the data for the updated inputs.
 
-- The [discussion collection composable](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useDiscussions.ts) passes reactive page and limit values as query inputs.
-- The [discussion detail composable](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useDiscussion.ts) passes the reactive resource ID through a URL getter.
-- The [users composable](../../../apps/bulletproof-nuxt/layers/users/app/composables/useUsers.ts) relies on fixed URL and options for identity.
+## App Examples
+
+- [`useDiscussions.ts`](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useDiscussions.ts) passes reactive `page` and `limit` values through `query`, leaving key generation to Nuxt.
+- [`useDiscussion.ts`](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useDiscussion.ts) uses a URL getter so the request URL follows changes to the discussion ID.
+- [`useUsers.ts`](../../../apps/bulletproof-nuxt/layers/users/app/composables/useUsers.ts) calls `useAPI` with the fixed `/api/users` URL and leaves key generation to Nuxt.
 
 ## Trade-offs and Limitations
 
-Generated keys are not directly addressable by application code in the way an explicit key is. Introduce a manual key when that addressability is a real contract, then maintain option compatibility deliberately. Nuxt behavior can vary by framework version, so test material reactive transitions that the app depends on.
+Nuxt generates keys from call-site information, the request URL, and selected fetch options. The same URL and query parameters at different call sites may therefore produce different keys.
+
+Generated keys are useful for managing request inputs without a separate naming scheme, but they are not stable names for application code to reference. Use an explicit key when the code needs to identify the data by name, such as with `useNuxtData()`.
 
 ## Sources
 
-- [Nuxt `useFetch`](https://nuxt.com/docs/4.x/api/composables/use-fetch)
-- [Nuxt `useAsyncData`](https://nuxt.com/docs/4.x/api/composables/use-async-data)
-- [Nuxt `useNuxtData`](https://nuxt.com/docs/4.x/api/composables/use-nuxt-data)
+- [Nuxt: `useFetch`](https://nuxt.com/docs/4.x/api/composables/use-fetch)
+- [Nuxt: `useAsyncData`](https://nuxt.com/docs/4.x/api/composables/use-async-data)
+- [Nuxt: `useNuxtData`](https://nuxt.com/docs/4.x/api/composables/use-nuxt-data)
+- [Nuxt 4.5.1: `useFetch` source](https://github.com/nuxt/nuxt/blob/v4.5.1/packages/nuxt/src/app/composables/fetch.ts)
 
 ## Related Practices
 

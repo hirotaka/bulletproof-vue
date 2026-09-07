@@ -87,7 +87,7 @@ export async function useActivities(projectId: MaybeRefOrGetter<string>) {
 }
 ```
 
-## Verified App Examples
+## App Examples
 
 - `useDiscussions()` keeps its typed route-specific `useAPI` call and selects replacement pagination.
 - `DiscussionsList` uses `loadPage()` for ordinary navigation and post-delete page clamping.

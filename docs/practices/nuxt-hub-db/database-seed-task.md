@@ -80,7 +80,7 @@ For Local development, the manual sequence is:
 4. Invoke `db:seed` manually.
 5. Review the task result.
 
-## Verified App Examples
+## App Examples
 
 - [`nuxt.config.ts`](../../../apps/bulletproof-nuxt/nuxt.config.ts) enables Nitro Tasks in the application.
 - [`server/tasks/db/seed.ts`](../../../apps/bulletproof-nuxt/server/tasks/db/seed.ts) exposes the `db:seed` task and calls the database seed implementation.
