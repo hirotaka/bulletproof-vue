@@ -10,73 +10,94 @@ status: confirmed
 
 ## Practice
 
-When multiple data-aware components need the same API data, request state, or refresh behavior, let them call the same feature composable with compatible inputs. Treat shared AsyncData state and HTTP execution as separate properties. Keep API-independent presentation components driven by props.
+Use a feature composable to share AsyncData state between components that need the same API data, loading or error state, or refresh operation. Let these components call the composable directly. Pass data as props to components that only display it.
 
 ## Apply When
 
-- More than one data-aware owner needs the same resource state.
-- A child owns a mutation follow-up refresh for the shared resource.
-- Reactive resource transitions must keep consumers aligned to one settled identity.
-- Centralizing the URL and options prevents callers from drifting apart.
+- Multiple components need access to the same API data, loading state, or error state.
+- A component needs to refresh data that other components also use, such as after saving an edit.
 
 ## Do Not Apply When
 
-- A component only displays data and has no API-aware behavior.
-- A new production consumer would exist only to demonstrate state sharing.
-- Callers cannot use compatible request and data-shaping options.
-- The goal is solely to guarantee a single HTTP execution.
-- Each consumer must own an independent error or request-hook lifecycle.
+- A component only displays data provided to it.
+- Components need separate data, loading, or error states for the same resource.
+- Components require incompatible data-shaping options, such as different `transform` or `pick` settings.
+- The only goal is to guarantee a single HTTP request.
 
 ## Why
 
-Compatible calls with the same AsyncData key use the same Nuxt-managed data, error, status, and refresh lifecycle. A data-aware component can obtain the shared refresh operation without routing API behavior through unrelated intermediate components.
+Compatible `useFetch` calls with the same AsyncData key access the same `data`, `error`, and `status`. A refresh initiated by one component updates the shared state used by the others.
 
-State sharing does not guarantee one handler or HTTP execution. Server rendering, hydration payload reuse, pending dedupe, and later client-side consumers each have different execution conditions.
+A feature composable keeps the request and `useFetch` options together. An editor can read the shared data and call `refresh()` after saving. Intermediate components do not need to forward a refresh callback they do not use. Display components can receive data as props, keeping their presentation logic independent of how the data is fetched.
 
 ## Implementation Guidance
 
-- Centralize the URL and fetch options in a feature composable that returns native AsyncData.
-- Keep the handler, URL, query, `default`, `transform`, `pick`, `deep`, and `getCachedData` compatible across consumers.
-- Let data-aware consumers call the composable directly when they own data-dependent behavior.
-- Pass display data to API-independent components as props.
-- During a reactive resource transition, use the settled resource identity for dependent UI until the target resource settles.
-- Treat notification, navigation, and other side effects as separate ownership decisions; do not assume same-key callers have independent request hooks.
-- Do not use `dedupe` as a request-once policy. `cancel` and `defer` govern overlapping pending executions, not later calls after settlement.
-- Consider `server: false` only for a consumer that does not need to start its own SSR read. Confirm whether another server-rendered owner supplies shared data and whether a standalone use may wait until hydration.
+- Keep the request and shared `useFetch` options in a feature composable that returns AsyncData. Components sharing the resource should pass matching inputs and resolve to the same AsyncData key.
+- Keep `default`, `transform`, `pick`, `deep`, and `getCachedData` consistent across calls sharing a key.
+- Obtain `refresh()` from that composable in the component that needs to refresh the resource. Keep display-only components driven by props.
+- Define shared request hooks, such as `onRequestError` and `onResponseError`, in the configured fetcher or feature composable. Perform component-specific actions, such as closing an edit dialog after a successful save, in the component's save handler.
+- When switching resources, pass the ID that belongs to the displayed data to dependent components. Avoid pairing a new route ID with data from the previous resource.
 
 ## Minimal Nuxt Example
 
-```ts
-// composables/useProject.ts
-export function useProject(id: MaybeRefOrGetter<string>) {
-  return useAPI(() => `/api/projects/${toValue(id)}`);
-}
+Define the shared request in `useProject`.
 
-// A data-aware editor can use the same composable as the page.
-const { data, refresh } = await useProject(() => props.projectId);
+```ts
+// useProject.ts
+export function useProject(id: MaybeRefOrGetter<string>) {
+  return useFetch(() => `/api/projects/${toValue(id)}`);
+}
 ```
+
+The page reads the project and passes the ID from the loaded data to `ProjectEditor`.
+
+```vue
+<script setup lang="ts">
+const { data: project } = await useProject("project-1");
+</script>
+
+<template>
+  <ProjectEditor
+    v-if="project"
+    :project-id="project.id"
+  />
+</template>
+```
+
+The editor receives only `projectId`. It reads the project and obtains `refresh()` from the same composable, rather than receiving the data or a refresh callback from the page.
+
+```ts
+// ProjectEditor.vue — script setup
+const props = defineProps<{
+  projectId: string;
+}>();
+
+const { data: project, refresh } = await useProject(
+  () => props.projectId,
+);
+```
+
+With the same project ID, both components use the same `useFetch` call site and generated AsyncData key. The editor can call `refresh()` after saving, and the page sees the updated shared state.
 
 ## App Examples
 
-- The [discussion detail page](../../../apps/bulletproof-nuxt/layers/discussions/app/pages/app/discussions/%5Bid%5D.vue) owns initial settlement and passes a settled resource identity to dependent UI.
-- [DiscussionView](../../../apps/bulletproof-nuxt/layers/discussions/app/components/DiscussionView.vue) calls the same detail composable for shared display data.
-- [UpdateDiscussion](../../../apps/bulletproof-nuxt/layers/discussions/app/components/UpdateDiscussion.vue) calls the same composable for form data and the raw refresh operation it owns.
+- [`useDiscussion.ts`](../../../apps/bulletproof-nuxt/layers/discussions/app/composables/useDiscussion.ts) centralizes the discussion detail request through `useAPI` for the page, `DiscussionView`, and `UpdateDiscussion`.
+- [`[id].vue`](../../../apps/bulletproof-nuxt/layers/discussions/app/pages/app/discussions/%5Bid%5D.vue) calls `useDiscussion()` with the route ID and passes the fetched `discussion.id` to `DiscussionView`.
+- [`DiscussionView.vue`](../../../apps/bulletproof-nuxt/layers/discussions/app/components/DiscussionView.vue) reads the discussion through the same composable and passes its ID to `UpdateDiscussion`. It passes the discussion body to [`MarkdownPreview.vue`](../../../apps/bulletproof-nuxt/app/components/app/MarkdownPreview.vue) as a prop, keeping Markdown rendering independent of data fetching.
+- [`UpdateDiscussion.vue`](../../../apps/bulletproof-nuxt/layers/discussions/app/components/UpdateDiscussion.vue) copies the shared title and body into local form state and obtains `refresh()` from `useDiscussion()`. It calls `refresh()` after the update succeeds, without receiving a refresh callback through props.
 
 ## Trade-offs and Limitations
 
-Nested awaited consumers can begin server-side reads serially after an earlier request has settled. Pending dedupe does not combine these settled executions. In the verified discussion detail shape, preserving direct data and refresh access in each data-aware component accepts repeated serial server reads.
+Sharing AsyncData state does not guarantee a single HTTP request. Nested components can start separate server-side fetches sequentially when they await the same composable. `dedupe` handles overlapping fetches, not later calls after the previous fetch has completed.
 
-Hydration can reuse a server result from the Nuxt payload without a browser refetch. In Nuxt 4.4.5, a later client-side initial call for an already successful same-key entry also skips another initial fetch. This is version-pinned source behavior, not a general application cache contract.
+During hydration, Nuxt can reuse the server result from its payload without making another browser request. The number of composable calls therefore does not determine the number of HTTP requests.
 
-`server: false` prevents that caller from starting a server fetch; it does not unconditionally remove the request. A compatible SSR owner may already provide the shared state. Without such an owner, the data-dependent UI waits for a client request after hydration. Use this option only when that rendering trade-off is acceptable.
+With `server: false`, the component does not start a server-side fetch. Another server-side read may still supply the shared data. Otherwise, on the initial page load, the component waits for a browser fetch to complete before it can display that data.
 
 ## Sources
 
-- [Nuxt 4.4.5 `useFetch`](https://github.com/nuxt/nuxt/blob/v4.4.5/docs/4.api/2.composables/use-fetch.md)
-- [Nuxt 4.4.5 `useAsyncData`](https://github.com/nuxt/nuxt/blob/v4.4.5/docs/4.api/2.composables/use-async-data.md)
-- [Nuxt 4.4.5 AsyncData implementation](https://github.com/nuxt/nuxt/blob/v4.4.5/packages/nuxt/src/app/composables/asyncData.ts)
-- [Nuxt issue discussing nested awaited request timing](https://github.com/nuxt/nuxt/issues/25853)
-- [Nuxt issue discussing dedupe behavior](https://github.com/nuxt/nuxt/issues/29196)
+- [Nuxt: `useFetch`](https://nuxt.com/docs/4.x/api/composables/use-fetch)
+- [Nuxt: `useAsyncData`](https://nuxt.com/docs/4.x/api/composables/use-async-data)
 
 ## Related Practices
 
