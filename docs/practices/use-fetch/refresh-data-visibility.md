@@ -10,74 +10,85 @@ status: confirmed
 
 ## Practice
 
-When a data refresh is pending and displayable data already exists, keep that data visible. Distinguish initial loading from refreshing instead of replacing existing content with loading UI on every refresh.
+Keep previously fetched data visible while `useFetch` refreshes it. Show initial loading UI when a request is pending and no fetched data is available.
 
 ## Apply When
 
-- A list or detail view is refreshed.
-- Existing content can remain available while the refresh is pending.
-- Initial loading and refreshing need different UI treatments.
-- Affected data is refreshed after a mutation succeeds.
+- A list or detail view already has fetched data to display.
+- Users can continue viewing the previous result while updated data is being fetched.
 
 ## Do Not Apply When
 
-- The initial request is pending and no displayable data exists yet.
-- Showing existing data during refresh is not acceptable for security or correctness reasons.
-- Load-more results are appended to local accumulated state.
+- The initial request is pending and there is no previously fetched data to display.
+- The previous result must no longer be displayed, for example because the user no longer has permission to view it.
+- The request loads another page to append to a list, rather than refreshing the displayed result.
 
 ## Why
 
-An AsyncData `status` of `pending` does not mean that no displayable data exists. Data from an earlier successful request may remain available during refresh.
+`useFetch` can keep data from a previous successful request while a refresh is pending.
 
-Replacing existing content with a spinner whenever refresh starts causes visual flicker and temporarily removes content or controls the user was reading or using.
+Keeping that data visible avoids the flicker and layout shifts caused by replacing existing content with a loading screen and then restoring it. Users can continue reading while updated data is fetched. The layout may still change when the new data arrives, for example if the number of items changes.
 
 ## Implementation Guidance
 
-- Use the raw `refresh()` returned by the owning feature composable.
-- Do not hide existing content solely because `status === "pending"`.
-- Treat pending without data as initial loading and pending with data as refreshing.
-- Keep existing content visible and show a non-blocking refresh indicator when useful.
-- Do not clear `data` manually before starting refresh.
-- Report refresh failures through the common API error contract. This practice does not add data retention after failure.
+- Use `status` and the fetched `data` to distinguish initial loading from refreshing. Keep the current content visible while a refresh is pending.
+- Call `refresh()` from the feature composable to fetch updated data.
+- Show a refresh indicator alongside the existing content when users need progress feedback.
 
 ## Minimal Nuxt Example
 
+Define a feature composable for an API that returns a project array.
+
+```ts
+// composables/useProjects.ts
+export function useProjects() {
+  return useFetch("/api/projects");
+}
+```
+
+Use its data, status, and refresh function in the component.
+
 ```vue
 <script setup lang="ts">
-const { data: projects, status, refresh } = await useAPI<Project[]>("/api/projects");
-
-const isInitialPending = computed(() => status.value === "pending" && projects.value === undefined);
-const isRefreshing = computed(() => status.value === "pending" && projects.value !== undefined);
+const { data: projects, status, refresh } = useProjects();
 </script>
 
 <template>
-  <Spinner v-if="isInitialPending" />
-  <section v-else>
-    <p v-if="isRefreshing" aria-live="polite">Refreshing projects...</p>
-    <ProjectList v-if="projects" :projects="projects" />
-    <button type="button" @click="refresh">Refresh</button>
+  <p v-if="status === 'pending' && !projects" role="status">
+    Loading projects...
+  </p>
+
+  <section v-else-if="projects">
+    <p role="status" style="min-height: 1.5em">
+      {{ status === "pending" ? "Refreshing projects..." : "" }}
+    </p>
+    <ProjectList :projects="projects" />
+    <button type="button" @click="refresh()">
+      Refresh
+    </button>
   </section>
 </template>
 ```
 
+The list stays visible during refresh. Reserve space for the progress message to keep it from shifting the list.
+
 ## App Examples
 
-- The discussion list shows a spinner during initial loading when no data exists.
-- When discussion rows exist, the list keeps them visible during refresh and shows `Refreshing discussions...`.
-- The discussion detail view keeps existing detail content visible while its refresh request is pending.
-- The users list keeps existing users visible while refresh is pending.
+- [`DiscussionsList.vue`](../../../apps/bulletproof-nuxt/layers/discussions/app/components/DiscussionsList.vue) keeps existing discussion rows visible during refresh and shows `Refreshing discussions...` above the table.
+- [`DiscussionView.vue`](../../../apps/bulletproof-nuxt/layers/discussions/app/components/DiscussionView.vue) keeps the discussion details visible during refresh by rendering them whenever `discussion` data is available.
+- [`UsersList.vue`](../../../apps/bulletproof-nuxt/layers/users/app/components/UsersList.vue) keeps the user list visible while refreshing it after a successful deletion.
 
 ## Trade-offs and Limitations
 
-Existing data shown during refresh is not the result of the pending request. Indicate that a refresh is in progress when users need that context.
+The visible data comes from the previous successful request and may be out of date until the refresh succeeds.
 
-Keeping existing data visible avoids flicker, but each surface must decide whether interactions should remain available. Treat append-style pagination with local accumulated state as a separate practice.
+Keeping data visible while a refresh is pending does not guarantee that it will remain available if the request fails.
 
 ## Sources
 
 - [Nuxt `useFetch`](https://nuxt.com/docs/4.x/api/composables/use-fetch)
 - [Nuxt `useAsyncData`](https://nuxt.com/docs/4.x/api/composables/use-async-data)
-- [Nuxt data fetching](https://nuxt.com/docs/4.x/getting-started/data-fetching)
+- [Nuxt Data Fetching guide](https://nuxt.com/docs/4.x/getting-started/data-fetching)
 
 ## Related Practices
 

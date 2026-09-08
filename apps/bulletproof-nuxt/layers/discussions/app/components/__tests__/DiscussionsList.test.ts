@@ -95,27 +95,47 @@ test("emits page changes without calling a domain Read", async () => {
   expect(wrapper.emitted("pageChange")).toEqual([[2]]);
 });
 
-test("shows a full loading state before initial list data exists", async () => {
-  const wrapper = await mountDiscussionsList({
-    discussions: emptyDiscussions,
-    isPending: true,
-  }, {
-    template: "<div data-testid='data-table' />",
-    props: ["data", "columns", "pagination"],
+test.each([
+  { name: "empty", response: emptyDiscussions, content: "No Entries Found" },
+  { name: "nonempty", response: paginatedDiscussions, content: "First Discussion" },
+])("keeps a fetched $name table mounted throughout refresh", async ({ response, content }) => {
+  const wrapper = await mountDiscussionsList({ discussions: response }, {
+    template: "<div data-testid='data-table'>{{ data.length ? data[0].title : emptyTitle }}</div>",
+    props: ["data", "columns", "pagination", "emptyTitle"],
   });
+  const table = wrapper.get("[data-testid='data-table']").element;
+  expect(wrapper.text()).toContain(content);
 
-  expect(wrapper.find("[data-testid='spinner']").exists()).toBe(true);
-  expect(wrapper.find("[data-testid='data-table']").exists()).toBe(false);
+  await wrapper.setProps({ isPending: true });
+
+  expect(wrapper.get("[data-testid='data-table']").element).toBe(table);
+  expect(wrapper.text()).toContain(content);
+  expect(wrapper.text()).toContain("Refreshing discussions...");
+  expect(wrapper.find("[data-testid='spinner']").exists()).toBe(false);
+
+  await wrapper.setProps({ isPending: false, discussions: paginatedDiscussions });
+
+  expect(wrapper.get("[data-testid='data-table']").element).toBe(table);
+  expect(wrapper.text()).toContain("First Discussion");
+  expect(wrapper.text()).not.toContain("Refreshing discussions...");
 });
 
-test("keeps stale list data visible while refreshing", async () => {
-  const wrapper = await mountDiscussionsList({ isPending: true }, {
-    template: "<p>{{ data[0].title }}</p>",
+test("reserves the refresh message space before, during, and after refresh", async () => {
+  const wrapper = await mountDiscussionsList({}, {
+    template: "<div />",
     props: ["data", "columns", "pagination"],
   });
+  const message = wrapper.get("[aria-live='polite']");
+  expect(message.classes()).toContain("min-h-5");
+  expect(message.text()).toBe("");
 
-  expect(wrapper.text()).toContain("Refreshing discussions...");
-  expect(wrapper.text()).toContain("First Discussion");
+  await wrapper.setProps({ isPending: true });
+  expect(wrapper.get("[aria-live='polite']").element).toBe(message.element);
+  expect(message.text()).toBe("Refreshing discussions...");
+
+  await wrapper.setProps({ isPending: false });
+  expect(wrapper.get("[aria-live='polite']").element).toBe(message.element);
+  expect(message.text()).toBe("");
 });
 
 test("renders the empty state when the list succeeds with no discussions", async () => {
