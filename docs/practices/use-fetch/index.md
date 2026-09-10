@@ -30,7 +30,7 @@ This collection documents practices for choosing and composing Nuxt data-fetchin
 
 ## Collection Strategies
 
-14. [Share Pagination Mechanics and Choose the Collection Strategy](pagination-strategies.md)
+14. [Update Paginated Lists Differently for Page Navigation and Load More](pagination-strategies.md)
 
 ## Testing and Evidence
 
