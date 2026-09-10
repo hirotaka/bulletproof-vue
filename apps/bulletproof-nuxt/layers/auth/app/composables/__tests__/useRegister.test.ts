@@ -34,6 +34,15 @@ const registerInput = (): RegisterInput => ({
   teamName: "Analytical Engines",
 });
 
+test("skips session refresh and success when the registration request fails", async () => {
+  api.mockRejectedValueOnce(new Error("Registration failed"));
+
+  await expect(useRegister()(registerInput())).rejects.toThrow("Registration failed");
+
+  expect(refreshSession).not.toHaveBeenCalled();
+  expect(addNotification).not.toHaveBeenCalled();
+});
+
 test("refreshes the user session before reporting success", async () => {
   const events: string[] = [];
   let resolveSession!: () => void;

@@ -30,6 +30,15 @@ const loginInput = (): LoginInput => ({
   password: "Password123!",
 });
 
+test("skips session refresh and success when the login request fails", async () => {
+  api.mockRejectedValueOnce(new Error("Login failed"));
+
+  await expect(useLogin()(loginInput())).rejects.toThrow("Login failed");
+
+  expect(refreshSession).not.toHaveBeenCalled();
+  expect(addNotification).not.toHaveBeenCalled();
+});
+
 test("refreshes the user session before reporting success", async () => {
   const events: string[] = [];
   let resolveSession!: () => void;

@@ -127,6 +127,32 @@ test("UpdateProfile populates current user values and submits normalized payload
   await waitFor(() => expect(bodyScreen.queryByRole("dialog", { name: /update profile/i })).toBeNull());
 });
 
+test("UpdateProfile does not create a fallback session when refresh settles empty", async () => {
+  session.value = { id: "session-1", user: mockUser.value };
+  refreshSession.mockImplementationOnce(async () => {
+    session.value = null;
+  });
+  registerEndpoint("/api/profile", {
+    method: "PATCH",
+    handler: () => new Response(null, { status: 204 }),
+  });
+
+  const wrapper = await mountSuspended(UpdateProfile);
+  const screen = within(wrapper.element as HTMLElement);
+  const bodyScreen = within(document.body);
+
+  await userEvent.click(screen.getByRole("button", { name: /update profile/i }));
+  await userEvent.click(await bodyScreen.findByRole("button", { name: /submit/i }));
+
+  await waitFor(() => expect(refreshSession).toHaveBeenCalledOnce());
+  await waitFor(() => expect(bodyScreen.queryByRole("dialog", { name: /update profile/i })).toBeNull());
+  expect(session.value).toBeNull();
+  expect(addNotification).toHaveBeenCalledWith({
+    type: "success",
+    title: "Profile Updated",
+  });
+});
+
 test("UpdateProfile blocks invalid input before calling profile API", async () => {
   const profileHandler = vi.fn();
 

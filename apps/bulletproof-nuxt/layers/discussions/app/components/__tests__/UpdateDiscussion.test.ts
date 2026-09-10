@@ -139,6 +139,7 @@ test("UpdateDiscussion preloads current values and submits changed data", async 
 
 test("UpdateDiscussion keeps mutation success when its shared refresh rejects", async () => {
   discussionRefresh.mockImplementationOnce(async () => {
+    addNotification({ type: "error", title: "Error", message: "Refresh failed" });
     throw new Error("Refresh failed");
   });
   const wrapper = await mountSuspended(UpdateDiscussion, {
@@ -154,6 +155,7 @@ test("UpdateDiscussion keeps mutation success when its shared refresh rejects", 
   expect(updateDiscussionMutate).toHaveBeenCalledTimes(1);
   expect(addNotification.mock.calls).toEqual([
     [{ type: "success", title: "Discussion Updated" }],
+    [{ type: "error", title: "Error", message: "Refresh failed" }],
   ]);
   await waitFor(() => {
     expect(bodyScreen.queryByRole("dialog", { name: /update discussion/i })).toBeNull();

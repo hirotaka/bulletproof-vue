@@ -34,13 +34,139 @@ test("notifies a transport failure once through onRequestError", async () => {
     options: {},
   });
 
-  expect(result).toEqual({ provide: { api } });
+  expect(result?.provide?.api).toBeTypeOf("function");
   expect(addNotification).toHaveBeenCalledOnce();
   expect(addNotification).toHaveBeenCalledWith({
     type: "error",
     title: "Error",
     message: "Network unavailable",
   });
+});
+
+type ErrorHook = (context: unknown) => void | Promise<void>;
+
+test("runs shared and request-specific response error handlers in order", async () => {
+  const events: string[] = [];
+  let requestOptions: { onResponseError: ErrorHook[] } | undefined;
+  const transport = vi.fn((_request: string, options: typeof requestOptions) => {
+    requestOptions = options;
+  });
+  create.mockReturnValue(transport);
+  vi.stubGlobal("$fetch", { create });
+  const plugin = (await import("../api")).default;
+  const result = await plugin({} as never);
+  const requestHandler = vi.fn(() => {
+    events.push("request");
+  });
+  addNotification.mockImplementation(() => {
+    events.push("shared");
+  });
+
+  if (!result?.provide) throw new Error("API plugin did not provide a client");
+  await result.provide.api("/api/projects", {
+    onResponseError: [requestHandler],
+  });
+  if (!requestOptions) throw new Error("API request options were not captured");
+
+  for (const hook of requestOptions.onResponseError) {
+    await hook({
+      options: {},
+      response: { _data: { message: "Project request failed" } },
+    });
+  }
+
+  expect(events).toEqual(["shared", "request"]);
+  expect(addNotification).toHaveBeenCalledOnce();
+  expect(requestHandler).toHaveBeenCalledOnce();
+});
+
+test("runs shared and request-specific request error handlers in order", async () => {
+  const events: string[] = [];
+  let requestOptions: { onRequestError: ErrorHook[] } | undefined;
+  const transport = vi.fn((_request: string, options: typeof requestOptions) => {
+    requestOptions = options;
+  });
+  create.mockReturnValue(transport);
+  vi.stubGlobal("$fetch", { create });
+  const plugin = (await import("../api")).default;
+  const requestHandler = vi.fn(() => {
+    events.push("request");
+  });
+  addNotification.mockImplementation(() => {
+    events.push("shared");
+  });
+
+  const result = await plugin({} as never);
+  if (!result?.provide) throw new Error("API plugin did not provide a client");
+  await result.provide.api("/api/projects", {
+    onRequestError: [requestHandler],
+  });
+  if (!requestOptions) throw new Error("API request options were not captured");
+
+  for (const hook of requestOptions.onRequestError) {
+    await hook({
+      error: new Error("Network unavailable"),
+      options: {},
+    });
+  }
+
+  expect(events).toEqual(["shared", "request"]);
+  expect(addNotification).toHaveBeenCalledOnce();
+  expect(requestHandler).toHaveBeenCalledOnce();
+});
+
+test("runs shared and request-specific response error handlers for $api.raw in order", async () => {
+  const events: string[] = [];
+  let requestOptions: { onResponseError: ErrorHook[] } | undefined;
+  const transport = Object.assign(vi.fn(), {
+    raw: vi.fn((_request: string, options: typeof requestOptions) => {
+      requestOptions = options;
+    }),
+  });
+  create.mockReturnValue(transport);
+  vi.stubGlobal("$fetch", { create });
+  const plugin = (await import("../api")).default;
+  const result = await plugin({} as never);
+  const requestHandler = vi.fn(() => {
+    events.push("request");
+  });
+  addNotification.mockImplementation(() => {
+    events.push("shared");
+  });
+
+  if (!result?.provide) throw new Error("API plugin did not provide a client");
+  await result.provide.api.raw("/api/projects", {
+    onResponseError: [requestHandler],
+  });
+  if (!requestOptions) throw new Error("Raw API request options were not captured");
+
+  for (const hook of requestOptions.onResponseError) {
+    await hook({
+      options: {},
+      response: { _data: { message: "Project request failed" } },
+    });
+  }
+
+  expect(events).toEqual(["shared", "request"]);
+  expect(addNotification).toHaveBeenCalledOnce();
+  expect(requestHandler).toHaveBeenCalledOnce();
+});
+
+test("does not mutate notification state when API hooks run on the server", async () => {
+  vi.stubGlobal("$fetch", { create });
+  const { createApiNotificationHooks } = await import("../api");
+  const hooks = createApiNotificationHooks(addNotification, false);
+
+  await hooks.onRequestError!({
+    error: new Error("Network unavailable"),
+    options: {},
+  } as never);
+  await hooks.onResponseError!({
+    options: {},
+    response: { _data: { message: "Project request failed" } },
+  } as never);
+
+  expect(addNotification).not.toHaveBeenCalled();
 });
 
 test("does not notify intentional request cancellation", async () => {
@@ -73,7 +199,10 @@ test("does not notify intentional request cancellation", async () => {
   controller.abort();
 
   await expect(request).rejects.toMatchObject({ name: "AbortError" });
-  expect(api).toHaveBeenCalledWith("/api/comments", { signal: controller.signal });
+  expect(api).toHaveBeenCalledWith(
+    "/api/comments",
+    expect.objectContaining({ signal: controller.signal }),
+  );
   expect(addNotification).not.toHaveBeenCalled();
 });
 

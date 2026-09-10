@@ -110,5 +110,5 @@ Separate Practices define error notifications, mutation and refresh outcomes, an
 - [Use Custom Fetchers for Your API](custom-api-fetchers.md)
 - [Use `useFetch` Semantics for Page Rendering Data](page-rendering-data.md)
 - [Define Domain and Feature API Calls in Composables](domain-feature-api-calls.md)
-- [Distinguish Mutation Failures from Data Refresh Failures](mutation-refresh-outcomes.md)
+- [Separate Completed Changes from Data Refresh Failures](completed-change-refresh-failures.md)
 - [Orchestrate Auth Session State Outside the Fetch Client](auth-session-orchestration.md)

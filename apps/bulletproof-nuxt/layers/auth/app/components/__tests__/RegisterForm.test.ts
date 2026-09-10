@@ -5,6 +5,14 @@ import RegisterForm from "../RegisterForm.vue";
 import { createUser } from "~~/test/data-generators";
 import { renderComponent, screen, userEvent, waitFor } from "~~/test/test-utils";
 
+function deferred<T>() {
+  let resolve!: (value: T | PromiseLike<T>) => void;
+  const promise = new Promise<T>((nextResolve) => {
+    resolve = nextResolve;
+  });
+  return { promise, resolve };
+}
+
 // Mock vue-router's useRoute
 vi.mock("vue-router", async () => {
   const actual = await vi.importActual("vue-router");
@@ -48,8 +56,10 @@ test("registers a new user and calls the successful submit callback", async () =
     },
   });
 
-  // Mock session refresh endpoint
-  registerEndpoint("/api/_auth/session", () => ({ id: "session-1", user: mockUser }));
+  // Hold the session refresh so the completion callback cannot run early.
+  const session = deferred<Record<string, unknown>>();
+  const sessionHandler = vi.fn(() => session.promise);
+  registerEndpoint("/api/_auth/session", sessionHandler);
 
   await renderComponent(RegisterForm, {
     url: "/auth/register",
@@ -71,7 +81,11 @@ test("registers a new user and calls the successful submit callback", async () =
   // Submit the form
   await userEvent.click(screen.getByRole("button", { name: /register/i }));
 
-  // Wait for the onSuccess callback to be called
+  await waitFor(() => expect(capturedBody).toBeDefined());
+  await waitFor(() => expect(sessionHandler).toHaveBeenCalledTimes(1));
+  expect(onSuccess).not.toHaveBeenCalled();
+
+  session.resolve({ id: "session-1", user: mockUser });
   await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
 
   // Verify the request body

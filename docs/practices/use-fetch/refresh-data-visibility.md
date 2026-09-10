@@ -94,6 +94,6 @@ Keeping data visible while a refresh is pending does not guarantee that it will 
 
 - [Use `useFetch` Semantics for Page Rendering Data](page-rendering-data.md)
 - [Let Request Inputs Define AsyncData Identity](async-data-identity.md)
-- [Distinguish Mutation Failures from Data Refresh Failures](mutation-refresh-outcomes.md)
+- [Separate Completed Changes from Data Refresh Failures](completed-change-refresh-failures.md)
 - [Handle API Error Notifications in Custom Fetchers](api-error-notifications.md)
 - [Share Pagination Mechanics and Choose the Collection Strategy](pagination-strategies.md)
