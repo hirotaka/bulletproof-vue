@@ -65,6 +65,85 @@ test("append strategy keeps page one and appends later pages", async () => {
   scope.stop();
 });
 
+test("append strategy ignores another load-more call while a page is pending", async () => {
+  const currentPage = ref(1);
+  const pending = deferred<PaginatedResult<Item>>();
+  const read = createRead(page(1, ["one"]), () => pending.promise);
+  const scope = effectScope();
+  const state = scope.run(() => usePaginatedData(read, {
+    strategy: "append",
+    page: currentPage,
+  }))!;
+
+  const firstLoad = state.loadMore();
+  const secondLoad = state.loadMore();
+
+  expect(read.refresh).toHaveBeenCalledTimes(1);
+  expect(state.data.value?.data).toEqual([{ id: "one" }]);
+
+  pending.resolve(page(2, ["two"]));
+  await Promise.all([firstLoad, secondLoad]);
+
+  expect(state.data.value?.data).toEqual([{ id: "one" }, { id: "two" }]);
+  scope.stop();
+});
+
+test("append strategy stops loading when there are no more pages", async () => {
+  const currentPage = ref(1);
+  const read = createRead(page(1, ["only"], 1), async () => page(2, ["unexpected"], 1));
+  const scope = effectScope();
+  const state = scope.run(() => usePaginatedData(read, {
+    strategy: "append",
+    page: currentPage,
+  }))!;
+
+  await state.loadMore();
+
+  expect(read.refresh).not.toHaveBeenCalled();
+  expect(currentPage.value).toBe(1);
+  expect(state.data.value?.data).toEqual([{ id: "only" }]);
+  scope.stop();
+});
+
+test("append strategy replaces accumulated rows when page one reloads", async () => {
+  const currentPage = ref(2);
+  const read = createRead(page(2, ["one", "two"]), async () => page(1, ["fresh-one"]));
+  const scope = effectScope();
+  const state = scope.run(() => usePaginatedData(read, {
+    strategy: "append",
+    page: currentPage,
+  }))!;
+
+  await state.loadPage(1);
+
+  expect(currentPage.value).toBe(1);
+  expect(state.data.value?.data).toEqual([{ id: "fresh-one" }]);
+  expect(state.data.value?.meta.page).toBe(1);
+  scope.stop();
+});
+
+test("append strategy ignores a late response after scope disposal", async () => {
+  const currentPage = ref(1);
+  const pending = deferred<PaginatedResult<Item>>();
+  const read = createRead(page(1, ["one"]), () => pending.promise);
+  const scope = effectScope();
+  const state = scope.run(() => usePaginatedData(read, {
+    strategy: "append",
+    page: currentPage,
+  }))!;
+
+  const request = state.loadMore();
+  expect(state.isLoading.value).toBe(true);
+  scope.stop();
+
+  expect(read.clear).not.toHaveBeenCalled();
+  expect(state.isLoading.value).toBe(false);
+  pending.resolve(page(2, ["late"]));
+  await request;
+
+  expect(state.data.value?.data).toEqual([{ id: "one" }]);
+});
+
 test("append strategy does not append an already loaded page twice", async () => {
   const currentPage = ref(2);
   const read = createRead(page(2, ["one", "two"]), async () => page(2, ["two"]));
@@ -82,7 +161,7 @@ test("append strategy does not append an already loaded page twice", async () =>
 
 test("append strategy preserves accumulated rows when a later page fails", async () => {
   const currentPage = ref(1);
-  const read = createRead(page(1, ["one"]), async () => {
+  const read = createRead(page(1, ["one", "another"]), async () => {
     throw new Error("Request failed");
   });
   const scope = effectScope();
@@ -93,7 +172,7 @@ test("append strategy preserves accumulated rows when a later page fails", async
 
   await state.loadMore();
 
-  expect(state.data.value?.data).toEqual([{ id: "one" }]);
+  expect(state.data.value?.data).toEqual([{ id: "one" }, { id: "another" }]);
   expect(state.data.value?.meta.page).toBe(1);
   expect(state.status.value).toBe("error");
   scope.stop();

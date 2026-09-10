@@ -158,6 +158,51 @@ test("failed initial comments provide persistent recovery and retry to success",
   await expect(page.getByRole("button", { name: "Create Comment" })).toBeEnabled();
 });
 
+test("failed later comments page keeps the comments already displayed", { tag: ["@comments", "@pagination"] }, async ({ page }) => {
+  const discussionId = await createDiscussionForComments(page, "comments-later-page-failure");
+  const commentBodies = Array.from(
+    { length: 11 },
+    (_, index) => `Later-page comment ${index + 1} ${Date.now()}`,
+  );
+
+  for (const body of commentBodies) {
+    await expectCreatedResponse(await page.request.post(new URL("/api/comments", page.url()).href, {
+      data: { discussionId, body },
+    }));
+  }
+
+  let laterPageGetCount = 0;
+  await page.route((url) => {
+    return url.pathname === "/api/comments"
+      && url.searchParams.get("discussionId") === discussionId
+      && url.searchParams.get("page") === "2";
+  }, async (route) => {
+    laterPageGetCount += 1;
+    await route.fulfill({
+      status: 500,
+      contentType: "application/json",
+      body: JSON.stringify({ message: "Later comments page failed" }),
+    });
+  });
+
+  await page.goto(`/app/discussions/${discussionId}`, { waitUntil: "networkidle" });
+  const displayedComments = page.getByRole("list", { name: "comments" }).getByRole("listitem");
+  await expect(displayedComments).toHaveCount(10);
+  const displayedLabels = await displayedComments.evaluateAll((items) => {
+    return items.map(item => item.getAttribute("aria-label") ?? "");
+  });
+  expect(displayedLabels).not.toContain("");
+
+  await page.getByRole("button", { name: "Load More Comments" }).click();
+
+  await expect.poll(() => laterPageGetCount).toBeGreaterThan(0);
+  await expect(page.getByText("Later comments page failed").first()).toBeVisible();
+  for (const label of displayedLabels) {
+    await expect(page.getByLabel(label, { exact: true })).toBeVisible();
+  }
+  await expect(page.getByRole("button", { name: "Load More Comments" })).toBeVisible();
+});
+
 test("comment create stays pending until its comments refresh settles", { tag: ["@comments", "@mutation-refresh"] }, async ({ page }) => {
   const discussionId = await createDiscussionForComments(page, "comment-create-refresh");
   const commentBody = "Created after delayed refresh";
