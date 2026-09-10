@@ -10,54 +10,54 @@ status: confirmed
 
 ## Practice
 
-This practice assumes that the application uses Nuxt Auth Utils to manage cookie-backed user sessions.
+When an authentication request changes the server session, synchronize the client auth state before completing the interaction.
 
-After an authentication request changes the server session, refresh client auth state through `useUserSession()` before completing the interaction. Use `fetch()` after login, registration, or authenticated profile changes, and use `clear()` for logout.
+Treat the authentication request and the session operation as separate responsibilities. Keep session synchronization, logout, navigation, and interaction completion outside the fetch client.
 
-Keep session refresh, logout, navigation, login completion, and provider-specific reconciliation outside the fetch client. Transport authentication extensions such as credentials, headers, or common unauthorized-response handling remain transport concerns.
+Protect server APIs independently from client-side navigation. Client-side route middleware can improve the user experience, but it does not protect an API from direct requests.
 
 ## Apply When
 
 - A login or registration request creates a server session.
 - An authenticated profile change updates user data stored in the session.
 - Logout must clear both the session cookie and client auth state.
-- A protected server route requires an authenticated user.
-- The app uses Nuxt Auth Utils and `$api` for imperative auth mutations.
+- A server API must reject requests without an authenticated session before performing protected work.
+- The app uses Nuxt Auth Utils to manage cookie-backed user sessions.
 
 ## Do Not Apply When
 
-- A request does not change authenticated user or session state.
-- Page-rendering data belongs in AsyncData rather than auth state.
+- A request does not change the authenticated user or session state.
+- Page-rendering data belongs in AsyncData rather than auth session state.
 - The authentication provider defines a different client session lifecycle.
-- Only transport credentials, auth headers, or common unauthorized-response handling are needed.
-- Multi-tab session synchronization is required; that needs a separate policy.
+- Only transport credentials, authentication headers, or common unauthorized-response handling are needed.
 
 ## Why
 
-Nuxt's Sessions and Authentication recipe performs the login request, refreshes `useUserSession()`, and only then navigates. This keeps the server cookie and client auth state synchronized before the next UI state depends on them.
+An authentication change affects both the server session and the auth state observed by the client. These states do not necessarily become current at the same time. Completing the interaction before both sides have settled can leave the next screen working with outdated identity information.
 
-Transport extensions can apply broadly to API traffic, but session operations have feature-specific ordering and provider semantics. Keeping those responsibilities separate avoids coupling every request to login, logout, navigation, or provider state.
+Logout has the same consistency requirement. Reporting completion before the session state has been cleared can tell the user that logout succeeded while authenticated access remains possible.
+
+Authentication workflows also control outcomes that ordinary data requests do not, such as completing a form, reporting authentication success, or choosing the next screen. Keeping those decisions within the authentication workflow prevents unrelated requests from affecting them.
+
+Page access and API access are separate security boundaries. Restricting navigation does not prevent a caller from requesting protected server data directly, so each boundary must enforce its own requirements.
 
 ## Implementation Guidance
 
-- Send imperative login, registration, and profile requests through `$api`.
-- In the server route, call `setUserSession()` after validating credentials or updating authenticated user data.
-- After the request succeeds, await `useUserSession().fetch()` before success notification, navigation, or form completion.
-- For logout, await `useUserSession().clear()` instead of adding a parallel logout endpoint.
-- Protect authenticated server routes with `requireUserSession()` before applying role or ownership checks.
-- Do not return a duplicate session DTO solely to assign it directly to client state.
-- Do not call the Nuxt Auth Utils session endpoint directly from app code when `fetch()` or `clear()` expresses the operation.
-- Accept the session provider's documented failure behavior rather than layering generic API notifications onto its internal request.
-- Add fallback sessions, queues, generation guards, or server-side invalidation only for a concrete requirement.
+- Send login, registration, and authenticated profile requests through the app's configured API client.
+- In the server route, call `setUserSession()` after validating the request and completing the operation that creates or updates the session.
+- After the request succeeds, await `useUserSession().fetch()` before reporting success, completing the form, or navigating.
+- For logout, await `useUserSession().clear()`. If it fails, do not report success or navigate as though logout had completed.
+- Protect server APIs with `requireUserSession()` before protected work. Use client-side route middleware only for page navigation.
 
 ## Minimal Nuxt Example
 
 ```ts
-export const useLogin = () => {
+// composables/useLogin.ts
+export function useLogin() {
   const { $api } = useNuxtApp();
   const { fetch: refreshSession } = useUserSession();
 
-  return async (credentials: LoginInput) => {
+  return async (credentials: LoginInput): Promise<void> => {
     await $api("/api/auth/login", {
       method: "POST",
       body: credentials,
@@ -65,43 +65,77 @@ export const useLogin = () => {
 
     await refreshSession();
   };
-};
+}
 ```
 
+The feature composable sends the login request and refreshes the client session before resolving.
+
+```vue
+<!-- pages/login.vue -->
+<script setup lang="ts">
+const login = useLogin();
+
+const submit = async (credentials: LoginInput) => {
+  await login(credentials);
+  await navigateTo("/app");
+};
+</script>
+```
+
+The page waits for the login operation to finish before navigating.
+
 ```ts
+// server/api/auth/login.post.ts
 export default defineEventHandler(async (event) => {
   const credentials = await readValidatedBody(event, loginSchema.parse);
   const user = await authenticate(credentials);
+
   await setUserSession(event, { user });
   return {};
 });
 ```
 
+The login API creates the server session only after authentication succeeds.
+
+```ts
+// server/api/projects.get.ts
+export default defineEventHandler(async (event) => {
+  const { user } = await requireUserSession(event);
+  return getProjectsForUser(user.id);
+});
+```
+
+The protected API requires an authenticated session before accessing protected data.
+
 ## App Examples
 
-- Login and registration send their requests through `$api`, await `useUserSession().fetch()`, and then report success.
-- Profile update refreshes the session before the form interaction completes.
-- Dashboard and profile-menu logout actions await `useUserSession().clear()` before navigation.
-- Auth and profile routes call `setUserSession()` without returning duplicate session DTOs.
-- Protected APIs call `requireUserSession()` before feature authorization.
+- [`useLogin.ts`](../../../apps/bulletproof-nuxt/layers/auth/app/composables/useLogin.ts) sends the login request and refreshes the client session before reporting success.
+- [`login.post.ts`](../../../apps/bulletproof-nuxt/layers/auth/server/api/auth/login.post.ts) creates the server session after authentication succeeds.
+- [`dashboard.vue`](../../../apps/bulletproof-nuxt/layers/base/app/layouts/dashboard.vue) waits for the session to clear before reporting logout success and navigating.
+- The [discussion collection API route](../../../apps/bulletproof-nuxt/layers/discussions/server/api/discussions/index.get.ts) requires a user session before accessing discussion data.
+- The [auth route middleware](../../../apps/bulletproof-nuxt/layers/auth/app/middleware/auth.ts) redirects unauthenticated page navigation.
 
 ## Trade-offs and Limitations
 
-Refreshing client auth state adds a provider session request after the primary mutation. Waiting for it delays completion, but intentionally avoids proceeding with pre-mutation auth state.
+Refreshing the client auth state adds another request after an authentication change, so notification, form completion, and navigation take longer.
 
-Nuxt Auth Utils owns the exact behavior of `fetch()` and `clear()`. A primary mutation can succeed while a later session refresh leaves client state empty. The app also does not serialize profile updates with logout; applications that require logout to be the final session writer need additional coordination or server-side invalidation.
+Session synchronization can fail even after the primary authentication request succeeds. Awaiting the session operation establishes ordering, but its success or failure still follows the provider's contract. Fallback session behavior and separate refresh-failure notifications require additional product decisions.
 
-Password hashing, provider selection, session payload design, multi-tab synchronization, and a complete authentication architecture require separate decisions.
+Session clearing can also fail. Logout must not be reported as complete before clearing succeeds. If clearing succeeds but navigation fails, session clearing remains successful; handle the navigation failure separately.
+
+Concurrent operations that write session state can finish out of order. When logout must remain the final session change, additional operation ordering or server-side invalidation is needed.
+
+Password handling, provider selection, session payloads, redirect validation, session expiry, and multi-tab behavior are separate concerns.
 
 ## Sources
 
 - [Nuxt Sessions and Authentication](https://nuxt.com/docs/4.x/guide/recipes/sessions-and-authentication)
-- [Nuxt Custom useFetch](https://nuxt.com/docs/4.x/guide/recipes/custom-usefetch)
+- [Nuxt Custom `useFetch`](https://nuxt.com/docs/4.x/guide/recipes/custom-usefetch)
 - [Nuxt Auth Utils](https://github.com/atinux/nuxt-auth-utils)
 
 ## Related Practices
 
-- [Use Configured API Fetchers for App-Owned Requests](custom-api-fetchers.md)
+- [Use Custom Fetchers for Your API](custom-api-fetchers.md)
 - [Use Imperative API Requests for Application Operations](imperative-api-requests.md)
 - [Handle API Error Notifications in Custom Fetchers](api-error-notifications.md)
-- [Distinguish Mutation Failures from Data Refresh Failures](mutation-refresh-outcomes.md)
+- [Separate Completed Changes from Data Refresh Failures](completed-change-refresh-failures.md)

@@ -92,4 +92,4 @@ Temporary evidence requires explicit execution and cleanup. Keeping it outside d
 - [Define Domain and Feature API Calls in Composables](domain-feature-api-calls.md)
 - [Let Request Inputs Define AsyncData Identity](async-data-identity.md)
 - [Share AsyncData Through Feature Composables](shared-async-data.md)
-- [Distinguish Mutation Failures from Data Refresh Failures](mutation-refresh-outcomes.md)
+- [Separate Completed Changes from Data Refresh Failures](completed-change-refresh-failures.md)

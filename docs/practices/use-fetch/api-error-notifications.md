@@ -10,79 +10,90 @@ status: confirmed
 
 ## Practice
 
-Apply the application's common API failure-notification rules through the configured `useAPI` and `$api` error hooks. Share error resolution, support per-request suppression or message overrides, keep intentional cancellation silent, and carry server-rendered notifications through hydration.
+Define common API error notifications in the error hooks of custom fetchers. Requests made through those fetchers then use the same notification rules, without repeating notification handling in each component or composable that makes an API request.
 
 ## Apply When
 
-- API request failures should appear through a common notification.
-- Requests need common error-message, notification-suppression, or cancellation rules.
-- Caller-specific hooks must run alongside common notification hooks.
-- A request failure during server rendering should appear after hydration.
+- API request failures across multiple pages or user operations should appear through the same notification UI.
+- Requests need shared rules for error messages and intentional cancellation, with per-request message overrides or notification suppression where needed.
+- Errors from SSR-capable custom `useFetch` requests need to be shown after hydration.
 
 ## Do Not Apply When
 
-- The feedback is an input-validation message rather than an API request failure.
-- The interaction needs its own explanation or recovery guidance instead of a common notification.
-- The request explicitly suppresses the global notification.
-- The app intentionally cancels a request because the user navigated away or the requested data changed.
+- The feedback belongs to form validation, such as a message beside an invalid field.
+- A page or user operation needs its own error explanation or recovery instructions instead of a common notification.
 
 ## Why
 
-Without one notification contract, error extraction, cancellation handling, suppression, and hydration behavior drift across callers. Applying those rules in both configured fetchers gives page reads and imperative requests consistent failure presentation while leaving feature-specific recovery with the interaction owner.
+When each component or composable handles API error notifications separately, the same failure can produce different messages, or notification handling may be omitted. Defining common handling in custom fetchers gives requests made through them consistent failure feedback and lets shared notification rules change without updating each component or composable.
 
 ## Implementation Guidance
 
-- Create notifications from `onRequestError` and `onResponseError` hooks on both configured fetchers.
-- Share the resolver that turns a transport or API error into notification content.
-- Compose caller-provided hooks with the common hooks rather than replacing either set.
-- Let each request override notification content or suppress the notification.
-- Detect intentional cancellation, including nested cancellation causes, and do not notify it as a failure.
-- Store notifications created during SSR in Nuxt state and display them after hydration.
-- Keep form validation, feature success, refresh completion, dialogs, navigation, and session lifecycle outside this failure-notification contract.
+- Define a shared function that builds notification content from a request error or an API error response. Let a request override that content or suppress the notification, and return no notification for an intentional cancellation.
+- Call the shared function from the custom fetchers' `onRequestError` and `onResponseError` hooks. Pass `error` from `onRequestError` and `response._data` from `onResponseError`.
+- If an individual request provides its own error hook, run the common notification hook and the request-specific hook instead of replacing either one.
+- Store notifications in shared state and render them in a notification component. For an SSR-capable custom `useFetch` composable, use Nuxt's `useState` when notifications created during server rendering need to remain available after hydration.
 
 ## Minimal Nuxt Example
 
+The app-specific `useNotifications`, `isIntentionalCancellation`, and `getApiErrorMessage` helpers in this example store notifications, recognize canceled requests, and select a message.
+
 ```ts
-const resolveNotification = (error: unknown) => {
+const reportError = (error: unknown) => {
   if (isIntentionalCancellation(error)) return;
 
-  return {
-    type: "error" as const,
+  useNotifications().addNotification({
+    type: "error",
     title: "Request failed",
     message: getApiErrorMessage(error),
-  };
+  });
 };
 
-const reportError = (error: unknown) => {
-  const notification = resolveNotification(error);
-  if (notification) useNotifications().addNotification(notification);
-};
-
-export const useAPI = createUseFetch(() => ({
-  onRequestError: ({ error }) => reportError(error),
-  onResponseError: ({ response }) => reportError(response._data),
+export const useApi = createUseFetch((options) => ({
+  onRequestError: [
+    ({ error }) => reportError(error),
+    ...toArray(options.onRequestError),
+  ],
+  onResponseError: [
+    ({ response }) => reportError(response._data),
+    ...toArray(options.onResponseError),
+  ],
 }));
+
+function toArray<T>(value: T | T[] | undefined): T[] {
+  if (!value) return [];
+  return Array.isArray(value) ? value : [value];
+}
 ```
+
+Requests made with `useApi` use the common notification hook before any error hook provided for an individual request.
 
 ## App Examples
 
-- [`useAPI`](../../../apps/bulletproof-nuxt/layers/base/app/composables/useAPI.ts) reports failures from page-rendering API reads.
-- [`$api`](../../../apps/bulletproof-nuxt/layers/base/app/plugins/api.ts) applies the same rules to imperative API requests.
-- The shared [notification resolver](../../../apps/bulletproof-nuxt/layers/base/app/utils/apiNotifications.ts) handles message resolution, suppression, and cancellation.
-- Notifications created during SSR pass through Nuxt state and appear from the [app root](../../../apps/bulletproof-nuxt/app/app.vue) after hydration.
+- [`useAPI.ts`](../../../apps/bulletproof-nuxt/layers/base/app/composables/useAPI.ts) defines the custom `useFetch` composable used for page data and reports its request failures.
+- [`api.ts`](../../../apps/bulletproof-nuxt/layers/base/app/plugins/api.ts) creates a custom `$fetch` instance used for browser operations and reports its request failures.
+- [`apiNotifications.ts`](../../../apps/bulletproof-nuxt/layers/base/app/utils/apiNotifications.ts) selects default or request-specific notification content and suppresses notifications for canceled requests.
+- [`useNotifications.ts`](../../../apps/bulletproof-nuxt/layers/base/app/composables/useNotifications.ts) stores notifications in Nuxt state.
+- [`app.vue`](../../../apps/bulletproof-nuxt/app/app.vue) mounts the notification center at the app root.
+- [`NotificationCenter.vue`](../../../apps/bulletproof-nuxt/app/components/app/NotificationCenter.vue) renders stored notifications in the browser.
 
 ## Trade-offs and Limitations
 
-Custom fetchers that never run during SSR do not need hydration handoff for their notifications.
+Error hooks run for each failed request attempt. If a custom fetcher retries a request and the later attempt succeeds, the user may already have seen a failure notification. Coordinating notifications with the final retry outcome requires additional retry-aware behavior outside this Practice.
+
+Common notification rules affect every request made through the custom fetcher. Use a per-request override or suppression when a page or user operation needs different feedback.
+
+A custom fetcher that runs only in the browser does not need Nuxt state solely to carry notifications through hydration.
 
 ## Sources
 
 - [Nuxt custom `useFetch`](https://nuxt.com/docs/4.x/guide/recipes/custom-usefetch)
-- [Nuxt `useFetch`](https://nuxt.com/docs/4.x/api/composables/use-fetch)
+- [Nuxt `createUseFetch`](https://nuxt.com/docs/4.x/api/composables/create-use-fetch)
+- [Nuxt `useState`](https://nuxt.com/docs/4.x/api/composables/use-state)
 - [ofetch interceptors](https://github.com/unjs/ofetch#interceptors)
 
 ## Related Practices
 
-- [Use Configured API Fetchers for App-Owned Requests](custom-api-fetchers.md)
+- [Use Custom Fetchers for Your API](custom-api-fetchers.md)
 - [Use Imperative API Requests for Application Operations](imperative-api-requests.md)
-- [Distinguish Mutation Failures from Data Refresh Failures](mutation-refresh-outcomes.md)
+- [Separate Completed Changes from Data Refresh Failures](completed-change-refresh-failures.md)

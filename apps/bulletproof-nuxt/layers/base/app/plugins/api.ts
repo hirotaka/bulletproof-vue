@@ -1,11 +1,16 @@
 import { useNotifications } from "#layers/base/app/composables/useNotifications";
 import { resolveApiErrorNotification } from "#layers/base/app/utils/apiNotifications";
 
-export default defineNuxtPlugin(() => {
-  const { addNotification } = useNotifications();
-  const api = globalThis.$fetch.create({
+type ApiOptions = NonNullable<Parameters<typeof globalThis.$fetch>[1]>;
+type AddNotification = ReturnType<typeof useNotifications>["addNotification"];
+
+export function createApiNotificationHooks(
+  addNotification: AddNotification,
+  client = import.meta.client,
+) {
+  return {
     onRequestError({ error, options }) {
-      if (!import.meta.client) {
+      if (!client) {
         return;
       }
 
@@ -19,7 +24,7 @@ export default defineNuxtPlugin(() => {
       }
     },
     onResponseError({ options, response }) {
-      if (!import.meta.client) {
+      if (!client) {
         return;
       }
 
@@ -32,7 +37,36 @@ export default defineNuxtPlugin(() => {
         addNotification(notification);
       }
     },
+  } satisfies Pick<ApiOptions, "onRequestError" | "onResponseError">;
+}
+
+export default defineNuxtPlugin(() => {
+  const { addNotification } = useNotifications();
+  const notificationHooks = createApiNotificationHooks(addNotification);
+  const configuredApi = globalThis.$fetch.create(notificationHooks);
+  const withNotificationHooks = (options?: ApiOptions): ApiOptions => ({
+    ...options,
+    onRequestError: [
+      notificationHooks.onRequestError,
+      ...toArray(options?.onRequestError),
+    ],
+    onResponseError: [
+      notificationHooks.onResponseError,
+      ...toArray(options?.onResponseError),
+    ],
   });
+  const api = Object.assign(
+    (request: Parameters<typeof configuredApi>[0], options?: ApiOptions) => {
+      return configuredApi(request, withNotificationHooks(options));
+    },
+    configuredApi,
+    {
+      raw: (
+        request: Parameters<typeof configuredApi.raw>[0],
+        options?: ApiOptions,
+      ) => configuredApi.raw(request, withNotificationHooks(options)),
+    },
+  ) as typeof configuredApi;
 
   return {
     provide: {
@@ -40,6 +74,14 @@ export default defineNuxtPlugin(() => {
     },
   };
 });
+
+function toArray<T>(value: T | T[] | undefined): T[] {
+  if (!value) {
+    return [];
+  }
+
+  return Array.isArray(value) ? value : [value];
+}
 
 declare module "#app" {
   interface NuxtApp {

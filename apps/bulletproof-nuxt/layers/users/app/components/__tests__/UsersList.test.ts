@@ -73,18 +73,7 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
-const mountUsersList = (realDeleteUser = false) => mountSuspended(UsersList, {
-  global: {
-    stubs: realDeleteUser
-      ? {}
-      : {
-          DeleteUser: {
-            template: "<button @click=\"refresh()\">Delete User</button>",
-            props: ["id", "refresh"],
-          },
-        },
-  },
-});
+const mountUsersList = () => mountSuspended(UsersList);
 
 test("UsersList renders user rows and delete action cell", async () => {
   const wrapper = await mountUsersList();
@@ -144,10 +133,10 @@ test("UsersList refreshes the users read after mobile delete succeeds", async ()
   expect(deleteUserMutate).toHaveBeenCalledWith("user-1");
 });
 
-test("wires the users refresh through real DeleteUser and waits before close", async () => {
+test("waits for the direct user deletion refresh before close", async () => {
   const refreshSettlement = deferred();
   refresh.mockImplementationOnce(() => refreshSettlement.promise);
-  const wrapper = await mountUsersList(true);
+  const wrapper = await mountUsersList();
   const screen = within(wrapper.element as HTMLElement);
   const bodyScreen = within(document.body);
   const desktopTable = screen.getByRole("table");
@@ -167,12 +156,35 @@ test("wires the users refresh through real DeleteUser and waits before close", a
   });
 });
 
+test("keeps user deletion success when the users refresh reports an error", async () => {
+  refresh.mockImplementationOnce(async () => {
+    addNotification({ type: "error", title: "Error", message: "Users refresh failed" });
+  });
+  const wrapper = await mountUsersList();
+  const screen = within(wrapper.element as HTMLElement);
+  const bodyScreen = within(document.body);
+
+  await userEvent.click(within(screen.getByRole("table")).getByRole("button", { name: /delete user/i }));
+  const deleteButtons = await bodyScreen.findAllByRole("button", { name: /delete user/i });
+  await userEvent.click(deleteButtons[deleteButtons.length - 1]!);
+
+  await waitFor(() => expect(refresh).toHaveBeenCalledOnce());
+  expect(deleteUserMutate).toHaveBeenCalledWith("user-1");
+  expect(addNotification.mock.calls).toEqual([
+    [{ type: "success", title: "User Deleted" }],
+    [{ type: "error", title: "Error", message: "Users refresh failed" }],
+  ]);
+  await waitFor(() => {
+    expect(bodyScreen.queryByRole("dialog", { name: /delete user/i })).toBeNull();
+  });
+});
+
 test("does not refresh a remounted users owner when an earlier delete settles", async () => {
   let finishDelete!: () => void;
   deleteUserMutate.mockReturnValueOnce(new Promise<void>((resolve) => {
     finishDelete = resolve;
   }));
-  const firstOwner = await mountUsersList(true);
+  const firstOwner = await mountUsersList();
   const firstScreen = within(firstOwner.element as HTMLElement);
   const bodyScreen = within(document.body);
 
@@ -182,7 +194,7 @@ test("does not refresh a remounted users owner when an earlier delete settles", 
   await waitFor(() => expect(deleteUserMutate).toHaveBeenCalledWith("user-1"));
 
   firstOwner.unmount();
-  await mountUsersList(true);
+  await mountUsersList();
   finishDelete();
   await waitFor(() => expect(addNotification).toHaveBeenCalledWith({
     type: "success",

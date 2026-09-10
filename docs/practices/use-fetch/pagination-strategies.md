@@ -114,4 +114,4 @@ Generated AsyncData identity can be shared by multiple consumers. Local disposal
 - [Use `useFetch` Semantics for Page Rendering Data](page-rendering-data.md)
 - [Let Request Inputs Define AsyncData Identity](async-data-identity.md)
 - [Keep Existing Data Visible During Refresh](refresh-data-visibility.md)
-- [Distinguish Mutation Failures from Data Refresh Failures](mutation-refresh-outcomes.md)
+- [Separate Completed Changes from Data Refresh Failures](completed-change-refresh-failures.md)

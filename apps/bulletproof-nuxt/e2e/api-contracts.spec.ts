@@ -298,6 +298,15 @@ test("user deletion is confined to the admin team", { tag: ["@contract", "@users
   }
 });
 
+test("discussion collection rejects a direct request without a session", { tag: ["@contract", "@auth"] }, async ({ page }) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.context().clearCookies();
+
+  const response = await page.request.get(new URL("/api/discussions", page.url()).href);
+
+  expect(response.status()).toBe(401);
+});
+
 test("completion-only mutations return explicit status with an empty body", { tag: ["@contract", "@cross-domain"] }, async ({ page }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const unique = `bodyless-${Date.now()}-${Math.random().toString(36).slice(2)}`;

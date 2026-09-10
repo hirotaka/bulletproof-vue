@@ -160,14 +160,24 @@ test("dashboard layout logs out before redirecting to login", async () => {
   await waitFor(() => {
     expect(clearSession).toHaveBeenCalledTimes(1);
   });
+  expect(addNotification).not.toHaveBeenCalled();
   expect(routerPush).not.toHaveBeenCalled();
 
   logoutDone.resolve();
 
   await waitFor(() => {
+    expect(addNotification).toHaveBeenCalledWith({
+      type: "success",
+      title: "Logged Out",
+    });
+  });
+  await waitFor(() => {
     expect(routerPush).toHaveBeenCalledWith("/auth/login?redirectTo=%2Fapp%2Fdiscussions");
   });
   expect(clearSession.mock.invocationCallOrder[0]).toBeLessThan(
+    addNotification.mock.invocationCallOrder[0]!,
+  );
+  expect(addNotification.mock.invocationCallOrder[0]).toBeLessThan(
     routerPush.mock.invocationCallOrder[0]!,
   );
 });
@@ -202,6 +212,11 @@ test("dashboard layout releases failed logout and allows retry without redirecti
 
   await signOut();
   await waitFor(() => expect(clearSession).toHaveBeenCalledTimes(1));
+  expect(addNotification).toHaveBeenCalledWith({
+    type: "error",
+    title: "Logout Failed",
+  });
+  expect(addNotification.mock.calls.filter(([notification]) => notification.type === "success")).toHaveLength(0);
   expect(routerPush).not.toHaveBeenCalled();
 
   await signOut();
